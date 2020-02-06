@@ -12,11 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<<<<<<< HEAD
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #D8B9F7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.InicioSesionController">
-=======
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #D8B9F7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.InicioSesionController.java">
->>>>>>> bf8c94b368346d37cdf0f9b8e13d58702a2bd229
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="800.0" style="-fx-background-color: #F2E8FD;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
         <menus>
@@ -38,11 +34,7 @@
         </menus>
       </MenuBar>
       <PasswordField layoutX="550.0" layoutY="158.0" />
-<<<<<<< HEAD
-      <Button fx:id="btninises" layoutX="582.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #F2E8FD;" text="Iniciar Sesión" />
-=======
       <Button fx:id="btninises" layoutX="582.0" layoutY="215.0" mnemonicParsing="false" style="-fx-background-color: #F2E8FD;" text="Iniciar Sesión" />
->>>>>>> bf8c94b368346d37cdf0f9b8e13d58702a2bd229
       <TextField layoutX="550.0" layoutY="97.0" />
       <Label layoutX="504.0" layoutY="101.0" text="Usuario:" />
       <Label layoutX="484.0" layoutY="162.0" text="Contraseña:" />
@@ -58,11 +50,7 @@
             <Image url="@imagenes/fplogo.png" />
          </image>
       </ImageView>
-<<<<<<< HEAD
-      <Hyperlink fx:id="linkRegistro" layoutX="558.0" layoutY="258.0" text="Registrar usuario nuevo" />
-=======
       <Hyperlink fx:id="registroUsuario" layoutX="558.0" layoutY="258.0" text="Registrar usuario nuevo" />
->>>>>>> bf8c94b368346d37cdf0f9b8e13d58702a2bd229
       <ImageView fitHeight="150.0" fitWidth="149.0" layoutX="151.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@imagenes/labinfantes.png" />

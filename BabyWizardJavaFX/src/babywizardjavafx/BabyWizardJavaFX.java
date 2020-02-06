@@ -5,6 +5,8 @@
  */
 package babywizardjavafx;
 
+import babywizardjavafx.modelo.JdbConnection;
+import java.sql.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +28,11 @@ public class BabyWizardJavaFX extends Application {
         stage.setTitle("BabyWizard");
         stage.setScene(scene);
         stage.show();
+        /** Ejemplo de conexion a la db
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        if (con != null) System.out.println("kul");
+        **/
     }
 
     /**
