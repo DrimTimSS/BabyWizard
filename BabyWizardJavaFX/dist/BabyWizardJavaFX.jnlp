@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="BabyWizardJavaFX.jar" size="476604" download="eager" />
+=======
+    <jar href="BabyWizardJavaFX.jar" size="473806" download="eager" />
+>>>>>>> bf8c94b368346d37cdf0f9b8e13d58702a2bd229
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="babywizardjavafx.BabyWizardJavaFX"  name="BabyWizardJavaFX" />
   <update check="always"/>
