@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author victo
  */
-public class FXMLDocumentController implements Initializable {
+public class InicioSesionController implements Initializable {
     
     @FXML
     private Label label;
