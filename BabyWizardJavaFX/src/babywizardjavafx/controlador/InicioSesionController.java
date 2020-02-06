@@ -30,14 +30,14 @@ public class InicioSesionController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("vista/Registro.fxml"));
+  //      Parent root = FXMLLoader.load(getClass().getResource("vista/Registro.fxml"));
+  //      
+  //      Scene scene = new Scene(root);
         
-        Scene scene = new Scene(root);
-        
-        Stage stage = new Stage();
-        stage.setTitle("BabyWizard");
-        stage.setScene(scene);
-        stage.show();
+  //      Stage stage = new Stage();
+   //     stage.setTitle("BabyWizard");
+    //    stage.setScene(scene);
+   //     stage.show();
     }
     
     @Override
