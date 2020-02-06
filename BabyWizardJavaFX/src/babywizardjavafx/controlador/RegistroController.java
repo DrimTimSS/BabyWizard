@@ -7,7 +7,9 @@ package babywizardjavafx.controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -16,6 +18,9 @@ import javafx.fxml.Initializable;
  */
 public class RegistroController implements Initializable {
 
+    
+    @FXML
+    private Button jejesito;
     /**
      * Initializes the controller class.
      */
