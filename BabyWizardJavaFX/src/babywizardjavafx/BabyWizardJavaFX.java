@@ -23,6 +23,7 @@ public class BabyWizardJavaFX extends Application {
         
         Scene scene = new Scene(root);
         
+        stage.setTitle("BabyWizard");
         stage.setScene(scene);
         stage.show();
     }
