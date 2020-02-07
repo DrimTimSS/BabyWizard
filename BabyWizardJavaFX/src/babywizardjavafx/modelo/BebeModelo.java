@@ -30,8 +30,6 @@ public class BebeModelo {
         this.fkUsuario = fkUsuario;
     }
     
-    
-
     public int getIdBebe() {
         return idBebe;
     }
