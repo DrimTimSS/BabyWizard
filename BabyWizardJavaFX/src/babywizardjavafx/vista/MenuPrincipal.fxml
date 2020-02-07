@@ -34,5 +34,6 @@
       <Button layoutX="415.0" layoutY="134.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Búsqueda" />
       <Button layoutX="169.0" layoutY="317.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Editar información" />
       <Button layoutX="414.0" layoutY="317.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Borrar infante" />
+      <Button layoutX="330.0" layoutY="524.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Registrar usuario" />
    </children>
 </AnchorPane>
