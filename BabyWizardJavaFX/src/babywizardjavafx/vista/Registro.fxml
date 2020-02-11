@@ -1,42 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #D8B9F7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroController">
+    <stylesheets>
+        <URL value="@registro.css" />
+    </stylesheets>
    <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="800.0" style="-fx-background-color: #F2E8FD;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <TextField layoutX="326.0" layoutY="224.0" promptText="Nombre de Usuario" />
-      <PasswordField layoutX="326.0" layoutY="262.0" promptText="Contraseña" />
-      <Button fx:id="btninises" layoutX="347.0" layoutY="393.0" mnemonicParsing="false" style="-fx-background-color: #F2E8FD;" text="Registrar usuario" />
-      <PasswordField layoutX="326.0" layoutY="300.0" />
-      <TextField layoutX="326.0" layoutY="109.0" promptText="Nombre" />
-      <TextField layoutX="326.0" layoutY="148.0" promptText="Apellido Paterno" />
-      <TextField layoutX="326.0" layoutY="186.0" promptText="Apellido Paterno" />
-      <CheckBox layoutX="340.0" layoutY="348.0" mnemonicParsing="false" text="¿Es administrador?" />
+      <Label layoutX="262.0" layoutY="183.0" text="JuanitoBanana" />
+      <Button fx:id="jejesito" layoutX="275.0" layoutY="247.0" mnemonicParsing="false" text="jejesito" />
    </children>
 </AnchorPane>
