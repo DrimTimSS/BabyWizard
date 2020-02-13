@@ -5,6 +5,7 @@
  */
 package babywizardjavafx;
 
+import babywizardjavafx.controlador.BebeController;
 import babywizardjavafx.modelo.JdbConnection;
 import java.sql.Connection;
 import javafx.application.Application;
@@ -28,6 +29,8 @@ public class BabyWizardJavaFX extends Application {
         stage.setTitle("BabyWizard");
         stage.setScene(scene);
         stage.show();
+        /**BebeController bc = new BebeController();
+        bc.insertBebe();**/
         /** Ejemplo de conexion a la db
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();

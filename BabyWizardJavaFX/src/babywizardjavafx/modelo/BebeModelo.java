@@ -5,31 +5,39 @@
  */
 package babywizardjavafx.modelo;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Vicaris
  */
 public class BebeModelo {
+    
+    //Atributos
     int idBebe;
     String nombre;
-    String primerMaterno;
-    String segundoPaterno;
-    boolean sexo;
+    String apellidoMaterno;
+    String apellidoPaterno;
+    int sexo;
     String fechaNacimiento;
     int fkUsuario;
 
+    //Contructores
     public BebeModelo() {
     }
 
-    public BebeModelo(String nombre, String primerMaterno, String segundoPaterno, boolean sexo, String fechaNacimiento, int fkUsuario) {
+    public BebeModelo(String nombre, String primerMaterno, String segundoPaterno, int sexo, String fechaNacimiento, int fkUsuario) {
         this.nombre = nombre;
-        this.primerMaterno = primerMaterno;
-        this.segundoPaterno = segundoPaterno;
+        this.apellidoMaterno = primerMaterno;
+        this.apellidoPaterno = segundoPaterno;
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
         this.fkUsuario = fkUsuario;
     }
     
+    //Getters and Setters
     public int getIdBebe() {
         return idBebe;
     }
@@ -46,27 +54,27 @@ public class BebeModelo {
         this.nombre = nombre;
     }
 
-    public String getPrimerMaterno() {
-        return primerMaterno;
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
     }
 
-    public void setPrimerMaterno(String primerMaterno) {
-        this.primerMaterno = primerMaterno;
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
     }
 
-    public String getSegundoPaterno() {
-        return segundoPaterno;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
 
-    public void setSegundoPaterno(String segundoPaterno) {
-        this.segundoPaterno = segundoPaterno;
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
     }
 
-    public boolean isSexo() {
+    public int getSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(int sexo) {
         this.sexo = sexo;
     }
 
@@ -86,4 +94,27 @@ public class BebeModelo {
         this.fkUsuario = fkUsuario;
     }
     
+    //CRUD
+    //Create
+    public void createBebe() throws SQLException {
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        String query;
+        query = "INSERT INTO `babywizard`.`bebe` (`nombre`, `apellidoMaterno`, `apellidoPaterno`, `sexo`, `fechaNacimientoBb`, `fkUsuario`) "
+                + "VALUES ('"+nombre+"', '"+apellidoMaterno+"', '"+apellidoPaterno+"', '"+sexo+"', '"+fechaNacimiento+"', '"+fkUsuario+"');";
+        Statement stmt = con.createStatement();
+        int executeUpdate = stmt.executeUpdate(query);
+    }
+    
+    public BebeModelo readBebe(String readQuery) {
+        return null;
+    }
+    
+    public void updateBebe() {
+        
+    }
+    
+    public void deleteBebe() {
+    
+    }
 }
