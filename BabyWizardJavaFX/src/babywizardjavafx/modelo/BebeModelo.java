@@ -104,6 +104,7 @@ public class BebeModelo {
                 + "VALUES ('"+nombre+"', '"+apellidoMaterno+"', '"+apellidoPaterno+"', '"+sexo+"', '"+fechaNacimiento+"', '"+fkUsuario+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query);
+        con.close();
     }
     
     public BebeModelo readBebe(String readQuery) {

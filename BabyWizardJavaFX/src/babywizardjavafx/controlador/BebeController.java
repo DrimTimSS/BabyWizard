@@ -14,8 +14,8 @@ import java.sql.SQLException;
  */
 public class BebeController {
     
-    public void insertBebe(/**BebeModelo bm**/) throws SQLException{
-        BebeModelo b = new BebeModelo("BebeEjemplo","ApellidoEjemplo","ApellidoDos",0,"2020-01-02",1);
-        b.createBebe();
+    public void insertBebe(BebeModelo bm) throws SQLException{
+        //BebeModelo b = new BebeModelo("BebeEjemplo","ApellidoEjemplo","ApellidoDos",0,"2020-01-02",1);
+        bm.createBebe();
     }
 }
