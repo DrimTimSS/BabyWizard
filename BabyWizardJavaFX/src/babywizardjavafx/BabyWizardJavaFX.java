@@ -6,8 +6,10 @@
 package babywizardjavafx;
 
 import babywizardjavafx.controlador.BebeController;
+import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.JdbConnection;
 import java.sql.Connection;
+import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,9 +31,14 @@ public class BabyWizardJavaFX extends Application {
         stage.setTitle("BabyWizard");
         stage.setScene(scene);
         stage.show();
-        /**BebeController bc = new BebeController();
-        bc.insertBebe();**/
-        /** Ejemplo de conexion a la db
+        //Ejemplos de usar CRUD de bebe
+        //BebeController bc = new BebeController();
+        //BebeModelo bm = new BebeModelo("Valdin","Valdocin","Valdomero",0,"2020-01-01",1);
+        //bc.insertBebe(bm);
+        //bc.deleteBebe(2);
+        //bc.updateBebe(2, -1, "", "", "apellidonson", 1, "", 1);
+        //LinkedList<BebeModelo> busqueda = bc.selectBebe(-1, "Babi", "", "", -1, "", -1);
+        /**Ejemplo de conexion a la db
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         if (con != null) System.out.println("kul");
