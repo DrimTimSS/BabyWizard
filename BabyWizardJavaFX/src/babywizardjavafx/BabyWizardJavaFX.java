@@ -40,11 +40,9 @@ public class BabyWizardJavaFX extends Application {
         //bc.deleteBebe(2);
         //bc.updateBebe(2, -1, "", "", "apellidonson", 1, "", 1);
         //LinkedList<BebeModelo> busqueda = bc.selectBebe(-1, "Babi", "", "", -1, "", -1);
-        /**Ejemplo de conexion a la db
-        JdbConnection jdbc = new JdbConnection();
-        Connection con = jdbc.getConnection();
-        if (con != null) System.out.println("kul");
-        **/
+        UsuarioControlador uc = new UsuarioControlador();
+        UsuarioModelo um = new UsuarioModelo();
+        uc.deleteUsuario(2);
     }
 
     /**

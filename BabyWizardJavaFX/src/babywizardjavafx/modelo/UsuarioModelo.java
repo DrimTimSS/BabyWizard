@@ -128,55 +128,51 @@ public class UsuarioModelo {
         return usuarios;
     }
     
-    public void updateBebe(int idBebeActualizar,int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, int fkUsuario) throws SQLException {
+    public void updateUsuario(int idUsuarioActualizar,int idUsuario, String nombreU, String apellidoMaternoU, String apellidoPaternoU, int administrador, String contrasenia) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
-        if (idBebe > -1) {
-           String idBebeQ = "`idBebe` = '"+idBebe+"'";
-           toUpdate.add(idBebeQ);
+        if (idUsuario > -1) {
+           String idUsuarioQ = "`idUsuario` = '"+idUsuario+"'";
+           toUpdate.add(idUsuarioQ);
         }
-        if (!"".equals(nombre)) {
-            String nombreQ = "`nombre` = '"+nombre+"'";
-            toUpdate.add(nombreQ);
+        if (!"".equals(nombreU)) {
+            String nombreUQ = "`nombreU` = '"+nombreU+"'";
+            toUpdate.add(nombreUQ);
         }
-        if (!"".equals(apellidoMaterno)) {
-            String apellidoMaternoQ = "`apellidoMaterno` = '"+apellidoMaterno+"'";
-            toUpdate.add(apellidoMaternoQ);
+        if (!"".equals(apellidoMaternoU)) {
+            String apellidoMaternoUQ = "`apellidoMaternoU` = '"+apellidoMaternoU+"'";
+            toUpdate.add(apellidoMaternoUQ);
         }
-        if (!"".equals(apellidoPaterno)) {
-            String apellidoPaternoQ = "`apellidoPaterno` = '"+apellidoPaterno+"'";
-            toUpdate.add(apellidoPaternoQ);
+        if (!"".equals(apellidoPaternoU)) {
+            String apellidoPaternoUQ = "`apellidoPaternoU` = '"+apellidoPaternoU+"'";
+            toUpdate.add(apellidoPaternoUQ);
         }
-        if (sexo == 0 || sexo == 1) {
-            String sexoQ = "`sexo` = '"+sexo+"'";
-            toUpdate.add(sexoQ);
+        if (administrador == 0 || administrador == 1) {
+            String administradorQ = "`administrador` = '"+administrador+"'";
+            toUpdate.add(administradorQ);
         }
-        if (!"".equals(fechaNacimiento)) {
-            String fechaNacimientoQ = "`fechaNacimientoBb` = '"+fechaNacimiento+"'";
-            toUpdate.add(fechaNacimientoQ);
+        if (!"".equals(contrasenia)) {
+            String contraseniaQ = "`contrasenia` = AES_ENCRYPT('"+contrasenia+"','babywizard')";
+            toUpdate.add(contraseniaQ);
         }
-        if (fkUsuario > -1) {
-            String fkUsuarioQ = "`fkUsuario` = '"+fkUsuario+"'";
-            toUpdate.add(fkUsuarioQ);
-        }
-        String query1 = "UPDATE `babywizard`.`bebe` SET ";
+        String query1 = "UPDATE `babywizard`.`usuario` SET ";
         String query2 = "";
         for(int i = 0; i<toUpdate.size()-1;i++){
             query2 = query2+toUpdate.get(i)+", ";
         }
-        String query3 = toUpdate.getLast()+" WHERE (`idBebe` = '"+idBebeActualizar+"');";
+        String query3 = toUpdate.getLast()+" WHERE (`idUsuario` = '"+idUsuarioActualizar+"');";
         Statement stmt = con.createStatement();
         System.out.println(query1+query2+query3);
         if(toUpdate.size() > 0) stmt.executeUpdate(query1+query2+query3);
         con.close();
     }
     
-    public void deleteBebe(int idBebe) throws SQLException {
+    public void deleteUsuario(int idUsuario) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         Statement stmt = con.createStatement();
-        stmt.executeUpdate("DELETE FROM `babywizard`.`bebe` WHERE (`idBebe` = '"+idBebe+"');");
+        stmt.executeUpdate("DELETE FROM `babywizard`.`usuario` WHERE (`idUsuario` = '"+idUsuario+"');");
         con.close();
     }
 }
