@@ -9,7 +9,7 @@ package babywizardjavafx.modelo;
  *
  * @author Vicaris
  */
-public class Wppsi48 {
+public class Wppsi48Modelo {
     int idWppsi48;
     int disenioCubosNatural;
     int informacionNatural;
@@ -27,10 +27,10 @@ public class Wppsi48 {
     int denominacionesNatural;
     int fkBebe;
 
-    public Wppsi48() {
+    public Wppsi48Modelo() {
     }
 
-    public Wppsi48(int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, int fkBebe) {
+    public Wppsi48Modelo(int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, int fkBebe) {
         this.disenioCubosNatural = disenioCubosNatural;
         this.informacionNatural = informacionNatural;
         this.semejanzasNatural = semejanzasNatural;

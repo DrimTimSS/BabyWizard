@@ -127,7 +127,6 @@ public class BebeModelo {
         }
         String query3 = toRead.getLast()+";";
         Statement stmt = con.createStatement();
-        System.out.println(query1+query2+query3);
         ResultSet rs = stmt.executeQuery(query1+query2+query3);
         LinkedList<BebeModelo> bebes = new LinkedList<>();
         while(rs.next()){

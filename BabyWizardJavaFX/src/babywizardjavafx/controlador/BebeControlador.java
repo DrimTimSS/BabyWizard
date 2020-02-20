@@ -13,7 +13,7 @@ import java.util.LinkedList;
  *
  * @author Vicaris
  */
-public class BebeController {
+public class BebeControlador {
     
     public void insertBebe(BebeModelo bm) throws SQLException{
         //BebeModelo b = new BebeModelo("BebeEjemplo","ApellidoEjemplo","ApellidoDos",0,"2020-01-02",1);

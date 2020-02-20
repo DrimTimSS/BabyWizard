@@ -5,9 +5,11 @@
  */
 package babywizardjavafx;
 
-import babywizardjavafx.controlador.BebeController;
+import babywizardjavafx.controlador.BebeControlador;
+import babywizardjavafx.controlador.UsuarioControlador;
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.JdbConnection;
+import babywizardjavafx.modelo.UsuarioModelo;
 import java.sql.Connection;
 import java.util.LinkedList;
 import javafx.application.Application;
@@ -32,7 +34,7 @@ public class BabyWizardJavaFX extends Application {
         stage.setScene(scene);
         stage.show();
         //Ejemplos de usar CRUD de bebe
-        //BebeController bc = new BebeController();
+        //BebeControlador bc = new BebeControlador();
         //BebeModelo bm = new BebeModelo("Valdin","Valdocin","Valdomero",0,"2020-01-01",1);
         //bc.insertBebe(bm);
         //bc.deleteBebe(2);
