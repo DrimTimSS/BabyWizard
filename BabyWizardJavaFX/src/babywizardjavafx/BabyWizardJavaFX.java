@@ -40,9 +40,6 @@ public class BabyWizardJavaFX extends Application {
         //bc.deleteBebe(2);
         //bc.updateBebe(2, -1, "", "", "apellidonson", 1, "", 1);
         //LinkedList<BebeModelo> busqueda = bc.selectBebe(-1, "Babi", "", "", -1, "", -1);
-        UsuarioControlador uc = new UsuarioControlador();
-        UsuarioModelo um = new UsuarioModelo();
-        uc.deleteUsuario(2);
     }
 
     /**
