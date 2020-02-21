@@ -108,7 +108,7 @@ public class UsuarioModelo {
         String query1 = "SELECT * FROM babywizard.usuario WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
-            query2 = query2+toRead.get(i)+", ";
+            query2 = query2+toRead.get(i)+" AND ";
         }
         String query3 = toRead.getLast()+";";
         Statement stmt = con.createStatement();

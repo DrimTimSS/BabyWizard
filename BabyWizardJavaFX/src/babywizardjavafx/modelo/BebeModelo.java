@@ -123,11 +123,17 @@ public class BebeModelo {
         String query1 = "SELECT * FROM babywizard.bebe WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
-            query2 = query2+toRead.get(i)+", ";
+            query2 = query2+toRead.get(i)+" AND ";
         }
-        String query3 = toRead.getLast()+";";
+        String query3="";
+        if(toRead.size()>0) query3 = toRead.getLast()+";";
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query1+query2+query3);
+        ResultSet rs;
+        if (toRead.size()>0) {
+        rs = stmt.executeQuery(query1+query2+query3);
+        } else {
+        rs = stmt.executeQuery("select * from babywizard.bebe");
+        }
         LinkedList<BebeModelo> bebes = new LinkedList<>();
         while(rs.next()){
             BebeModelo bm = new BebeModelo();
@@ -138,6 +144,7 @@ public class BebeModelo {
             bm.setSexo(rs.getInt("sexo"));
             bm.setFechaNacimiento(rs.getString("fechaNacimientoBb"));
             bm.setFkUsuario(rs.getInt("fkUsuario"));
+            //System.out.println(bm.getIdBebe()+" "+bm.getNombre()+" "+bm.getApellidoPaterno()+" "+bm.getApellidoMaterno()+" "+bm.getFechaNacimiento()+" "+bm.getSexo()+" "+bm.getFkUsuario());
             bebes.add(bm);
         }
         con.close();
