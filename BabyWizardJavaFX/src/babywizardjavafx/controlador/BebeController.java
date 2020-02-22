@@ -25,7 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author Vicaris
  */
-public class BebeTablaController implements Initializable {
+public class BebeController implements Initializable {
 
     @FXML
     private TableView<BebeModelo> tablaBebes;
@@ -68,8 +68,29 @@ public class BebeTablaController implements Initializable {
             //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
             System.out.println(tablaBebes.getItems().get(0).getNombre());
         } catch (SQLException ex) {
-            Logger.getLogger(BebeTablaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BebeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
     
+    public void insertBebe(BebeModelo bm) throws SQLException{
+        //BebeModelo b = new BebeModelo("BebeEjemplo","ApellidoEjemplo","ApellidoDos",0,"2020-01-02",1);
+        bm.createBebe();
+    }
+    
+    public LinkedList<BebeModelo> selectBebe(int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, int fkUsuario) throws SQLException{
+        LinkedList<BebeModelo> bebes = new LinkedList<>();
+        BebeModelo bm = new BebeModelo();
+        bebes = bm.readBebe(idBebe, nombre, apellidoMaterno, apellidoPaterno, sexo, fechaNacimiento, fkUsuario);
+        return bebes;
+    }
+    
+    public void updateBebe(int idBebeActualizar,int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, int fkUsuario) throws SQLException {
+        BebeModelo bm = new BebeModelo();
+        bm.updateBebe(idBebeActualizar, idBebe, nombre, apellidoMaterno, apellidoPaterno, sexo, fechaNacimiento, fkUsuario);
+    }
+    
+    public void deleteBebe(int idBebe) throws SQLException {
+        BebeModelo bm = new BebeModelo();
+        bm.deleteBebe(idBebe);
+    }
 }

@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,12 +31,22 @@ public class InicioSesionController implements Initializable {
     private Button botonRegistro;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
+    private void registrarUsuario(ActionEvent event) throws IOException {
         Stage popup = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Registro.fxml"));
         Scene popupscene = new Scene(root);
         popup.setScene(popupscene);
         popup.show();
+    }
+    
+    @FXML
+    private void iniciarSesion(ActionEvent event) throws IOException {
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/MenuPrincipal.fxml"));
+        Scene menuPrincipalScene = new Scene(loadMenuPrincipal);
+        
+        Stage mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainWindow.setScene(menuPrincipalScene);
+        mainWindow.show();
     }
     
     @Override
