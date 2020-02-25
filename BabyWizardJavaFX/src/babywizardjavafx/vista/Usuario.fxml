@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.UsuarioController">
+            <TableView fx:id="tablaUsuarios" prefHeight="272.0" prefWidth="887.0">
+              <columns>
+                <TableColumn fx:id="idUsuario" prefWidth="130.0" text="idBebe" />
+                <TableColumn fx:id="nombreU" prefWidth="130.0" text="Nombre" />
+                  <TableColumn fx:id="apellidoPaterno" prefWidth="130.0" text="Apellido Paterno" />
+                  <TableColumn fx:id="apellidoMaterno" prefWidth="130.0" text="Apellido Materno" />
+                  <TableColumn fx:id="administrador" prefWidth="130.0" text="Administrador" />
+              </columns>
+            </TableView>
+</AnchorPane>

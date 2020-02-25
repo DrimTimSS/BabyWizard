@@ -55,8 +55,6 @@ public class BebeController implements Initializable {
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = bm.readBebe(-1, "", "", "", -1, "", -1);
             for(BebeModelo b:resultados) listaBebes.add(b);
-            System.out.println(listaBebes.size());
-            System.out.println(tablaBebes);
             idBebe.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
             nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
@@ -66,7 +64,6 @@ public class BebeController implements Initializable {
             fkUsuario.setCellValueFactory(new PropertyValueFactory<>("fkUsuario"));
             tablaBebes.setItems(listaBebes);
             //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
-            System.out.println(tablaBebes.getItems().get(0).getNombre());
         } catch (SQLException ex) {
             Logger.getLogger(BebeController.class.getName()).log(Level.SEVERE, null, ex);
         }

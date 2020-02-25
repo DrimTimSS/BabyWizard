@@ -110,9 +110,15 @@ public class UsuarioModelo {
         for(int i = 0; i<toRead.size()-1;i++){
             query2 = query2+toRead.get(i)+" AND ";
         }
-        String query3 = toRead.getLast()+";";
+        String query3="";
+        if(toRead.size()>0) query3 = toRead.getLast()+";";
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(query1+query2+query3);
+        ResultSet rs;
+        if (toRead.size()>0) {
+        rs = stmt.executeQuery(query1+query2+query3);
+        } else {
+        rs = stmt.executeQuery("select * from babywizard.usuario");
+        }
         LinkedList<UsuarioModelo> usuarios = new LinkedList<>();
         while(rs.next()){
             UsuarioModelo um = new UsuarioModelo();
