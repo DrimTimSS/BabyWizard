@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/victo/Documents/ServicioSocial/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/InicioSesionController.java</file>
-            <file>file:/C:/Users/victo/Documents/ServicioSocial/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/BebeController.java</file>
-            <file>file:/C:/Users/victo/Documents/ServicioSocial/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/vista/Bebe.fxml</file>
-            <file>file:/C:/Users/victo/Documents/ServicioSocial/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/BabyWizardJavaFX.java</file>
-            <file>file:/C:/Users/victo/Documents/ServicioSocial/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/vista/Registro.fxml</file>
-            <file>file:/C:/Users/victo/Documents/ServicioSocial/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/UsuarioControlador.java</file>
-            <file>file:/C:/Users/victo/Documents/ServicioSocial/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/vista/InicioSesion.fxml</file>
-            <file>file:/C:/Users/victo/Documents/ServicioSocial/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/modelo/BebeModelo.java</file>
+            <file>file:/C:/Users/valdo/Desktop/Escuela/SS/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/BabyWizardJavaFX.java</file>
+            <file>file:/C:/Users/valdo/Desktop/Escuela/SS/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/vista/MenuPrincipal.fxml</file>
+            <file>file:/C:/Users/valdo/Desktop/Escuela/SS/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/vista/InicioSesion.fxml</file>
+            <file>file:/C:/Users/valdo/Desktop/Escuela/SS/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/MenuPrincipalController.java</file>
+            <file>file:/C:/Users/valdo/Desktop/Escuela/SS/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/vista/Registro.fxml</file>
         </group>
     </open-files>
 </project-private>
