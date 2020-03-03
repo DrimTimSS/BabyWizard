@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.image.Image;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -36,6 +37,9 @@ public class InicioSesionController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Registro.fxml"));
         Scene popupscene = new Scene(root);
         popup.setScene(popupscene);
+        Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+        popup.getIcons().add(image);
+        popup.setTitle("Registrar Usuario");
         popup.show();
     }
     

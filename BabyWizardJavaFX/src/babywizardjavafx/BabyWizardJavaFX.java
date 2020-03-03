@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -19,11 +20,13 @@ public class BabyWizardJavaFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("vista/Bebe.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setTitle("BabyWizard");
+        Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+        stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
         
