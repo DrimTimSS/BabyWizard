@@ -5,6 +5,8 @@
  */
 package babywizardjavafx;
 
+import babywizardjavafx.controlador.UsuarioController;
+import babywizardjavafx.modelo.UsuarioModelo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +31,6 @@ public class BabyWizardJavaFX extends Application {
         stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
-        
     }
 
     /**

@@ -29,4 +29,7 @@ public class RegistroController implements Initializable {
         // TODO
     }    
     
+    public void findUserAndPassword(String user){
+        
+    }
 }

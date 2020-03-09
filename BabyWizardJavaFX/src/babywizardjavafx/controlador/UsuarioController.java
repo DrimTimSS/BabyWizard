@@ -31,7 +31,7 @@ public class UsuarioController implements Initializable {
     @FXML
     private TableView<UsuarioModelo> tablaUsuarios; 
     @FXML
-    private TableColumn<UsuarioModelo,Integer> idUsuario;
+    private TableColumn<UsuarioModelo,String> usuario;
     @FXML
     private TableColumn<UsuarioModelo,Integer> administrador;
     @FXML
@@ -50,9 +50,9 @@ public class UsuarioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             UsuarioModelo um = new UsuarioModelo();
-            LinkedList<UsuarioModelo> resultados = um.readUsuario(-1, "", "", "", -1);
+            LinkedList<UsuarioModelo> resultados = um.readUsuario("", "", "", "", -1);
             for(UsuarioModelo u:resultados) listaUsuarios.add(u);
-            idUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+            usuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
             nombreU.setCellValueFactory(new PropertyValueFactory<>("nombreU"));
             apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaternoU"));
             apellidoMaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoMaternoU"));
@@ -67,20 +67,20 @@ public class UsuarioController implements Initializable {
         um.createUsuario();
     }
     
-    public LinkedList<UsuarioModelo> selectUsuario(int idUsuario, String nombreU, String apellidoMaternoU, String apellidoPaternoU, int administrador) throws SQLException{
+    public LinkedList<UsuarioModelo> selectUsuario(String usuario, String nombreU, String apellidoMaternoU, String apellidoPaternoU, int administrador) throws SQLException{
         LinkedList<UsuarioModelo> usuarios = new LinkedList<>();
         UsuarioModelo um = new UsuarioModelo();
-        usuarios = um.readUsuario(idUsuario, nombreU, apellidoMaternoU, apellidoPaternoU, administrador);
+        usuarios = um.readUsuario(usuario, nombreU, apellidoMaternoU, apellidoPaternoU, administrador);
         return usuarios;
     }
     
-    public void updateUsuario(int idUsuarioActualizar,int idUsuario, String nombreU, String apellidoMaternoU, String apellidoPaternoU, int administrador, String contrasenia) throws SQLException {
+    public void updateUsuario(String usuarioActualizar, String usuario, String nombreU, String apellidoMaternoU, String apellidoPaternoU, int administrador, String contrasenia) throws SQLException {
         UsuarioModelo um = new UsuarioModelo();
-        um.updateUsuario(idUsuarioActualizar, idUsuario, nombreU, apellidoMaternoU, apellidoPaternoU, administrador, contrasenia);
+        um.updateUsuario(usuarioActualizar, usuario, nombreU, apellidoMaternoU, apellidoPaternoU, administrador, contrasenia);
     }
     
-    public void deleteUsuario(int idUsuario) throws SQLException {
+    public void deleteUsuario(String usuario) throws SQLException {
         UsuarioModelo um = new UsuarioModelo();
-        um.deleteUsuario(idUsuario);
+        um.deleteUsuario(usuario);
     }
 }

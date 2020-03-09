@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author victo
+ * @author Vicaris
  */
 public class InicioSesionController implements Initializable {
     
