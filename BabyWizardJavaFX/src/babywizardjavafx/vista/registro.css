@@ -1,7 +1,9 @@
-/*
- * Empty Stylesheet file.
- */
+HTML
 
-.mainFxmlClass {
-
-}
+<head>
+  <style>
+    body { background-color: #FF0000; }
+  </style>
+</head>
+<body>
+</body>
