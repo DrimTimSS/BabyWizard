@@ -33,9 +33,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <PasswordField layoutX="550.0" layoutY="158.0" />
+      <PasswordField fx:id="contrasenia" layoutX="550.0" layoutY="158.0" />
       <Button fx:id="btninises" layoutX="582.0" layoutY="215.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #F2E8FD;" text="Iniciar Sesión" />
-      <TextField layoutX="550.0" layoutY="97.0" />
+      <TextField fx:id="usuario" layoutX="550.0" layoutY="97.0" />
       <Label layoutX="504.0" layoutY="101.0" text="Usuario:" />
       <Label layoutX="484.0" layoutY="162.0" text="Contraseña:" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="32.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />

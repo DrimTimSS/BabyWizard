@@ -106,7 +106,7 @@ public class UsuarioModelo {
         if(!"".equals(apellidoMaternoU)) toRead.add("apellidoMaternoU = '"+apellidoMaternoU+"'");
         if(!"".equals(apellidoPaternoU)) toRead.add("apellidoPaternoU = '"+apellidoPaternoU+"'");
         if(administrador == 0 || administrador == 1) toRead.add("administrador = '"+administrador+"'");
-        String query1 = "SELECT * FROM babywizard.usuario WHERE ";
+        String query1 = "select usuario, cast(aes_decrypt(contrasenia,'babywizard') as char), administrador, nombreU, apellidoMaternoU, apellidoPaternoU from babywizard.usuario where ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
             query2 = query2+toRead.get(i)+" AND ";
@@ -118,7 +118,7 @@ public class UsuarioModelo {
         if (toRead.size()>0) {
         rs = stmt.executeQuery(query1+query2+query3);
         } else {
-        rs = stmt.executeQuery("select * from babywizard.usuario");
+        rs = stmt.executeQuery("select usuario, cast(aes_decrypt(contrasenia,'babywizard') as char), administrador, nombreU, apellidoMaternoU, apellidoPaternoU from babywizard.usuario");
         }
         LinkedList<UsuarioModelo> usuarios = new LinkedList<>();
         while(rs.next()){
@@ -128,7 +128,7 @@ public class UsuarioModelo {
             um.setApellidoMaternoU(rs.getString("apellidoMaternoU"));
             um.setApellidoPaternoU(rs.getString("apellidoPaternoU"));
             um.setAdministrador(rs.getInt("administrador"));
-            um.setContrasenia(rs.getString("contrasenia"));
+            um.setContrasenia(rs.getString(2));
             usuarios.add(um);
         }
         con.close();
