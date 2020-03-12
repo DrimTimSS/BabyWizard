@@ -5,16 +5,55 @@
  */
 package babywizardjavafx.controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author valdo
+ * @author Vicaris
  */
 public class MenuPrincipalController implements Initializable {
+
+    @FXML
+    private MenuBar menu;
+    @FXML
+    private MenuItem nuevoinfante;
+    @FXML
+    private MenuItem configusuario;
+    @FXML
+    private MenuItem ayudareg;
+    @FXML
+    private MenuItem ayudabus;
+    @FXML
+    private MenuItem ayudaedi;
+    @FXML
+    private MenuItem ayudabor;
+    @FXML
+    private Button registrarinfante;
+    @FXML
+    private Button busqueda;
+    @FXML
+    private Button editar;
+    @FXML
+    private Button borrar;
+    @FXML
+    private MenuItem cerrarsesion;
+    @FXML
+    private MenuItem salir;
 
     /**
      * Initializes the controller class.
@@ -24,4 +63,33 @@ public class MenuPrincipalController implements Initializable {
         // TODO
     }    
     
+    @FXML
+    public void nuevoinfante(ActionEvent event) throws IOException{
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/RegistrarInfante.fxml"));
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);
+        
+                Stage mainWindow = (Stage) menu.getScene().getWindow();
+                mainWindow.setScene(menuPrincipalScene);
+                mainWindow.show();
+    }
+    
+    public void configusuario(ActionEvent event){
+    
+    }
+    
+    @FXML
+    public void cerrarsesion(ActionEvent event) throws IOException{
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);
+        
+                Stage mainWindow = (Stage) menu.getScene().getWindow();
+                mainWindow.setScene(menuPrincipalScene);
+                mainWindow.show();
+    }
+    
+    @FXML
+    public void salir(ActionEvent event){
+        Platform.exit();
+        System.exit(0);
+    }
 }

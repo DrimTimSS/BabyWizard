@@ -72,13 +72,16 @@ public class RegistroController implements Initializable {
         } else {
             datosincorrectos.setText("Usuario no reconocido.");
         }
-        if(contrareal.equals(contraseniaadm.getText())){
+        if(contrareal.equals(contraseniaadm.getText()) && usuarioregistro.getFirst().getAdministrador()==1){
             permisocrear = true;
         } else {
             datosincorrectos.setText("Contraseña incorrecta.");
         }
         if(!permisocrear){
             contrasenia.clear();
+            contraseniaadm.clear();
+            repetircon.clear();
+            datosincorrectos.setText("No se pudo crear usuario.");
         } else {
             if(!(usuario.getText().equals("")) && !(nombre.getText().equals("")) && !(apellidop.getText().equals("")) && !(apellidom.getText().equals("")) && !(contrasenia.getText().equals(""))){
                 if(contrasenia.getText().equals(repetircon.getText())) {
