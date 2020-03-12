@@ -11,6 +11,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #D8B9F7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.InicioSesionController">
    <children>
@@ -33,9 +34,10 @@
           </Menu>
         </menus>
       </MenuBar>
-      <PasswordField fx:id="contrasenia" layoutX="550.0" layoutY="158.0" />
-      <Button fx:id="btninises" layoutX="582.0" layoutY="215.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #F2E8FD;" text="Iniciar Sesión" />
       <TextField fx:id="usuario" layoutX="550.0" layoutY="97.0" />
+      <PasswordField fx:id="contrasenia" layoutX="550.0" layoutY="158.0" />
+      <Button fx:id="btninises" layoutX="581.0" layoutY="228.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #F2E8FD;" text="Iniciar Sesión" />
+      <Hyperlink fx:id="registroUsuario" layoutX="557.0" layoutY="288.0" onAction="#registrarUsuario" text="Registrar usuario nuevo" />
       <Label layoutX="504.0" layoutY="101.0" text="Usuario:" />
       <Label layoutX="484.0" layoutY="162.0" text="Contraseña:" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="32.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
@@ -53,11 +55,15 @@
             <Image url="@imagenes/fplogo.png" />
          </image>
       </ImageView>
-      <Hyperlink fx:id="registroUsuario" layoutX="558.0" layoutY="258.0" onAction="#registrarUsuario" text="Registrar usuario nuevo" />
       <ImageView fitHeight="150.0" fitWidth="149.0" layoutX="61.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@imagenes/labinfantesedit.png" />
          </image>
       </ImageView>
+      <Label fx:id="datosincorrectos" layoutX="561.0" layoutY="191.0" textFill="#d2271e">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
