@@ -28,6 +28,7 @@ public class BabyWizardJavaFX extends Application {
         
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
+        
         Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
         stage.getIcons().add(image);
         stage.setScene(scene);

@@ -46,8 +46,8 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="registrarinfante" alignment="CENTER" mnemonicParsing="false" onAction="#nuevoinfante" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Registrar infante" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="busqueda" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Búsqueda" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="registrarinfante" mnemonicParsing="false" onAction="#nuevoinfante" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Registrar infante" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="busqueda" mnemonicParsing="false" onAction="#busqueda" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Búsqueda" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="editar" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Editar información" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="borrar" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Borrar infante" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>

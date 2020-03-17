@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -66,9 +67,21 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void nuevoinfante(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/RegistrarInfante.fxml"));
-                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);
-        
-                Stage mainWindow = (Stage) menu.getScene().getWindow();
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
+                Stage mainWindow = new Stage();
+                mainWindow.setScene(menuPrincipalScene);
+                mainWindow.show();
+    }
+    
+    @FXML
+    public void busqueda(ActionEvent event) throws IOException{
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Busqueda.fxml"));
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal,880,640);     
+                Stage mainWindow = new Stage();
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                mainWindow.getIcons().add(image);
+                mainWindow.setMinWidth(880);
+                mainWindow.setMinHeight(640);
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
     }
