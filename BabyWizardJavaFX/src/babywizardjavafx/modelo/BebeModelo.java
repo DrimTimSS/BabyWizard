@@ -24,13 +24,13 @@ public class BebeModelo {
     String apellidoPaterno;
     int sexo;
     String fechaNacimiento;
-    int fkUsuario;
+    String fkUsuario;
 
     //Contructores
     public BebeModelo() {
     }
 
-    public BebeModelo(String nombre, String primerMaterno, String segundoPaterno, int sexo, String fechaNacimiento, int fkUsuario) {
+    public BebeModelo(String nombre, String primerMaterno, String segundoPaterno, int sexo, String fechaNacimiento, String fkUsuario) {
         this.nombre = nombre;
         this.apellidoMaterno = primerMaterno;
         this.apellidoPaterno = segundoPaterno;
@@ -88,11 +88,11 @@ public class BebeModelo {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getFkUsuario() {
+    public String getFkUsuario() {
         return fkUsuario;
     }
 
-    public void setFkUsuario(int fkUsuario) {
+    public void setFkUsuario(String fkUsuario) {
         this.fkUsuario = fkUsuario;
     }
     
@@ -109,7 +109,7 @@ public class BebeModelo {
         con.close();
     }
     
-    public LinkedList<BebeModelo> readBebe(int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, int fkUsuario) throws SQLException {
+    public LinkedList<BebeModelo> readBebe(int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, String fkUsuario) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -119,7 +119,7 @@ public class BebeModelo {
         if(!"".equals(apellidoPaterno)) toRead.add("apellidoPaterno = '"+apellidoPaterno+"'");
         if(sexo == 0 || sexo == 1) toRead.add("sexo = '"+sexo+"'");
         if(!"".equals(fechaNacimiento)) toRead.add("fechaNacimientoBb = '"+fechaNacimiento+"'");
-        if(fkUsuario>-1) toRead.add("fkUsuario = '"+fkUsuario+"'");
+        if(!"".equals(fkUsuario)) toRead.add("fkUsuario = '"+fkUsuario+"'");
         String query1 = "SELECT * FROM babywizard.bebe WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
@@ -143,7 +143,7 @@ public class BebeModelo {
             bm.setApellidoPaterno(rs.getString("apellidoPaterno"));
             bm.setSexo(rs.getInt("sexo"));
             bm.setFechaNacimiento(rs.getString("fechaNacimientoBb"));
-            bm.setFkUsuario(rs.getInt("fkUsuario"));
+            bm.setFkUsuario(rs.getString("fkUsuario"));
             //System.out.println(bm.getIdBebe()+" "+bm.getNombre()+" "+bm.getApellidoPaterno()+" "+bm.getApellidoMaterno()+" "+bm.getFechaNacimiento()+" "+bm.getSexo()+" "+bm.getFkUsuario());
             bebes.add(bm);
         }
@@ -151,7 +151,7 @@ public class BebeModelo {
         return bebes;
     }
     
-    public void updateBebe(int idBebeActualizar,int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, int fkUsuario) throws SQLException {
+    public void updateBebe(int idBebeActualizar,int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, String fkUsuario) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -179,7 +179,7 @@ public class BebeModelo {
             String fechaNacimientoQ = "`fechaNacimientoBb` = '"+fechaNacimiento+"'";
             toUpdate.add(fechaNacimientoQ);
         }
-        if (fkUsuario > -1) {
+        if (!"".equals(fkUsuario)) {
             String fkUsuarioQ = "`fkUsuario` = '"+fkUsuario+"'";
             toUpdate.add(fkUsuarioQ);
         }

@@ -74,6 +74,15 @@ public class MenuPrincipalController implements Initializable {
     }
     
     @FXML
+    public void borrarinfante(ActionEvent event) throws IOException{
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Borrar.fxml"));
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
+                Stage mainWindow = new Stage();
+                mainWindow.setScene(menuPrincipalScene);
+                mainWindow.show();
+    }
+    
+    @FXML
     public void busqueda(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Busqueda.fxml"));
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal,880,640);     

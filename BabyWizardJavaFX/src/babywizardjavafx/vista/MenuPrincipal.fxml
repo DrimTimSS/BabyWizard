@@ -15,9 +15,9 @@
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem fx:id="nuevoinfante" onAction="#nuevoinfante"  mnemonicParsing="false" text="Nuevo infante" />
-                  <MenuItem fx:id="cerrarsesion" onAction="#cerrarsesion" mnemonicParsing="false" text="Cerrar sesión" />
-                  <MenuItem fx:id="salir" onAction="#salir" mnemonicParsing="false" text="Salir" />
+              <MenuItem fx:id="nuevoinfante" mnemonicParsing="false" onAction="#nuevoinfante" text="Nuevo infante" />
+                  <MenuItem fx:id="cerrarsesion" mnemonicParsing="false" onAction="#cerrarsesion" text="Cerrar sesión" />
+                  <MenuItem fx:id="salir" mnemonicParsing="false" onAction="#salir" text="Salir" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Configuración">
@@ -49,7 +49,7 @@
             <Button fx:id="registrarinfante" mnemonicParsing="false" onAction="#nuevoinfante" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Registrar infante" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="busqueda" mnemonicParsing="false" onAction="#busqueda" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Búsqueda" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="editar" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Editar información" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button fx:id="borrar" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Borrar infante" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="borrar" mnemonicParsing="false" onAction="#borrarinfante" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Borrar infante" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>
