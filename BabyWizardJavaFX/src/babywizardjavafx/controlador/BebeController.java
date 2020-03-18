@@ -53,7 +53,8 @@ public class BebeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             BebeModelo bm = new BebeModelo();
-            LinkedList<BebeModelo> resultados = bm.readBebe(-1, "", "", "", -1, "", -1);
+            LinkedList<BebeModelo> resultados = bm.readBebe(-1, "", "", "", -1, "", "");
+            System.out.println(resultados.size());
             for(BebeModelo b:resultados) listaBebes.add(b);
             idBebe.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
             nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -74,14 +75,14 @@ public class BebeController implements Initializable {
         bm.createBebe();
     }
     
-    public LinkedList<BebeModelo> selectBebe(int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, int fkUsuario) throws SQLException{
+    public LinkedList<BebeModelo> selectBebe(int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, String fkUsuario) throws SQLException{
         LinkedList<BebeModelo> bebes = new LinkedList<>();
         BebeModelo bm = new BebeModelo();
         bebes = bm.readBebe(idBebe, nombre, apellidoMaterno, apellidoPaterno, sexo, fechaNacimiento, fkUsuario);
         return bebes;
     }
     
-    public void updateBebe(int idBebeActualizar,int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, int fkUsuario) throws SQLException {
+    public void updateBebe(int idBebeActualizar,int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, String fkUsuario) throws SQLException {
         BebeModelo bm = new BebeModelo();
         bm.updateBebe(idBebeActualizar, idBebe, nombre, apellidoMaterno, apellidoPaterno, sexo, fechaNacimiento, fkUsuario);
     }

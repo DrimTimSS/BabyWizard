@@ -5,6 +5,8 @@
  */
 package babywizardjavafx;
 
+import babywizardjavafx.controlador.UsuarioController;
+import babywizardjavafx.modelo.UsuarioModelo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,11 +27,12 @@ public class BabyWizardJavaFX extends Application {
         Scene scene = new Scene(root);
         
         stage.setTitle("BabyWizard");
+        stage.setResizable(false);
+        
         Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
         stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
-        
     }
 
     /**
