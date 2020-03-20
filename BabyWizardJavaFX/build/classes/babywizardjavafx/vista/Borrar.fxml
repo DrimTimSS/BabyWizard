@@ -3,26 +3,27 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BorrarController">
    <children>
        <GridPane hgap="5.0" layoutX="14.0" layoutY="231.0" vgap="5.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.6000183105469" minWidth="10.0" prefWidth="116.79996337890626" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.00001220703126" minWidth="10.0" prefWidth="112.80003662109377" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0000030517578" minWidth="10.0" prefWidth="65.5999725341797" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.6000183105469" minWidth="10.0" prefWidth="99.19999389648437" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.00001220703126" minWidth="10.0" prefWidth="139.20000610351562" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0000030517578" minWidth="10.0" prefWidth="58.39997253417971" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -40,25 +41,47 @@
                   <Label text="Apellido Materno" GridPane.rowIndex="3" />
                   <Label text="Edad" GridPane.rowIndex="4" />
                   <Label text="Sexo" GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="idbebebusqueda" GridPane.columnIndex="1" />
+                  <TextField fx:id="nombrebusqueda" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="apellidopbusqueda" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="apellidombusqueda" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <HBox alignment="CENTER" prefHeight="30.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="M">
+                        <RadioButton fx:id="mbusqueda" mnemonicParsing="false" text="M">
+                            <toggleGroup>
+                                <javafx.scene.control.ToggleGroup fx:id="sexotoggle" />
+                            </toggleGroup>
                            <padding>
                               <Insets right="10.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="F" />
+                        <RadioButton fx:id="fbusqueda" mnemonicParsing="false" text="F" toggleGroup="$sexotoggle" />
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Button fx:id="buscarbebes" mnemonicParsing="false" onAction="#buscarbebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <HBox prefHeight="25.0" prefWidth="114.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label text="Min:">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="edadbusquedamin" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label text="Max:">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="edadbusquedamax" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+               </children>
+            </HBox>
                </children>
             </GridPane>
-      <GridPane layoutX="42.0" layoutY="94.0">
+      <GridPane hgap="5.0" layoutX="110.0" layoutY="74.0" vgap="5.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -68,31 +91,39 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="198.0">
-               <children>
-                  <Label text="Ingresar ID de infante a borrar" textAlignment="CENTER">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="100.0" />
-               </children>
-            </VBox>
-            <Button mnemonicParsing="false" text="Buscar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="idbebeaborrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="100.0" />
+            <Button fx:id="borrarconid" mnemonicParsing="false" onAction="#borrarconid" text="Borrar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <TableView layoutX="413.0" layoutY="36.0" prefHeight="200.0" prefWidth="655.0">
+      <TableView fx:id="tablabebes" layoutX="342.0" layoutY="36.0" prefHeight="200.0" prefWidth="732.0">
         <columns>
-          <TableColumn prefWidth="57.60005187988281" text="ID" />
-          <TableColumn prefWidth="92.79998779296875" text="Nombre" />
-            <TableColumn prefWidth="107.20001220703125" text="Apellido Paterno" />
-            <TableColumn prefWidth="107.20001220703125" text="Apellido Materno" />
-            <TableColumn prefWidth="36.80010986328125" text="Sexo" />
-            <TableColumn prefWidth="123.199951171875" text="Fecha de Nacimiento" />
-            <TableColumn prefWidth="126.4000122070313" text="Quien registro" />
+          <TableColumn fx:id="idBebe" prefWidth="57.60005187988281" text="ID" />
+          <TableColumn fx:id="nombre" prefWidth="92.79998779296875" text="Nombre" />
+            <TableColumn fx:id="apellidoPaterno" prefWidth="107.20001220703125" text="Apellido Paterno" />
+            <TableColumn fx:id="apellidoMaterno" prefWidth="107.20001220703125" text="Apellido Materno" />
+            <TableColumn fx:id="sexo" prefWidth="36.80010986328125" text="Sexo" />
+            <TableColumn fx:id="fechaNacimiento" prefWidth="123.199951171875" text="Fecha de Nacimiento" />
+            <TableColumn fx:id="meses" prefWidth="75.0" text="Meses" />
+            <TableColumn fx:id="fkUsuario" prefWidth="126.4000122070313" text="Quien registro" />
         </columns>
       </TableView>
-      <Separator layoutX="327.0" layoutY="1.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="0.0" />
-      <Separator layoutY="198.0" prefHeight="6.0" prefWidth="328.0" />
+      <Separator layoutX="325.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="6.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="325.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutY="160.0" prefHeight="6.0" prefWidth="328.0" />
+      <Label layoutX="44.0" layoutY="36.0" text="Ingresar ID de infante a borrar" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="77.0" layoutY="183.0" text="Buscar infante a borrar" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="565.0" layoutY="256.0" text="El infante seleccionado ha realizado:" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listaexperimentos" layoutX="535.0" layoutY="283.0" prefHeight="180.0" prefWidth="346.0" />
    </children>
 </AnchorPane>

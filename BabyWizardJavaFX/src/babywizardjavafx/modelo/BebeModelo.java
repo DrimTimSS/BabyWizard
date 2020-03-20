@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -24,6 +27,7 @@ public class BebeModelo {
     String apellidoPaterno;
     int sexo;
     String fechaNacimiento;
+    int edad;
     String fkUsuario;
 
     //Contructores
@@ -37,6 +41,7 @@ public class BebeModelo {
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
         this.fkUsuario = fkUsuario;
+        edad = 0;
     }
     
     //Getters and Setters
@@ -95,6 +100,14 @@ public class BebeModelo {
     public void setFkUsuario(String fkUsuario) {
         this.fkUsuario = fkUsuario;
     }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
     
     //CRUD
     //Create
@@ -109,7 +122,7 @@ public class BebeModelo {
         con.close();
     }
     
-    public LinkedList<BebeModelo> readBebe(int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, String fkUsuario) throws SQLException {
+    public LinkedList<BebeModelo> readBebe(int idBebe, String nombre, String apellidoMaterno, String apellidoPaterno, int sexo, String fechaNacimiento, int mesesmin, int mesesmax, String fkUsuario) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -120,7 +133,11 @@ public class BebeModelo {
         if(sexo == 0 || sexo == 1) toRead.add("sexo = '"+sexo+"'");
         if(!"".equals(fechaNacimiento)) toRead.add("fechaNacimientoBb = '"+fechaNacimiento+"'");
         if(!"".equals(fkUsuario)) toRead.add("fkUsuario = '"+fkUsuario+"'");
-        String query1 = "SELECT * FROM babywizard.bebe WHERE ";
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        if(mesesmin>-1) toRead.add("meses >= '"+mesesmin+"'");
+        if(mesesmax>-1 && mesesmax>=mesesmin) toRead.add("meses <= '"+mesesmax+"'");
+        Date date = new Date();
+        String query1 = "SELECT * FROM (SELECT *,TIMESTAMPDIFF(MONTH,'"+dateFormat.format(date)+"', fechaNacimientoBb) as meses FROM babywizard.bebe) as bebes WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
             query2 = query2+toRead.get(i)+" AND ";
@@ -132,7 +149,7 @@ public class BebeModelo {
         if (toRead.size()>0) {
         rs = stmt.executeQuery(query1+query2+query3);
         } else {
-        rs = stmt.executeQuery("select * from babywizard.bebe");
+        rs = stmt.executeQuery("SELECT * FROM (SELECT *,TIMESTAMPDIFF(MONTH,'"+dateFormat.format(date)+"', fechaNacimientoBb) as meses FROM babywizard.bebe) as bebes");
         }
         LinkedList<BebeModelo> bebes = new LinkedList<>();
         while(rs.next()){
@@ -144,7 +161,7 @@ public class BebeModelo {
             bm.setSexo(rs.getInt("sexo"));
             bm.setFechaNacimiento(rs.getString("fechaNacimientoBb"));
             bm.setFkUsuario(rs.getString("fkUsuario"));
-            //System.out.println(bm.getIdBebe()+" "+bm.getNombre()+" "+bm.getApellidoPaterno()+" "+bm.getApellidoMaterno()+" "+bm.getFechaNacimiento()+" "+bm.getSexo()+" "+bm.getFkUsuario());
+            bm.setEdad(rs.getInt("meses"));
             bebes.add(bm);
         }
         con.close();

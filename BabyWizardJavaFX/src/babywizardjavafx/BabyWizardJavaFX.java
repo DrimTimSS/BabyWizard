@@ -5,8 +5,6 @@
  */
 package babywizardjavafx;
 
-import babywizardjavafx.controlador.UsuarioController;
-import babywizardjavafx.modelo.UsuarioModelo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,13 +14,13 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author victo
+ * @author Vicaris
  */
 public class BabyWizardJavaFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/MenuPrincipal.fxml"));
         
         Scene scene = new Scene(root);
         

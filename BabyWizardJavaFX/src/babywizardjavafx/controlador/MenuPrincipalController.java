@@ -69,6 +69,8 @@ public class MenuPrincipalController implements Initializable {
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/RegistrarInfante.fxml"));
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
                 Stage mainWindow = new Stage();
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                mainWindow.getIcons().add(image);
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
     }
@@ -78,6 +80,8 @@ public class MenuPrincipalController implements Initializable {
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Borrar.fxml"));
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
                 Stage mainWindow = new Stage();
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                mainWindow.getIcons().add(image);
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
     }
