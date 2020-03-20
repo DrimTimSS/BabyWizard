@@ -66,7 +66,7 @@ public class MenuPrincipalController implements Initializable {
     
     @FXML
     public void nuevoinfante(ActionEvent event) throws IOException{
-        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/RegistrarInfante.fxml"));
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/RegistroBB.fxml"));
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
                 Stage mainWindow = new Stage();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
