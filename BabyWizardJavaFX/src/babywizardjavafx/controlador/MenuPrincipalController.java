@@ -56,6 +56,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private MenuItem salir;
 
+    String usuariois;
     /**
      * Initializes the controller class.
      */
@@ -117,5 +118,9 @@ public class MenuPrincipalController implements Initializable {
     public void salir(ActionEvent event){
         Platform.exit();
         System.exit(0);
+    }
+    
+    public void iniciarUsuario(String usuariois){
+        this.usuariois = usuariois;
     }
 }
