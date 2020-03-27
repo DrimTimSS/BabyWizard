@@ -71,6 +71,8 @@ public class InicioSesionController implements Initializable {
         
                 Stage mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 mainWindow.setScene(menuPrincipalScene);
+                MenuPrincipalController mPrincipalController = new MenuPrincipalController();
+                mPrincipalController.iniciarUsuario(usuario.getText());
                 mainWindow.show();
             } else {
                 datosincorrectos.setText("¡Contraseña incorrecta!");
