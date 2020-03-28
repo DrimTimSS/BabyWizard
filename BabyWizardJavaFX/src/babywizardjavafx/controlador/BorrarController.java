@@ -161,10 +161,12 @@ public class BorrarController implements Initializable {
     }
     
     public void borrarconid(ActionEvent event) throws SQLException{
+        if(!idbebeaborrar.getText().equals("")){
         BebeModelo bm = new BebeModelo();
         bm.deleteBebe(Integer.parseInt(idbebeaborrar.getText()));
         tablabebes.getItems().clear();
         this.buscarbebes(event);
+        }
     }
     
 }
