@@ -69,7 +69,13 @@ public class SocioeconomicoModelo {
         query = "INSERT INTO `babywizard`.`socioeconomico` (`puntajeCrudo`, `nse`, `fkSociodemografico`) "
                 + "VALUES ('"+this.getPuntajeCrudo()+"', '"+this.getNse()+"', '"+this.getFkSociodemografico()+"');";
         Statement stmt = con.createStatement();
-        int executeUpdate = stmt.executeUpdate(query);
+        int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+        
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()){
+            idSocioeconomico=rs.getInt(1);
+        }
+        rs.close();
         con.close();
     }
     

@@ -31,19 +31,32 @@ import javafx.stage.Stage;
  * @author Vicaris
  */
 public class RegistroController implements Initializable {
-
+    
+    
+    @FXML
     private TextField usuario;
+    @FXML
     private TextField nombre;
+    @FXML
     private TextField apellidop;
+    @FXML
     private TextField apellidom;
+    @FXML
     private PasswordField repetircon;
+    @FXML
     private PasswordField contrasenia;
+    @FXML
     private TextField usuarioadm;
+    @FXML
     private PasswordField contraseniaadm;
+    @FXML
     private Label datosincorrectos;
+    @FXML
     private Label errorusuario;
     @FXML
     private Button continuar;
+    @FXML
+    private Button registrar;
 
     /**
      * Initializes the controller class.
@@ -53,12 +66,12 @@ public class RegistroController implements Initializable {
         // TODO
     }
     
-    @FXML
     public void continuar(ActionEvent event){
         Stage actualWindow = (Stage) continuar.getScene().getWindow();
         actualWindow.close();
     }
     
+    @FXML
     public void registrar(ActionEvent event) throws SQLException, IOException{
         boolean permisocrear = false;
         UsuarioController uc = new UsuarioController();
@@ -97,6 +110,7 @@ public class RegistroController implements Initializable {
                     actualWindow.getIcons().add(image);
                     actualWindow.setTitle("Registrar Usuario");
                     actualWindow.show();
+                    actualWindow.centerOnScreen();
                 } catch (SQLIntegrityConstraintViolationException e) {
                     errorusuario.setText("¡Nombre usuario ya existente!");
                     usuario.setText("");

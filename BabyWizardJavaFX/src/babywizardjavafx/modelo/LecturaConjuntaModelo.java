@@ -173,7 +173,13 @@ public class LecturaConjuntaModelo {
         query = "INSERT INTO `babywizard`.`lecturaconjunta` (`typeOrToken`, `preposicion`, `sustantivo`, `articulo`, `verbo`, `ininteligible`, `adjetivo`, `pronombre`, `adverbio`, `conjuncion`, `interjeccion`, `fkBebe`, `fkCuidador`) "
                 + "VALUES ('"+this.getTypeOrToken()+"', '"+this.getPreposicion()+"', '"+this.getSustantivo()+"', '"+this.getArticulo()+"', '"+this.getVerbo()+"', '"+this.getIninteligible()+"', '"+this.getAdjetivo()+"', '"+this.getPronombre()+"', '"+this.getAdverbio()+"', '"+this.getConjuncion()+"', '"+this.getInterjeccion()+"', '"+this.getFkBebe()+"', '"+this.getFkCuidador()+"');";
         Statement stmt = con.createStatement();
-        int executeUpdate = stmt.executeUpdate(query);
+        int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+        
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()){
+            idLecturaConjunta=rs.getInt(1);
+        }
+        rs.close();
         con.close();
     }
     

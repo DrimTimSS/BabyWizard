@@ -7,21 +7,30 @@ package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.CuidadorModelo;
+import babywizardjavafx.modelo.CuidarModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
 import com.mysql.cj.util.StringUtils;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -66,11 +75,24 @@ public class RegistroCController implements Initializable {
 
     BebeModelo bm;
     SociodemograficoModelo sm;
+    @FXML
+    private ChoiceBox<String> relacion;
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        relacion.getItems().add("Madre");
+        relacion.getItems().add("Padre");
+        relacion.getItems().add("Abuela");
+        relacion.getItems().add("Abuelo");
+        relacion.getItems().add("Tía");
+        relacion.getItems().add("Tío");
+        relacion.getItems().add("Hermana");
+        relacion.getItems().add("Hermano");
+        relacion.getItems().add("Otro");
         aniosestudio.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -92,9 +114,35 @@ public class RegistroCController implements Initializable {
     }
 
     @FXML
-    private void finalizar(ActionEvent event) {
+    private void finalizar(ActionEvent event) throws IOException, SQLException {
+        CuidadorModelo cm = crearCuidador();
+        SocioeconomicoModelo sem = crearSocioeconomico();
         
-        
+        if(!(bm == null||sm==null||cm==null||sem==null)) {
+            //try {
+                bm.createBebe();
+                sm.setFkBebeSociodemografico(bm.getIdBebe());
+                sm.createSociodemografico();
+                cm.createCuidador();
+                CuidarModelo cuim = new CuidarModelo(cm.getIdCuidador(),bm.getIdBebe(),relacion.getValue());
+                cuim.createCuidar();
+                sem.setFkSociodemografico(sm.getIdSociodemografico());
+                sem.createSocioeconomico();
+                
+                /**
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroC.fxml"));
+                Parent loadCuidador = (Parent) loader.load(); 
+                Scene CuidadorScene = new Scene(loadCuidador);
+                RegistroCController rcc = loader.getController();
+                rcc.getBebeySD(bm,sm);
+                Stage mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                mainWindow.setScene(CuidadorScene);
+                mainWindow.show();
+                **/
+            //} catch (Exception e) {
+            //    System.out.println("No se llenaron los campos.");
+            //}
+        }
     }
     
     public boolean isEmpty(TextField textfield){
@@ -106,7 +154,7 @@ public class RegistroCController implements Initializable {
         this.sm = sm;
     }
     
-    public CuidadorModelo crearCuidadador(){
+    public CuidadorModelo crearCuidador(){
         if(!(isEmpty(correo)||isEmpty(nombres)||isEmpty(apellidop)||isEmpty(apellidom)||isEmpty(ocupacion)||isEmpty(telefono1)||isEmpty(aniosestudio))){
             try{
                 String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));

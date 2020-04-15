@@ -102,7 +102,13 @@ public class Wppsi303642Modelo {
         query = "INSERT INTO `babywizard`.`wppsi303642` (`vocabularioReceptivoNatural`, `disenioCubosNatural`, `informacionNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fkBebe`) "
                 + "VALUES ('"+this.getVocabularioReceptivoNatural()+"', '"+this.getDisenioCubosNatural()+"', '"+this.getInformacionNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"', '"+this.getFkBebe()+"');";
         Statement stmt = con.createStatement();
-        int executeUpdate = stmt.executeUpdate(query);
+        int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+        
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()){
+            idWppsi303642=rs.getInt(1);
+        }
+        rs.close();
         con.close();
     }
     

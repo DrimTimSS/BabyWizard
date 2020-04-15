@@ -279,10 +279,16 @@ public class SociodemograficoModelo {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
-        query = "INSERT INTO `babywizard`.`sociodemografico` (`idSociodemografico`, `fechaCita`, `gestacion`, `semanasDeNacimiento`, `ptApgar1`, `ptApgar2`, `pesoAlNacer`, `problemasAlNacer`, `problemasDeSalud`, `problemasDeAudicion`, `problemasDeVision`, `otroIdioma`, `hermanos`, `lugarOcupa`, `adultos`, `ninios`, `cuidadorPrincipal`, `guarderia`, `tiempoAsistiendoMesesG`, `tiempoQueAsisteG`, `preescolar`, `tiempoAsistiendoMesesP`, `tiempoQueAsisteP`, `Observaciones`, `fkBebeSociodemografico`) "
-                + "VALUES ('', '"+this.getFechaDeCita()+"', '"+this.getGestacion()+"', '"+this.getSemanasDeNacimiento()+"', '"+this.getPtApgar1()+"', '"+this.getPtApgar2()+"', '"+this.getPesoAlNacer()+"', '"+this.getProblemasAlNacer()+"', '"+this.getProblemasDeSalud()+"', '"+this.getProblemasDeAudicion()+"', '"+this.getProblemasDeVision()+"', '"+this.getOtroIdioma()+"', '"+this.getHermanos()+"', '"+this.getLugarOcupa()+"', '"+this.getAdultos()+"', '"+this.getNinios()+"', '"+this.getCuidadorPrincipal()+"', '"+this.getGuarderia()+"', '"+this.getTiempoAsistiendoMesesG()+"', '"+this.getTiempoQueAsisteG()+"', '"+this.getPreescolar()+"', '"+this.getTiempoAsistiendoMesesP()+"', '"+this.getTiempoQueAsisteP()+"', '"+this.getObservaciones()+"', '"+this.getFkBebeSociodemografico()+"');";
+        query = "INSERT INTO `babywizard`.`sociodemografico` (`fechaCita`, `gestacion`, `semanasDeNacimiento`, `ptApgar1`, `ptApgar2`, `pesoAlNacer`, `problemasAlNacer`, `problemasDeSalud`, `problemasDeAudicion`, `problemasDeVision`, `otroIdioma`, `hermanos`, `lugarOcupa`, `adultos`, `ninios`, `cuidadorPrincipal`, `guarderia`, `tiempoAsistiendoMesesG`, `tiempoQueAsisteG`, `preescolar`, `tiempoAsistiendoMesesP`, `tiempoQueAsisteP`, `Observaciones`, `fkBebeSociodemografico`) "
+                + "VALUES ('"+this.getFechaDeCita()+"', '"+this.getGestacion()+"', '"+this.getSemanasDeNacimiento()+"', '"+this.getPtApgar1()+"', '"+this.getPtApgar2()+"', '"+this.getPesoAlNacer()+"', '"+this.getProblemasAlNacer()+"', '"+this.getProblemasDeSalud()+"', '"+this.getProblemasDeAudicion()+"', '"+this.getProblemasDeVision()+"', '"+this.getOtroIdioma()+"', '"+this.getHermanos()+"', '"+this.getLugarOcupa()+"', '"+this.getAdultos()+"', '"+this.getNinios()+"', '"+this.getCuidadorPrincipal()+"', '"+this.getGuarderia()+"', '"+this.getTiempoAsistiendoMesesG()+"', '"+this.getTiempoQueAsisteG()+"', '"+this.getPreescolar()+"', '"+this.getTiempoAsistiendoMesesP()+"', '"+this.getTiempoQueAsisteP()+"', '"+this.getObservaciones()+"', '"+this.getFkBebeSociodemografico()+"');";
         Statement stmt = con.createStatement();
-        int executeUpdate = stmt.executeUpdate(query);
+        int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+        
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()){
+            idSociodemografico=rs.getInt(1);
+        }
+        rs.close();
         con.close();
     }
     

@@ -2,17 +2,19 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #D8B9F7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroCController">
-   <children>
+    <children>
       <GridPane alignment="CENTER" hgap="10.0" layoutX="7.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="758.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.800048828125" minWidth="10.0" prefWidth="281.99997558593753" />
@@ -23,16 +25,17 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="232.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="232.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="127.19998779296876" minHeight="10.0" prefHeight="127.19998779296876" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="82.0000228881836" minHeight="0.0" prefHeight="39.20001220703125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="88.0000244140625" minHeight="0.0" prefHeight="43.19997100830079" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="81.19998168945312" minHeight="0.0" prefHeight="39.199975585937494" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="281.59999999999997" minHeight="-Infinity" prefHeight="214.4000183105469" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="127.19998779296876" minHeight="10.0" prefHeight="117.59999389648438" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0000228881836" minHeight="0.0" prefHeight="39.20000610351563" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="88.0000244140625" minHeight="0.0" prefHeight="34.599999999999994" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="292.80002136230473" minHeight="0.0" prefHeight="53.39997253417968" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="344.000048828125" minHeight="-Infinity" prefHeight="30.600030517578148" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="281.59999999999997" minHeight="10.0" prefHeight="214.99996948242188" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <TextField fx:id="nombres" promptText="Nombre(s)" GridPane.valignment="BOTTOM">
@@ -40,9 +43,15 @@
                         <Insets bottom="5.0" />
                      </GridPane.margin></TextField>
                   <TextField fx:id="apellidop" promptText="Apellido Paterno" GridPane.rowIndex="1" />
-                  <TextField fx:id="apellidom" promptText="Apellido Materno" GridPane.rowIndex="2" />
+                  <TextField fx:id="apellidom" prefHeight="24.0" prefWidth="232.0" promptText="Apellido Materno" GridPane.rowIndex="2" />
                   <TextField fx:id="correo" promptText="Correo Electrónico" GridPane.rowIndex="3" />
-                  <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
+                    <HBox alignment="CENTER" prefHeight="239.0" prefWidth="232.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                 <children>
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Relación:" />
+                                    <ChoiceBox fx:id="relacion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                                 </children>
+                              </HBox>
+                  <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">

@@ -118,7 +118,13 @@ public class BebeModelo {
         query = "INSERT INTO `babywizard`.`bebe` (`nombre`, `apellidoMaterno`, `apellidoPaterno`, `sexo`, `fechaNacimientoBb`, `fkUsuario`) "
                 + "VALUES ('"+nombre+"', '"+apellidoMaterno+"', '"+apellidoPaterno+"', '"+sexo+"', '"+fechaNacimiento+"', '"+fkUsuario+"');";
         Statement stmt = con.createStatement();
-        int executeUpdate = stmt.executeUpdate(query);
+        int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+        
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()){
+            idBebe=rs.getInt(1);
+        }
+        rs.close();
         con.close();
     }
     

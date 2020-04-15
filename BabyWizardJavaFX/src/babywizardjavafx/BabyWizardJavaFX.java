@@ -5,6 +5,8 @@
  */
 package babywizardjavafx;
 
+import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.UsuarioModelo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,12 +24,18 @@ public class BabyWizardJavaFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Locale.setDefault(new Locale("es"));
-        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/RegistroC.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
+        
+        //BebeModelo bm = new BebeModelo("Bebe","De","Juguete",1,"2020-05-05","Vene");
+        //bm.createBebe();
+        
+        //UsuarioModelo um = new UsuarioModelo("Vene","Victor","El","Admin","funciona",1);
+        //um.createUsuario();
         
         //CuidadorModelo cm = new CuidadorModelo("pruebamadre@cuidadora.com","1990-01-12","Cuidadora","Cuidadorcina","Cuidadorzona","Escritora","5544332222","5566778800",16);
         //cm.createCuidador();

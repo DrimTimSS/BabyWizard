@@ -133,7 +133,13 @@ public class CuidadorModelo {
         query = "INSERT INTO `babywizard`.`cuidador` (correoElectronico, fechaDeNacimiento, nombreC, primerApellidoC, segundoApellidoC, ocupacion, primerTelefono, segundoTelefono, aniosEstudio) "
                 + "VALUES ('"+correoElectronico+"', '"+fechaDeNacimiento+"', '"+nombreC+"', '"+primerApellidoC+"', '"+segundoApellidoC+"', '"+ocupacion+"', '"+primerTelefono+"', '"+segundoTelefono+"', '"+aniosEstudio+"');";
         Statement stmt = con.createStatement();
-        int executeUpdate = stmt.executeUpdate(query);
+        int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+        
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()){
+            idCuidador= rs.getInt(1);
+        }
+        rs.close();
         con.close();
     }
     

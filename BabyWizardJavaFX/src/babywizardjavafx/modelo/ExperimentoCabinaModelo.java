@@ -125,7 +125,13 @@ public class ExperimentoCabinaModelo {
                 + "VALUES ('"+this.getTipoExperimento()+"', '"+this.getEntrenamientoOPrueba()+"', '"+this.getProtarPre()+"', '"+this.getProtarPos()+"', '"+this.getLlkdifPre()+"', '"+this.getLlkdifPos()+"', '"+this.getTr()+"', '"+this.getFkBebe()+"');";
         //Se crea un statement que sera quien ejecute el query
         Statement stmt = con.createStatement();
-        int executeUpdate = stmt.executeUpdate(query);
+        int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+        //Se agrega el id generado
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()){
+            idExperimentoCabina=rs.getInt(1);
+        }
+        rs.close();
         //se cierra la conexion a la base
         con.close();
     }

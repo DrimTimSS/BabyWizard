@@ -191,7 +191,13 @@ public class Wppsi48Modelo {
         query = "INSERT INTO `babywizard`.`wppsi48` (`disenioConCubosNatural`, `informacionNatural`, `semejanzasNatural`, `matricesNatural`, `vocabularioNatural`, `conceptosConDibujosNatural`, `busquedaSimbolosNatural`, `pistasNatural`, `clavesNatural`, `comprensionNatural`, `figurasIncompletasNatural`, `vocabularioReceptivoNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fkBebe`) "
                 + "VALUES ('"+this.getDisenioCubosNatural()+"', '"+this.informacionNatural+"', '"+this.getSemejanzasNatural()+"', '"+this.getMatricesNatural()+"', '"+this.getVocabularioNatural()+"', '"+this.conceptosConDibujosNatural+"', '"+this.busquedaSimbolosNatural+"', '"+this.getPistasNatural()+"', '"+this.getClavesNatural()+"', '"+this.getComprensionNatural()+"', '"+this.getFigurasIncompletasNatural()+"', '"+this.getVocabularioReceptivoNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"', '"+this.getFkBebe()+"');";
         Statement stmt = con.createStatement();
-        int executeUpdate = stmt.executeUpdate(query);
+        int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+        
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()){
+            idWppsi48=rs.getInt(1);
+        }
+        rs.close();
         con.close();
     }
     
