@@ -77,8 +77,8 @@
                   </HBox>
                   <Label text="Cuidador principal" GridPane.rowIndex="9" />
                   <ComboBox fx:id="cuidadorbusqueda" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <CheckBox fx:id="guarderiabusqueda" mnemonicParsing="false" text="Asiste a la guardería" GridPane.rowIndex="10" />
-                  <CheckBox fx:id="preescolarbusqueda" mnemonicParsing="false" text="Asiste al preescolar" GridPane.rowIndex="12" />
+                  <CheckBox fx:id="guarderiabusqueda" mnemonicParsing="false" text="Asiste a la guardería" GridPane.rowIndex="10" onAction="#guarderiaChecked" />
+                  <CheckBox fx:id="preescolarbusqueda" mnemonicParsing="false" text="Asiste al preescolar" GridPane.rowIndex="12" onAction="#preescolarChecked" />
                   <HBox prefHeight="26.0" prefWidth="123.0" GridPane.rowIndex="6">
                      <children>
                         <Label text="Hermanos">

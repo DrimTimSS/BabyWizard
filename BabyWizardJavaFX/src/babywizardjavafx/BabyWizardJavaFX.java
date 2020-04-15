@@ -5,14 +5,13 @@
  */
 package babywizardjavafx;
 
-import babywizardjavafx.modelo.CuidadorModelo;
-import babywizardjavafx.modelo.CuidarModelo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import java.util.Locale;
 
 /**
  *
@@ -22,21 +21,29 @@ public class BabyWizardJavaFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Resultado.fxml"));
+        Locale.setDefault(new Locale("es"));
+        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/RegistroC.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
         
-        //CuidadorModelo cm = new CuidadorModelo("prueba@cuidador.com","1990-01-12","Cuidador","Cuidadorcin","Cuidadorzon","Escritor","5544332211","5566778899",16);
+        //CuidadorModelo cm = new CuidadorModelo("pruebamadre@cuidadora.com","1990-01-12","Cuidadora","Cuidadorcina","Cuidadorzona","Escritora","5544332222","5566778800",16);
         //cm.createCuidador();
         //System.out.println(cm.readCuidador(-1, "", "", "", "", "", "", "", "", -1).get(0).getIdCuidador());
         //cm.updateCuidador(3, -1, "", "", "CuidadorActualizado", "", "", "", "", "", -1);
         //cm.deleteCuidador(3);
-        CuidarModelo cm = new CuidarModelo(5,6,"Padre");
-        cm.createCuidar();
-        
+        //CuidarModelo cm = new CuidarModelo(6,6,"Madre");
+        //cm.createCuidar();
+        //ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo("Alguntipo",1,0.2,2.5,5.8,3.0,2,6);
+        //ecm.createExperimentoCabina();
+        //System.out.println(ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, -1).get(0).getIdExperimentoCabina());
+        //ecm.updateExperimentoCabina(2, -1, "", -1, -1, -1, -1, -1, -1, 9);
+        //LecturaConjuntaModelo lcm = new LecturaConjuntaModelo(0,10,20,30,20,35,20,15,27,50,2,6,5);
+        //lcm.createLecturaConjunta();
+        //System.out.println(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1).size());
+        //lcm.updateLecturaConjunta(1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 6);
         Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
         stage.getIcons().add(image);
         stage.setScene(scene);

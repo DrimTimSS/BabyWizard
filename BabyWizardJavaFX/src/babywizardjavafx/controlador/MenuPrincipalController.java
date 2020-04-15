@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,25 +54,28 @@ public class MenuPrincipalController implements Initializable {
     private MenuItem cerrarsesion;
     @FXML
     private MenuItem salir;
-
+    @FXML
+    private Button registrarprueba;
+    
     String usuariois;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
     @FXML
     public void nuevoinfante(ActionEvent event) throws IOException{
-        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/RegistroBB.fxml"));
-                Scene menuPrincipalScene = new Scene(loadMenuPrincipal,880,640);       
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroBB.fxml"));
+        Parent loadMenuPrincipal = (Parent) loader.load();
+        RegistroBBController rbc = loader.getController();
+        rbc.inicializarUsuario(usuariois);
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
                 Stage mainWindow = new Stage();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
                 mainWindow.getIcons().add(image);
-                mainWindow.setMinWidth(880);
-                mainWindow.setMinHeight(640);
+                mainWindow.setTitle("Registrar");
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
     }
@@ -124,5 +126,16 @@ public class MenuPrincipalController implements Initializable {
     
     public void iniciarUsuario(String usuariois){
         this.usuariois = usuariois;
+    }
+
+    @FXML
+    private void registrarmenu(ActionEvent event) throws IOException {
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/AgregarPrueba.fxml"));
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);     
+                Stage mainWindow = new Stage();
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                mainWindow.getIcons().add(image);
+                mainWindow.setScene(menuPrincipalScene);
+                mainWindow.show();
     }
 }

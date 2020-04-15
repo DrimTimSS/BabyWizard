@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #D8B9F7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroCController">
+   <children>
+      <GridPane alignment="CENTER" hgap="10.0" layoutX="7.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="758.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.800048828125" minWidth="10.0" prefWidth="281.99997558593753" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.3999877929687" minWidth="10.0" prefWidth="200.4000244140625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.60001220703123" minWidth="5.6843418860808015E-14" prefWidth="226.60001220703123" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="232.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="127.19998779296876" minHeight="10.0" prefHeight="127.19998779296876" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0000228881836" minHeight="0.0" prefHeight="39.20001220703125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="88.0000244140625" minHeight="0.0" prefHeight="43.19997100830079" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="81.19998168945312" minHeight="0.0" prefHeight="39.199975585937494" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="281.59999999999997" minHeight="-Infinity" prefHeight="214.4000183105469" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="nombres" promptText="Nombre(s)" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="apellidop" promptText="Apellido Paterno" GridPane.rowIndex="1" />
+                  <TextField fx:id="apellidom" promptText="Apellido Materno" GridPane.rowIndex="2" />
+                  <TextField fx:id="correo" promptText="Correo Electrónico" GridPane.rowIndex="3" />
+                  <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
+               </children>
+            </GridPane>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="101.59998588562011" minHeight="10.0" prefHeight="101.59998588562011" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="110.79999504089355" minHeight="10.0" prefHeight="40.80001411437986" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="145.2000289916992" minHeight="10.0" prefHeight="46.39997406005858" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="170.60001525878909" minHeight="10.0" prefHeight="49.59996643066407" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="156.5999755859375" minHeight="0.0" prefHeight="48.99998168945311" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="256.8000183105469" minHeight="10.0" prefHeight="186.40000000000003" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="ocupacion" promptText="Ocupación:" GridPane.rowIndex="1" />
+                  <TextField fx:id="telefono1" promptText="Teléfono principal" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" />
+                     </GridPane.margin></DatePicker>
+                  <TextField fx:id="telefono2" prefHeight="24.0" prefWidth="232.0" promptText="Teléfono secundario" GridPane.rowIndex="3" />
+                  <TextField fx:id="aniosestudio" promptText="Años de estudio:" GridPane.rowIndex="4" />
+                  <Button fx:id="yaregistrado" mnemonicParsing="false" onAction="#yaRegistrado" text="Cuidador ya registrado" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+               </children>
+            </GridPane>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="199.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="171.19998931884766" minHeight="10.0" prefHeight="143.1999740600586" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="79.99999389648437" minHeight="6.400010681152338" prefHeight="34.4000259399414" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="111.80001220703124" minHeight="0.0" prefHeight="35.59998168945313" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="258.8000183105469" minHeight="10.0" prefHeight="242.80001831054685" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="finalizar" mnemonicParsing="false" onAction="#finalizar" text="Continuar" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" text="Datos Socioeconomicos" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="nse" promptText="NSE:" GridPane.rowIndex="1" />
+                  <TextField fx:id="puntajecrudo" promptText="Puntaje Crudo:" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </GridPane>
+      <Label fx:id="titulo" layoutX="244.0" layoutY="44.0" prefHeight="54.0" prefWidth="311.0" text="Datos del cuidador">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

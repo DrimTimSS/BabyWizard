@@ -66,13 +66,14 @@ public class InicioSesionController implements Initializable {
         if(usuarioregistro.size()>0){
             contrareal = usuarioregistro.get(0).getContrasenia();
             if((contrareal == null || contrasenia.getText().equals("")) ? contrasenia.getText() == null : contrareal.equals(contrasenia.getText())){
-                Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/MenuPrincipal.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/MenuPrincipal.fxml"));
+                Parent loadMenuPrincipal = (Parent) loader.load();
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);
+                MenuPrincipalController mPrincipalController = loader.getController();
+                mPrincipalController.iniciarUsuario(usuario.getText());
         
                 Stage mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 mainWindow.setScene(menuPrincipalScene);
-                MenuPrincipalController mPrincipalController = new MenuPrincipalController();
-                mPrincipalController.iniciarUsuario(usuario.getText());
                 mainWindow.show();
             } else {
                 datosincorrectos.setText("¡Contraseña incorrecta!");

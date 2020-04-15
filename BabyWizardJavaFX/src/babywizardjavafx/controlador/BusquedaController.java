@@ -113,4 +113,27 @@ public class BusquedaController implements Initializable {
     private void buscarbebes(ActionEvent event) {
     }
     
+    @FXML
+    private void guarderiaChecked(ActionEvent event){
+        boolean checked = guarderiabusqueda.isSelected();
+        if(checked==true){
+            gtiempobusqueda.setDisable(false);
+            gasistenciabusqueda.setDisable(false);
+        } else {
+            gtiempobusqueda.setDisable(true);
+            gasistenciabusqueda.setDisable(true);
+        }
+    }
+    
+    @FXML
+    private void preescolarChecked(ActionEvent event){
+        boolean checked = preescolarbusqueda.isSelected();
+        if(checked==true){
+            ptiempobusqueda.setDisable(false);
+            pasistenciabusqueda.setDisable(false);
+        } else {
+            ptiempobusqueda.setDisable(true);
+            pasistenciabusqueda.setDisable(true);
+        }
+    }
 }
