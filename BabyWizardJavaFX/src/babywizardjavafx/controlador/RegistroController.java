@@ -32,7 +32,6 @@ import javafx.stage.Stage;
  */
 public class RegistroController implements Initializable {
     
-    
     @FXML
     private TextField usuario;
     @FXML
@@ -56,22 +55,16 @@ public class RegistroController implements Initializable {
     @FXML
     private Button continuar;
     @FXML
-    private Button registrar;
+    private Label creado;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }
     
-    public void continuar(ActionEvent event){
-        Stage actualWindow = (Stage) continuar.getScene().getWindow();
-        actualWindow.close();
-    }
-    
-    @FXML
     public void registrar(ActionEvent event) throws SQLException, IOException{
         boolean permisocrear = false;
         UsuarioController uc = new UsuarioController();
@@ -103,12 +96,15 @@ public class RegistroController implements Initializable {
                 try{
                     uc.createUsuario(um);
                     Stage actualWindow = (Stage) errorusuario.getScene().getWindow();
-                    Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/UCreadoExitosamente.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
+                    Parent root = (Parent) loader.load();
+                    CreadoExitosamenteController cec = loader.getController();
+                    cec.queEsCreado("Usuario Creado Exitosamente.");
                     Scene exito = new Scene(root);
                     actualWindow.setScene(exito);
                     Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
                     actualWindow.getIcons().add(image);
-                    actualWindow.setTitle("Registrar Usuario");
+                    actualWindow.setTitle("Exito");
                     actualWindow.show();
                     actualWindow.centerOnScreen();
                 } catch (SQLIntegrityConstraintViolationException e) {

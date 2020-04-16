@@ -30,6 +30,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -128,6 +129,19 @@ public class RegistroCController implements Initializable {
                 cuim.createCuidar();
                 sem.setFkSociodemografico(sm.getIdSociodemografico());
                 sem.createSocioeconomico();
+                
+                Stage actualWindow = (Stage) titulo.getScene().getWindow();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
+                    Parent root = (Parent) loader.load();
+                    CreadoExitosamenteController cec = loader.getController();
+                    cec.queEsCreado("Infante Registrado Exitosamente.");
+                    Scene exito = new Scene(root);
+                    actualWindow.setScene(exito);
+                    Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                    actualWindow.getIcons().add(image);
+                    actualWindow.setTitle("Exito");
+                    actualWindow.show();
+                    actualWindow.centerOnScreen();
                 
                 /**
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroC.fxml"));
