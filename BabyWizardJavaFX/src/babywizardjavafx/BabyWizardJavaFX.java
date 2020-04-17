@@ -5,6 +5,7 @@
  */
 package babywizardjavafx;
 
+import babywizardjavafx.controlador.Wppsi303642Controller;
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.UsuarioModelo;
 import javafx.application.Application;
@@ -30,6 +31,9 @@ public class BabyWizardJavaFX extends Application {
         
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
+        
+        //Wppsi303642Controller w = new Wppsi303642Controller();
+        //w.naturalesAEscalares3638(0, 0, 0, 0, 0);
         
         //BebeModelo bm = new BebeModelo("Bebe","De","Juguete",1,"2020-05-05","Vene");
         //bm.createBebe();

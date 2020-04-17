@@ -143,7 +143,7 @@ public class BebeModelo {
         if(mesesmin>-1) toRead.add("meses >= '"+mesesmin+"'");
         if(mesesmax>-1 && mesesmax>=mesesmin) toRead.add("meses <= '"+mesesmax+"'");
         Date date = new Date();
-        String query1 = "SELECT * FROM (SELECT *,TIMESTAMPDIFF(MONTH,'"+dateFormat.format(date)+"', fechaNacimientoBb) as meses FROM babywizard.bebe) as bebes WHERE ";
+        String query1 = "SELECT * FROM (SELECT *,TIMESTAMPDIFF(MONTH, fechaNacimientoBb,'"+dateFormat.format(date)+"') as meses FROM babywizard.bebe) as bebes WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
             query2 = query2+toRead.get(i)+" AND ";
@@ -155,7 +155,7 @@ public class BebeModelo {
         if (toRead.size()>0) {
         rs = stmt.executeQuery(query1+query2+query3);
         } else {
-        rs = stmt.executeQuery("SELECT * FROM (SELECT *,TIMESTAMPDIFF(MONTH,'"+dateFormat.format(date)+"', fechaNacimientoBb) as meses FROM babywizard.bebe) as bebes");
+        rs = stmt.executeQuery("SELECT * FROM (SELECT *,TIMESTAMPDIFF(MONTH, fechaNacimientoBb,'"+dateFormat.format(date)+"') as meses FROM babywizard.bebe) as bebes");
         }
         LinkedList<BebeModelo> bebes = new LinkedList<>();
         while(rs.next()){
