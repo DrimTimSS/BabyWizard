@@ -149,4 +149,38 @@ public class Wppsi303642Controller implements Initializable {
         if(dn>=0) ptsEsc[13] = conDN[dn];
         return ptsEsc;
     }
+    
+      /*  public int[] naturalesAEscalares4042(int dc, int in, int mt,int vb, int cd, int bs, int ps, int cl, int cm, int fi, int se, int vr, int rc, int dn){
+        int[] ptsEsc = new int[14];
+        int[] conDC = {};
+        int[] conIN = {};
+        int[] conMT = {};
+        int[] conVB = {};
+        int[] conCD = {};
+        int[] conBS = {};
+        int[] conPS = {};
+        int[] conCL = {};
+        int[] conCM = {};
+        int[] conFI = {};
+        int[] conSE = {};
+        int[] conVR = {};
+        int[] conRC = {};
+        int[] conDN = {};
+        if(dc>=0) ptsEsc[0] = conDC[dc];
+        if(in>=0) ptsEsc[1] = conIN[in];
+        if(mt>=0) ptsEsc[2] = conMT[mt];
+        if(vb>=0) ptsEsc[3] = conVB[vb];
+        if(cd>=0) ptsEsc[4] = conCD[cd];
+        if(bs>=0) ptsEsc[5] = conBS[bs];
+        if(ps>=0) ptsEsc[6] = conPS[ps];
+        if(cl>=0) ptsEsc[7] = conCL[cl];
+        if(cm>=0) ptsEsc[8] = conCM[cm];
+        if(fi>=0) ptsEsc[9] = conFI[fi];
+        if(se>=0) ptsEsc[10] = conSE[se];
+        if(vr>=0) ptsEsc[11] = conVR[vr];
+        if(rc>=0) ptsEsc[12] = conRC[rc];
+        if(dn>=0) ptsEsc[13] = conDN[dn];
+        return ptsEsc;
+*/
+    }
 }
