@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -15,29 +16,33 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import java.util.regex.*;
-import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Vicaris
  */
-public class BorrarController implements Initializable {
+public class AgregarPruebaController implements Initializable {
 
     @FXML
     private TextField idbebebusqueda;
@@ -48,15 +53,17 @@ public class BorrarController implements Initializable {
     @FXML
     private TextField apellidombusqueda;
     @FXML
-    private TextField edadbusquedamin;
-    @FXML
-    private TextField edadbusquedamax;
-    @FXML
     private RadioButton mbusqueda;
+    @FXML
+    private ToggleGroup sexotoggle;
     @FXML
     private RadioButton fbusqueda;
     @FXML
     private Button buscarbebes;
+    @FXML
+    private TextField edadbusquedamin;
+    @FXML
+    private TextField edadbusquedamax;
     @FXML
     private TextField idbebeaborrar;
     @FXML
@@ -77,11 +84,18 @@ public class BorrarController implements Initializable {
     private TableColumn<BebeModelo, Integer> meses;
     @FXML
     private TableColumn<BebeModelo, Integer> fkUsuario;
+    @FXML
+    private ToggleGroup pruebas;
     
     ObservableList<BebeModelo> listaBebes = FXCollections.observableArrayList();
-    
     @FXML
-    private ToggleGroup sexotoggle;
+    private RadioButton w303642;
+    @FXML
+    private RadioButton w48;
+    @FXML
+    private RadioButton expcab;
+    @FXML
+    private RadioButton lectconj;
 
     /**
      * Initializes the controller class.
@@ -105,11 +119,11 @@ public class BorrarController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(BorrarController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        TableViewSelectionModel<BebeModelo> selection = tablabebes.getSelectionModel();
+        TableView.TableViewSelectionModel<BebeModelo> selection = tablabebes.getSelectionModel();
         ObservableList<BebeModelo> selectedItems = selection.getSelectedItems();
         selectedItems.addListener(new ListChangeListener<BebeModelo>() {
         @Override
-        public void onChanged(Change<? extends BebeModelo> change) {
+        public void onChanged(ListChangeListener.Change<? extends BebeModelo> change) {
             //selectedItems.clear();
             //selectedItems.addAll(selection.getSelectedItems());
             try{
@@ -119,10 +133,44 @@ public class BorrarController implements Initializable {
             }
         }
         });
-    }
-    
+    }    
+
     @FXML
-    public void buscarbebes(ActionEvent event){
+    private void irAPrueba(ActionEvent event) throws IOException {
+        if(idbebebusqueda.getText()==""){
+            return;
+        }
+        
+        String direccion = "";
+        String prueba = "";
+        if(w303642.isSelected()){
+            direccion = "/babywizardjavafx/vista/Wppsi303642.fxml";
+            prueba = "WPPSI 30 36 42";
+        } else if(w48.isSelected()){
+            direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
+            prueba = "WPPSI 48";
+        } else if(lectconj.isSelected()){
+            direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
+            prueba = "Tarea de Lectura Conjunta";
+        } else if(expcab.isSelected()){
+            direccion = "/babywizardjavafx/vista/PruebaLaboratorio.fxml";
+            prueba = "Experimento de Cabina";
+        } else {return;}
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(direccion));
+        Parent loadMenuPrincipal = (Parent) loader.load();
+        //RegistroBBController rbc = loader.getController();
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
+                Stage mainWindow =(Stage) ((Node) event.getSource()).getScene().getWindow();
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                mainWindow.getIcons().add(image);
+                mainWindow.setTitle(prueba);
+                mainWindow.setScene(menuPrincipalScene);
+                mainWindow.show();
+                mainWindow.centerOnScreen();
+    }
+
+    @FXML
+    private void buscarbebes(ActionEvent event) {
         tablabebes.getItems().clear();
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -157,15 +205,6 @@ public class BorrarController implements Initializable {
             //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
         } catch (SQLException ex) {
             Logger.getLogger(BorrarController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void borrarconid(ActionEvent event) throws SQLException{
-        if(!idbebeaborrar.getText().equals("")){
-        BebeModelo bm = new BebeModelo();
-        bm.deleteBebe(Integer.parseInt(idbebeaborrar.getText()));
-        tablabebes.getItems().clear();
-        this.buscarbebes(event);
         }
     }
     

@@ -181,6 +181,7 @@ public class Wppsi303642Controller implements Initializable {
         if(rc>=0) ptsEsc[12] = conRC[rc];
         if(dn>=0) ptsEsc[13] = conDN[dn];
         return ptsEsc;
-*/
+
     }
+*/
 }
