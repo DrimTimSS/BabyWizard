@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
  * @author Vicaris
  */
 public class Wppsi48Controller implements Initializable {
+    
+    int idbebe;
 
     /**
      * Initializes the controller class.
@@ -441,4 +443,8 @@ public class Wppsi48Controller implements Initializable {
         return ptsEsc;
     }
     */
+    
+    public void inicializarBebe(int idbebe){
+        this.idbebe = idbebe;
+    }
 }

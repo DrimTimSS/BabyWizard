@@ -7,7 +7,9 @@ package babywizardjavafx.controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -16,7 +18,9 @@ import javafx.fxml.Initializable;
  */
 public class Wppsi303642Controller implements Initializable {
     
-    
+    int idbebe;
+    @FXML
+    private Label idbebecito;
 
     /**
      * Initializes the controller class.
@@ -115,6 +119,12 @@ public class Wppsi303642Controller implements Initializable {
         if(rn>=0) ptsEsc[3] = convR[rn];
         if(dn>=0) ptsEsc[4] = convD[dn];
         return ptsEsc;
+    }
+    
+    public void inicializarBebe(int idbebe){
+        this.idbebe = idbebe;
+        System.out.println(idbebe);
+        //idbebecito.setText(String.valueOf(this.idbebe));
     }
 
 }

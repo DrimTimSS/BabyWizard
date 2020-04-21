@@ -78,6 +78,8 @@ public class RegistroCController implements Initializable {
     SociodemograficoModelo sm;
     @FXML
     private ChoiceBox<String> relacion;
+    @FXML
+    private Label llenadodatos;
     
     
     /**
@@ -174,10 +176,10 @@ public class RegistroCController implements Initializable {
                 String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 return new CuidadorModelo(correo.getText(), fechan, nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()));
             } catch(Exception e){
-                System.out.println("No se llenaron todos los campos.");
+                llenadodatos.setText("No se han llenado todos los campos obligatorios.");
             }           
         } else{
-            System.out.println("No se llenaron todos los campos.");
+            llenadodatos.setText("No se han llenado todos los campos obligatorios.");
         }
         return null;
     }
@@ -187,11 +189,11 @@ public class RegistroCController implements Initializable {
             try{
                 return new SocioeconomicoModelo(Integer.parseInt(puntajecrudo.getText()), nse.getText(), 0);
             } catch(Exception e){
-                System.out.println("No se llenaron todos los campos.");
+                llenadodatos.setText("No se han llenado todos los campos obligatorios.");
             }   
             
         } else {
-            System.out.println("No se llenaron todos los campos.");
+            llenadodatos.setText("No se han llenado todos los campos obligatorios.");
         }
         return null;
     }

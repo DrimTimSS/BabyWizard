@@ -16,12 +16,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroBBController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroBBController">
    <children>
       <GridPane alignment="CENTER" hgap="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="422.0" prefWidth="800.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="360.0" minWidth="10.0" prefWidth="259.199951171875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.60004882812495" minWidth="10.0" prefWidth="234.60004882812495" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
@@ -45,18 +45,44 @@
                   <RowConstraints maxHeight="95.60000000000002" minHeight="10.0" prefHeight="43.20001220703125" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="nombres" promptText="Nombre(s)" />
-                  <TextField fx:id="apellidop" promptText="Apellido Paterno" GridPane.rowIndex="1" />
-                  <TextField fx:id="apellidom" promptText="Apeliido Materno" GridPane.rowIndex="2" />
-                  <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="4">
+                  <HBox alignment="CENTER">
                      <children>
-                        <Label text="Nacimiento:" />
-                        <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" />
+                        <TextField fx:id="nombres" promptText="Nombre(s) " />
+                        <Label text="*" />
                      </children>
                   </HBox>
-                  <TextField fx:id="semanasnacio" promptText="Semanas a las que nació:" GridPane.rowIndex="6" />
-                  <TextField fx:id="pa1" promptText="Pt. Apgar 1" GridPane.rowIndex="7" />
-                  <TextField fx:id="pa2" prefHeight="24.0" prefWidth="232.0" promptText="Pt. Apgar 2" GridPane.rowIndex="8" />
+                  <HBox alignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="apellidop" promptText="Apellido Paterno" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="2">
+                     <children>
+                        <TextField fx:id="apellidom" promptText="Apeliido Materno *" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="4">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="90.0" text="Nacimiento:" />
+                        <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="6">
+                     <children>
+                        <TextField fx:id="semanasnacio" promptText="Semanas a las que nació:" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="7">
+                     <children>
+                        <TextField fx:id="pa1" promptText="Pt. Apgar 1" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="pa2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="184.0" promptText="Pt. Apgar 2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
                   <HBox alignment="CENTER" prefHeight="22.0" prefWidth="232.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <children>
                         <Label text="Sexo:" />
@@ -65,7 +91,7 @@
                                 <javafx.scene.control.ToggleGroup fx:id="sexotoggle" />
                             </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="sexof" mnemonicParsing="false" text="F" toggleGroup="$sexotoggle" />
+                        <RadioButton fx:id="sexof" mnemonicParsing="false" text="F *" toggleGroup="$sexotoggle" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -91,15 +117,40 @@
                   <RowConstraints maxHeight="51.80001220703127" minHeight="10.0" prefHeight="44.60000000000002" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="pesonacer" promptText="Peso al nacer (kg)" />
-                  <TextField fx:id="numhermanos" promptText="Número de hermanos" GridPane.rowIndex="5" />
-                  <TextField fx:id="lugarocupa" prefHeight="25.0" prefWidth="190.0" promptText="Lugar de nacimiento" GridPane.rowIndex="6" />
+                  <HBox alignment="CENTER">
+                     <children>
+                        <TextField fx:id="pesonacer" promptText="Peso al nacer (kg)" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="5">
+                     <children>
+                        <TextField fx:id="numhermanos" promptText="Número de hermanos" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="6">
+                     <children>
+                        <TextField fx:id="lugarocupa" prefHeight="25.0" prefWidth="190.0" promptText="Lugar que ocupa:" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
                   <CheckBox fx:id="probsalud" mnemonicParsing="false" text="Problemas de salud" GridPane.rowIndex="1" />
                   <CheckBox fx:id="probaudicion" mnemonicParsing="false" text="Problemas de audición" GridPane.rowIndex="2" />
                   <CheckBox fx:id="probvision" mnemonicParsing="false" text="Problemas de visión" GridPane.rowIndex="3" />
                   <CheckBox fx:id="otroidioma" mnemonicParsing="false" text="Otro idioma" GridPane.rowIndex="4" />
-                  <TextField fx:id="adultosvive" promptText="Adultos con los que vive:" GridPane.rowIndex="8" />
-                  <TextField fx:id="niniosvive" promptText="Niños con las que vive:" GridPane.rowIndex="7" />
+                  <HBox alignment="CENTER" GridPane.rowIndex="8">
+                     <children>
+                        <TextField fx:id="adultosvive" promptText="Adultos con los que vive:" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="7">
+                     <children>
+                        <TextField fx:id="niniosvive" alignment="TOP_LEFT" promptText="Niños con las que vive:" />
+                        <Label alignment="TOP_LEFT" text="*" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="259.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -126,6 +177,7 @@
                      <children>
                         <Label text="Fecha de cita: " />
                         <DatePicker fx:id="fechadecita" prefHeight="25.0" prefWidth="150.0" promptText="Fecha de cita" />
+                        <Label text="*" />
                      </children>
                   </HBox>
                   <CheckBox fx:id="guarderia" mnemonicParsing="false" onAction="#guarderiaChecked" text="Guardería" GridPane.rowIndex="1" />
@@ -134,6 +186,7 @@
                      <children>
                         <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Cuidador Principal:" />
                         <ChoiceBox fx:id="cuidadorprinc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                        <Label text="*" />
                      </children>
                   </HBox>
                   <TextField fx:id="observaciones" promptText="Observaciones" GridPane.rowIndex="8" />
@@ -154,5 +207,6 @@
             <Font size="13.0" />
          </font>
       </Button>
+      <Label fx:id="nollenado" alignment="CENTER" layoutX="36.0" layoutY="563.0" textFill="#ba0d0d" />
    </children>
 </AnchorPane>

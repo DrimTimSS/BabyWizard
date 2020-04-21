@@ -137,7 +137,7 @@ public class AgregarPruebaController implements Initializable {
 
     @FXML
     private void irAPrueba(ActionEvent event) throws IOException {
-        if(idbebebusqueda.getText()==""){
+        if(idbebeaborrar.getText().equals("")){
             return;
         }
         
@@ -146,28 +146,44 @@ public class AgregarPruebaController implements Initializable {
         if(w303642.isSelected()){
             direccion = "/babywizardjavafx/vista/Wppsi303642.fxml";
             prueba = "WPPSI 30 36 42";
+            FXMLLoader loader = showWindow(direccion,prueba);
+            Wppsi303642Controller wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeaborrar.getText()));
         } else if(w48.isSelected()){
             direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
             prueba = "WPPSI 48";
+            FXMLLoader loader = showWindow(direccion,prueba);
         } else if(lectconj.isSelected()){
             direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
             prueba = "Tarea de Lectura Conjunta";
+            FXMLLoader loader = showWindow(direccion,prueba);
         } else if(expcab.isSelected()){
             direccion = "/babywizardjavafx/vista/PruebaLaboratorio.fxml";
             prueba = "Experimento de Cabina";
+            FXMLLoader loader = showWindow(direccion,prueba);
         } else {return;}
+        
+        
+        
+        
+    }
+    
+    public FXMLLoader showWindow(String direccion, String prueba) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(direccion));
         Parent loadMenuPrincipal = (Parent) loader.load();
         //RegistroBBController rbc = loader.getController();
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
-                Stage mainWindow =(Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage mainWindow =(Stage) idbebebusqueda.getScene().getWindow();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
                 mainWindow.getIcons().add(image);
                 mainWindow.setTitle(prueba);
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
                 mainWindow.centerOnScreen();
+        return loader;
     }
+    
+    
 
     @FXML
     private void buscarbebes(ActionEvent event) {

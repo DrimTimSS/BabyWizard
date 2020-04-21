@@ -26,7 +26,7 @@ public class BabyWizardJavaFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Locale.setDefault(new Locale("es"));
-        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/MenuPrincipal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
         
         Scene scene = new Scene(root);
         

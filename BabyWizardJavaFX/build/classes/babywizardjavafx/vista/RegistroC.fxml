@@ -13,8 +13,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroCController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroCController">
     <children>
+      <Label fx:id="llenadodatos" alignment="BOTTOM_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" textFill="#c21414">
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="titulo" layoutX="244.0" layoutY="44.0" prefHeight="54.0" prefWidth="311.0" text="Datos del cuidador">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
       <GridPane alignment="CENTER" hgap="10.0" layoutX="7.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="758.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.800048828125" minWidth="10.0" prefWidth="281.99997558593753" />
@@ -41,7 +51,8 @@
                   <TextField fx:id="nombres" promptText="Nombre(s)" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="5.0" />
-                     </GridPane.margin></TextField>
+                     </GridPane.margin>
+                  </TextField>
                   <TextField fx:id="apellidop" promptText="Apellido Paterno" GridPane.rowIndex="1" />
                   <TextField fx:id="apellidom" prefHeight="24.0" prefWidth="232.0" promptText="Apellido Materno" GridPane.rowIndex="2" />
                   <TextField fx:id="correo" promptText="Correo Electrónico" GridPane.rowIndex="3" />
@@ -67,12 +78,13 @@
                   <RowConstraints maxHeight="256.8000183105469" minHeight="10.0" prefHeight="186.40000000000003" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="ocupacion" promptText="Ocupación:" GridPane.rowIndex="1" />
-                  <TextField fx:id="telefono1" promptText="Teléfono principal" GridPane.rowIndex="2" />
                   <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <GridPane.margin>
                         <Insets bottom="5.0" />
-                     </GridPane.margin></DatePicker>
+                     </GridPane.margin>
+                  </DatePicker>
+                  <TextField fx:id="ocupacion" promptText="Ocupación:" GridPane.rowIndex="1" />
+                  <TextField fx:id="telefono1" promptText="Teléfono principal" GridPane.rowIndex="2" />
                   <TextField fx:id="telefono2" prefHeight="24.0" prefWidth="232.0" promptText="Teléfono secundario" GridPane.rowIndex="3" />
                   <TextField fx:id="aniosestudio" promptText="Años de estudio:" GridPane.rowIndex="4" />
                   <Button fx:id="yaregistrado" mnemonicParsing="false" onAction="#yaRegistrado" text="Cuidador ya registrado" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
@@ -89,11 +101,6 @@
                   <RowConstraints maxHeight="258.8000183105469" minHeight="10.0" prefHeight="242.80001831054685" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="finalizar" mnemonicParsing="false" onAction="#finalizar" text="Continuar" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
                   <Label alignment="CENTER" text="Datos Socioeconomicos" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="18.0" />
@@ -104,6 +111,11 @@
                   </Label>
                   <TextField fx:id="nse" promptText="NSE:" GridPane.rowIndex="1" />
                   <TextField fx:id="puntajecrudo" promptText="Puntaje Crudo:" GridPane.rowIndex="2" />
+                  <Button fx:id="finalizar" mnemonicParsing="false" onAction="#finalizar" text="Continuar" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </GridPane>
          </children>
@@ -111,10 +123,5 @@
             <Insets left="10.0" right="10.0" />
          </padding>
       </GridPane>
-      <Label fx:id="titulo" layoutX="244.0" layoutY="44.0" prefHeight="54.0" prefWidth="311.0" text="Datos del cuidador">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

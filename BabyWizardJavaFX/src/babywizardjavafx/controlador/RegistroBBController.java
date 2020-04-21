@@ -105,6 +105,8 @@ public class RegistroBBController implements Initializable {
     String usuariois;
     @FXML
     private TextField observaciones;
+    @FXML
+    private Label nollenado;
     
 
     /**
@@ -139,6 +141,51 @@ public class RegistroBBController implements Initializable {
                 if (!newValue.matches("\\d\\d")) {
                     pa2.setText(newValue.replaceAll("[^\\d]", ""));
                     if(!(pa2.getText().length()<2)) pa2.setText(pa2.getText().substring(0,2));
+                }
+            }
+        });
+        pesonacer.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("[0-9]?(\\.[0-9]{0,2})?")) {
+                    pesonacer.setText(oldValue);
+                }
+            }
+        });
+        numhermanos.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    numhermanos.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        lugarocupa.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    lugarocupa.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        niniosvive.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    niniosvive.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        adultosvive.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    adultosvive.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
         });
@@ -215,9 +262,9 @@ public class RegistroBBController implements Initializable {
                 String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 return new BebeModelo(nombre,apellidopaterno,apellidomaterno,sexo,fechan,usuariois);
             } catch (Exception e) {
-                System.out.println("No se llenaron todos los campos del infante.");
+                nollenado.setText("No se han llenado todos los campos obligatorios.");
             }
-        } else {System.out.println("No se llenaron todos los campos del infante.");}
+        } else {nollenado.setText("No se han llenado todos los campos obligatorios.");}
         
         return null;
     }
@@ -255,9 +302,9 @@ public class RegistroBBController implements Initializable {
                 String cpr = cuidadorprinc.getValue();
                 return new SociodemograficoModelo(fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,0);
             } catch (Exception e) {
-                System.out.println("No se llenaron todos los campos sociodemográficos.");
+                nollenado.setText("No se han llenado todos los campos obligatorios.");
             }
-        } else {System.out.println("No se llenaron todos los campos sociodemográficos.");}
+        } else {nollenado.setText("No se han llenado todos los campos obligatorios.");}
         
         return null;
     }
