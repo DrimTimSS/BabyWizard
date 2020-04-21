@@ -426,3 +426,4 @@ public class Wppsi48Controller implements Initializable {
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
     }
+}

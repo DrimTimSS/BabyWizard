@@ -48,18 +48,35 @@
                   <RowConstraints maxHeight="281.59999999999997" minHeight="10.0" prefHeight="214.99996948242188" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="nombres" promptText="Nombre(s)" GridPane.valignment="BOTTOM">
-                     <GridPane.margin>
-                        <Insets bottom="5.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="apellidop" promptText="Apellido Paterno" GridPane.rowIndex="1" />
-                  <TextField fx:id="apellidom" prefHeight="24.0" prefWidth="232.0" promptText="Apellido Materno" GridPane.rowIndex="2" />
-                  <TextField fx:id="correo" promptText="Correo Electrónico" GridPane.rowIndex="3" />
+                  <HBox alignment="BOTTOM_CENTER">
+                     <children>
+                        <TextField fx:id="nombres" promptText="Nombre(s)" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="apellidop" promptText="Apellido Paterno" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <children>
+                        <TextField fx:id="apellidom" promptText="Apellido Materno" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="3">
+                     <children>
+                        <TextField fx:id="correo" promptText="Correo Electrónico" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
                     <HBox alignment="CENTER" prefHeight="239.0" prefWidth="232.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                  <children>
                                     <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Relación:" />
                                     <ChoiceBox fx:id="relacion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                        <Label text="*" />
                                  </children>
                               </HBox>
                   <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
@@ -78,15 +95,36 @@
                   <RowConstraints maxHeight="256.8000183105469" minHeight="10.0" prefHeight="186.40000000000003" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <GridPane.margin>
-                        <Insets bottom="5.0" />
-                     </GridPane.margin>
-                  </DatePicker>
-                  <TextField fx:id="ocupacion" promptText="Ocupación:" GridPane.rowIndex="1" />
-                  <TextField fx:id="telefono1" promptText="Teléfono principal" GridPane.rowIndex="2" />
-                  <TextField fx:id="telefono2" prefHeight="24.0" prefWidth="232.0" promptText="Teléfono secundario" GridPane.rowIndex="3" />
-                  <TextField fx:id="aniosestudio" promptText="Años de estudio:" GridPane.rowIndex="4" />
+                  <HBox alignment="BOTTOM_CENTER">
+                     <children>
+                        <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="ocupacion" promptText="Ocupación:" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="2">
+                     <children>
+                        <TextField fx:id="telefono1" promptText="Teléfono principal" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="3">
+                     <children>
+                        <TextField fx:id="telefono2" prefHeight="24.0" prefWidth="232.0" promptText="Teléfono secundario" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="4">
+                     <children>
+                        <TextField fx:id="aniosestudio" promptText="Años de estudio:" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
                   <Button fx:id="yaregistrado" mnemonicParsing="false" onAction="#yaRegistrado" text="Cuidador ya registrado" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
@@ -109,8 +147,18 @@
                         <Insets bottom="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="nse" promptText="NSE:" GridPane.rowIndex="1" />
-                  <TextField fx:id="puntajecrudo" promptText="Puntaje Crudo:" GridPane.rowIndex="2" />
+                  <HBox alignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="nse" promptText="NSE:" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="2">
+                     <children>
+                        <TextField fx:id="puntajecrudo" promptText="Puntaje Crudo:" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
                   <Button fx:id="finalizar" mnemonicParsing="false" onAction="#finalizar" text="Continuar" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="13.0" />
