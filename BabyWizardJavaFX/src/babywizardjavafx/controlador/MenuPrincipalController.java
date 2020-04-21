@@ -87,6 +87,7 @@ public class MenuPrincipalController implements Initializable {
                 Stage mainWindow = new Stage();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
                 mainWindow.getIcons().add(image);
+                mainWindow.setTitle("Borrar");
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
     }
@@ -94,12 +95,13 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void busqueda(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Busqueda.fxml"));
-                Scene menuPrincipalScene = new Scene(loadMenuPrincipal,880,640);     
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal,870,650);     
                 Stage mainWindow = new Stage();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
                 mainWindow.getIcons().add(image);
-                mainWindow.setMinWidth(880);
-                mainWindow.setMinHeight(640);
+                mainWindow.setMinWidth(870);
+                mainWindow.setMinHeight(650);
+                mainWindow.setTitle("Búsqueda");
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
     }
@@ -136,6 +138,7 @@ public class MenuPrincipalController implements Initializable {
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
                 mainWindow.getIcons().add(image);
                 mainWindow.setScene(menuPrincipalScene);
+                mainWindow.setTitle("Agregar Prueba");
                 mainWindow.show();
     }
 }

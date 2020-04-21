@@ -26,17 +26,12 @@ public class BabyWizardJavaFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Locale.setDefault(new Locale("es"));
-        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/MenuPrincipal.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
-        
-        
-        Wppsi48Controller w = new Wppsi48Controller();
-        int[] escalares = w.naturalesAEscalares4850(0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-        
         
         //BebeModelo bm = new BebeModelo("Bebe","De","Juguete",1,"2020-05-05","Vene");
         //bm.createBebe();
