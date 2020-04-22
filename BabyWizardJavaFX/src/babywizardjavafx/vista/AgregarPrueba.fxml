@@ -80,7 +80,6 @@
             </HBox>
                </children>
             </GridPane>
-      <TextField fx:id="idbebeaborrar" layoutX="110.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="100.0" />
       <TableView fx:id="tablabebes" layoutX="395.0" layoutY="31.0" prefHeight="200.0" prefWidth="732.0">
         <columns>
           <TableColumn fx:id="idBebe" prefWidth="57.60005187988281" text="ID" />
@@ -95,7 +94,7 @@
       </TableView>
       <Separator layoutX="358.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="6.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="358.0" AnchorPane.topAnchor="0.0" />
       <Separator layoutY="160.0" prefHeight="5.0" prefWidth="359.0" />
-      <Label layoutX="74.0" layoutY="26.0" text="Ingresar ID de infante&#10;para registrar prueba" textAlignment="CENTER">
+      <Label layoutX="96.0" layoutY="31.0" text="ID de infante&#10;para registrar prueba" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -131,5 +130,13 @@
          </font>
       </Label>
       <Button layoutX="1003.0" layoutY="431.0" mnemonicParsing="false" onAction="#irAPrueba" text="Continuar" />
+      <Label fx:id="idbebeprueba" alignment="BOTTOM_CENTER" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="359.0" text="0" textFill="#3e0a0a">
+         <padding>
+            <Insets bottom="40.0" />
+         </padding>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

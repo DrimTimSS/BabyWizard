@@ -28,6 +28,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -65,8 +66,6 @@ public class AgregarPruebaController implements Initializable {
     @FXML
     private TextField edadbusquedamax;
     @FXML
-    private TextField idbebeaborrar;
-    @FXML
     private TableView<BebeModelo> tablabebes;
     @FXML
     private TableColumn<BebeModelo, Integer> idBebe;
@@ -96,6 +95,8 @@ public class AgregarPruebaController implements Initializable {
     private RadioButton expcab;
     @FXML
     private RadioButton lectconj;
+    @FXML
+    private Label idbebeprueba;
 
     /**
      * Initializes the controller class.
@@ -127,7 +128,7 @@ public class AgregarPruebaController implements Initializable {
             //selectedItems.clear();
             //selectedItems.addAll(selection.getSelectedItems());
             try{
-            idbebeaborrar.setText(String.valueOf(selectedItems.get(0).getIdBebe()));
+            idbebeprueba.setText(String.valueOf(selectedItems.get(0).getIdBebe()));
             } catch (Exception e) {
                 //System.out.println("No pasa nada oiga");
             }
@@ -137,7 +138,7 @@ public class AgregarPruebaController implements Initializable {
 
     @FXML
     private void irAPrueba(ActionEvent event) throws IOException {
-        if(idbebeaborrar.getText().equals("")){
+        if(idbebeprueba.getText().equals("")){
             return;
         }
         
@@ -148,19 +149,25 @@ public class AgregarPruebaController implements Initializable {
             prueba = "WPPSI 30 36 42";
             FXMLLoader loader = showWindow(direccion,prueba);
             Wppsi303642Controller wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeaborrar.getText()));
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(w48.isSelected()){
             direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
             prueba = "WPPSI 48";
             FXMLLoader loader = showWindow(direccion,prueba);
+            Wppsi48Controller wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(lectconj.isSelected()){
             direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
             prueba = "Tarea de Lectura Conjunta";
             FXMLLoader loader = showWindow(direccion,prueba);
+            LecturaConjuntaController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(expcab.isSelected()){
             direccion = "/babywizardjavafx/vista/PruebaLaboratorio.fxml";
             prueba = "Experimento de Cabina";
             FXMLLoader loader = showWindow(direccion,prueba);
+            PruebaLaboratorioController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else {return;}
         
         

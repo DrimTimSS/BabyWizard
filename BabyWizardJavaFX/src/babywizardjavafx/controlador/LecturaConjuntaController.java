@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
  */
 public class LecturaConjuntaController implements Initializable {
 
+    int idbebe;
     /**
      * Initializes the controller class.
      */
@@ -23,5 +24,9 @@ public class LecturaConjuntaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void inicializarBebe(int idbebe){
+        this.idbebe = idbebe;
+    }
     
 }
