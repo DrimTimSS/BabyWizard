@@ -8,7 +8,9 @@ package babywizardjavafx;
 import babywizardjavafx.controlador.Wppsi303642Controller;
 import babywizardjavafx.controlador.Wppsi48Controller;
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.JdbConnection;
 import babywizardjavafx.modelo.UsuarioModelo;
+import java.sql.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,6 +35,8 @@ public class BabyWizardJavaFX extends Application {
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
         
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
         //BebeModelo bm = new BebeModelo("Bebe","De","Juguete",1,"2020-05-05","Vene");
         //bm.createBebe();
         
