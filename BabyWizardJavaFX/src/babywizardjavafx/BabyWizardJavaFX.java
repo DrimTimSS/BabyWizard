@@ -35,6 +35,8 @@ public class BabyWizardJavaFX extends Application {
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
         
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
         //BebeModelo bm = new BebeModelo("Bebe","De","Juguete",1,"2020-05-05","Vene");
         //bm.createBebe();
         

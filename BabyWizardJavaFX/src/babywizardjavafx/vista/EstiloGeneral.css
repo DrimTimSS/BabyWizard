@@ -1,13 +1,10 @@
 /*
- * Empty Stylesheet file.
+ * El color del diseño predeterminado es ete: #D8B9F7
  */
 
 .root {
     -fx-font-size: 14px;
     -fx-font-family: Arial, Helvetica, sans-serif;
-    -fx-background-color:  #D8B9F7;
+    -fx-font-color: white;
+    -fx-background-color: #CFA8FF;
 }
-
-.table{
-    -fx-background-color: #B9B9F7;
-}  
