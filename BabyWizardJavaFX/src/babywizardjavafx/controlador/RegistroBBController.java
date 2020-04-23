@@ -260,7 +260,7 @@ public class RegistroBBController implements Initializable {
             
             try {
                 String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                return new BebeModelo(nombre,apellidopaterno,apellidomaterno,sexo,fechan,usuariois);
+                return new BebeModelo(nombre,apellidomaterno,apellidopaterno,sexo,fechan,usuariois);
             } catch (Exception e) {
                 nollenado.setText("No se han llenado todos los campos obligatorios.");
             }

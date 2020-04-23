@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class JdbConnection {
     @SuppressWarnings("CallToPrintStackTrace")
     public Connection getConnection() {
-		String jdbcURL = "jdbc:mysql://localhost:3306/cine?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String jdbcURL = "jdbc:mysql://localhost:3306/babywizard?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String username = "root";
 		String password = "H1@WGun4664";
 		Connection con = null;
