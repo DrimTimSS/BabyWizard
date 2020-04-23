@@ -5,7 +5,9 @@
 .root {
     -fx-font-size: 14px;
     -fx-font-family: Arial, Helvetica, sans-serif;
-    -fx-background-color:  #D8B9F7;
+    -fx-font-color: white;
+    -fx-background-color: #CFA8FF;  
+    // #D8B9F7;
 }
 
 .table{
