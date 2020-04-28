@@ -4,12 +4,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="849.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="grid" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="849.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.ResultadoController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.800048828125" minWidth="10.0" prefWidth="185.4" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="630.4" minWidth="10.0" prefWidth="614.4" />
@@ -19,28 +19,52 @@
       <RowConstraints maxHeight="144.00000610351563" minHeight="10.0" prefHeight="42.40003662109376" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <TableView fx:id="resultadosbebe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
         <columns>
-          <TableColumn prefWidth="50.0" text="ID" />
-          <TableColumn prefWidth="105.59997940063477" text="Nombre Infante" />
-            <TableColumn prefWidth="75.0" text="Apellido P." />
-            <TableColumn prefWidth="75.0" text="Apellido M." />
-            <TableColumn prefWidth="75.0" text="Sexo" />
-            <TableColumn prefWidth="128.00006103515625" text="Fecha de Nacimiento" />
-            <TableColumn prefWidth="75.0" text="Meses" />
-            <TableColumn prefWidth="75.0" text="Quien registro" />
+          <TableColumn fx:id="resid" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="resnombre" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" text="Nombre Infante" />
+            <TableColumn fx:id="resapellidop" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Apellido P." />
+            <TableColumn fx:id="resapellidom" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Apellido M." />
+            <TableColumn fx:id="ressexo" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Sexo" />
+            <TableColumn fx:id="resfechan" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Fecha de Nacimiento" />
+            <TableColumn fx:id="resmeses" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Meses" />
+            <TableColumn fx:id="resusuario" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Registró" />
         </columns>
       </TableView>
-      <Button mnemonicParsing="false" text="Exportar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#exportar" text="Exportar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="Mostrar" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#crearTablas" text="Buscar" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </Button>
-      <TreeView prefHeight="200.0" prefWidth="200.0" />
+      <TableView fx:id="resultadoscuidador" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <columns>
+            <TableColumn fx:id="residc" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="rescorreoc" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Correo" />
+            <TableColumn fx:id="resnombrec" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" text="Nombre Cuidador" />
+            <TableColumn fx:id="resapellidopc" maxWidth="120.0" minWidth="105.5999755859375" prefWidth="112.79998779296875" text="Apellido P." />
+            <TableColumn fx:id="resapellidomc" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Apellido M." />
+            <TableColumn fx:id="resocupacion" maxWidth="104.80007934570312" minWidth="50.0" prefWidth="90.4000244140625" text="Ocupación" />
+            <TableColumn fx:id="restelefono1" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Primer Teléfono" />
+            <TableColumn fx:id="restelefono2" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Segundo Teléfono" />
+            <TableColumn fx:id="resfechanc" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Fecha de Nacimiento" />
+            <TableColumn fx:id="resid111" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Años Estudio" />
+         </columns>
+      </TableView>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="630.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <children>
+            <Button mnemonicParsing="false" onAction="#showInfante" text="Infante" />
+            <Button mnemonicParsing="false" onAction="#showCuidador" text="Cuidador" />
+            <Button mnemonicParsing="false" onAction="#showSociode" text="SocDyE" />
+            <Button mnemonicParsing="false" onAction="#showExpCab" text="Exp. Cab." />
+            <Button mnemonicParsing="false" onAction="#showLectCab" text="Lect. Conj." />
+            <Button mnemonicParsing="false" onAction="#showWppsi30" text="WPPSI30" />
+            <Button mnemonicParsing="false" onAction="#showWppsi48" text="WPPSI48" />
+         </children>
+      </HBox>
    </children>
 </GridPane>

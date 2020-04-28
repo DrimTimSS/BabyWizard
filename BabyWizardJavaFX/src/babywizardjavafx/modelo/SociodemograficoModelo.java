@@ -292,7 +292,7 @@ public class SociodemograficoModelo {
         con.close();
     }
     
-   public LinkedList<SociodemograficoModelo> readSociodemografico(int idSociodemografico, String fechaDeCita, int gestacion, int semanasDeNacimiento, int ptApgar1, int ptApgar2, double pesoAlNacer, int problemasAlNacer, int problemasDeSalud, int problemasDeAudicion, int problemasDeVision, int otroIdioma, int hermanos, int lugarOcupa, int adultos, int ninios, String cuidadorPrincipal, int guarderia, int tiempoAsistiendoMesesG, int tiempoQueAsisteG, int preescolar, int tiempoAsistiendoMesesP, int tiempoQueAsisteP, String observaciones, int fkBebeSociodemografico) throws SQLException {
+   public LinkedList<SociodemograficoModelo> readSociodemografico(int idSociodemografico, String fechaDeCita, int gestacion, int semanasDeNacimiento, int ptApgar1, int ptApgar2, double pesoAlNacer1, double pesoAlNacer2, int problemasAlNacer, int problemasDeSalud, int problemasDeAudicion, int problemasDeVision, int otroIdioma, int hermanos, int lugarOcupa, int adultos, int ninios, String cuidadorPrincipal, int guarderia, int tiempoAsistiendoMesesG, int tiempoQueAsisteG, int preescolar, int tiempoAsistiendoMesesP, int tiempoQueAsisteP, String observaciones, int fkBebeSociodemografico) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -301,8 +301,7 @@ public class SociodemograficoModelo {
         if(gestacion==1 || gestacion == 0) toRead.add("gestacion = '"+gestacion+"'");
         if(semanasDeNacimiento>-1) toRead.add("semanasDeNacimiento = '"+semanasDeNacimiento+"'");
         if(ptApgar1>-1) toRead.add("ptApgar1 = '"+ptApgar1+"'");
-        if(ptApgar2>-1) toRead.add("ptApgar2 = '"+ptApgar2+"'");
-        if(pesoAlNacer>=0) toRead.add("pesoAlNacer = '"+pesoAlNacer+"'");
+        if(ptApgar2>-1) toRead.add("ptApgar2 = '"+ptApgar2+"'");       
         if(problemasAlNacer==1 || problemasAlNacer == 0) toRead.add("problemasAlNacer = '"+problemasAlNacer+"'");
         if(problemasDeSalud==1 || problemasDeSalud == 0) toRead.add("problemasDeSalud = '"+problemasDeSalud+"'");
         if(problemasDeAudicion==1 || problemasDeAudicion == 0) toRead.add("problemasDeAudicion = '"+problemasDeAudicion+"'");
@@ -320,7 +319,10 @@ public class SociodemograficoModelo {
         if(tiempoAsistiendoMesesP>-1) toRead.add("tiempoAsistiendoMesesP = '"+tiempoAsistiendoMesesP+"'");
         if(tiempoQueAsisteP>-1) toRead.add("tiempoQueAsisteP = '"+tiempoQueAsisteP+"'");
         if(!"".equals(observaciones)) toRead.add("observaciones = '"+observaciones+"'");
-        if(!"".equals(fkBebeSociodemografico)) toRead.add("fkBebeSociodemografico = '"+fkBebeSociodemografico+"'");
+        if(fkBebeSociodemografico>-1) toRead.add("fkBebeSociodemografico = '"+fkBebeSociodemografico+"'");
+        if(pesoAlNacer1>-1) toRead.add("pesoAlNacer >= '"+pesoAlNacer1+"'");
+        if(pesoAlNacer2>-1 && pesoAlNacer2>=pesoAlNacer1) toRead.add("pesoAlNacer <= '"+pesoAlNacer2+"'");
+        
         String query1 = "SELECT * FROM babywizard.sociodemografico WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
@@ -329,6 +331,7 @@ public class SociodemograficoModelo {
         String query3="";
         if(toRead.size()>0) query3 = toRead.getLast()+";";
         Statement stmt = con.createStatement();
+        //System.out.println(query1+query2+query3);
         ResultSet rs;
         if (toRead.size()>0) {
         rs = stmt.executeQuery(query1+query2+query3);
@@ -340,7 +343,7 @@ public class SociodemograficoModelo {
             SociodemograficoModelo sdm = new SociodemograficoModelo();
             sdm.setAdultos(rs.getInt("adultos"));
             sdm.setCuidadorPrincipal(rs.getString("cuidadorPrincipal"));
-            sdm.setFechaDeCita(rs.getString("fechaDeCita"));
+            sdm.setFechaDeCita(rs.getString("fechaCita"));
             sdm.setFkBebeSociodemografico(rs.getInt("fkBebeSociodemografico"));
             sdm.setGestacion(rs.getInt("gestacion"));
             sdm.setGuarderia(rs.getInt("guarderia"));

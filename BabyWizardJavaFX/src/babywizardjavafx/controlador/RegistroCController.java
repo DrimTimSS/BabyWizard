@@ -65,7 +65,7 @@ public class RegistroCController implements Initializable {
     @FXML
     private Button finalizar;
     @FXML
-    private TextField nse;
+    private ChoiceBox<String> nse;
     @FXML
     private TextField puntajecrudo;
     @FXML
@@ -96,6 +96,15 @@ public class RegistroCController implements Initializable {
         relacion.getItems().add("Hermana");
         relacion.getItems().add("Hermano");
         relacion.getItems().add("Otro");
+        
+        nse.getItems().add("A\\B");
+        nse.getItems().add("C+");
+        nse.getItems().add("C");
+        nse.getItems().add("C-");
+        nse.getItems().add("D+");
+        nse.getItems().add("D");
+        nse.getItems().add("E");
+        
         aniosestudio.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -122,7 +131,7 @@ public class RegistroCController implements Initializable {
         SocioeconomicoModelo sem = crearSocioeconomico();
         
         if(!(bm == null||sm==null||cm==null||sem==null)) {
-            //try {
+            try {
                 bm.createBebe();
                 sm.setFkBebeSociodemografico(bm.getIdBebe());
                 sm.createSociodemografico();
@@ -155,9 +164,9 @@ public class RegistroCController implements Initializable {
                 mainWindow.setScene(CuidadorScene);
                 mainWindow.show();
                 **/
-            //} catch (Exception e) {
-            //    System.out.println("No se llenaron los campos.");
-            //}
+            } catch (Exception e) {
+                System.out.println("No se llenaron los campos.");
+            }
         }
     }
     
@@ -185,9 +194,9 @@ public class RegistroCController implements Initializable {
     }
     
     public SocioeconomicoModelo crearSocioeconomico(){
-        if(!(isEmpty(nse)||isEmpty(puntajecrudo))){
+        if(!(isEmpty(puntajecrudo))){
             try{
-                return new SocioeconomicoModelo(Integer.parseInt(puntajecrudo.getText()), nse.getText(), 0);
+                return new SocioeconomicoModelo(Integer.parseInt(puntajecrudo.getText()), nse.getValue(), 0);
             } catch(Exception e){
                 llenadodatos.setText("No se han llenado todos los campos obligatorios.");
             }   

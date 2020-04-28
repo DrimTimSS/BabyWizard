@@ -16,15 +16,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="835.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BusquedaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="862.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BusquedaController">
    <children>
-      <AnchorPane layoutX="383.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="454.0" stylesheets="@EstiloGeneral.css">
+      <AnchorPane layoutX="383.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="478.0" stylesheets="@EstiloGeneral.css">
          <children>
-            <GridPane hgap="3.0" layoutX="32.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="408.0" vgap="5.0">
+            <GridPane hgap="3.0" layoutX="32.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="444.0" vgap="5.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.39995117187502" minWidth="10.0" prefWidth="206.39995117187502" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.199951171875" minWidth="10.0" prefWidth="60.800048828125" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -35,122 +35,107 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="44.800006103515614" minHeight="10.0" prefHeight="23.200006103515648" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.79999389648435" minHeight="5.599987792968761" prefHeight="18.39997558593751" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.80001220703127" minHeight="10.0" prefHeight="24.80000000000001" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="55.19999999999999" minHeight="10.0" prefHeight="29.20002441406251" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="53.59995117187498" minHeight="0.6000244140624886" prefHeight="17.999975585937477" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.80000000000001" minHeight="0.0" prefHeight="20.00001220703126" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.80000000000001" minHeight="0.0" prefHeight="20.00001220703126" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="59.19999999999999" minHeight="0.0" prefHeight="26.19999999999999" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="36.79998779296875" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Label text="Peso al nacer" />
-                  <TextField fx:id="pesobusqueda" promptText="0" GridPane.columnIndex="1" />
-                  <RadioButton fx:id="prematurobusqueda" mnemonicParsing="false" text="Prematuro" GridPane.rowIndex="2" />
-                  <RadioButton fx:id="aterminobusqueda" mnemonicParsing="false" text="A término" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="gestacion" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <CheckBox fx:id="palnacerbusqueda" mnemonicParsing="false" text="Problemas al nacer" GridPane.rowIndex="3" />
-                  <CheckBox fx:id="pdesaludbusqueda" mnemonicParsing="false" text="Problemas de salud" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <CheckBox fx:id="pdeaudicionbusqueda" mnemonicParsing="false" text="Problema de audición" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="pdevisionbusqueda" mnemonicParsing="false" text="Problema de visión" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="otroidiomabusqueda" mnemonicParsing="false" text="Otro idioma" GridPane.rowIndex="5" />
-                  <Label text="Convive con:" GridPane.rowIndex="7" />
-                  <HBox fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="141.0" GridPane.rowIndex="8">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
+                  <Label text="Convive con:" GridPane.rowIndex="9" />
+                  <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="141.0" GridPane.rowIndex="10">
                      <children>
                         <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="63.0" text="Adultos">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="adultosbusqueda" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="30.0" promptText="0">
+                        <TextField fx:id="adultosbusqueda" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="54.0" promptText="0">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <Label text="Cuidador principal" GridPane.rowIndex="9" />
-                  <ComboBox fx:id="cuidadorbusqueda" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <CheckBox fx:id="guarderiabusqueda" mnemonicParsing="false" onAction="#guarderiaChecked" text="Asiste a la guardería" GridPane.rowIndex="10" />
-                  <CheckBox fx:id="preescolarbusqueda" mnemonicParsing="false" onAction="#preescolarChecked" text="Asiste al preescolar" GridPane.rowIndex="12" />
-                  <HBox prefHeight="26.0" prefWidth="123.0" GridPane.rowIndex="6">
+                  <Label text="Cuidador principal" GridPane.rowIndex="11" />
+                  <ComboBox fx:id="cuidadorbusqueda" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="123.0" GridPane.rowIndex="8">
                      <children>
                         <Label text="Hermanos">
                            <padding>
-                              <Insets right="10.0" />
+                              <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="hermanosbusqueda" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="34.0" promptText="0" />
+                        <TextField fx:id="hermanosbusqueda" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="59.0" promptText="0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <children>
                         <Label text="Lugar que ocupa">
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="lugarbusqueda" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="34.0" promptText="0" />
+                        <TextField fx:id="lugarbusqueda" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="60.0" promptText="0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="20.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <HBox alignment="CENTER" prefHeight="20.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
                      <children>
                         <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="45.0" text="Niños">
                            <HBox.margin>
-                              <Insets right="10.0" top="10.0" />
+                              <Insets />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="niniosbusqueda" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="30.0" promptText="0">
+                        <TextField fx:id="niniosbusqueda" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="61.0" promptText="0">
                            <HBox.margin>
-                              <Insets left="10.0" top="10.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox prefHeight="26.0" prefWidth="150.0" GridPane.rowIndex="11">
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="150.0" GridPane.rowIndex="13">
                      <children>
                         <Label text="Tiempo asistiendo">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="gtiempobusqueda" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="34.0" promptText="0" />
+                        <TextField fx:id="gtiempobusqueda" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="26.0" prefWidth="150.0" GridPane.rowIndex="13">
+                  <HBox prefHeight="26.0" prefWidth="150.0" GridPane.rowIndex="15">
                      <children>
                         <Label text="Tiempo asistiendo">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="ptiempobusqueda" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="34.0" promptText="0" />
+                        <TextField fx:id="ptiempobusqueda" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="26.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
                      <children>
                         <Label text="Tiempo que asiste">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="gasistenciabusqueda" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="34.0" promptText="0" />
+                        <TextField fx:id="gasistenciabusqueda" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="26.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                  <HBox alignment="CENTER" prefHeight="58.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="15">
                      <children>
                         <Label text="Tiempo que asiste">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="pasistenciabusqueda" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="34.0" promptText="0" />
+                        <TextField fx:id="pasistenciabusqueda" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="26.0" prefWidth="108.0" GridPane.rowIndex="1">
@@ -160,7 +145,7 @@
                               <Insets right="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="apgar1busqueda" prefHeight="26.0" prefWidth="46.0" promptText="0" />
+                        <ComboBox fx:id="apgar1busqueda" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="75.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="26.0" prefWidth="108.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -170,10 +155,106 @@
                               <Insets right="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="apgar2busqueda" prefHeight="26.0" prefWidth="46.0" promptText="0" />
+                        <ComboBox fx:id="apgar2busqueda" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="75.0" />
                      </children>
                   </HBox>
-                  <Button fx:id="buscarsociodemografico" mnemonicParsing="false" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
+                  <Button mnemonicParsing="false" onAction="#BuscarSociodemografico" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
+                  <HBox alignment="CENTER" prefHeight="34.0" prefWidth="187.0" spacing="10.0" GridPane.columnIndex="1">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="16.0" prefWidth="30.0" text="Min:" />
+                        <TextField fx:id="pesobusqueda1" promptText="0" />
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="16.0" prefWidth="32.0" text="Max:" />
+                        <TextField fx:id="pesobusqueda2" promptText="0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <RadioButton fx:id="prematurobusqueda" mnemonicParsing="false" text="Prematuro">
+                           <toggleGroup>
+                                      <javafx.scene.control.ToggleGroup fx:id="gestacion" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="aterminobusqueda" mnemonicParsing="false" text="A término" toggleGroup="$gestacion" />
+                     </children>
+                  </HBox>
+                  <Label text="Gestación:" GridPane.rowIndex="2" />
+                  <Label text="Problemas al nacer:" GridPane.rowIndex="3" />
+                  <Label text="Problemas de salud:" GridPane.rowIndex="4" />
+                  <Label text="Problemas de visión:" GridPane.rowIndex="6" />
+                  <Label text="Problemas de audición:" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <RadioButton fx:id="pnacersi" mnemonicParsing="false" text="Sí">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gestacion1" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="pnacerno" mnemonicParsing="false" text="No" toggleGroup="$gestacion1" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <RadioButton fx:id="psaludsi" mnemonicParsing="false" text="Sí">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gestacion2" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="psaludno" mnemonicParsing="false" text="No" toggleGroup="$gestacion2" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <RadioButton fx:id="paudicionsi" mnemonicParsing="false" text="Sí">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gestacion3" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="paudicionno" mnemonicParsing="false" text="No" toggleGroup="$gestacion3" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <children>
+                        <RadioButton fx:id="pvisionsi" mnemonicParsing="false" text="Sí">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gestacion4" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="pvisionno" mnemonicParsing="false" text="No" toggleGroup="$gestacion4" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <children>
+                        <RadioButton fx:id="otroidiomasi" mnemonicParsing="false" text="Sí">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gestacion41" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="otroidiomano" mnemonicParsing="false" text="No" toggleGroup="$gestacion41" />
+                     </children>
+                  </HBox>
+                  <Label text="Otro idioma:" GridPane.rowIndex="7" />
+                  <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                     <children>
+                        <RadioButton fx:id="guarderiasi" mnemonicParsing="false" onAction="#guarderiaChecked" text="Sí">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gestacion411" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="guarderiano" mnemonicParsing="false" onAction="#guarderiaChecked" text="No" toggleGroup="$gestacion411" />
+                     </children>
+                  </HBox>
+                  <Label text="Asiste a la guardería" GridPane.rowIndex="12" />
+                  <Label text="Asiste al preescolar" GridPane.rowIndex="14" />
+                  <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                     <children>
+                        <RadioButton fx:id="preescolarsi" mnemonicParsing="false" onAction="#preescolarChecked" text="Sí">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gestacion4111" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="preescolarno" mnemonicParsing="false" onAction="#preescolarChecked" text="No" toggleGroup="$gestacion4111" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
             <Label layoutX="82.0" layoutY="20.0" text="Búsqueda sociodemográfica">
@@ -181,13 +262,13 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Separator layoutX="1.0" layoutY="507.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="484.0" />
-            <Label layoutX="126.0" layoutY="517.0" text="Búsqueda por Prueba">
+            <Separator layoutX="-3.0" layoutY="558.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="521.0" />
+            <Label layoutX="129.0" layoutY="560.0" text="Búsqueda por Prueba">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <GridPane hgap="5.0" layoutX="23.0" layoutY="551.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="408.0" vgap="10.0">
+            <GridPane hgap="5.0" layoutX="50.0" layoutY="595.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="408.0" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.99993896484375" minWidth="10.0" prefWidth="340.79998779296875" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.60003662109375" minWidth="10.0" prefWidth="67.20001220703125" />
@@ -211,7 +292,7 @@
                         <CheckBox fx:id="experimentocabina" mnemonicParsing="false" text="Experimento de Cabina" />
                      </children>
                   </HBox>
-                  <Button fx:id="buscarprueba" mnemonicParsing="false" text="Buscar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#BuscarPrueba" text="Buscar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children>
@@ -221,7 +302,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="384.0" stylesheets="@EstiloGeneral.css">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="384.0" stylesheets="@EstiloGeneral.css">
          <children>
             <GridPane layoutX="-2.0" layoutY="92.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="384.0" vgap="5.0">
                <columnConstraints>
@@ -262,7 +343,7 @@
                         <RadioButton fx:id="fbusqueda" mnemonicParsing="false" text="F" toggleGroup="$sexotoggle" />
                      </children>
                   </HBox>
-                  <Button fx:id="buscarbebes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscarbebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscarBebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
             <HBox prefHeight="25.0" prefWidth="114.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label text="Min:">
@@ -311,8 +392,8 @@
                   <Label text="Puntaje Crudo" GridPane.halignment="CENTER" />
                   <Label text="NSE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <TextField fx:id="pcbusqueda" GridPane.columnIndex="1" />
-                  <TextField fx:id="nsebusqueda" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="buscarsocioeconomico" mnemonicParsing="false" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#buscarSocioeconomico" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="nse" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Label layoutX="6.0" layoutY="514.0" text="Búsqueda por usuario que registró">
@@ -320,7 +401,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Separator layoutX="-2.0" layoutY="499.0" prefHeight="3.0" prefWidth="386.0" />
+            <Separator layoutX="-2.0" layoutY="499.0" prefHeight="3.0" prefWidth="384.0" />
             <GridPane hgap="3.0" layoutX="45.0" layoutY="547.0" prefHeight="60.0" prefWidth="322.0" vgap="5.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.20001220703125" minWidth="10.0" prefWidth="86.00003051757812" />
@@ -334,7 +415,7 @@
                <children>
                   <Label text="Usuario" GridPane.halignment="CENTER" />
                   <TextField fx:id="usuariobusqueda" GridPane.columnIndex="1" />
-                  <Button fx:id="buscarporusuario" mnemonicParsing="false" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#BuscarPorUsuario" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Separator layoutX="-1.0" layoutY="331.0" prefHeight="3.0" prefWidth="384.0" />

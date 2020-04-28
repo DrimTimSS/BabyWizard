@@ -125,7 +125,7 @@
                         <Label text="*" />
                      </children>
                   </HBox>
-                  <Button fx:id="yaregistrado" mnemonicParsing="false" onAction="#yaRegistrado" text="Cuidador ya registrado" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+                  <Button fx:id="yaregistrado" mnemonicParsing="false" onAction="#yaRegistrado" text="Cuidador ya registrado" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="199.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -147,9 +147,10 @@
                         <Insets bottom="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <HBox alignment="CENTER" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER" spacing="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="nse" promptText="NSE:" />
+                        <Label text="NSE:" />
+                        <ChoiceBox fx:id="nse" prefWidth="150.0" />
                         <Label text="*" />
                      </children>
                   </HBox>

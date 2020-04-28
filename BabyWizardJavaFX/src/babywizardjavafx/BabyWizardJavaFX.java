@@ -9,6 +9,7 @@ import babywizardjavafx.controlador.Wppsi303642Controller;
 import babywizardjavafx.controlador.Wppsi48Controller;
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.JdbConnection;
+import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.UsuarioModelo;
 import java.sql.Connection;
 import javafx.application.Application;
@@ -35,8 +36,9 @@ public class BabyWizardJavaFX extends Application {
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
         
-        JdbConnection jdbc = new JdbConnection();
-        Connection con = jdbc.getConnection();
+        //SociodemograficoModelo sdm = new SociodemograficoModelo();
+        //System.out.println(sdm.readSociodemografico(-1, "", -1, -1, -1, -1, 3.0, 4.0, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", -1).get(0).getIdSociodemografico());
+        
         //BebeModelo bm = new BebeModelo("Bebe","De","Juguete",1,"2020-05-05","Vene");
         //bm.createBebe();
         
