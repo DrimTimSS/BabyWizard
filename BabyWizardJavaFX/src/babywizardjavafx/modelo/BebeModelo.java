@@ -77,8 +77,8 @@ public class BebeModelo {
         this.apellidoPaterno = apellidoPaterno;
     }
 
-    public int getSexo() {
-        return sexo;
+    public String getSexo() {
+        return sexo==0?"M":"F";
     }
 
     public void setSexo(int sexo) {

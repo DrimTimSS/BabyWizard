@@ -21,14 +21,14 @@
    <children>
       <TableView fx:id="resultadosbebe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
         <columns>
-          <TableColumn fx:id="resid" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
-          <TableColumn fx:id="resnombre" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" text="Nombre Infante" />
-            <TableColumn fx:id="resapellidop" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Apellido P." />
-            <TableColumn fx:id="resapellidom" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Apellido M." />
-            <TableColumn fx:id="ressexo" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Sexo" />
-            <TableColumn fx:id="resfechan" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Fecha de Nacimiento" />
-            <TableColumn fx:id="resmeses" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Meses" />
-            <TableColumn fx:id="resusuario" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Registró" />
+          <TableColumn fx:id="resid" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="resnombre" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" text="Nombre Infante" />
+            <TableColumn fx:id="resapellidop" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Apellido P." />
+            <TableColumn fx:id="resapellidom" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Apellido M." />
+            <TableColumn fx:id="ressexo" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" text="Sexo" />
+            <TableColumn fx:id="resfechan" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" text="Fecha de Nacimiento" />
+            <TableColumn fx:id="resmeses" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" text="Meses" />
+            <TableColumn fx:id="resusuario" maxWidth="1.7976931348623157E308" minWidth="70.0" prefWidth="70.0" text="Registró" />
         </columns>
       </TableView>
       <Button mnemonicParsing="false" onAction="#exportar" text="Exportar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -36,23 +36,24 @@
             <Insets right="10.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#crearTablas" text="Buscar" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#crearTablas" text="Mostrar" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </Button>
       <TableView fx:id="resultadoscuidador" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <columns>
-            <TableColumn fx:id="residc" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="ID" />
-            <TableColumn fx:id="rescorreoc" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Correo" />
-            <TableColumn fx:id="resnombrec" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" text="Nombre Cuidador" />
-            <TableColumn fx:id="resapellidopc" maxWidth="120.0" minWidth="105.5999755859375" prefWidth="112.79998779296875" text="Apellido P." />
-            <TableColumn fx:id="resapellidomc" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Apellido M." />
-            <TableColumn fx:id="resocupacion" maxWidth="104.80007934570312" minWidth="50.0" prefWidth="90.4000244140625" text="Ocupación" />
-            <TableColumn fx:id="restelefono1" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Primer Teléfono" />
-            <TableColumn fx:id="restelefono2" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Segundo Teléfono" />
-            <TableColumn fx:id="resfechanc" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Fecha de Nacimiento" />
-            <TableColumn fx:id="resid111" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Años Estudio" />
+            <TableColumn fx:id="residbebec" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" text="ID Infante" />
+            <TableColumn fx:id="residc" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="50.0" text="ID Cuidador" />
+            <TableColumn fx:id="rescorreoc" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Correo" />
+            <TableColumn fx:id="resnombrec" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" text="Nombre Cuidador" />
+            <TableColumn fx:id="resapellidopc" maxWidth="1.7976931348623157E308" minWidth="105.5999755859375" prefWidth="112.79998779296875" text="Apellido P." />
+            <TableColumn fx:id="resapellidomc" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Apellido M." />
+            <TableColumn fx:id="resocupacion" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="90.4000244140625" text="Ocupación" />
+            <TableColumn fx:id="restelefono1" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Primer Teléfono" />
+            <TableColumn fx:id="restelefono2" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Segundo Teléfono" />
+            <TableColumn fx:id="resfechanc" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Fecha de Nacimiento" />
+            <TableColumn fx:id="resaniosestudio" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" text="Años Estudio" />
          </columns>
       </TableView>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="630.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
@@ -66,5 +67,13 @@
             <Button mnemonicParsing="false" onAction="#showWppsi48" text="WPPSI48" />
          </children>
       </HBox>
+      <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        <columns>
+          <TableColumn minWidth="50.0" prefWidth="50.0" text="ID" />
+          <TableColumn minWidth="100.0" prefWidth="100.0" text="Fecha de Cita" />
+            <TableColumn minWidth="100.0" prefWidth="100.0" text="Gestacion" />
+            <TableColumn minWidth="50.0" prefWidth="123.199951171875" text="Semanas de Nac." />
+        </columns>
+      </TableView>
    </children>
 </GridPane>

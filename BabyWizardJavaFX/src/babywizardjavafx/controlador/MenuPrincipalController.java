@@ -95,12 +95,10 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void busqueda(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Busqueda.fxml"));
-                Scene menuPrincipalScene = new Scene(loadMenuPrincipal,870,650);     
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);     
                 Stage mainWindow = new Stage();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
                 mainWindow.getIcons().add(image);
-                mainWindow.setMinWidth(870);
-                mainWindow.setMinHeight(650);
                 mainWindow.setTitle("Búsqueda");
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();

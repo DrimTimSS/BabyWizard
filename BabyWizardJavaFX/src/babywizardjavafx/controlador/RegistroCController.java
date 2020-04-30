@@ -7,7 +7,6 @@ package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.CuidadorModelo;
-import babywizardjavafx.modelo.CuidarModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
 import com.mysql.cj.util.StringUtils;
@@ -135,9 +134,8 @@ public class RegistroCController implements Initializable {
                 bm.createBebe();
                 sm.setFkBebeSociodemografico(bm.getIdBebe());
                 sm.createSociodemografico();
+                cm.setFkBebe(bm.getIdBebe());
                 cm.createCuidador();
-                CuidarModelo cuim = new CuidarModelo(cm.getIdCuidador(),bm.getIdBebe(),relacion.getValue());
-                cuim.createCuidar();
                 sem.setFkSociodemografico(sm.getIdSociodemografico());
                 sem.createSocioeconomico();
                 
@@ -183,7 +181,7 @@ public class RegistroCController implements Initializable {
         if(!(isEmpty(correo)||isEmpty(nombres)||isEmpty(apellidop)||isEmpty(apellidom)||isEmpty(ocupacion)||isEmpty(telefono1)||isEmpty(aniosestudio))){
             try{
                 String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                return new CuidadorModelo(correo.getText(), fechan, nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()));
+                return new CuidadorModelo(correo.getText(), fechan, nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()),0);
             } catch(Exception e){
                 llenadodatos.setText("No se han llenado todos los campos obligatorios.");
             }           

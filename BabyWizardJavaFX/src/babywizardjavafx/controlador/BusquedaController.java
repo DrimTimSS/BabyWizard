@@ -10,6 +10,7 @@ import babywizardjavafx.modelo.JdbConnection;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
 import com.mysql.cj.util.StringUtils;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,13 +26,18 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -311,7 +317,7 @@ public class BusquedaController implements Initializable {
     }
 
     @FXML
-    private LinkedList<Integer> BuscarSociodemografico(ActionEvent event) throws SQLException {
+    private LinkedList<Integer> BuscarSociodemografico(ActionEvent event) throws SQLException, IOException {
         LinkedList<Integer> ids = new LinkedList<>();
         LinkedList<SociodemograficoModelo> resultados = new LinkedList<>(); 
         
@@ -395,6 +401,7 @@ public class BusquedaController implements Initializable {
                 ids.add(b.getFkBebeSociodemografico());
             }
         System.out.println(ids.toString());
+        abrirResultado(ids);
         return ids;
     }
     
@@ -403,7 +410,7 @@ public class BusquedaController implements Initializable {
     }
 
     @FXML
-    private LinkedList<Integer> BuscarPrueba(ActionEvent event) throws SQLException {
+    private LinkedList<Integer> BuscarPrueba(ActionEvent event) throws SQLException, IOException {
         LinkedList<Integer> ids = new LinkedList<>();
         
         JdbConnection jdbc = new JdbConnection();
@@ -516,11 +523,12 @@ public class BusquedaController implements Initializable {
             ids.add(rs.getInt(1));
         }
         System.out.println(ids);
+        abrirResultado(ids);
         return ids;
     }
 
     @FXML
-    private LinkedList<Integer> buscarBebes(ActionEvent event) throws SQLException {
+    private LinkedList<Integer> buscarBebes(ActionEvent event) throws SQLException, IOException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
             BebeModelo bm = new BebeModelo();
@@ -545,11 +553,12 @@ public class BusquedaController implements Initializable {
                 ids.add(b.getIdBebe());
             }
             System.out.println(ids);
+            abrirResultado(ids);
             return ids;
     }
 
     @FXML
-    private LinkedList<Integer> buscarSocioeconomico(ActionEvent event) throws SQLException {
+    private LinkedList<Integer> buscarSocioeconomico(ActionEvent event) throws SQLException, IOException {
         LinkedList<Integer> ids = new LinkedList<>();
         LinkedList<Integer> idst = new LinkedList<>();
         
@@ -574,12 +583,12 @@ public class BusquedaController implements Initializable {
         }
         
         System.out.println(idst.toString());
-        
+        abrirResultado(ids);
         return idst;
     }
 
     @FXML
-    private LinkedList<Integer> BuscarPorUsuario(ActionEvent event) throws SQLException {
+    private LinkedList<Integer> BuscarPorUsuario(ActionEvent event) throws SQLException, IOException {
         LinkedList<Integer> ids = new LinkedList<>();
         LinkedList<BebeModelo> bbs;
         BebeModelo bm = new BebeModelo();
@@ -593,8 +602,19 @@ public class BusquedaController implements Initializable {
         bbs.forEach((bb) -> {
             ids.add(bb.getIdBebe());
         });
-        
         System.out.println(ids.toString());
+        abrirResultado(ids);
         return ids;
+    }
+    
+    public void abrirResultado(LinkedList<Integer> ids) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/Resultado.fxml"));
+        Parent loadCuidador = (Parent) loader.load(); 
+        Scene CuidadorScene = new Scene(loadCuidador);
+        ResultadoController rc = loader.getController();
+        rc.meterIds(ids);
+        Stage mainWindow = (Stage) idbebebusqueda.getScene().getWindow();
+        mainWindow.setScene(CuidadorScene);
+        mainWindow.show();  
     }
 }

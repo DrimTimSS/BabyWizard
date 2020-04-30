@@ -6,8 +6,15 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.CuidadorModelo;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.CheckBoxTreeCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -25,7 +33,13 @@ import javafx.scene.layout.GridPane;
  * @author Vicaris
  */
 public class ResultadoController implements Initializable {
-
+    
+    //Arbol para creacion de tablas
+    private TreeView<String> tree;
+    //Ids bebes que entran por la busqueda
+    LinkedList<Integer> ids;
+    
+    //Tabla para bebes
     @FXML
     private TableView<BebeModelo> resultadosbebe;
     @FXML
@@ -44,34 +58,39 @@ public class ResultadoController implements Initializable {
     private TableColumn<BebeModelo, Integer> resmeses;
     @FXML
     private TableColumn<BebeModelo, Integer> resusuario;
+    ObservableList<BebeModelo> listaBebes = FXCollections.observableArrayList();
     
-    private TreeView<String> tree;
     @FXML
     private GridPane grid;
     
+    //Tabla para cuidador
     @FXML
-    private TableView<?> resultadoscuidador;
+    private TableView<CuidadorModelo> resultadoscuidador;
     @FXML
-    private TableColumn<?, ?> residc;
+    private TableColumn<CuidadorModelo, Integer> residc;
     @FXML
-    private TableColumn<?, ?> rescorreoc;
+    private TableColumn<CuidadorModelo, String> rescorreoc;
     @FXML
-    private TableColumn<?, ?> resnombrec;
+    private TableColumn<CuidadorModelo, String> resnombrec;
     @FXML
-    private TableColumn<?, ?> resapellidopc;
+    private TableColumn<CuidadorModelo, String> resapellidopc;
     @FXML
-    private TableColumn<?, ?> resapellidomc;
+    private TableColumn<CuidadorModelo, String> resapellidomc;
     @FXML
-    private TableColumn<?, ?> resocupacion;
+    private TableColumn<CuidadorModelo, String> resocupacion;
     @FXML
-    private TableColumn<?, ?> restelefono1;
+    private TableColumn<CuidadorModelo, String> restelefono1;
     @FXML
-    private TableColumn<?, ?> restelefono2;
+    private TableColumn<CuidadorModelo, String> restelefono2;
     @FXML
-    private TableColumn<?, ?> resfechanc;
+    private TableColumn<CuidadorModelo, String> resfechanc;
     @FXML
-    private TableColumn<?, ?> resid111;
-
+    private TableColumn<CuidadorModelo, Integer> resaniosestudio;
+    @FXML
+    private TableColumn<CuidadorModelo, Integer> residbebec;
+    ObservableList<CuidadorModelo> listaCuidadores = FXCollections.observableArrayList();
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -95,7 +114,7 @@ public class ResultadoController implements Initializable {
         grid.getChildren().add(tree);
         
         resultadosbebe.setTableMenuButtonVisible(true);
-        resultadoscuidador.setTableMenuButtonVisible(true);        
+        resultadoscuidador.setTableMenuButtonVisible(true);
         
         
     }    
@@ -106,11 +125,56 @@ public class ResultadoController implements Initializable {
 
     @FXML
     private void crearTablas(ActionEvent event) {
+        //Infante
+        try {
+            BebeModelo bm = new BebeModelo();
+            LinkedList<BebeModelo> resultados = new LinkedList<BebeModelo>();
+            for(int i:ids){
+            resultados.add(bm.readBebe(i, "", "", "", -1, "",-1,-1, "").getFirst());
+            }
+            for(BebeModelo b:resultados) listaBebes.add(b);
+            resid.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
+            resnombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            resapellidop.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
+            resapellidom.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));
+            ressexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
+            resfechan.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+            resmeses.setCellValueFactory(new PropertyValueFactory<>("edad"));
+            resusuario.setCellValueFactory(new PropertyValueFactory<>("fkUsuario"));
+            resultadosbebe.setItems(listaBebes);
+            //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(BorrarController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Cuidador
+        try {
+            CuidadorModelo cm = new CuidadorModelo();
+            LinkedList<CuidadorModelo> resultados = new LinkedList<CuidadorModelo>();
+            for(int i:ids){
+            resultados.add(cm.readCuidador(-1, "", "", "", "", "", "", "", "", -1, i).getFirst());
+            }
+            for(CuidadorModelo c:resultados) listaCuidadores.add(c);
+            residc.setCellValueFactory(new PropertyValueFactory<>("idCuidador"));
+            rescorreoc.setCellValueFactory(new PropertyValueFactory<>("correoElectronico"));
+            resnombrec.setCellValueFactory(new PropertyValueFactory<>("nombreC"));
+            resapellidopc.setCellValueFactory(new PropertyValueFactory<>("primerApellidoC"));
+            resapellidomc.setCellValueFactory(new PropertyValueFactory<>("segundoApellidoC"));
+            resocupacion.setCellValueFactory(new PropertyValueFactory<>("ocupacion"));
+            resfechanc.setCellValueFactory(new PropertyValueFactory<>("fechaDeNacimiento"));
+            restelefono1.setCellValueFactory(new PropertyValueFactory<>("primerTelefono"));
+            restelefono2.setCellValueFactory(new PropertyValueFactory<>("segundoTelefono"));
+            resaniosestudio.setCellValueFactory(new PropertyValueFactory<>("aniosEstudio"));
+            residbebec.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+            resultadoscuidador.setItems(listaCuidadores);
+            //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(BorrarController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void showInfante(ActionEvent event) {
-        resultadosbebe.toFront();    
+        resultadosbebe.toFront();
     }
 
     @FXML
@@ -136,6 +200,10 @@ public class ResultadoController implements Initializable {
 
     @FXML
     private void showWppsi48(ActionEvent event) {
+    }
+    
+    public void meterIds(LinkedList<Integer> ids){
+        this.ids = ids;
     }
     
 }
