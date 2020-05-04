@@ -63,7 +63,7 @@
          </children>
       </GridPane>
       <Separator layoutX="296.0" layoutY="3.0" orientation="VERTICAL" prefHeight="600.0" />
-      <GridPane layoutX="308.0" layoutY="14.0" prefHeight="520.0" prefWidth="181.0">
+      <GridPane layoutX="308.0" layoutY="14.0" prefHeight="520.0" prefWidth="185.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="185.0" minWidth="185.0" prefWidth="185.0" />
          </columnConstraints>
@@ -74,32 +74,33 @@
             <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label text="Puntuación escalar" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <TextField prefHeight="26.0" prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <TextField prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
-                  <TextField prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
-                  <TextField prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="185.0" GridPane.rowIndex="5">
                <children>
-                  <TextField prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
          </children>
@@ -122,22 +123,22 @@
             <Label text="Lenguaje" GridPane.rowIndex="3" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <TextField prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TextField prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <TextField prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <TextField prefWidth="50.0" />
+                  <Label text="0" />
                </children>
             </HBox>
          </children>
