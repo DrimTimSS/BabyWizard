@@ -424,7 +424,9 @@ public class Wppsi48Controller implements Initializable {
 
     public String[] equivalentesCIV(int sumaPtsEsc){
         String[] equivalentes = new String[4];
+        String[][] civs = new String[55][4];
         
+        int[] civ = {};
         
         
         return equivalentes;
@@ -432,5 +434,6 @@ public class Wppsi48Controller implements Initializable {
     
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
+        System.out.println(idbebe);
     }
 }

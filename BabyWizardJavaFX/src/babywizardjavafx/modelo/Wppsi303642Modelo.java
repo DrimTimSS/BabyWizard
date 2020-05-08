@@ -5,19 +5,23 @@
  */
 package babywizardjavafx.modelo;
 
+import babywizardjavafx.controlador.Wppsi303642Controller;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *
  * @author Vicaris
  */
 public class Wppsi303642Modelo {
+    
+    String fechaAplicacion;
     
     int idWppsi303642;
     int vocabularioReceptivoNatural;
@@ -26,8 +30,15 @@ public class Wppsi303642Modelo {
     int rompecabezasNatural;
     int denominacionesNatural;
     int fkBebe;
+    
+    int vocabularioReceptivoEscalar;
+    int disenioCubosEscalar;
+    int informacionEscalar;
+    int rompecabezasEscalar;
+    int denominacionesEscalar;
 
-    public Wppsi303642Modelo(int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, int fkBebe) {
+    public Wppsi303642Modelo(int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) {
+        this.fechaAplicacion = fechaAplicacion;
         this.vocabularioReceptivoNatural = vocabularioReceptivoNatural;
         this.disenioCubosNatural = disenioCubosNatural;
         this.informacionNatural = informacionNatural;
@@ -94,13 +105,96 @@ public class Wppsi303642Modelo {
     public void setFkBebe(int fkBebe) {
         this.fkBebe = fkBebe;
     }
+
+    public int getVocabularioReceptivoEscalar() {
+        return vocabularioReceptivoEscalar;
+    }
+
+    public void setVocabularioReceptivoEscalar(int vocabularioReceptivoEscalar) {
+        this.vocabularioReceptivoEscalar = vocabularioReceptivoEscalar;
+    }
+
+    public int getDisenioCubosEscalar() {
+        return disenioCubosEscalar;
+    }
+
+    public void setDisenioCubosEscalar(int disenioCubosEscalar) {
+        this.disenioCubosEscalar = disenioCubosEscalar;
+    }
+
+    public int getInformacionEscalar() {
+        return informacionEscalar;
+    }
+
+    public void setInformacionEscalar(int informacionEscalar) {
+        this.informacionEscalar = informacionEscalar;
+    }
+
+    public int getRompecabezasEscalar() {
+        return rompecabezasEscalar;
+    }
+
+    public void setRompecabezasEscalar(int rompecabezasEscalar) {
+        this.rompecabezasEscalar = rompecabezasEscalar;
+    }
+
+    public int getDenominacionesEscalar() {
+        return denominacionesEscalar;
+    }
+
+    public void setDenominacionesEscalar(int denominacionesEscalar) {
+        this.denominacionesEscalar = denominacionesEscalar;
+    }
+
+    public String getFechaAplicacion() {
+        return fechaAplicacion;
+    }
+
+    public void setFechaAplicacion(String fechaAplicacion) {
+        this.fechaAplicacion = fechaAplicacion;
+    }
+    
+    
+    public void setEscalares() throws SQLException{
+        int[] res = new int[5];
+        Wppsi303642Controller wcont = new Wppsi303642Controller();
+        BebeModelo bm = new BebeModelo();
+        LinkedList<BebeModelo> bebe = bm.readBebe(this.getFkBebe(), "", "", "", -1, "", -1, -1, "");
+        int edad = 0;
+        String fecha = "";
+        
+        if(bebe.size()>0) {
+            fecha = bebe.getFirst().getFechaNacimiento();
+            LocalDate fechaApl = LocalDate.parse(this.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            LocalDate fechaNac = LocalDate.parse(bebe.getFirst().fechaNacimiento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            Period tiempo = Period.between(fechaNac, fechaApl);
+            edad = tiempo.getMonths()+(tiempo.getYears()*12);
+            System.out.println(edad);
+        } else {
+            return;
+        }
+        System.out.println(edad);
+        if(edad >= 30 && edad <= 32) res = wcont.naturalesAEscalares2628(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 33 && edad <= 35) res = wcont.naturalesAEscalares29211(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 36 && edad <= 38) res = wcont.naturalesAEscalares3032(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 39 && edad <= 41) res = wcont.naturalesAEscalares3335(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 42 && edad <= 44) res = wcont.naturalesAEscalares3638(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 45 && edad <= 47) res = wcont.naturalesAEscalares39311(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        
+        this.setVocabularioReceptivoEscalar(res[0]);
+        this.setDisenioCubosEscalar(res[1]);
+        this.setInformacionEscalar(res[2]);
+        this.setRompecabezasEscalar(res[3]);
+        this.setDenominacionesEscalar(res[4]);
+    }
+    
     
     public void createWppsi303642() throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
-        query = "INSERT INTO `babywizard`.`wppsi303642` (`vocabularioReceptivoNatural`, `disenioCubosNatural`, `informacionNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fkBebe`) "
-                + "VALUES ('"+this.getVocabularioReceptivoNatural()+"', '"+this.getDisenioCubosNatural()+"', '"+this.getInformacionNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"', '"+this.getFkBebe()+"');";
+        query = "INSERT INTO `babywizard`.`wppsi303642` (`vocabularioReceptivoNatural`, `disenioCubosNatural`, `informacionNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fechaAplicacion`, `fkBebe`) "
+                + "VALUES ('"+this.getVocabularioReceptivoNatural()+"', '"+this.getDisenioCubosNatural()+"', '"+this.getInformacionNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"',  '"+this.getFechaAplicacion()+"', '"+this.getFkBebe()+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -112,7 +206,7 @@ public class Wppsi303642Modelo {
         con.close();
     }
     
-    public ObservableList<Wppsi303642Modelo> readWppsi303642(int idWppsi303642, int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, int fkBebe) throws SQLException {
+    public LinkedList<Wppsi303642Modelo> readWppsi303642(int idWppsi303642, int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -122,6 +216,7 @@ public class Wppsi303642Modelo {
         if(informacionNatural > -1) toRead.add("informacionNatural = '"+informacionNatural+"'");
         if(rompecabezasNatural > -1) toRead.add("rompecabezasNatural = '"+rompecabezasNatural+"'");
         if(denominacionesNatural > -1) toRead.add("denominacionesNatural = '"+denominacionesNatural+"'");
+        if(!"".equals(fechaAplicacion)) toRead.add("fechaAplicacion = '"+fechaAplicacion+"'");
         if(fkBebe > -1) toRead.add("fkBebe = '"+fkBebe+"'");
         String query1 = "SELECT * FROM babywizard.wppsi303642 WHERE ";
         String query2 = "";
@@ -137,7 +232,7 @@ public class Wppsi303642Modelo {
         } else {
         rs = stmt.executeQuery("SELECT * FROM babywizard.wppsi303642");
         }
-        ObservableList<Wppsi303642Modelo> wppsis = FXCollections.observableArrayList();
+        LinkedList<Wppsi303642Modelo> wppsis = new LinkedList<>();
         while(rs.next()){
             Wppsi303642Modelo wm = new Wppsi303642Modelo();
             wm.setDenominacionesNatural(rs.getInt("denominacionesNatural"));
@@ -147,13 +242,14 @@ public class Wppsi303642Modelo {
             wm.setInformacionNatural(rs.getInt("informacionNatural"));
             wm.setRompecabezasNatural(rs.getInt("rompecabezasNatural"));
             wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivoNatural"));
+            wm.setFechaAplicacion(rs.getString("fechaAplicacion"));
             wppsis.add(wm);
         }
         con.close();
         return wppsis;
     }
     
-    public void updateWppsi303642(int idWppsi303642Actualizar, int idWppsi303642, int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, int fkBebe) throws SQLException {
+    public void updateWppsi303642(int idWppsi303642Actualizar, int idWppsi303642, int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -180,6 +276,10 @@ public class Wppsi303642Modelo {
         if (denominacionesNatural > -1) {
            String denominacionesNaturalQ = "`denominacionesNatural` = '"+denominacionesNatural+"'";
            toUpdate.add(denominacionesNaturalQ);
+        }
+        if (!"".equals(fechaAplicacion)) {
+            String fechaAplicacionQ = "`fechaAplicacion` = '"+fechaAplicacion+"'";
+            toUpdate.add(fechaAplicacionQ);
         }
         if (fkBebe > -1) {
            String fkBebeQ = "`fkBebe` = '"+fkBebe+"'";

@@ -18,6 +18,9 @@ import javafx.collections.ObservableList;
  * @author Vicaris
  */
 public class Wppsi48Modelo {
+    
+    String fechaAplicacion;
+    
     int idWppsi48;
     int disenioCubosNatural;
     int informacionNatural;
@@ -38,7 +41,7 @@ public class Wppsi48Modelo {
     public Wppsi48Modelo() {
     }
 
-    public Wppsi48Modelo(int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, int fkBebe) {
+    public Wppsi48Modelo(int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) {
         this.disenioCubosNatural = disenioCubosNatural;
         this.informacionNatural = informacionNatural;
         this.semejanzasNatural = semejanzasNatural;
@@ -53,6 +56,7 @@ public class Wppsi48Modelo {
         this.vocabularioReceptivoNatural = vocabularioReceptivoNatural;
         this.rompecabezasNatural = rompecabezasNatural;
         this.denominacionesNatural = denominacionesNatural;
+        this.fechaAplicacion = fechaAplicacion;
         this.fkBebe = fkBebe;
     }
 
@@ -180,6 +184,14 @@ public class Wppsi48Modelo {
         return fkBebe;
     }
 
+    public String getFechaAplicacion() {
+        return fechaAplicacion;
+    }
+
+    public void setFechaAplicacion(String fechaAplicacion) {
+        this.fechaAplicacion = fechaAplicacion;
+    }
+
     public void setFkBebe(int fkBebe) {
         this.fkBebe = fkBebe;
     }
@@ -188,8 +200,8 @@ public class Wppsi48Modelo {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
-        query = "INSERT INTO `babywizard`.`wppsi48` (`disenioConCubosNatural`, `informacionNatural`, `semejanzasNatural`, `matricesNatural`, `vocabularioNatural`, `conceptosConDibujosNatural`, `busquedaSimbolosNatural`, `pistasNatural`, `clavesNatural`, `comprensionNatural`, `figurasIncompletasNatural`, `vocabularioReceptivoNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fkBebe`) "
-                + "VALUES ('"+this.getDisenioCubosNatural()+"', '"+this.informacionNatural+"', '"+this.getSemejanzasNatural()+"', '"+this.getMatricesNatural()+"', '"+this.getVocabularioNatural()+"', '"+this.conceptosConDibujosNatural+"', '"+this.busquedaSimbolosNatural+"', '"+this.getPistasNatural()+"', '"+this.getClavesNatural()+"', '"+this.getComprensionNatural()+"', '"+this.getFigurasIncompletasNatural()+"', '"+this.getVocabularioReceptivoNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"', '"+this.getFkBebe()+"');";
+        query = "INSERT INTO `babywizard`.`wppsi48` (`disenioConCubosNatural`, `informacionNatural`, `semejanzasNatural`, `matricesNatural`, `vocabularioNatural`, `conceptosConDibujosNatural`, `busquedaSimbolosNatural`, `pistasNatural`, `clavesNatural`, `comprensionNatural`, `figurasIncompletasNatural`, `vocabularioReceptivoNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fechaAplicacion`, `fkBebe`) "
+                + "VALUES ('"+this.getDisenioCubosNatural()+"', '"+this.informacionNatural+"', '"+this.getSemejanzasNatural()+"', '"+this.getMatricesNatural()+"', '"+this.getVocabularioNatural()+"', '"+this.conceptosConDibujosNatural+"', '"+this.busquedaSimbolosNatural+"', '"+this.getPistasNatural()+"', '"+this.getClavesNatural()+"', '"+this.getComprensionNatural()+"', '"+this.getFigurasIncompletasNatural()+"', '"+this.getVocabularioReceptivoNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"', '"+this.getFechaAplicacion()+"', '"+this.getFkBebe()+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -201,7 +213,7 @@ public class Wppsi48Modelo {
         con.close();
     }
     
-    public ObservableList<Wppsi48Modelo> readWppsi48(int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, int fkBebe) throws SQLException {
+    public LinkedList<Wppsi48Modelo> readWppsi48(int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaNacimiento, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -219,6 +231,7 @@ public class Wppsi48Modelo {
         if(figurasIncompletasNatural > -1) toRead.add("figurasIncompletasNatural = '"+figurasIncompletasNatural+"'");
         if(vocabularioReceptivoNatural > -1) toRead.add("vocabularioReceptivoNatural = '"+vocabularioReceptivoNatural+"'");
         if(rompecabezasNatural > -1) toRead.add("rompecabezasNatural = '"+rompecabezasNatural+"'");
+        if(!"".equals(fechaAplicacion)) toRead.add("fechaAplicacion = '"+fechaAplicacion+"'");
         if(denominacionesNatural > -1) toRead.add("denominacionesNatural = '"+denominacionesNatural+"'");
         if(fkBebe > -1) toRead.add("fkBebe = '"+fkBebe+"'");
         String query1 = "SELECT * FROM babywizard.wppsi48 WHERE ";
@@ -235,7 +248,7 @@ public class Wppsi48Modelo {
         } else {
         rs = stmt.executeQuery("SELECT * FROM babywizard.wppsi48");
         }
-        ObservableList<Wppsi48Modelo> wppsis = FXCollections.observableArrayList();
+        LinkedList<Wppsi48Modelo> wppsis = new LinkedList<>();
         while(rs.next()){
             Wppsi48Modelo wm = new Wppsi48Modelo();
             wm.setBusquedaSimbolosNatural(rs.getInt("busquedaSimbolosNatural"));
@@ -254,13 +267,14 @@ public class Wppsi48Modelo {
             wm.setInformacionNatural(rs.getInt("informacionNatural"));
             wm.setRompecabezasNatural(rs.getInt("rompecabezasNatural"));
             wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivoNatural"));
+            wm.setFechaAplicacion(rs.getString("fechaAplicacion"));
             wppsis.add(wm);
         }
         con.close();
         return wppsis;
     }
     
-    public void updateWppsi48(int idWppsi48Actualizar, int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, int fkBebe) throws SQLException {
+    public void updateWppsi48(int idWppsi48Actualizar, int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -323,6 +337,10 @@ public class Wppsi48Modelo {
         if (denominacionesNatural > -1) {
            String denominacionesNaturalQ = "`denominacionesNatural` = '"+denominacionesNatural+"'";
            toUpdate.add(denominacionesNaturalQ);
+        }
+        if (!"".equals(fechaAplicacion)) {
+            String fechaAplicacionQ = "`fechaAplicacion` = '"+fechaAplicacion+"'";
+            toUpdate.add(fechaAplicacionQ);
         }
         if (fkBebe > -1) {
            String fkBebeQ = "`fkBebe` = '"+fkBebe+"'";

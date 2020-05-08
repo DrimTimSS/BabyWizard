@@ -11,6 +11,7 @@ import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.JdbConnection;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.UsuarioModelo;
+import babywizardjavafx.modelo.Wppsi303642Modelo;
 import java.sql.Connection;
 import java.util.Arrays;
 import javafx.application.Application;
@@ -37,6 +38,9 @@ public class BabyWizardJavaFX extends Application {
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
         
+        Wppsi303642Modelo wm = new Wppsi303642Modelo(10,10,10,10,10,"2020-04-05",25);
+        wm.setEscalares();
+        System.out.println(wm.getVocabularioReceptivoEscalar()+" "+wm.getDisenioCubosEscalar()+" "+wm.getInformacionEscalar()+" "+wm.getRompecabezasEscalar()+" "+wm.getDenominacionesEscalar());
         //Wppsi303642Controller w = new Wppsi303642Controller();
         //System.out.println(Arrays.toString(w.equivalentesCIT(70)));
         
