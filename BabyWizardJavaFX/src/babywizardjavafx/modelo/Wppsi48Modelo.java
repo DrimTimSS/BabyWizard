@@ -248,12 +248,12 @@ public class Wppsi48Modelo {
             wm.setSemejanzasNatural(rs.getInt("semejanzasNatural"));
             wm.setVocabularioNatural(rs.getInt("vocabularioNatural"));
             wm.setDenominacionesNatural(rs.getInt("denominacionesNatural"));
-            wm.setDisenioCubosNatural(rs.getInt("disenioCubosNatural"));
+            wm.setDisenioCubosNatural(rs.getInt("disenioConCubosNatural"));
             wm.setFkBebe(rs.getInt("fkBebe"));
             wm.setIdWppsi48(rs.getInt("idWppsi48"));
             wm.setInformacionNatural(rs.getInt("informacionNatural"));
             wm.setRompecabezasNatural(rs.getInt("rompecabezasNatural"));
-            wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivo"));
+            wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivoNatural"));
             wppsis.add(wm);
         }
         con.close();

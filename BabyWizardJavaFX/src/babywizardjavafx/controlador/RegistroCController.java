@@ -80,6 +80,8 @@ public class RegistroCController implements Initializable {
     @FXML
     private Label llenadodatos;
     
+    Scene escenaAnterior;
+    
     
     /**
      * Initializes the controller class.
@@ -114,10 +116,45 @@ public class RegistroCController implements Initializable {
                 }
             }
         });
+        
+        telefono1.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    telefono1.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        
+        telefono2.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    telefono2.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        
+        puntajecrudo.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    puntajecrudo.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }    
 
     @FXML
-    private void atras(ActionEvent event) {
+    private void atras(ActionEvent event) throws IOException {
+        Stage actualWindow = (Stage) titulo.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroBB.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene exito = escenaAnterior;
+        actualWindow.setScene(exito);
     }
 
     @FXML
@@ -203,5 +240,9 @@ public class RegistroCController implements Initializable {
             llenadodatos.setText("No se han llenado todos los campos obligatorios.");
         }
         return null;
+    }
+    
+    public void escenaInfante(Scene anterior){
+        escenaAnterior = anterior;
     }
 }

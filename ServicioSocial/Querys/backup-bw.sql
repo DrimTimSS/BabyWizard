@@ -38,16 +38,6 @@ CREATE TABLE `bebe` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bebe`
---
-
-LOCK TABLES `bebe` WRITE;
-/*!40000 ALTER TABLE `bebe` DISABLE KEYS */;
-INSERT INTO `bebe` VALUES (18,'Pruebina','Prueba','La',1,'2017-11-15','Vene'),(19,'El','Samurai','Bebe',0,'2015-04-16','Vagabond'),(20,'Basti√°n','Bux','Baltazar',0,'2016-09-04','Vagabond'),(21,'Otra','DePrueba','Beba',1,'2018-04-28','Vene'),(22,'Samus','Bebe','Aran',1,'2016-01-05','Vene');
-/*!40000 ALTER TABLE `bebe` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `cuidador`
 --
 
@@ -75,16 +65,6 @@ CREATE TABLE `cuidador` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cuidador`
---
-
-LOCK TABLES `cuidador` WRITE;
-/*!40000 ALTER TABLE `cuidador` DISABLE KEYS */;
-INSERT INTO `cuidador` VALUES (8,'cuid@cuidador.com','Pruebon','El','Cuidador','1992-04-04','Ingeniero','5522334455','5533445566',17,18),(9,'samurai@samurai.com','El','Padre','Samurai','1991-08-03','Samurai','11111111','00000000',0,19),(10,'barney@fantasia.com','Barney','Bux','Senior','1987-12-10','Dentista','22223333','44445555',16,20),(11,'mimi@mimi.com','LaMama','DeLa','Prueba','2005-04-03','Ama de Casa','99999999','99999988',10,21),(12,'ridleybad@metroid.com','Metroid','Prime','Fusion','1984-11-10','Destruir','00000000','11111111',0,22);
-/*!40000 ALTER TABLE `cuidador` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `experimentocabina`
 --
 
@@ -106,15 +86,6 @@ CREATE TABLE `experimentocabina` (
   CONSTRAINT `fkBebeEC` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `experimentocabina`
---
-
-LOCK TABLES `experimentocabina` WRITE;
-/*!40000 ALTER TABLE `experimentocabina` DISABLE KEYS */;
-/*!40000 ALTER TABLE `experimentocabina` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `lecturaconjunta`
@@ -143,16 +114,6 @@ CREATE TABLE `lecturaconjunta` (
   CONSTRAINT `fkBebeRana` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `lecturaconjunta`
---
-
-LOCK TABLES `lecturaconjunta` WRITE;
-/*!40000 ALTER TABLE `lecturaconjunta` DISABLE KEYS */;
-INSERT INTO `lecturaconjunta` VALUES (3,0,15,15,15,15,15,15,15,15,15,15,18);
-/*!40000 ALTER TABLE `lecturaconjunta` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `sociodemografico`
@@ -196,16 +157,6 @@ CREATE TABLE `sociodemografico` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sociodemografico`
---
-
-LOCK TABLES `sociodemografico` WRITE;
-/*!40000 ALTER TABLE `sociodemografico` DISABLE KEYS */;
-INSERT INTO `sociodemografico` VALUES (4,'2020-04-23',0,41,8,9,2.80,0,0,0,0,1,1,2,2,1,'Padre',0,0,0,0,0,0,'Bastante chiquita',18),(5,'2020-04-24',0,42,10,10,3.00,0,0,0,0,0,0,1,1,0,'Padre',0,0,0,0,0,0,'Muy samurai',19),(6,'2020-04-24',0,40,10,9,2.80,1,0,0,0,1,0,1,1,1,'Padre',0,0,0,0,0,0,'Muy imaginativo',20),(7,'2020-04-24',1,30,8,7,2.30,1,0,0,0,0,0,1,2,0,'Madre',0,0,0,0,0,0,'',21),(8,'2020-04-29',0,42,10,10,2.90,1,0,0,0,1,0,1,1,0,'Padre',0,0,0,0,0,0,'Muy fuerte',22);
-/*!40000 ALTER TABLE `sociodemografico` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `socioeconomico`
 --
 
@@ -225,16 +176,6 @@ CREATE TABLE `socioeconomico` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `socioeconomico`
---
-
-LOCK TABLES `socioeconomico` WRITE;
-/*!40000 ALTER TABLE `socioeconomico` DISABLE KEYS */;
-INSERT INTO `socioeconomico` VALUES (4,20,'D+',4),(5,20,'AB',5),(6,18,'C',6),(7,10,'AB',7),(8,2,'E',8);
-/*!40000 ALTER TABLE `socioeconomico` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `usuario`
 --
 
@@ -252,16 +193,6 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `idUsuario_UNIQUE` (`usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('root',_binary ')C\À\«\‡Vì˜Û\·Ç-\‡',1,'El','Root','Famoso'),('Vagabond',_binary '\¬!%ÅÄ;\√IO¥LnI1',0,'Shinmen','Miyamoto','Musashi'),('Vene',_binary 'Ñ\0o_RΩÜu8\rˇ\\£',1,'Vic','El Mejor','Programador');
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `wppsi303642`
@@ -284,15 +215,6 @@ CREATE TABLE `wppsi303642` (
   CONSTRAINT `fkBebeWppsi303642` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `wppsi303642`
---
-
-LOCK TABLES `wppsi303642` WRITE;
-/*!40000 ALTER TABLE `wppsi303642` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wppsi303642` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `wppsi48`
@@ -325,15 +247,6 @@ CREATE TABLE `wppsi48` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wppsi48`
---
-
-LOCK TABLES `wppsi48` WRITE;
-/*!40000 ALTER TABLE `wppsi48` DISABLE KEYS */;
-INSERT INTO `wppsi48` VALUES (2,17,23,28,25,26,18,20,23,24,20,29,30,25,30,18);
-/*!40000 ALTER TABLE `wppsi48` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping events for database 'babywizard'

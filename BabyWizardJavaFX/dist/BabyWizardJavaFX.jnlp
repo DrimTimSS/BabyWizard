@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="BabyWizardJavaFX.jar" size="983791" download="eager" />
+<<<<<<< HEAD
+    <jar href="BabyWizardJavaFX.jar" size="995905" download="eager" />
+=======
+    <jar href="BabyWizardJavaFX.jar" size="984431" download="eager" />
+>>>>>>> eaf319b8bdf0775605c510d7f4ae16aa0a815ba8
     <jar href="lib\mysql-connector-java-8.0.19.jar" size="2356711" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="babywizardjavafx.BabyWizardJavaFX"  name="BabyWizardJavaFX" />

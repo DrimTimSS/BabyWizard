@@ -6,6 +6,10 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.ExperimentoCabinaModelo;
+import babywizardjavafx.modelo.LecturaConjuntaModelo;
+import babywizardjavafx.modelo.Wppsi303642Modelo;
+import babywizardjavafx.modelo.Wppsi48Modelo;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -82,6 +86,12 @@ public class BorrarController implements Initializable {
     
     @FXML
     private ToggleGroup sexotoggle;
+    @FXML
+    private Button borrarconid;
+    @FXML
+    private ListView<String> listaexperimentos;
+    
+    ObservableList<String> listaPruebas = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -114,6 +124,7 @@ public class BorrarController implements Initializable {
             //selectedItems.addAll(selection.getSelectedItems());
             try{
             idbebeaborrar.setText(String.valueOf(selectedItems.get(0).getIdBebe()));
+            encontrarPruebas();
             } catch (Exception e) {
                 //System.out.println("No pasa nada oiga");
             }
@@ -122,7 +133,7 @@ public class BorrarController implements Initializable {
     }
     
     @FXML
-    public void buscarbebes(ActionEvent event){
+    public void buscarbebes(ActionEvent event) throws SQLException{
         tablabebes.getItems().clear();
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -158,8 +169,10 @@ public class BorrarController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(BorrarController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
+    @FXML
     public void borrarconid(ActionEvent event) throws SQLException{
         if(!idbebeaborrar.getText().equals("")){
         BebeModelo bm = new BebeModelo();
@@ -169,4 +182,22 @@ public class BorrarController implements Initializable {
         }
     }
     
+    public void encontrarPruebas() throws SQLException{
+        if(!idbebeaborrar.getText().equals("")){
+        listaexperimentos.getItems().clear();
+        listaPruebas.clear();
+        ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo();
+        LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
+        Wppsi303642Modelo w30 = new Wppsi303642Modelo();
+        Wppsi48Modelo w48 = new Wppsi48Modelo();
+        
+        if(ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size()==1) listaPruebas.add("Experimento de Cabina.");
+        if(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, Integer.parseInt(idbebeaborrar.getText())).size()==1){ 
+            listaPruebas.add("Tarea de Lectura Conjunta (Rana).");
+        }
+        if(w30.readWppsi303642(-1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size()==1) listaPruebas.add("WPPSI 30 36 42.");
+        if(w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1,-1,-1,-1,-1,-1,-1,-1,-1, Integer.parseInt(idbebeaborrar.getText())).size()==1) listaPruebas.add("WPPSI 48.");
+        listaexperimentos.getItems().addAll(listaPruebas);
+        }
+    }
 }

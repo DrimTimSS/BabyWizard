@@ -146,7 +146,7 @@ public class Wppsi303642Modelo {
             wm.setIdWppsi303642(rs.getInt("idWppsi303642"));
             wm.setInformacionNatural(rs.getInt("informacionNatural"));
             wm.setRompecabezasNatural(rs.getInt("rompecabezasNatural"));
-            wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivo"));
+            wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivoNatural"));
             wppsis.add(wm);
         }
         con.close();

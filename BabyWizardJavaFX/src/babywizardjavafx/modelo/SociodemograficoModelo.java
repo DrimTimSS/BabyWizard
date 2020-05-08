@@ -42,8 +42,10 @@ public class SociodemograficoModelo {
     int tiempoQueAsisteP;
     String observaciones;
     int fkBebeSociodemografico;
+    SocioeconomicoModelo sem;
 
     public SociodemograficoModelo() {
+        sem = new SocioeconomicoModelo();
     }
 
     public SociodemograficoModelo(String fechaDeCita, int gestacion, int semanasDeNacimiento, int ptApgar1, int ptApgar2, double pesoAlNacer, int problemasAlNacer, int problemasDeSalud, int problemasDeAudicion, int problemasDeVision, int otroIdioma, int hermanos, int lugarOcupa, int adultos, int ninios, String cuidadorPrincipal, int guarderia, int tiempoAsistiendoMesesG, int tiempoQueAsisteG, int preescolar, int tiempoAsistiendoMesesP, int tiempoQueAsisteP, String observaciones, int fkBebeSociodemografico) {
@@ -71,6 +73,16 @@ public class SociodemograficoModelo {
         this.tiempoQueAsisteP = tiempoQueAsisteP;
         this.observaciones = observaciones;
         this.fkBebeSociodemografico = fkBebeSociodemografico;
+        sem = new SocioeconomicoModelo();
+    }
+    
+    public int getPuntajeCrudo() throws SQLException{
+        if(getFkBebeSociodemografico()!=0) return sem.readSocioeconomico(-1, -1, "", this.getIdSociodemografico()).getFirst().getPuntajeCrudo();
+        return 0;
+    }
+    public String getNse() throws SQLException{
+        if(getFkBebeSociodemografico()!=0) return sem.readSocioeconomico(-1, -1, "", this.getIdSociodemografico()).getFirst().getNse();
+        return "";
     }
 
     public int getIdSociodemografico() {

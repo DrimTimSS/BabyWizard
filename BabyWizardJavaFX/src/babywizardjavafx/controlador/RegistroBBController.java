@@ -235,6 +235,8 @@ public class RegistroBBController implements Initializable {
         Scene CuidadorScene = new Scene(loadCuidador);
         RegistroCController rcc = loader.getController();
         rcc.getBebeySD(bm,sm);
+        Scene current = nombres.getScene();
+        rcc.escenaInfante(current);
         Stage mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         mainWindow.setScene(CuidadorScene);
         mainWindow.show();  

@@ -155,6 +155,5 @@
             <Label prefWidth="208.0" text="Suma de puntuaciones escalares" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Label layoutX="10.0" layoutY="10.0" text="0" />
    </children>
 </AnchorPane>
