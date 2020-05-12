@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -75,6 +76,10 @@ public class InicioSesionController implements Initializable {
             if((contrareal == null || contrasenia.getText().equals("")) ? contrasenia.getText() == null : contrareal.equals(contrasenia.getText())){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/MenuPrincipal.fxml"));
                 Parent loadMenuPrincipal = (Parent) loader.load();
+                JMetro jmetro = new JMetro(Style.LIGHT);
+                //unfocus pathField
+                Platform.runLater( () -> loadMenuPrincipal.requestFocus() );
+                jmetro.setParent(loadMenuPrincipal);
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);
                 MenuPrincipalController mPrincipalController = loader.getController();
                 mPrincipalController.iniciarUsuario(usuario.getText());
@@ -93,11 +98,9 @@ public class InicioSesionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //JMetro
-        //JMetro jmetro = new JMetro(Style.LIGHT);
         
         
-        //Botones
+        //Botones presionando enter
         botonRegistro.setOnKeyPressed(new EventHandler<KeyEvent>()
     {
         @Override

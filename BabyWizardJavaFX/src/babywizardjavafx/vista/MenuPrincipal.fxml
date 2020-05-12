@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.MenuPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.MenuPrincipalController">
    <children>
-      <MenuBar fx:id="menu" prefHeight="25.0" prefWidth="800.0" style="-fx-background-color: #F2E8FD;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar fx:id="menu" prefHeight="25.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
@@ -49,23 +49,23 @@
             <RowConstraints maxHeight="189.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="registrarinfante" mnemonicParsing="false" onAction="#nuevoinfante" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Registrar infante" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button id="record-sales" fx:id="registrarinfante" alignment="CENTER" mnemonicParsing="false" onAction="#nuevoinfante" prefHeight="150.0" prefWidth="216.0" styleClass="push-button" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="busqueda" mnemonicParsing="false" onAction="#busqueda" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Búsqueda" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button id="record-sales" fx:id="busqueda" alignment="CENTER" mnemonicParsing="false" onAction="#busqueda" prefHeight="150.0" prefWidth="216.0" styleClass="push-button" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="editar" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Editar información" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button id="record-sales" fx:id="editar" alignment="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="216.0" styleClass="push-button" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="borrar" mnemonicParsing="false" onAction="#borrarinfante" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Borrar infante" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button id="record-sales" fx:id="borrar" alignment="CENTER" mnemonicParsing="false" onAction="#borrarinfante" prefHeight="150.0" prefWidth="216.0" styleClass="push-button" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="registrarprueba" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#registrarmenu" prefHeight="150.0" prefWidth="216.0" style="-fx-background-color: #F2E8FD;" text="Registrar prueba" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button id="record-sales" fx:id="registrarprueba" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#registrarmenu" prefHeight="150.0" prefWidth="216.0" styleClass="push-button" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

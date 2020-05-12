@@ -16,10 +16,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -63,12 +66,29 @@ public class MenuPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Label label = new Label("Registrar Infante");
+        label.setStyle("-fx-text-fill: lightyellow; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        registrarinfante.setGraphic(label);
+        Label label1 = new Label("Búsqueda");
+        label1.setStyle("-fx-text-fill: lightyellow; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        busqueda.setGraphic(label1);
+        Label label2 = new Label("Editar Datos");
+        label2.setStyle("-fx-text-fill: lightyellow; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        editar.setGraphic(label2);
+        Label label3 = new Label("Borrar Infante");
+        label3.setStyle("-fx-text-fill: lightyellow; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        borrar.setGraphic(label3);
+        Label label4 = new Label("Registrar Prueba");
+        label4.setStyle("-fx-text-fill: lightyellow; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        registrarprueba.setGraphic(label4);
     }    
     
     @FXML
     public void nuevoinfante(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroBB.fxml"));
         Parent loadMenuPrincipal = (Parent) loader.load();
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
         RegistroBBController rbc = loader.getController();
         rbc.inicializarUsuario(usuariois);
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
@@ -83,6 +103,8 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void borrarinfante(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Borrar.fxml"));
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
                 Stage mainWindow = new Stage();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
@@ -95,6 +117,8 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void busqueda(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Busqueda.fxml"));
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);     
                 Stage mainWindow = new Stage();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
@@ -111,6 +135,8 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void cerrarsesion(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);
         
                 Stage mainWindow = (Stage) menu.getScene().getWindow();
@@ -131,6 +157,8 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private void registrarmenu(ActionEvent event) throws IOException {
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/AgregarPrueba.fxml"));
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);     
                 Stage mainWindow = new Stage();
                 Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
