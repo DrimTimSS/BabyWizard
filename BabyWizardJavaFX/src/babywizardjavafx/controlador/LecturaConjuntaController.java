@@ -7,7 +7,10 @@ package babywizardjavafx.controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -17,6 +20,8 @@ import javafx.fxml.Initializable;
 public class LecturaConjuntaController implements Initializable {
 
     int idbebe;
+    @FXML
+    private Button btnagregartlc;
     /**
      * Initializes the controller class.
      */
@@ -27,6 +32,10 @@ public class LecturaConjuntaController implements Initializable {
     
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
+    }
+
+    @FXML
+    private void agregar(ActionEvent event) {
     }
     
 }

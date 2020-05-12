@@ -21,10 +21,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,6 +40,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -152,6 +157,16 @@ public class BusquedaController implements Initializable {
     private ToggleGroup gestacion4111;
     @FXML
     private RadioButton preescolarno;
+    @FXML
+    private Button btnbuscar1;
+    @FXML
+    private Button btnbuscar2;
+    @FXML
+    private Button btnbuscar3;
+    @FXML
+    private Button btnbuscar4;
+    @FXML
+    private Button btnbuscar5;
 
     /**
      * Initializes the controller class.
@@ -289,7 +304,94 @@ public class BusquedaController implements Initializable {
             }
         });
         
-    }    
+        btnbuscar1.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    buscarBebes(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+        btnbuscar2.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    buscarSocioeconomico(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+        
+       btnbuscar3.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    buscarPorUsuario(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+       btnbuscar4.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    buscarSociodemografico(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+       btnbuscar5.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    buscarPrueba(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+       
+    }
 
     
     @FXML
@@ -317,7 +419,7 @@ public class BusquedaController implements Initializable {
     }
 
     @FXML
-    private LinkedList<Integer> BuscarSociodemografico(ActionEvent event) throws SQLException, IOException {
+    private LinkedList<Integer> buscarSociodemografico(ActionEvent event) throws SQLException, IOException {
         LinkedList<Integer> ids = new LinkedList<>();
         LinkedList<SociodemograficoModelo> resultados = new LinkedList<>(); 
         
@@ -410,7 +512,7 @@ public class BusquedaController implements Initializable {
     }
 
     @FXML
-    private LinkedList<Integer> BuscarPrueba(ActionEvent event) throws SQLException, IOException {
+    private LinkedList<Integer> buscarPrueba(ActionEvent event) throws SQLException, IOException {
         LinkedList<Integer> ids = new LinkedList<>();
         
         JdbConnection jdbc = new JdbConnection();
@@ -588,7 +690,7 @@ public class BusquedaController implements Initializable {
     }
 
     @FXML
-    private LinkedList<Integer> BuscarPorUsuario(ActionEvent event) throws SQLException, IOException {
+    private LinkedList<Integer> buscarPorUsuario(ActionEvent event) throws SQLException, IOException {
         LinkedList<Integer> ids = new LinkedList<>();
         LinkedList<BebeModelo> bbs;
         BebeModelo bm = new BebeModelo();

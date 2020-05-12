@@ -155,7 +155,7 @@ public class Wppsi303642Modelo {
     }
     
     
-    public void setEscalares() throws SQLException{
+    public int[] setEscalares() throws SQLException{
         int[] res = new int[5];
         Wppsi303642Controller wcont = new Wppsi303642Controller();
         BebeModelo bm = new BebeModelo();
@@ -169,9 +169,8 @@ public class Wppsi303642Modelo {
             LocalDate fechaNac = LocalDate.parse(bebe.getFirst().fechaNacimiento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             Period tiempo = Period.between(fechaNac, fechaApl);
             edad = tiempo.getMonths()+(tiempo.getYears()*12);
-            System.out.println(edad);
         } else {
-            return;
+            return null;
         }
         System.out.println(edad);
         if(edad >= 30 && edad <= 32) res = wcont.naturalesAEscalares2628(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
@@ -186,6 +185,8 @@ public class Wppsi303642Modelo {
         this.setInformacionEscalar(res[2]);
         this.setRompecabezasEscalar(res[3]);
         this.setDenominacionesEscalar(res[4]);
+        
+        return res;
     }
     
     

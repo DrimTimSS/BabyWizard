@@ -5,10 +5,15 @@
  */
 package babywizardjavafx.modelo;
 
+import babywizardjavafx.controlador.Wppsi303642Controller;
+import babywizardjavafx.controlador.Wppsi48Controller;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +42,133 @@ public class Wppsi48Modelo {
     int rompecabezasNatural;
     int denominacionesNatural;
     int fkBebe;
+    
+    int disenioCubosEscalar;
+    int informacionEscalar;
+    int semejanzasEscalar;
+    int matricesEscalar;
+    int vocabularioEscalar;
+    int conceptosConDibujosEscalar;
+    int busquedaSimbolosEscalar;
+    int pistasEscalar;
+    int clavesEscalar;
+    int comprensionEscalar;
+    int figurasIncompletasEscalar;
+    int vocabularioReceptivoEscalar;
+    int rompecabezasEscalar;
+    int denominacionesEscalar;
+
+    public int getDisenioCubosEscalar() {
+        return disenioCubosEscalar;
+    }
+
+    public void setDisenioCubosEscalar(int disenioCubosEscalar) {
+        this.disenioCubosEscalar = disenioCubosEscalar;
+    }
+
+    public int getInformacionEscalar() {
+        return informacionEscalar;
+    }
+
+    public void setInformacionEscalar(int informacionEscalar) {
+        this.informacionEscalar = informacionEscalar;
+    }
+
+    public int getSemejanzasEscalar() {
+        return semejanzasEscalar;
+    }
+
+    public void setSemejanzasEscalar(int semejanzasEscalar) {
+        this.semejanzasEscalar = semejanzasEscalar;
+    }
+
+    public int getMatricesEscalar() {
+        return matricesEscalar;
+    }
+
+    public void setMatricesEscalar(int matricesEscalar) {
+        this.matricesEscalar = matricesEscalar;
+    }
+
+    public int getVocabularioEscalar() {
+        return vocabularioEscalar;
+    }
+
+    public void setVocabularioEscalar(int vocabularioEscalar) {
+        this.vocabularioEscalar = vocabularioEscalar;
+    }
+
+    public int getConceptosConDibujosEscalar() {
+        return conceptosConDibujosEscalar;
+    }
+
+    public void setConceptosConDibujosEscalar(int conceptosConDibujosEscalar) {
+        this.conceptosConDibujosEscalar = conceptosConDibujosEscalar;
+    }
+
+    public int getBusquedaSimbolosEscalar() {
+        return busquedaSimbolosEscalar;
+    }
+
+    public void setBusquedaSimbolosEscalar(int busquedaSimbolosEscalar) {
+        this.busquedaSimbolosEscalar = busquedaSimbolosEscalar;
+    }
+
+    public int getPistasEscalar() {
+        return pistasEscalar;
+    }
+
+    public void setPistasEscalar(int pistasEscalar) {
+        this.pistasEscalar = pistasEscalar;
+    }
+
+    public int getClavesEscalar() {
+        return clavesEscalar;
+    }
+
+    public void setClavesEscalar(int clavesEscalar) {
+        this.clavesEscalar = clavesEscalar;
+    }
+
+    public int getComprensionEscalar() {
+        return comprensionEscalar;
+    }
+
+    public void setComprensionEscalar(int comprensionEscalar) {
+        this.comprensionEscalar = comprensionEscalar;
+    }
+
+    public int getFigurasIncompletasEscalar() {
+        return figurasIncompletasEscalar;
+    }
+
+    public void setFigurasIncompletasEscalar(int figurasIncompletasEscalar) {
+        this.figurasIncompletasEscalar = figurasIncompletasEscalar;
+    }
+
+    public int getVocabularioReceptivoEscalar() {
+        return vocabularioReceptivoEscalar;
+    }
+
+    public void setVocabularioReceptivoEscalar(int vocabularioReceptivoEscalar) {
+        this.vocabularioReceptivoEscalar = vocabularioReceptivoEscalar;
+    }
+
+    public int getRompecabezasEscalar() {
+        return rompecabezasEscalar;
+    }
+
+    public void setRompecabezasEscalar(int rompecabezasEscalar) {
+        this.rompecabezasEscalar = rompecabezasEscalar;
+    }
+
+    public int getDenominacionesEscalar() {
+        return denominacionesEscalar;
+    }
+
+    public void setDenominacionesEscalar(int denominacionesEscalar) {
+        this.denominacionesEscalar = denominacionesEscalar;
+    }
 
     public Wppsi48Modelo() {
     }
@@ -194,6 +326,56 @@ public class Wppsi48Modelo {
 
     public void setFkBebe(int fkBebe) {
         this.fkBebe = fkBebe;
+    }
+    
+    public int[] setEscalares() throws SQLException{
+        int[] res = new int[14];
+        Wppsi48Controller wcont = new Wppsi48Controller();
+        BebeModelo bm = new BebeModelo();
+        LinkedList<BebeModelo> bebe = bm.readBebe(this.getFkBebe(), "", "", "", -1, "", -1, -1, "");
+        int edad = 0;
+        String fecha = "";
+        
+        if(bebe.size()>0) {
+            fecha = bebe.getFirst().getFechaNacimiento();
+            LocalDate fechaApl = LocalDate.parse(this.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            LocalDate fechaNac = LocalDate.parse(bebe.getFirst().fechaNacimiento, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            Period tiempo = Period.between(fechaNac, fechaApl);
+            edad = tiempo.getMonths()+(tiempo.getYears()*12);
+        } else {
+            return null;
+        }
+        System.out.println(edad);
+        if(edad >= 48 && edad <= 50) res = wcont.naturalesAEscalares4042(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 51 && edad <= 53) res = wcont.naturalesAEscalares4345(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 54 && edad <= 56) res = wcont.naturalesAEscalares4648(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 57 && edad <= 59) res = wcont.naturalesAEscalares49411(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 60 && edad <= 62) res = wcont.naturalesAEscalares5052(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 63 && edad <= 65) res = wcont.naturalesAEscalares5355(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 66 && edad <= 68) res = wcont.naturalesAEscalares5658(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 69 && edad <= 71) res = wcont.naturalesAEscalares59511(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 72 && edad <= 75) res = wcont.naturalesAEscalares6063(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 76 && edad <= 79) res = wcont.naturalesAEscalares6467(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 80 && edad <= 83) res = wcont.naturalesAEscalares68611(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 84 && edad <= 87) res = wcont.naturalesAEscalares7073(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad >= 88) res = wcont.naturalesAEscalares7073(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        
+        this.setDisenioCubosEscalar(res[0]);
+        this.setInformacionEscalar(res[1]);
+        this.setMatricesEscalar(res[2]);
+        this.setVocabularioEscalar(res[3]);
+        this.setConceptosConDibujosEscalar(res[4]);
+        this.setBusquedaSimbolosEscalar(res[5]);
+        this.setPistasEscalar(res[6]);
+        this.setClavesEscalar(res[7]);
+        this.setComprensionEscalar(res[8]);
+        this.setFigurasIncompletasEscalar(res[9]);
+        this.setSemejanzasEscalar(res[10]);
+        this.setVocabularioReceptivoEscalar(res[11]);
+        this.setRompecabezasEscalar(res[12]);
+        this.setDenominacionesEscalar(res[13]);
+        
+        return res;
     }
     
     public void createWppsi48() throws SQLException {

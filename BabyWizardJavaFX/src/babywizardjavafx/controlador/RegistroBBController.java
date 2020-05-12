@@ -10,12 +10,16 @@ import babywizardjavafx.modelo.SociodemograficoModelo;
 import com.mysql.cj.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +34,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -198,6 +204,22 @@ public class RegistroBBController implements Initializable {
         cuidadorprinc.getItems().add("Hermana");
         cuidadorprinc.getItems().add("Hermano");
         cuidadorprinc.getItems().add("Otro");
+        
+        continuar.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    continuarACuidador(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
     }
     
     @FXML
@@ -237,7 +259,7 @@ public class RegistroBBController implements Initializable {
         rcc.getBebeySD(bm,sm);
         Scene current = nombres.getScene();
         rcc.escenaInfante(current);
-        Stage mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage mainWindow = (Stage) continuar.getScene().getWindow();
         mainWindow.setScene(CuidadorScene);
         mainWindow.show();  
         }

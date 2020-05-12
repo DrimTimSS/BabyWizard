@@ -15,9 +15,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +33,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -146,6 +151,39 @@ public class RegistroCController implements Initializable {
                 }
             }
         });
+        
+        atras.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    atras(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+        finalizar.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    finalizar(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
     }    
 
     @FXML

@@ -12,6 +12,8 @@ import babywizardjavafx.modelo.JdbConnection;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.UsuarioModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
+import babywizardjavafx.modelo.Wppsi48Modelo;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.util.Arrays;
 import javafx.application.Application;
@@ -21,6 +23,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.util.Locale;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  *
@@ -32,17 +36,23 @@ public class BabyWizardJavaFX extends Application {
     public void start(Stage stage) throws Exception {
         Locale.setDefault(new Locale("es"));
         Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
-        
+        JMetro jmetro = new JMetro(Style.LIGHT);
         Scene scene = new Scene(root);
+        //jmetro.setAutomaticallyColorPanes(true);
+        jmetro.setParent(root);
         
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
         
-        Wppsi303642Modelo wm = new Wppsi303642Modelo(10,10,10,10,10,"2020-04-05",25);
-        wm.setEscalares();
-        System.out.println(wm.getVocabularioReceptivoEscalar()+" "+wm.getDisenioCubosEscalar()+" "+wm.getInformacionEscalar()+" "+wm.getRompecabezasEscalar()+" "+wm.getDenominacionesEscalar());
+        
+        //Wppsi303642Modelo wm = new Wppsi303642Modelo(10,10,10,10,10,"2020-04-05",25);
+        //System.out.println(Arrays.toString(wm.setEscalares()));
         //Wppsi303642Controller w = new Wppsi303642Controller();
         //System.out.println(Arrays.toString(w.equivalentesCIT(70)));
+        
+        //Wppsi48Modelo wm48 = new Wppsi48Modelo(10,10,10,10,10,10,10,10,10,10,10,10,10,10,"2020-05-11",23);
+        //System.out.println(Arrays.toString(wm48.setEscalares()));
+        
         
         //SociodemograficoModelo sdm = new SociodemograficoModelo();
         //System.out.println(sdm.readSociodemografico(-1, "", -1, -1, -1, -1, 3.0, 4.0, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", -1).get(0).getIdSociodemografico());

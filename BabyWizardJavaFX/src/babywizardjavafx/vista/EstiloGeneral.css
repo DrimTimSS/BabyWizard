@@ -2,9 +2,23 @@
  * El color del diseño predeterminado es ete: #D8B9F7
  */
 
+
 .root {
-    -fx-font-size: 14px;
-    -fx-font-family: Arial, Helvetica, sans-serif;
-    -fx-font-color: white;
+    
     -fx-background-color: #CFA8FF;
 }
+/*
+.tree .tree-cell{
+    -fx-font: 14px Tahoma;
+    -fx-background-color: #CFA8FF;
+}
+
+.button {
+    -fx-accent: red;
+-fx-focus-color: red;
+}
+
+.titulo {
+    -fx-font-size: 36px;
+}
+*/

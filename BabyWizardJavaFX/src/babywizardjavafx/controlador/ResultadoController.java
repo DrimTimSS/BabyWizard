@@ -29,6 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -39,6 +40,7 @@ import javafx.scene.layout.GridPane;
 public class ResultadoController implements Initializable {
     
     //Arbol para creacion de tablas
+    @FXML
     private TreeView<String> tree;
     //Ids bebes que entran por la busqueda
     LinkedList<Integer> ids;
@@ -202,6 +204,8 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<LecturaConjuntaModelo,Integer> ininteligiblelc;
     ObservableList<LecturaConjuntaModelo> listaLC = FXCollections.observableArrayList();
+    @FXML
+    private TableView<?> resultadoswppsi30;
     
     /**
      * Initializes the controller class.
@@ -217,6 +221,7 @@ public class ResultadoController implements Initializable {
         CheckBoxTreeItem pruebas = new CheckBoxTreeItem<>("Pruebas");
         
         tree = new TreeView<>();
+        tree.getStyleClass().add("tree");
         root.getChildren().addAll(infante,cuidador,sociodemografico,socioeconomico,pruebas);
         tree.setRoot(root);
         root.setExpanded(true);
@@ -230,7 +235,6 @@ public class ResultadoController implements Initializable {
         resultadossd.setTableMenuButtonVisible(true);
         resultadosexpcab.setTableMenuButtonVisible(true);
         resultadoslc.setTableMenuButtonVisible(true);
-        
     }    
 
     @FXML

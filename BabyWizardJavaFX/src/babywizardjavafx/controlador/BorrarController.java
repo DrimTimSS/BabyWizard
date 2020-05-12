@@ -14,27 +14,23 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import java.util.regex.*;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -130,6 +126,36 @@ public class BorrarController implements Initializable {
             }
         }
         });
+        borrarconid.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    borrarconid(null);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+        buscarbebes.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    buscarbebes(null);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
     }
     
     @FXML

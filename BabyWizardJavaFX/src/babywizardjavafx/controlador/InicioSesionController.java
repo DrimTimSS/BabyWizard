@@ -11,7 +11,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,7 +27,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  *
@@ -72,7 +79,7 @@ public class InicioSesionController implements Initializable {
                 MenuPrincipalController mPrincipalController = loader.getController();
                 mPrincipalController.iniciarUsuario(usuario.getText());
         
-                Stage mainWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage mainWindow = (Stage) botonRegistro.getScene().getWindow();
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
             } else {
@@ -86,6 +93,42 @@ public class InicioSesionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //JMetro
+        //JMetro jmetro = new JMetro(Style.LIGHT);
+        
+        
+        //Botones
+        botonRegistro.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    iniciarSesion(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
+        registroUsuario.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    registrarUsuario(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
     }       
 }

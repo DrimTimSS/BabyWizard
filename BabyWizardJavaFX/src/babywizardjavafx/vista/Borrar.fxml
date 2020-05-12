@@ -19,6 +19,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="1130.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BorrarController">
    <children>
+      <GridPane hgap="5.0" layoutX="110.0" layoutY="74.0" vgap="5.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="idbebeaborrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="100.0" />
+            <Button fx:id="borrarconid" mnemonicParsing="false" onAction="#borrarconid" text="Borrar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
        <GridPane hgap="5.0" layoutX="10.0" layoutY="230.0" prefHeight="218.0" prefWidth="346.0" vgap="5.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.6000183105469" minWidth="10.0" prefWidth="108.80000610351563" />
@@ -45,20 +59,6 @@
                   <TextField fx:id="nombrebusqueda" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="apellidopbusqueda" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="apellidombusqueda" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <children>
-                        <RadioButton fx:id="mbusqueda" mnemonicParsing="false" text="M">
-                            <toggleGroup>
-                                <javafx.scene.control.ToggleGroup fx:id="sexotoggle" />
-                            </toggleGroup>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="fbusqueda" mnemonicParsing="false" text="F" toggleGroup="$sexotoggle" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="buscarbebes" mnemonicParsing="false" onAction="#buscarbebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
             <HBox prefHeight="25.0" prefWidth="114.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label text="Min:">
@@ -79,22 +79,22 @@
                   <TextField fx:id="edadbusquedamax" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
                </children>
             </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <RadioButton fx:id="mbusqueda" mnemonicParsing="false" text="M">
+                            <toggleGroup>
+                                <javafx.scene.control.ToggleGroup fx:id="sexotoggle" />
+                            </toggleGroup>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="fbusqueda" mnemonicParsing="false" text="F" toggleGroup="$sexotoggle" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="buscarbebes" mnemonicParsing="false" onAction="#buscarbebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                </children>
             </GridPane>
-      <GridPane hgap="5.0" layoutX="110.0" layoutY="74.0" vgap="5.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <TextField fx:id="idbebeaborrar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="100.0" />
-            <Button fx:id="borrarconid" mnemonicParsing="false" onAction="#borrarconid" text="Borrar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
       <TableView fx:id="tablabebes" layoutX="384.0" layoutY="36.0" prefHeight="200.0" prefWidth="732.0">
         <columns>
           <TableColumn fx:id="idBebe" prefWidth="57.60005187988281" text="ID" />
