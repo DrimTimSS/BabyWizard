@@ -55,6 +55,8 @@ public class InicioSesionController implements Initializable {
     private void registrarUsuario(ActionEvent event) throws IOException {
         Stage popup = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Registro.fxml"));
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(root);
         Scene popupscene = new Scene(root);
         popup.setScene(popupscene);
         Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");

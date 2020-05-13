@@ -36,6 +36,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -192,6 +194,8 @@ public class RegistroCController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroBB.fxml"));
         Parent root = (Parent) loader.load();
         Scene exito = escenaAnterior;
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(root);
         actualWindow.setScene(exito);
     }
 
@@ -217,6 +221,8 @@ public class RegistroCController implements Initializable {
                 Stage actualWindow = (Stage) titulo.getScene().getWindow();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
                     Parent root = (Parent) loader.load();
+                    JMetro jmetro = new JMetro(Style.LIGHT);
+                    jmetro.setParent(root);
                     CreadoExitosamenteController cec = loader.getController();
                     cec.queEsCreado("Infante Registrado Exitosamente.");
                     Scene exito = new Scene(root);

@@ -37,6 +37,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -254,6 +256,8 @@ public class RegistroBBController implements Initializable {
         if(!(bm == null||sm==null)){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroC.fxml"));
         Parent loadCuidador = (Parent) loader.load(); 
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadCuidador);
         Scene CuidadorScene = new Scene(loadCuidador);
         RegistroCController rcc = loader.getController();
         rcc.getBebeySD(bm,sm);

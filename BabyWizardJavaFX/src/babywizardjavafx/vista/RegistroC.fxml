@@ -40,12 +40,12 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="127.19998779296876" minHeight="10.0" prefHeight="117.59999389648438" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="82.0000228881836" minHeight="0.0" prefHeight="39.20000610351563" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="88.0000244140625" minHeight="0.0" prefHeight="34.599999999999994" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="292.80002136230473" minHeight="0.0" prefHeight="53.39997253417968" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="344.000048828125" minHeight="-Infinity" prefHeight="30.600030517578148" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="281.59999999999997" minHeight="10.0" prefHeight="214.99996948242188" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="140.6" minHeight="10.0" prefHeight="140.6" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0000228881836" minHeight="0.0" prefHeight="48.599993896484364" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="88.0000244140625" minHeight="0.0" prefHeight="37.400006103515636" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="292.80002136230473" minHeight="0.0" prefHeight="50.800006103515614" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="344.000048828125" minHeight="-Infinity" prefHeight="41.000018310546864" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="281.59999999999997" minHeight="10.0" prefHeight="161.2" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <HBox alignment="BOTTOM_CENTER">
@@ -66,13 +66,13 @@
                         <Label text="*" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" GridPane.rowIndex="3">
+                  <HBox alignment="CENTER" prefHeight="68.0" prefWidth="232.0" GridPane.rowIndex="3">
                      <children>
                         <TextField fx:id="correo" promptText="Correo Electrónico" />
                         <Label text="*" />
                      </children>
                   </HBox>
-                    <HBox alignment="CENTER" prefHeight="239.0" prefWidth="232.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <HBox alignment="CENTER" prefHeight="48.0" prefWidth="232.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                  <children>
                                     <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Relación:" />
                                     <ChoiceBox fx:id="relacion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
@@ -87,17 +87,17 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="101.59998588562011" minHeight="10.0" prefHeight="101.59998588562011" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="110.79999504089355" minHeight="10.0" prefHeight="40.80001411437986" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="145.2000289916992" minHeight="10.0" prefHeight="46.39997406005858" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="170.60001525878909" minHeight="10.0" prefHeight="49.59996643066407" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="156.5999755859375" minHeight="0.0" prefHeight="48.99998168945311" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="256.8000183105469" minHeight="10.0" prefHeight="186.40000000000003" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="131.80003204345704" minHeight="10.0" prefHeight="131.80003204345704" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="110.79999504089355" minHeight="10.0" prefHeight="50.19996795654296" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="145.2000289916992" minHeight="10.0" prefHeight="47.19996643066406" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="170.60001525878909" minHeight="10.0" prefHeight="52.00001220703126" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="156.5999755859375" minHeight="0.0" prefHeight="48.599999999999966" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="256.8000183105469" minHeight="10.0" prefHeight="139.1999938964844" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <HBox alignment="BOTTOM_CENTER">
                      <children>
-                        <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" />
+                        <DatePicker fx:id="fechanacimiento" promptText="Nacimiento" />
                         <Label text="*" />
                      </children>
                   </HBox>
@@ -115,7 +115,7 @@
                   </HBox>
                   <HBox alignment="CENTER" GridPane.rowIndex="3">
                      <children>
-                        <TextField fx:id="telefono2" prefHeight="24.0" prefWidth="232.0" promptText="Teléfono secundario" />
+                        <TextField fx:id="telefono2" promptText="Teléfono secundario" />
                         <Label text="*" />
                      </children>
                   </HBox>
@@ -133,10 +133,10 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="171.19998931884766" minHeight="10.0" prefHeight="143.1999740600586" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="79.99999389648437" minHeight="6.400010681152338" prefHeight="34.4000259399414" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="111.80001220703124" minHeight="0.0" prefHeight="35.59998168945313" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="258.8000183105469" minHeight="10.0" prefHeight="242.80001831054685" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="171.19998931884766" minHeight="10.0" prefHeight="157.7999755859375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="79.99999389648437" minHeight="6.400010681152338" prefHeight="46.60002441406249" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="111.80001220703124" minHeight="0.0" prefHeight="56.399993896484375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="258.8000183105469" minHeight="10.0" prefHeight="213.8000061035156" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Label alignment="CENTER" text="Datos Socioeconomicos" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
@@ -150,7 +150,7 @@
                   <HBox alignment="CENTER" spacing="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <children>
                         <Label text="NSE:" />
-                        <ChoiceBox fx:id="nse" prefWidth="150.0" />
+                        <ChoiceBox fx:id="nse" minHeight="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
                         <Label text="*" />
                      </children>
                   </HBox>
