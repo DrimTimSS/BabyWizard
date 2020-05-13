@@ -126,11 +126,7 @@ public class BorrarController implements Initializable {
             }
         }
         });
-        borrarconid.setOnKeyPressed(new EventHandler<KeyEvent>()
-    {
-        @Override
-        public void handle(KeyEvent ke)
-        {
+        borrarconid.setOnKeyPressed((KeyEvent ke) -> {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
                 try {
@@ -139,13 +135,8 @@ public class BorrarController implements Initializable {
                     Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
-    });
-        buscarbebes.setOnKeyPressed(new EventHandler<KeyEvent>()
-    {
-        @Override
-        public void handle(KeyEvent ke)
-        {
+        });
+        buscarbebes.setOnKeyPressed((KeyEvent ke) -> {
             if (ke.getCode().equals(KeyCode.ENTER))
             {
                 try {
@@ -154,8 +145,7 @@ public class BorrarController implements Initializable {
                     Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
-    });
+        });
     }
     
     @FXML
@@ -209,6 +199,7 @@ public class BorrarController implements Initializable {
     }
     
     public void encontrarPruebas() throws SQLException{
+        
         if(!idbebeaborrar.getText().equals("")){
         listaexperimentos.getItems().clear();
         listaPruebas.clear();
@@ -225,5 +216,6 @@ public class BorrarController implements Initializable {
         if(w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1,-1,-1,-1,-1,-1,-1,-1,-1,"",Integer.parseInt(idbebeaborrar.getText())).size()==1) listaPruebas.add("WPPSI 48.");
         listaexperimentos.getItems().addAll(listaPruebas);
         }
+        
     }
 }

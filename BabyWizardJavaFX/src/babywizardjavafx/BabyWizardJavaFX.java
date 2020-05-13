@@ -23,6 +23,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.util.Locale;
+import javafx.scene.paint.Color;
+import javafx.stage.StageStyle;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 
@@ -37,10 +39,12 @@ public class BabyWizardJavaFX extends Application {
         Locale.setDefault(new Locale("es"));
         Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
         JMetro jmetro = new JMetro(Style.LIGHT);
-        Scene scene = new Scene(root);
-        //jmetro.setAutomaticallyColorPanes(true);
         jmetro.setParent(root);
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        //jmetro.setAutomaticallyColorPanes(true);
         
+        //stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
         

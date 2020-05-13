@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="1130.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BorrarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="1130.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BorrarController">
    <children>
       <GridPane hgap="5.0" layoutX="110.0" layoutY="74.0" vgap="5.0">
          <columnConstraints>
@@ -33,11 +33,11 @@
             <Button fx:id="borrarconid" mnemonicParsing="false" onAction="#borrarconid" text="Borrar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-       <GridPane hgap="5.0" layoutX="10.0" layoutY="230.0" prefHeight="218.0" prefWidth="346.0" vgap="5.0">
+       <GridPane hgap="5.0" layoutX="10.0" layoutY="230.0" prefHeight="300.0" prefWidth="346.0" vgap="5.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.6000183105469" minWidth="10.0" prefWidth="108.80000610351563" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.00001220703126" minWidth="10.0" prefWidth="137.60000000000002" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0000030517578" minWidth="10.0" prefWidth="52.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="141.6000183105469" minWidth="10.0" prefWidth="88.80000610351563" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="168.79999389648435" minWidth="10.0" prefWidth="168.79999389648435" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0000030517578" minWidth="10.0" prefWidth="79.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -47,39 +47,40 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Label text="ID del bebé" />
                   <Label text="Nombre" GridPane.rowIndex="1" />
-                  <Label text="Apellido Paterno" GridPane.rowIndex="2" />
-                  <Label text="Apellido Materno" GridPane.rowIndex="3" />
+                  <Label text="Apellido P." GridPane.rowIndex="2" />
+                  <Label text="Apellido M." GridPane.rowIndex="3" />
                   <Label text="Edad" GridPane.rowIndex="4" />
-                  <Label text="Sexo" GridPane.rowIndex="5" />
+                  <Label text="Sexo" GridPane.rowIndex="6" />
                   <TextField fx:id="idbebebusqueda" GridPane.columnIndex="1" />
                   <TextField fx:id="nombrebusqueda" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="apellidopbusqueda" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="apellidombusqueda" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <HBox prefHeight="25.0" prefWidth="114.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="114.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label text="Min:">
                      <HBox.margin>
-                        <Insets right="5.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="edadbusquedamin" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0">
+                  <TextField fx:id="edadbusquedamin" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0">
                      <HBox.margin>
-                        <Insets right="5.0" />
+                        <Insets />
                      </HBox.margin>
                   </TextField>
-                  <Label text="Max:">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="edadbusquedamax" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
                </children>
             </HBox>
-                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <Label text="Max:" />
+                  <TextField fx:id="edadbusquedamax" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" />
+               </children>
+            </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
                         <RadioButton fx:id="mbusqueda" mnemonicParsing="false" text="M">
                             <toggleGroup>
@@ -92,19 +93,19 @@
                         <RadioButton fx:id="fbusqueda" mnemonicParsing="false" text="F" toggleGroup="$sexotoggle" />
                      </children>
                   </HBox>
-                  <Button fx:id="buscarbebes" mnemonicParsing="false" onAction="#buscarbebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Button fx:id="buscarbebes" mnemonicParsing="false" onAction="#buscarbebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                </children>
             </GridPane>
       <TableView fx:id="tablabebes" layoutX="384.0" layoutY="36.0" prefHeight="200.0" prefWidth="732.0">
         <columns>
-          <TableColumn fx:id="idBebe" prefWidth="57.60005187988281" text="ID" />
-          <TableColumn fx:id="nombre" prefWidth="92.79998779296875" text="Nombre" />
-            <TableColumn fx:id="apellidoPaterno" prefWidth="107.20001220703125" text="Apellido Paterno" />
-            <TableColumn fx:id="apellidoMaterno" prefWidth="107.20001220703125" text="Apellido Materno" />
-            <TableColumn fx:id="sexo" prefWidth="36.80010986328125" text="Sexo" />
-            <TableColumn fx:id="fechaNacimiento" prefWidth="123.199951171875" text="Fecha de Nacimiento" />
-            <TableColumn fx:id="meses" prefWidth="75.0" text="Meses" />
-            <TableColumn fx:id="fkUsuario" prefWidth="126.4000122070313" text="Quien registro" />
+          <TableColumn fx:id="idBebe" prefWidth="81.0" text="ID" />
+          <TableColumn fx:id="nombre" minWidth="123.0" prefWidth="123.0" text="Nombre" />
+            <TableColumn fx:id="apellidoPaterno" minWidth="145.0" prefWidth="145.0" text="Apellido P." />
+            <TableColumn fx:id="apellidoMaterno" minWidth="145.0" prefWidth="145.0" text="Apellido M." />
+            <TableColumn fx:id="sexo" minWidth="100.0" prefWidth="100.0" text="Sexo" />
+            <TableColumn fx:id="meses" minWidth="120.0" prefWidth="120.0" text="Meses" />
+            <TableColumn fx:id="fechaNacimiento" minWidth="150.0" prefWidth="150.0" text="Fecha de N." />
+            <TableColumn fx:id="fkUsuario" minWidth="165.0" prefWidth="165.0" text="Quien registro" />
         </columns>
       </TableView>
       <Separator layoutX="360.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="6.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="0.0" />
