@@ -432,6 +432,22 @@ public class Wppsi48Controller implements Initializable {
         return equivalentes;
     }
     
+    public String[] equivalentesCIE(int sumaPtsEsc){
+        return null;
+    }
+    
+    public String[] equivalentesCVP(int sumaPtsEsc){
+        return null;
+    }
+    
+    public String[] equivalentesCIT(int sumaPtsEsc){
+        return null;    
+    }
+    
+     public String[] equivalentesCGL(int sumaPtsEsc){
+         return null;
+     }
+    
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
         System.out.println(idbebe);
