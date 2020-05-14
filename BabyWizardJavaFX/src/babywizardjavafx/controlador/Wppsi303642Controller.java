@@ -133,7 +133,7 @@ public class Wppsi303642Controller implements Initializable {
         int[] nc952= {56,60,63,66,69,73,76,79,82,85,88,90,92,96,99,102,104,106,108,110,112,114,117,119,123,126,129,131,135,138,141,144,146,149,152,155,158};
         
         for(int i=0;i<2;i++){
-            civs[i][0] = civ[i]+"";
+            civs[i][0] = civ[i]+"";//string ñero
             civs[i][1] = "<"+rp[i]+"";
             civs[i][2] = nc901[i]+"-"+nc902[i];
             civs[i][3] = nc951[i]+"-"+nc952[i];
