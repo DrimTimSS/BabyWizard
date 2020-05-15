@@ -32,8 +32,8 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="usuario" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <PasswordField fx:id="contrasenia" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField id="input" fx:id="usuario" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <PasswordField id="input" fx:id="contrasenia" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Button fx:id="botonRegistro" mnemonicParsing="false" onAction="#iniciarSesion" text="Iniciar Sesión" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <Hyperlink fx:id="registroUsuario" onAction="#registrarUsuario" text="Registrar usuario nuevo" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
             <Label text="Usuario:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">

@@ -4,7 +4,7 @@
 
 
 .root { 
-    -fx-background-color: #ce91ff,#cfa8ff;
+    -fx-background-color: #E76A07,#FF8D33;
     -fx-background-radius: 0,10;
     -fx-border-radius:10,10;
     
@@ -18,28 +18,40 @@
 */
 
 #record-sales {
-    -fx-background-insets: 1,1,1,1;
-    -fx-background-radius: 8;
     -fx-background-color: 
-        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #a347ff 100%),
-        #cd24ff,
-        #d473ff,
-        radial-gradient(center 50% 50%, radius 100%, #ce91ff, #d33dff);
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
-    -fx-font-weight: bold;
-    -fx-font-size: 1.1em;
-}
-#record-sales:hover {
-    -fx-background-color: 
-        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #a347ff 100%),
-        #cd24ff,
-        #d473ff,
-        radial-gradient(center 50% 50%, radius 100%, #d1a3ff, #a347ff);
-    
-    -fx-border-color: transparent;
-}
-#record-sales:pressed {
-    -fx-padding: 10 15 13 15;
-    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+        linear-gradient(#fbb279, #e16b0d),
+        linear-gradient(#fbb279 0%, #e36a0b 20%, #e16b0d 100%),
+        linear-gradient(#E76A07 0%, #f98931 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
+#record-sales:hover {
+    -fx-background-color: 
+        linear-gradient(#fbb279, #e16b0d),
+        linear-gradient(#fbb279 0%, #e36a0b 20%, #e16b0d 100%),
+        linear-gradient(#E76A07 0%, #f98931 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-border-color: #FFA258;
+    -fx-border-radius: 10;
+}
+/*
+#input {
+  -fx-background-color: linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+    linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
+  -fx-background-insets: 0, 1;
+  -fx-background-radius: 3, 2;
+  -fx-control-inner-background: #FFB982;
+}
+.text-field{
+-fx-skin: "com.sun.javafx.scene.control.skin.TextFieldSkin";
+}
+.password-field{
+-fx-skin: "com.sun.javafx.scene.control.skin.PasswordFieldSkin";
+}
+*/

@@ -67,19 +67,19 @@ public class MenuPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Label label = new Label("Registrar Infante");
-        label.setStyle("-fx-text-fill: white; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        label.setStyle("-fx-text-fill: black");
         registrarinfante.setGraphic(label);
         Label label1 = new Label("Búsqueda");
-        label1.setStyle("-fx-text-fill: white; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        label1.setStyle("-fx-text-fill: black");
         busqueda.setGraphic(label1);
         Label label2 = new Label("Editar Datos");
-        label2.setStyle("-fx-text-fill: white; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        label2.setStyle("-fx-text-fill: black");
         editar.setGraphic(label2);
         Label label3 = new Label("Borrar Infante");
-        label3.setStyle("-fx-text-fill: white; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        label3.setStyle("-fx-text-fill: black");
         borrar.setGraphic(label3);
         Label label4 = new Label("Registrar Prueba");
-        label4.setStyle("-fx-text-fill: white; -fx-effect: dropshadow( gaussian , black , 0,0,2,2);");
+        label4.setStyle("-fx-text-fill: black");
         registrarprueba.setGraphic(label4);
     }    
     

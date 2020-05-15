@@ -37,6 +37,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -149,13 +151,13 @@ public class AgregarPruebaController implements Initializable {
             prueba = "WPPSI 30 36 42";
             FXMLLoader loader = showWindow(direccion,prueba);
             Wppsi303642Controller wcont = loader.getController();
-            System.out.println(wcont);
+            
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(w48.isSelected()){
             direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
             prueba = "WPPSI 48";
             FXMLLoader loader = showWindow(direccion,prueba);
-            System.out.println(loader);
+            
             Wppsi48Controller wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(lectconj.isSelected()){
@@ -180,6 +182,8 @@ public class AgregarPruebaController implements Initializable {
     public FXMLLoader showWindow(String direccion, String prueba) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(direccion));
         Parent loadMenuPrincipal = (Parent) loader.load();
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
         //RegistroBBController rbc = loader.getController();
                 Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
                 Stage mainWindow =(Stage) idbebebusqueda.getScene().getWindow();
