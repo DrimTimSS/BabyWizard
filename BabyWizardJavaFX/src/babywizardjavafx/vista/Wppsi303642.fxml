@@ -8,155 +8,105 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.Wppsi303642Controller">
+<AnchorPane id="AnchorPane" prefHeight="694.0" prefWidth="1001.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.Wppsi303642Controller">
    <children>
-      <DatePicker layoutX="65.0" layoutY="44.0" />
-      <GridPane layoutX="14.0" layoutY="69.0" prefHeight="520.0" prefWidth="275.0">
+      <GridPane layoutX="25.0" layoutY="60.0" prefHeight="574.0" prefWidth="434.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="438.0" minWidth="0.0" prefWidth="185.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="438.0" minWidth="10.0" prefWidth="185.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="438.0" minWidth="0.0" prefWidth="146.99998779296874" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="438.0" minWidth="10.0" prefWidth="157.40001220703124" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="438.0" minWidth="10.0" prefWidth="130.20001220703125" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints />
+          <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="197.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="330.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Subprueba" />
-            <Label text="Vocabulario receptivo" GridPane.rowIndex="1" />
-            <Label text="Diseño con cubos" GridPane.rowIndex="2" />
-            <Label text="Información" GridPane.rowIndex="3" />
-            <Label text="Rompecabezas" GridPane.rowIndex="4" />
-            <Label text="Denominaciones" GridPane.rowIndex="5" />
-            <Label text="Puntuación natural" GridPane.columnIndex="1" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="Vocabulario receptivo" GridPane.rowIndex="2" />
+            <Label text="Diseño con cubos" GridPane.rowIndex="3" />
+            <Label text="Información" GridPane.rowIndex="4" />
+            <Label text="Rompecabezas" GridPane.rowIndex="5" />
+            <Label text="Denominaciones" GridPane.rowIndex="6" />
+            <Label text="Puntuación natural" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="vrn" maxWidth="-Infinity" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="dcn" maxWidth="-Infinity" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="inn" maxWidth="-Infinity" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="rcn" maxWidth="-Infinity" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="dnn" maxWidth="-Infinity" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="calcular" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Calcular" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="Puntuación escalar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="vre" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="dce" text="0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="ine" text="0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="rce" text="0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label fx:id="dne" text="0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <VBox alignment="CENTER" prefHeight="70.0" prefWidth="146.0" GridPane.columnIndex="1">
                <children>
-                  <TextField prefHeight="26.0" prefWidth="50.0" />
+                  <Label text="Fecha de aplicación" />
+                  <DatePicker fx:id="fechaaplic" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <TextField prefWidth="50.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <children>
-                  <TextField prefWidth="50.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <TextField prefWidth="50.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <children>
-                  <TextField prefWidth="50.0" />
-               </children>
-            </HBox>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Calcular escalares" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            </VBox>
          </children>
       </GridPane>
-      <Separator layoutX="296.0" layoutY="3.0" orientation="VERTICAL" prefHeight="600.0" />
-      <GridPane layoutX="308.0" layoutY="69.0" prefHeight="520.0" prefWidth="185.0">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="185.0" minWidth="185.0" prefWidth="185.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="197.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="330.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label text="Puntuación escalar" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="185.0" GridPane.rowIndex="5">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-         </children>
-      </GridPane>
-      <GridPane layoutX="526.0" layoutY="202.0" prefHeight="202.0" prefWidth="208.0">
+      <GridPane gridLinesVisible="true" layoutX="492.0" layoutY="208.0" prefHeight="202.0" prefWidth="489.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="171.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="141.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Ci verbal" />
-            <Label text="Ci Ejecución" GridPane.rowIndex="1" />
-            <Label text="Ci Total" GridPane.rowIndex="2" />
-            <Label text="Lenguaje" GridPane.rowIndex="3" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <children>
-                  <Label text="0" />
-               </children>
-            </HBox>
-         </children>
-      </GridPane>
-      <GridPane layoutX="474.0" layoutY="162.0" prefHeight="30.0" prefWidth="312.0">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="229.0" minWidth="-Infinity" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="141.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="141.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="141.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="141.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="141.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefWidth="208.0" text="Suma de puntuaciones escalares" GridPane.rowIndex="1" />
+            <Label text="CI verbal" GridPane.rowIndex="1" />
+            <Label text="CI Ejecución" GridPane.rowIndex="2" />
+            <Label text="CI Total" GridPane.rowIndex="3" />
+            <Label text="Lenguaje" GridPane.rowIndex="4" />
+            <Label fx:id="sumaciv" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="sumacie" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="sumacit" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="sumacgl" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Escala" />
+            <Label text="Suma de pts. escalares" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" />
+            <Label text="Puntuación compuesta" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" />
+            <Label text="Rango percentil" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" />
+            <Label text="90% Intervalo de confianza" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="4" />
+            <Label text="95% Intervalo de confianza" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="5" />
+            <Label fx:id="compciv" alignment="CENTER" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="compcie" alignment="CENTER" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="compcit" alignment="CENTER" text="0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="compcgl" alignment="CENTER" text="0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="rpciv" alignment="CENTER" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="rpcie" alignment="CENTER" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="rpcit" alignment="CENTER" text="0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="rpcgl" alignment="CENTER" text="0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label fx:id="ic1civ" alignment="CENTER" text="0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label fx:id="ic1cie" alignment="CENTER" text="0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label fx:id="ic1cit" alignment="CENTER" text="0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label fx:id="ic1cgl" alignment="CENTER" text="0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Label fx:id="ic2civ" alignment="CENTER" text="0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label fx:id="ic2cie" alignment="CENTER" text="0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Label fx:id="ic2cit" alignment="CENTER" text="0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Label fx:id="ic2cgl" alignment="CENTER" text="0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Label layoutX="97.0" layoutY="27.0" text="Día de la perra fecha" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="633.0" layoutY="169.0" prefWidth="208.0" text="Conversiones y equivalencias" />
+      <Button fx:id="agregar" layoutX="892.0" layoutY="588.0" mnemonicParsing="false" text="Agregar" />
+      <Separator layoutX="474.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="705.0" prefWidth="7.0" />
    </children>
 </AnchorPane>

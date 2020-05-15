@@ -36,6 +36,11 @@ public class Wppsi303642Modelo {
     int informacionEscalar;
     int rompecabezasEscalar;
     int denominacionesEscalar;
+    
+    String[] equivciv;
+    String[] equivcie;
+    String[] equivcit;
+    String[] equivcgl;
 
     public Wppsi303642Modelo(int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) {
         this.fechaAplicacion = fechaAplicacion;
@@ -153,6 +158,38 @@ public class Wppsi303642Modelo {
     public void setFechaAplicacion(String fechaAplicacion) {
         this.fechaAplicacion = fechaAplicacion;
     }
+
+    public String[] getEquivciv() {
+        return equivciv;
+    }
+
+    public void setEquivciv(String[] equivciv) {
+        this.equivciv = equivciv;
+    }
+
+    public String[] getEquivcie() {
+        return equivcie;
+    }
+
+    public void setEquivcie(String[] equivcie) {
+        this.equivcie = equivcie;
+    }
+
+    public String[] getEquivcit() {
+        return equivcit;
+    }
+
+    public void setEquivcit(String[] equivcit) {
+        this.equivcit = equivcit;
+    }
+
+    public String[] getEquivcgl() {
+        return equivcgl;
+    }
+
+    public void setEquivcgl(String[] equivcgl) {
+        this.equivcgl = equivcgl;
+    }
     
     
     public int[] setEscalares() throws SQLException{
@@ -189,6 +226,23 @@ public class Wppsi303642Modelo {
         return res;
     }
     
+    public int[] setEquivalentes() {
+        
+        Wppsi303642Controller wcont = new Wppsi303642Controller();
+        
+        int civ = this.getVocabularioReceptivoEscalar()+this.getInformacionEscalar();
+        int cie = this.getDisenioCubosEscalar()+this.getRompecabezasEscalar();
+        int cit = this.getVocabularioReceptivoEscalar()+this.getDisenioCubosEscalar()+this.getInformacionEscalar()+this.getRompecabezasEscalar();
+        int cgl = this.getVocabularioReceptivoEscalar()+this.getDenominacionesEscalar();
+        this.setEquivciv(wcont.equivalentesCIV(civ));
+        this.setEquivcie(wcont.equivalentesCIE(cie));
+        this.setEquivcit(wcont.equivalentesCIT(cit));
+        this.setEquivcgl(wcont.equivalentesCGL(cgl));
+        
+        int[] sumas = {civ,cie,cit,cgl};
+        
+        return sumas;
+    }
     
     public void createWppsi303642() throws SQLException {
         JdbConnection jdbc = new JdbConnection();

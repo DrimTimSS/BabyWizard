@@ -37,7 +37,7 @@ public class BabyWizardJavaFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Locale.setDefault(new Locale("es"));
-        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Wppsi303642.fxml"));
         JMetro jmetro = new JMetro(Style.LIGHT);
         jmetro.setParent(root);
         Scene scene = new Scene(root);
@@ -48,10 +48,14 @@ public class BabyWizardJavaFX extends Application {
         stage.setTitle("BabyWizard");
         stage.setResizable(false);
         
-        
-        Wppsi303642Modelo wm = new Wppsi303642Modelo(10,10,10,10,10,"2020-05-14",23);
+        /**
+        Wppsi303642Modelo wm = new Wppsi303642Modelo(10,10,10,10,10,"2020-05-14",25);
         System.out.println(Arrays.toString(wm.setEscalares()));
+        System.out.println(Arrays.toString(wm.setEquivalentes()));
+        System.out.println(Arrays.toString(wm.getEquivciv()));
+        **/
         //Wppsi303642Controller w = new Wppsi303642Controller();
+        
         //System.out.println(Arrays.toString(w.equivalentesCIT(70)));
         
         //Wppsi48Modelo wm48 = new Wppsi48Modelo(10,10,10,10,10,10,10,10,10,10,10,10,10,10,"2020-05-11",23);
