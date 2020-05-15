@@ -49,8 +49,8 @@ public class BabyWizardJavaFX extends Application {
         stage.setResizable(false);
         
         
-        //Wppsi303642Modelo wm = new Wppsi303642Modelo(10,10,10,10,10,"2020-04-05",25);
-        //System.out.println(Arrays.toString(wm.setEscalares()));
+        Wppsi303642Modelo wm = new Wppsi303642Modelo(10,10,10,10,10,"2020-05-14",23);
+        System.out.println(Arrays.toString(wm.setEscalares()));
         //Wppsi303642Controller w = new Wppsi303642Controller();
         //System.out.println(Arrays.toString(w.equivalentesCIT(70)));
         
