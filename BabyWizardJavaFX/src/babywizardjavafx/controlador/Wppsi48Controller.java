@@ -5,9 +5,20 @@
  */
 package babywizardjavafx.controlador;
 
+import babywizardjavafx.modelo.Wppsi48Modelo;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
@@ -17,13 +28,152 @@ import javafx.fxml.Initializable;
 public class Wppsi48Controller implements Initializable {
     
     int idbebe;
-
+    @FXML
+    private TextField dcn;
+    @FXML
+    private TextField mtn;
+    @FXML
+    private TextField vcn;
+    @FXML
+    private TextField cpn;
+    @FXML
+    private TextField bsn;
+    @FXML
+    private TextField psn;
+    @FXML
+    private TextField cln;
+    @FXML
+    private TextField cmn;
+    @FXML
+    private TextField fin;
+    @FXML
+    private TextField sen;
+    @FXML
+    private TextField vrn;
+    @FXML
+    private TextField rcn;
+    @FXML
+    private TextField dnn;
+    @FXML
+    private Label dce;
+    @FXML
+    private Label ine;
+    @FXML
+    private Label mte;
+    @FXML
+    private Label vce;
+    @FXML
+    private Label cpe;
+    @FXML
+    private Label bse;
+    @FXML
+    private Label pse;
+    @FXML
+    private Label cle;
+    @FXML
+    private Label cme;
+    @FXML
+    private Label fie;
+    @FXML
+    private Label see;
+    @FXML
+    private Label vre;
+    @FXML
+    private Label rce;
+    @FXML
+    private Label dne;
+    @FXML
+    private CheckBox dcfi;
+    @FXML
+    private CheckBox dcrc;
+    @FXML
+    private CheckBox pscm;
+    @FXML
+    private CheckBox psse;
+    @FXML
+    private CheckBox clbs;
+    @FXML
+    private CheckBox mtfi;
+    @FXML
+    private CheckBox mtrc;
+    @FXML
+    private CheckBox incm;
+    @FXML
+    private CheckBox inse;
+    @FXML
+    private CheckBox vccm;
+    @FXML
+    private CheckBox vcse;
+    @FXML
+    private CheckBox cpfi;
+    @FXML
+    private CheckBox cprc;
+    @FXML
+    private DatePicker fechaaplic;
+    @FXML
+    private Label compciv;
+    @FXML
+    private Label compcie;
+    @FXML
+    private Label compcvp;
+    @FXML
+    private Label compcit;
+    @FXML
+    private Label compcgl;
+    @FXML
+    private Label rpciv;
+    @FXML
+    private Label rpcie;
+    @FXML
+    private Label rpcvp;
+    @FXML
+    private Label rpcit;
+    @FXML
+    private Label rpcgl;
+    @FXML
+    private Label ic1civ;
+    @FXML
+    private Label ic1cie;
+    @FXML
+    private Label ic1cvp;
+    @FXML
+    private Label ic1cit;
+    @FXML
+    private Label ic1cgl;
+    @FXML
+    private Label ic2civ;
+    @FXML
+    private Label ic2cie;
+    @FXML
+    private Label ic2cvp;
+    @FXML
+    private Label ic2cit;
+    @FXML
+    private Label ic2cgl;
+    @FXML
+    private Button calcular;
+    @FXML
+    private Button agregar;
+    @FXML
+    private TextField inn;
+    
+    Wppsi48Modelo wm;
+    @FXML
+    private Label sumaciv;
+    @FXML
+    private Label sumacie;
+    @FXML
+    private Label sumacvp;
+    @FXML
+    private Label sumacit;
+    @FXML
+    private Label sumacgl;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        wm = new Wppsi48Modelo();
     }    
       
     public int[] naturalesAEscalares4042(int dc, int in, int mt,int vb, int cd, int bs, int ps, int cl, int cm, int fi, int se, int vr, int rc, int dn){
@@ -529,13 +679,13 @@ public class Wppsi48Controller implements Initializable {
     
     public String[] equivalentesCIT(int sumaPtsEsc){        
         String[] equivalentes = new String[4];
-        String[][] cits = new String[129][4];
+        String[][] cits = new String[127][4];
         int[] cit = {40,41,42,43,44,45,46,47,48,49,50,51,52,53,53,54,55,56,57,58,59,60,61,62,62,63,64,65,66,67,68,69,70,70,71,72,73,74,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,100,101,102,103,104,105,106,107,70,110,111,112,113,114,115,116,117,118,119,120,122,123,124,125,126,127,128,130,131,132,133,134,135,135,136,137,138,139,140,140,141,142,143,144,145,145,146,147,148,149,149,150,151,152,152,153,154,155,155,156,157,158,159,160};
         double[] rp = {0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.2,0.2,0.3,0.3,0.4,0.5,1,1,1,1,1,1,1,2,2,2,2,3,3,4,4,4,5,5,6,7,8,9,10,12,13,14,16,18,19,21,23,25,29,30,32,34,37,39,42,45,50,53,55,58,61,63,66,68,108,75,77,79,81,82,84,86,87,88,90,91,93,94,95,95,96,9,97,98,98,98,99,99,99,99,99,99,99,99.5,99.6,99.6,99.7,99.7,99.8,99.8,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9,99.9};
         int[] nc901 = {38,39,40,41,42,42,43,44,45,46,47,48,49,50,50,51,52,53,54,55,56,57,58,59,59,60,61,62,63,64,65,66,66,66,67,68,69,70,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,90,91,92,93,95,96,97,98,99,100,101,102,103,105,106,107,108,109,110,111,112,113,114,114,116,117,118,119,120,121,122,124,125,126,127,128,129,129,130,131,132,133,134,134,135,136,137,138,138,138,139,140,141,142,142,143,144,145,145,146,147,148,148,149,150,151,152,153};
         int[] nc902 = {47,48,49,50,51,52,53,54,55,56,57,58,59,60,60,61,62,62,63,64,65,66,67,68,68,69,70,71,72,73,74,75,76,76,77,78,79,80,80,81,82,83,84,85,86,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,105,106,107,108,109,110,110,111,112,114,115,116,117,118,119,120,121,122,123,124,126,127,128,129,130,131,132,134,134,135,136,137,138,138,139,140,141,142,143,143,144,145,146,147,148,148,149,150,151,152,152,153,154,155,155,156,157,158,158,158,159,160,161,162};
         int[] nc951 = {37,38,39,40,41,42,43,43,44,45,46,47,48,49,49,50,51,52,53,54,55,56,57,58,58,559,60,61,62,63,64,65,66,66,67,67,68,69,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,91,92,94,95,96,97,98,99,100,101,102,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,123,124,125,126,127,128,128,129,130,131,132,133,133,134,135,136,137,138,138,139,139,140,141,141,142,143,144,144,145,146,147,147,148,149,150,151,152};
-        int[] nc952 = {48,49,50,51,52,53,54,55,56,57,58,59,60,61,61,61,62,63,64,65,66,67,68,69,69,70,71,72,73,74,75,76,77,77,78,79,80,81,81,82,83,84,85,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,106,107,108,109,109,110,111,112,113,115,116,117,118,119,120,121,122,123,124,125,127,128,129,130,131,132,133,134,135,136,137,138,139,139,140,141,142,143,144,144,145,146,147,148,149,149,150,151,152,153,154,155,156,156,157,157,158,158,159,160,161,162,163};
+        int[] nc952 = {48,49,50,51,52,53,54,55,56,57,58,59,60,61,61,61, 62,63,64,65,66,67,68,69,69,70,71,72,73,74,75,76,77,77, 78,79,80,81,81,82,83,84,85,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,106,107,108,109,109, 110,111,112,113,115,116,117,118,119,120,121,122,123,124,125,127,128,129,130,131,132,133,134,135,136,137,138,139,139,140,141,142,143,144,144,145,146,147,148,149,149,150,151,152,153,153,154,155,156,156,157,157,158,158,159,160,161,162,163};
         
         for(int i=0;i<11;i++){
             cits[i][0] = cit[i]+"";
@@ -600,5 +750,91 @@ public class Wppsi48Controller implements Initializable {
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
         System.out.println(idbebe);
+    }
+
+    @FXML
+    private void calcular(ActionEvent event) throws SQLException {
+        wm = new Wppsi48Modelo();
+        
+        int dc = (dcn.getText().equals(""))?-1:Integer.parseInt(dcn.getText());
+        int in = (inn.getText().equals(""))?-1:Integer.parseInt(inn.getText());
+        int mt = (mtn.getText().equals(""))?-1:Integer.parseInt(mtn.getText());
+        int vc = (vcn.getText().equals(""))?-1:Integer.parseInt(vcn.getText());
+        int cp = (cpn.getText().equals(""))?-1:Integer.parseInt(cpn.getText());
+        int bs = (bsn.getText().equals(""))?-1:Integer.parseInt(bsn.getText());
+        int ps = (psn.getText().equals(""))?-1:Integer.parseInt(psn.getText());
+        int cl = (cln.getText().equals(""))?-1:Integer.parseInt(cln.getText());
+        int cm = (cmn.getText().equals(""))?-1:Integer.parseInt(cmn.getText());
+        int fi = (fin.getText().equals(""))?-1:Integer.parseInt(fin.getText());
+        int se = (sen.getText().equals(""))?-1:Integer.parseInt(sen.getText());
+        int vr = (vrn.getText().equals(""))?-1:Integer.parseInt(vrn.getText());
+        int rc = (rcn.getText().equals(""))?-1:Integer.parseInt(rcn.getText());
+        int dn = (dnn.getText().equals(""))?-1:Integer.parseInt(dnn.getText());
+        
+        
+        String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        wm.setFkBebe(idbebe);
+        wm.setDisenioCubosNatural(dc);
+        wm.setInformacionNatural(in);
+        wm.setMatricesNatural(mt);
+        wm.setVocabularioNatural(vc);
+        wm.setConceptosConDibujosNatural(cp);
+        wm.setBusquedaSimbolosNatural(bs);
+        wm.setPistasNatural(ps);
+        wm.setClavesNatural(cl);
+        wm.setComprensionNatural(cm);
+        wm.setFigurasIncompletasNatural(fi);
+        wm.setSemejanzasNatural(se);
+        wm.setVocabularioReceptivoNatural(vr);
+        wm.setRompecabezasNatural(rc);
+        wm.setDenominacionesNatural(dn);
+        wm.setFechaAplicacion(fechan);
+        wm.setEscalares();
+        
+        int[] sumas = wm.setEquivalentes(cpfi.isSelected(), dcrc.isSelected(), incm.isSelected(), inse.isSelected(), cpfi.isSelected(), mtrc.isSelected(), vccm.isSelected(), vcse.isSelected(), cpfi.isSelected(), cprc.isSelected(), pscm.isSelected(), psse.isSelected(), clbs.isSelected());
+        
+        dce.setText(wm.getDisenioCubosEscalar()+"");
+        ine.setText(wm.getInformacionEscalar()+"");
+        mte.setText(wm.getMatricesEscalar()+"");
+        vce.setText(wm.getVocabularioEscalar()+"");
+        cpe.setText(wm.getConceptosConDibujosEscalar()+"");
+        bse.setText(wm.getBusquedaSimbolosEscalar()+"");
+        pse.setText(wm.getPistasEscalar()+"");
+        cle.setText(wm.getClavesEscalar()+"");
+        cme.setText(wm.getComprensionEscalar()+"");
+        fie.setText(wm.getFigurasIncompletasEscalar()+"");
+        see.setText(wm.getSemejanzasEscalar()+"");
+        vre.setText(wm.getVocabularioReceptivoEscalar()+"");
+        rce.setText(wm.getRompecabezasEscalar()+"");
+        dne.setText(wm.getDenominacionesEscalar()+"");
+        sumaciv.setText(sumas[0]+"");
+        sumacie.setText(sumas[1]+"");
+        sumacvp.setText(sumas[2]+"");
+        sumacit.setText(sumas[3]+"");
+        sumacgl.setText(sumas[4]+"");
+        compciv.setText(wm.getEquivciv()[0]);
+        rpciv.setText(wm.getEquivciv()[1]);
+        ic1civ.setText(wm.getEquivciv()[2]);
+        ic2civ.setText(wm.getEquivciv()[3]);
+        compcie.setText(wm.getEquivcie()[0]);
+        rpcie.setText(wm.getEquivcie()[1]);
+        ic1cie.setText(wm.getEquivcie()[2]);
+        ic2cie.setText(wm.getEquivcie()[3]);
+        compcvp.setText(wm.getEquivcvp()[0]);
+        rpcvp.setText(wm.getEquivcvp()[1]);
+        ic1cvp.setText(wm.getEquivcvp()[2]);
+        ic2cvp.setText(wm.getEquivcvp()[3]);
+        compcit.setText(wm.getEquivcit()[0]);
+        rpcit.setText(wm.getEquivcit()[1]);
+        ic1cit.setText(wm.getEquivcit()[2]);
+        ic2cit.setText(wm.getEquivcit()[3]);
+        compcgl.setText(wm.getEquivcgl()[0]);
+        rpcgl.setText(wm.getEquivcgl()[1]);
+        ic1cgl.setText(wm.getEquivcgl()[2]);
+        ic2cgl.setText(wm.getEquivcgl()[3]);
+    }
+
+    @FXML
+    private void agregar(ActionEvent event) {
     }
 }

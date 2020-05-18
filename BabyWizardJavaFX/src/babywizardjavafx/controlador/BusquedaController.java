@@ -43,6 +43,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -502,7 +504,6 @@ public class BusquedaController implements Initializable {
         for(SociodemograficoModelo b:resultados){
                 ids.add(b.getFkBebeSociodemografico());
             }
-        System.out.println(ids.toString());
         abrirResultado(ids);
         return ids;
     }
@@ -624,7 +625,6 @@ public class BusquedaController implements Initializable {
         while(rs.next()){
             ids.add(rs.getInt(1));
         }
-        System.out.println(ids);
         abrirResultado(ids);
         return ids;
     }
@@ -654,7 +654,6 @@ public class BusquedaController implements Initializable {
             for(BebeModelo b:resultados){
                 ids.add(b.getIdBebe());
             }
-            System.out.println(ids);
             abrirResultado(ids);
             return ids;
     }
@@ -683,8 +682,6 @@ public class BusquedaController implements Initializable {
         
         idst.add(sdm.readSociodemografico(ids.get(i), "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", -1).get(0).getFkBebeSociodemografico());
         }
-        
-        System.out.println(idst.toString());
         abrirResultado(ids);
         return idst;
     }
@@ -704,14 +701,15 @@ public class BusquedaController implements Initializable {
         bbs.forEach((bb) -> {
             ids.add(bb.getIdBebe());
         });
-        System.out.println(ids.toString());
         abrirResultado(ids);
         return ids;
     }
     
     public void abrirResultado(LinkedList<Integer> ids) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/Resultado.fxml"));
-        Parent loadCuidador = (Parent) loader.load(); 
+        Parent loadCuidador = (Parent) loader.load();
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadCuidador);
         Scene CuidadorScene = new Scene(loadCuidador);
         ResultadoController rc = loader.getController();
         rc.meterIds(ids);

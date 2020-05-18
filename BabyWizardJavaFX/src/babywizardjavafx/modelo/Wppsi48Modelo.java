@@ -57,6 +57,62 @@ public class Wppsi48Modelo {
     int vocabularioReceptivoEscalar;
     int rompecabezasEscalar;
     int denominacionesEscalar;
+    
+    String[] equivciv;
+    String[] equivcie;
+    String[] equivcvp;
+    String[] equivcit;
+    String[] equivcgl;
+    
+    public Wppsi48Modelo(int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) {
+        this.disenioCubosNatural = disenioCubosNatural;
+        this.informacionNatural = informacionNatural;
+        this.semejanzasNatural = semejanzasNatural;
+        this.matricesNatural = matricesNatural;
+        this.vocabularioNatural = vocabularioNatural;
+        this.conceptosConDibujosNatural = conceptosConDibujosNatural;
+        this.busquedaSimbolosNatural = busquedaSimbolosNatural;
+        this.pistasNatural = pistasNatural;
+        this.clavesNatural = clavesNatural;
+        this.comprensionNatural = comprensionNatural;
+        this.figurasIncompletasNatural = figurasIncompletasNatural;
+        this.vocabularioReceptivoNatural = vocabularioReceptivoNatural;
+        this.rompecabezasNatural = rompecabezasNatural;
+        this.denominacionesNatural = denominacionesNatural;
+        this.fechaAplicacion = fechaAplicacion;
+        this.fkBebe = fkBebe;
+        this.equivciv = new String[4];
+        this.equivcie = new String[4];
+        this.equivcvp = new String[4];
+        this.equivcit = new String[4];
+        this.equivcgl = new String[4];
+    }
+
+    public Wppsi48Modelo() {
+        this.idWppsi48 = 0;
+        this.disenioCubosNatural = 0;
+        this.informacionNatural = 0;
+        this.semejanzasNatural = 0;
+        this.matricesNatural = 0;
+        this.vocabularioNatural = 0;
+        this.conceptosConDibujosNatural = 0;
+        this.busquedaSimbolosNatural = 0;
+        this.pistasNatural = 0;
+        this.clavesNatural = 0;
+        this.comprensionNatural = 0;
+        this.figurasIncompletasNatural = 0;
+        this.vocabularioReceptivoNatural = 0;
+        this.rompecabezasNatural = 0;
+        this.denominacionesNatural = 0;
+        this.fkBebe = 0;
+        this.equivciv = new String[4];
+        this.equivcie = new String[4];
+        this.equivcvp = new String[4];
+        this.equivcit = new String[4];
+        this.equivcgl = new String[4];
+    }
+    
+    
 
     public int getDisenioCubosEscalar() {
         return disenioCubosEscalar;
@@ -168,28 +224,6 @@ public class Wppsi48Modelo {
 
     public void setDenominacionesEscalar(int denominacionesEscalar) {
         this.denominacionesEscalar = denominacionesEscalar;
-    }
-
-    public Wppsi48Modelo() {
-    }
-
-    public Wppsi48Modelo(int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) {
-        this.disenioCubosNatural = disenioCubosNatural;
-        this.informacionNatural = informacionNatural;
-        this.semejanzasNatural = semejanzasNatural;
-        this.matricesNatural = matricesNatural;
-        this.vocabularioNatural = vocabularioNatural;
-        this.conceptosConDibujosNatural = conceptosConDibujosNatural;
-        this.busquedaSimbolosNatural = busquedaSimbolosNatural;
-        this.pistasNatural = pistasNatural;
-        this.clavesNatural = clavesNatural;
-        this.comprensionNatural = comprensionNatural;
-        this.figurasIncompletasNatural = figurasIncompletasNatural;
-        this.vocabularioReceptivoNatural = vocabularioReceptivoNatural;
-        this.rompecabezasNatural = rompecabezasNatural;
-        this.denominacionesNatural = denominacionesNatural;
-        this.fechaAplicacion = fechaAplicacion;
-        this.fkBebe = fkBebe;
     }
 
     public int getIdWppsi48() {
@@ -327,6 +361,47 @@ public class Wppsi48Modelo {
     public void setFkBebe(int fkBebe) {
         this.fkBebe = fkBebe;
     }
+
+    public String[] getEquivciv() {
+        return equivciv;
+    }
+
+    public void setEquivciv(String[] equivciv) {
+        this.equivciv = equivciv;
+    }
+
+    public String[] getEquivcie() {
+        return equivcie;
+    }
+
+    public void setEquivcie(String[] equivcie) {
+        this.equivcie = equivcie;
+    }
+
+    public String[] getEquivcvp() {
+        return equivcvp;
+    }
+
+    public void setEquivcvp(String[] equivcvp) {
+        this.equivcvp = equivcvp;
+    }
+
+    public String[] getEquivcit() {
+        return equivcit;
+    }
+
+    public void setEquivcit(String[] equivcit) {
+        this.equivcit = equivcit;
+    }
+
+    public String[] getEquivcgl() {
+        return equivcgl;
+    }
+
+    public void setEquivcgl(String[] equivcgl) {
+        this.equivcgl = equivcgl;
+    }
+    
     
     public int[] setEscalares() throws SQLException{
         int[] res = new int[14];
@@ -345,7 +420,7 @@ public class Wppsi48Modelo {
         } else {
             return null;
         }
-        System.out.println(edad);
+        
         if(edad >= 48 && edad <= 50) res = wcont.naturalesAEscalares4042(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 51 && edad <= 53) res = wcont.naturalesAEscalares4345(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 54 && edad <= 56) res = wcont.naturalesAEscalares4648(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
@@ -376,6 +451,72 @@ public class Wppsi48Modelo {
         this.setDenominacionesEscalar(res[13]);
         
         return res;
+    }
+    
+    public int[] setEquivalentes(boolean dcfi, boolean dcrc, boolean incm, boolean inse, boolean mtfi, boolean mtrc, boolean vccm, boolean vcse, boolean cpfi, boolean cprc, boolean pscm, boolean psse, boolean clbs) {
+        int[] sumas = {0,0,0,0,0};
+        
+        Wppsi48Controller wcont = new Wppsi48Controller();
+        
+        int dc = this.getDisenioCubosEscalar();
+        int in = this.getInformacionEscalar();
+        int mt = this.getMatricesEscalar();
+        int vc = this.getVocabularioEscalar();
+        int cp = this.getConceptosConDibujosEscalar();
+        int bs = this.getBusquedaSimbolosEscalar();
+        int ps = this.getPistasEscalar();
+        int cl = this.getClavesEscalar();
+        int cm = this.getComprensionEscalar();
+        int fi = this.getFigurasIncompletasEscalar();
+        int se = this.getSemejanzasEscalar();
+        int vr = this.getVocabularioReceptivoEscalar();
+        int rc = this.getRompecabezasEscalar();
+        int dn = this.getDenominacionesEscalar();
+        
+        int vcrciv = valorreal(vc,cm,se,vccm,vcse);
+        int inrciv = valorreal(in,cm,se,incm,inse);
+        int psrciv = valorreal(ps,cm,se,pscm,psse);
+        if(vcrciv>0 && inrciv>0 && psrciv > 0) {
+            this.setEquivciv(wcont.equivalentesCIV(vcrciv+inrciv+psrciv));
+            sumas[0] = vcrciv+inrciv+psrciv;
+        }
+        int dcrcie = valorreal(dc,fi,rc,dcfi,dcrc);
+        int mtrcie = valorreal(mt,fi,rc,mtfi,mtrc);
+        int cprcie = valorreal(cp,fi,rc,cpfi,cprc);
+        if(dcrcie>0 && mtrcie>0 && cprcie>0) {
+            this.setEquivcie(wcont.equivalentesCIE(dcrcie + mtrcie + cprcie));
+            sumas[1] = dcrcie + mtrcie + cprcie;
+        }
+        if(bs>0 && cl>0) {
+            this.setEquivcvp(wcont.equivalentesCVP(bs+cl));
+            sumas[2] = bs+cl;
+        }
+        int vcrcit = valorreal(vc,cm,se,vccm,vcse);
+        int inrcit = valorreal(in,cm,se,incm,inse);
+        int psrcit = valorreal(ps,cm,se,pscm,psse);
+        int dcrcit = valorreal(dc,fi,rc,dcfi,dcrc);
+        int mtrcit = valorreal(mt,fi,rc,mtfi,mtrc);
+        int cprcit = valorreal(cp,fi,rc,cpfi,cprc);
+        if(vcrcit>0 && inrcit>0 && psrcit>0 && dcrcit>0 && mtrcit>0 && cprcit>0 && cl>0) { 
+            this.setEquivcit(wcont.equivalentesCIT(vcrcit + inrcit + psrcit + dcrcit + mtrcit + cprcit + cl));
+            sumas[3] = vcrcit + inrcit + psrcit + dcrcit + mtrcit + cprcit + cl;
+        }
+        if(vr>0 && dn>0) {
+            this.setEquivcgl(wcont.equivalentesCGL(vr + dn));
+            sumas[4] = vr + dn;
+        }
+        
+        return sumas;
+    }
+    
+    public int valorreal(int original, int valor1, int valor2, boolean sust1, boolean sust2) {
+        int real = original;
+        if(sust1) {
+            real = valor1;
+        } else if (sust2) {
+            real = valor2;
+        }
+        return real;
     }
     
     public void createWppsi48() throws SQLException {

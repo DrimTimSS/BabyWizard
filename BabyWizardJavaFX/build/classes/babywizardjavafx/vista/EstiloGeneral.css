@@ -4,18 +4,12 @@
 
 
 .root { 
-    -fx-background-color: #E76A07,#FF8D33;
+    -fx-background-color: #B24F00,#FF8D33;
     -fx-background-radius: 0,10;
     -fx-border-radius:10,10;
     
     -fx-background-insets: 0,5;
 }
-/*
-.tree .tree-cell{
-    -fx-font: 14px Tahoma;
-    -fx-background-color: #CFA8FF;
-}
-*/
 
 #record-sales {
     -fx-background-color: 
@@ -39,6 +33,17 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-border-color: #FFA258;
     -fx-border-radius: 10;
+}
+
+#resaltar {
+    -fx-font-weight: bold;
+}
+
+#cabecera {
+    -fx-background-color:  #E76A06;
+}
+#celda {
+    -fx-background-color: #FFA258;
 }
 /*
 #input {

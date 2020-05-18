@@ -50,9 +50,27 @@ public class Wppsi303642Modelo {
         this.rompecabezasNatural = rompecabezasNatural;
         this.denominacionesNatural = denominacionesNatural;
         this.fkBebe = fkBebe;
+        this.vocabularioReceptivoEscalar=0;
+        this.disenioCubosEscalar=0;
+        this.informacionEscalar=0;
+        this.rompecabezasEscalar=0;
+        this.denominacionesEscalar=0;
+        this.equivciv = new String[4];
+        this.equivcie = new String[4];
+        this.equivcit = new String[4];
+        this.equivcgl = new String[4];
     }
 
     public Wppsi303642Modelo() {
+        this.vocabularioReceptivoEscalar=0;
+        this.disenioCubosEscalar=0;
+        this.informacionEscalar=0;
+        this.rompecabezasEscalar=0;
+        this.denominacionesEscalar=0;
+        this.equivciv = new String[4];
+        this.equivcie = new String[4];
+        this.equivcit = new String[4];
+        this.equivcgl = new String[4];
     }
 
     public int getIdWppsi303642() {
@@ -199,7 +217,6 @@ public class Wppsi303642Modelo {
         LinkedList<BebeModelo> bebe = bm.readBebe(this.getFkBebe(), "", "", "", -1, "", -1, -1, "");
         int edad = 0;
         String fecha = "";
-        
         if(bebe.size()>0) {
             fecha = bebe.getFirst().getFechaNacimiento();
             LocalDate fechaApl = LocalDate.parse(this.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -209,13 +226,14 @@ public class Wppsi303642Modelo {
         } else {
             return null;
         }
-        System.out.println(edad);
+        if(edad<30) return null;
         if(edad >= 30 && edad <= 32) res = wcont.naturalesAEscalares2628(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 33 && edad <= 35) res = wcont.naturalesAEscalares29211(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 36 && edad <= 38) res = wcont.naturalesAEscalares3032(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 39 && edad <= 41) res = wcont.naturalesAEscalares3335(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 42 && edad <= 44) res = wcont.naturalesAEscalares3638(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 45 && edad <= 47) res = wcont.naturalesAEscalares39311(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
+        if(edad>47) return null;
         
         this.setVocabularioReceptivoEscalar(res[0]);
         this.setDisenioCubosEscalar(res[1]);
@@ -226,20 +244,33 @@ public class Wppsi303642Modelo {
         return res;
     }
     
-    public int[] setEquivalentes() {
+    public int[] setEquivalentes(boolean sustdn) {
+        int[] sumas = {0,0,0,0};
         
         Wppsi303642Controller wcont = new Wppsi303642Controller();
+        int vr = this.getVocabularioReceptivoEscalar();
+        int in = this.getInformacionEscalar();
+        int dc = this.getDisenioCubosEscalar();
+        int rc = this.getRompecabezasEscalar();
+        int dn = this.getDenominacionesEscalar();
         
-        int civ = this.getVocabularioReceptivoEscalar()+this.getInformacionEscalar();
-        int cie = this.getDisenioCubosEscalar()+this.getRompecabezasEscalar();
-        int cit = this.getVocabularioReceptivoEscalar()+this.getDisenioCubosEscalar()+this.getInformacionEscalar()+this.getRompecabezasEscalar();
-        int cgl = this.getVocabularioReceptivoEscalar()+this.getDenominacionesEscalar();
-        this.setEquivciv(wcont.equivalentesCIV(civ));
-        this.setEquivcie(wcont.equivalentesCIE(cie));
-        this.setEquivcit(wcont.equivalentesCIT(cit));
-        this.setEquivcgl(wcont.equivalentesCGL(cgl));
-        
-        int[] sumas = {civ,cie,cit,cgl};
+        if(sustdn) vr=dn;
+        if(vr>0 && in>0) {
+            this.setEquivciv(wcont.equivalentesCIV(vr+in));
+            sumas[0] = vr+in;
+        }
+        if(dc>0 && rc>0) {
+            this.setEquivcie(wcont.equivalentesCIE(dc+rc));
+            sumas[1] = dc+rc;
+        }
+        if(vr>0 && in>0 && dc>0 && rc>0) {
+            this.setEquivcit(wcont.equivalentesCIT(vr+in+dc+rc));
+            sumas[2] = vr+in+dc+rc;
+        }
+        if(vr>0 && dn>0) { 
+            this.setEquivcgl(wcont.equivalentesCGL(vr+dn));
+            sumas[3] = vr + dn;
+        }
         
         return sumas;
     }

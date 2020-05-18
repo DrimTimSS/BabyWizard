@@ -83,14 +83,14 @@
             </GridPane>
       <TableView fx:id="tablabebes" layoutX="395.0" layoutY="31.0" prefHeight="200.0" prefWidth="732.0">
         <columns>
-          <TableColumn fx:id="idBebe" prefWidth="57.60005187988281" text="ID" />
-          <TableColumn fx:id="nombre" prefWidth="92.79998779296875" text="Nombre" />
-            <TableColumn fx:id="apellidoPaterno" prefWidth="107.20001220703125" text="Apellido Paterno" />
-            <TableColumn fx:id="apellidoMaterno" prefWidth="107.20001220703125" text="Apellido Materno" />
-            <TableColumn fx:id="sexo" prefWidth="36.80010986328125" text="Sexo" />
-            <TableColumn fx:id="fechaNacimiento" prefWidth="123.199951171875" text="Fecha de Nacimiento" />
-            <TableColumn fx:id="meses" prefWidth="75.0" text="Meses" />
-            <TableColumn fx:id="fkUsuario" prefWidth="126.4000122070313" text="Quien registro" />
+          <TableColumn fx:id="idBebe" minWidth="-Infinity" prefWidth="81.0" text="ID" />
+          <TableColumn fx:id="nombre" minWidth="-Infinity" prefWidth="123.0" text="Nombre" />
+            <TableColumn fx:id="apellidoPaterno" minWidth="-Infinity" prefWidth="145.0" text="Apellido P." />
+            <TableColumn fx:id="apellidoMaterno" minWidth="-Infinity" prefWidth="145.0" text="Apellido M." />
+            <TableColumn fx:id="meses" minWidth="-Infinity" prefWidth="120.0" text="Meses" />
+            <TableColumn fx:id="fechaNacimiento" minWidth="-Infinity" prefWidth="150.0" text="Fecha de N." />
+            <TableColumn fx:id="sexo" minWidth="-Infinity" prefWidth="100.0" text="Sexo" />
+            <TableColumn fx:id="fkUsuario" minWidth="-Infinity" prefWidth="165.0" text="Quien registro" />
         </columns>
       </TableView>
       <Separator layoutX="358.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="6.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="358.0" AnchorPane.topAnchor="0.0" />

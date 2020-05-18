@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="894.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BusquedaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="894.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BusquedaController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="384.0" stylesheets="@EstiloGeneral.css">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="384.0" stylesheets="@EstiloGeneral.css">
          <children>
              <GridPane hgap="5.0" layoutX="16.0" layoutY="78.0" prefHeight="284.0" prefWidth="346.0" vgap="5.0">
                <columnConstraints>
@@ -84,7 +84,7 @@
             </GridPane>
             
             
-            <Separator layoutX="382.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="727.0" prefWidth="2.0" />
+            <Separator layoutX="382.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="810.0" prefWidth="4.0" />
             <Label layoutX="55.0" layoutY="380.0" text="Búsqueda socioeconómica">
                <font>
                   <Font size="23.0" />
@@ -139,18 +139,18 @@
             <Separator layoutY="376.0" prefHeight="3.0" prefWidth="384.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="383.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="505.0" stylesheets="@EstiloGeneral.css">
+      <AnchorPane layoutX="383.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="506.0" stylesheets="@EstiloGeneral.css">
          <children>
-            <GridPane hgap="3.0" layoutX="32.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="444.0" vgap="5.0">
+            <GridPane layoutX="32.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="456.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.39995117187502" minWidth="10.0" prefWidth="206.39995117187502" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.199951171875" minWidth="10.0" prefWidth="60.800048828125" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.8000244140625" minWidth="10.0" prefWidth="174.799951171875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.39995117187502" minWidth="10.0" prefWidth="194.4" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="79.19999999999999" minWidth="10.0" prefWidth="79.19999999999999" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="27.599996948242186" minHeight="10.0" prefHeight="21.20000305175781" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="37.20000305175781" minHeight="10.0" prefHeight="25.39999389648438" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="35.80000610351563" minHeight="10.0" prefHeight="31.000000000000007" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="38.79999694824219" minHeight="10.0" prefHeight="34.79999694824219" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="37.20000305175781" minHeight="10.0" prefHeight="26.000009155273432" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="35.80000610351563" minHeight="10.0" prefHeight="30.799990844726565" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="35.000003051757815" minHeight="10.0" prefHeight="22.800009155273443" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="33.19999999999999" minHeight="10.0" prefHeight="23.800006103515614" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="32.599993896484364" minHeight="10.0" prefHeight="23.80000000000001" vgrow="SOMETIMES" />
@@ -163,8 +163,8 @@
                   <RowConstraints maxHeight="53.59995117187498" minHeight="0.6000244140624886" prefHeight="17.999975585937477" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="52.80000000000001" minHeight="0.0" prefHeight="23.00001220703126" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="52.80000000000001" minHeight="0.0" prefHeight="22.99998779296874" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="59.19999999999999" minHeight="0.0" prefHeight="28.000036621093727" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="36.79998779296875" minHeight="0.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="59.19999999999999" minHeight="0.0" prefHeight="24.00001220703126" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="44.80000000000001" minHeight="0.0" prefHeight="20.79998779296875" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Label text="Peso al nacer" />
@@ -178,24 +178,24 @@
                         <TextField fx:id="pesobusqueda2" promptText="0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="26.0" prefWidth="108.0" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="108.0" GridPane.rowIndex="1">
                      <children>
                         <Label text="Apgar 1">
                            <HBox.margin>
                               <Insets right="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="apgar1busqueda" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="75.0" />
+                        <ComboBox fx:id="apgar1busqueda" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="75.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="26.0" prefWidth="108.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="108.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label text="Apgar 2">
                            <HBox.margin>
                               <Insets right="10.0" top="5.0" />
                            </HBox.margin>
                         </Label>
-                        <ComboBox fx:id="apgar2busqueda" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="75.0" />
+                        <ComboBox fx:id="apgar2busqueda" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="75.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -367,7 +367,7 @@
                         <TextField fx:id="pasistenciabusqueda" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
                      </children>
                   </HBox>
-                  <Button fx:id="btnbuscar4" mnemonicParsing="false" onAction="#buscarSociodemografico" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="16" />
+                  <Button fx:id="btnbuscar4" alignment="CENTER" mnemonicParsing="false" onAction="#buscarSociodemografico" text="Buscar" GridPane.columnIndex="2" GridPane.rowIndex="16" />
                   <Label text="Gestación:" GridPane.rowIndex="2" />
                   <Label text="Problemas al nacer:" GridPane.rowIndex="3" />
                   <Label text="Problemas de salud:" GridPane.rowIndex="4" />
@@ -383,13 +383,13 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Separator layoutX="-3.0" layoutY="558.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="521.0" />
-            <Label layoutX="129.0" layoutY="560.0" text="Búsqueda por Prueba">
+            <Separator layoutX="-7.0" layoutY="609.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="521.0" />
+            <Label layoutX="129.0" layoutY="629.0" text="Búsqueda por Prueba">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <GridPane layoutX="61.0" layoutY="594.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="414.0" vgap="10.0">
+            <GridPane layoutX="61.0" layoutY="663.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="414.0" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.99993896484375" minWidth="10.0" prefWidth="166.8" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.99993896484375" minWidth="10.0" prefWidth="167.80002441406253" />

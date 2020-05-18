@@ -5,11 +5,33 @@
  */
 package babywizardjavafx.controlador;
 
+import babywizardjavafx.modelo.Wppsi303642Modelo;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -20,14 +42,103 @@ public class Wppsi303642Controller implements Initializable {
     
     int idbebe;
     @FXML
-    private Label idbebecito;
+    private TextField vrn;
+    @FXML
+    private TextField dcn;
+    @FXML
+    private TextField inn;
+    @FXML
+    private TextField rcn;
+    @FXML
+    private TextField dnn;
+    @FXML
+    private Button calcular;
+    @FXML
+    private CheckBox sust;
+    @FXML
+    private Label vre;
+    @FXML
+    private Label dce;
+    @FXML
+    private Label ine;
+    @FXML
+    private Label rce;
+    @FXML
+    private Label dne;
+    @FXML
+    private DatePicker fechaaplic;
+    @FXML
+    private Label sumaciv;
+    @FXML
+    private Label sumacie;
+    @FXML
+    private Label sumacit;
+    @FXML
+    private Label sumacgl;
+    @FXML
+    private Label compciv;
+    @FXML
+    private Label compcie;
+    @FXML
+    private Label compcit;
+    @FXML
+    private Label compcgl;
+    @FXML
+    private Label rpciv;
+    @FXML
+    private Label rpcie;
+    @FXML
+    private Label rpcit;
+    @FXML
+    private Label rpcgl;
+    @FXML
+    private Label ic1civ;
+    @FXML
+    private Label ic1cie;
+    @FXML
+    private Label ic1cit;
+    @FXML
+    private Label ic1cgl;
+    @FXML
+    private Label ic2civ;
+    @FXML
+    private Label ic2cie;
+    @FXML
+    private Label ic2cit;
+    @FXML
+    private Label ic2cgl;
+    @FXML
+    private Button agregar;
+    @FXML
+    private GridPane grid;
+    
+    Wppsi303642Modelo wm;
+    
+    
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        agregar.setOnKeyPressed(new EventHandler<KeyEvent>()
+    {
+        @Override
+        public void handle(KeyEvent ke)
+        {
+            if (ke.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    agregar(null);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    });
     }
     
     //Estas son las funciones que pasan las puntuaciones naturales a puntuaciones escalares usando las tablas
@@ -133,7 +244,7 @@ public class Wppsi303642Controller implements Initializable {
         int[] nc952= {56,60,63,66,69,73,76,79,82,85,88,90,92,96,99,102,104,106,108,110,112,114,117,119,123,126,129,131,135,138,141,144,146,149,152,155,158};
         
         for(int i=0;i<2;i++){
-            civs[i][0] = civ[i]+"";//string ñero
+            civs[i][0] = civ[i]+"";
             civs[i][1] = "<"+rp[i]+"";
             civs[i][2] = nc901[i]+"-"+nc902[i];
             civs[i][3] = nc951[i]+"-"+nc952[i];
@@ -267,8 +378,107 @@ public class Wppsi303642Controller implements Initializable {
     
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
-        System.out.println(idbebe);
-        //idbebecito.setText(String.valueOf(this.idbebe));
+    }
+
+    @FXML
+    private void calcular(ActionEvent event) throws SQLException {
+        
+        clear();
+        wm = new Wppsi303642Modelo();
+        int vr = (vrn.getText().equals(""))?-1:Integer.parseInt(vrn.getText());
+        int dc = (dcn.getText().equals(""))?-1:Integer.parseInt(dcn.getText());
+        int in = (inn.getText().equals(""))?-1:Integer.parseInt(inn.getText());
+        int rc = (rcn.getText().equals(""))?-1:Integer.parseInt(rcn.getText());
+        int dn = (dnn.getText().equals(""))?-1:Integer.parseInt(dnn.getText());
+        
+        try{
+        String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        wm.setFkBebe(idbebe);
+        wm.setVocabularioReceptivoNatural(vr);
+        wm.setDisenioCubosNatural(dc);
+        wm.setInformacionNatural(in);
+        wm.setRompecabezasNatural(rc);
+        wm.setDenominacionesNatural(dn);
+        wm.setFechaAplicacion(fechan);
+        wm.setEscalares();
+        
+        int[] sumas = wm.setEquivalentes(sust.isSelected());
+        vre.setText(wm.getVocabularioReceptivoEscalar()+"");
+        dce.setText(wm.getDisenioCubosEscalar()+"");
+        ine.setText(wm.getInformacionEscalar()+"");
+        rce.setText(wm.getRompecabezasEscalar()+"");
+        dne.setText(wm.getDenominacionesEscalar()+"");
+        sumaciv.setText(sumas[0]+"");
+        sumacie.setText(sumas[1]+"");
+        sumacit.setText(sumas[2]+"");
+        sumacgl.setText(sumas[3]+"");
+        compciv.setText(wm.getEquivciv()[0]);
+        rpciv.setText(wm.getEquivciv()[1]);
+        ic1civ.setText(wm.getEquivciv()[2]);
+        ic2civ.setText(wm.getEquivciv()[3]);
+        compcie.setText(wm.getEquivcie()[0]);
+        rpcie.setText(wm.getEquivcie()[1]);
+        ic1cie.setText(wm.getEquivcie()[2]);
+        ic2cie.setText(wm.getEquivcie()[3]);
+        compcit.setText(wm.getEquivcit()[0]);
+        rpcit.setText(wm.getEquivcit()[1]);
+        ic1cit.setText(wm.getEquivcit()[2]);
+        ic2cit.setText(wm.getEquivcit()[3]);
+        compcgl.setText(wm.getEquivcgl()[0]);
+        rpcgl.setText(wm.getEquivcgl()[1]);
+        ic1cgl.setText(wm.getEquivcgl()[2]);
+        ic2cgl.setText(wm.getEquivcgl()[3]);
+       
+        } catch (Exception e) {}
+        
+    }
+
+    @FXML
+    private void agregar(ActionEvent event) throws SQLException, IOException {
+        if(wm==null) return; //Poner mensaje si se quiere
+        wm.createWppsi303642();
+        Stage actualWindow = (Stage) grid.getScene().getWindow();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
+                    Parent root = (Parent) loader.load();
+                    JMetro jmetro = new JMetro(Style.LIGHT);
+                    jmetro.setParent(root);
+                    CreadoExitosamenteController cec = loader.getController();
+                    cec.queEsCreado("Infante Registrado Exitosamente.");
+                    Scene exito = new Scene(root);
+                    actualWindow.setScene(exito);
+                    Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                    actualWindow.getIcons().add(image);
+                    actualWindow.setTitle("Exito");
+                    actualWindow.show();
+                    actualWindow.centerOnScreen();
+    }
+
+    private void clear() {
+        vre.setText("");
+        dce.setText("");
+        ine.setText("");
+        rce.setText("");
+        dne.setText("");
+        sumaciv.setText("0");
+        sumacie.setText("0");
+        sumacit.setText("0");
+        sumacgl.setText("0");
+        compciv.setText("");
+        compcie.setText("");
+        compcit.setText("");
+        compcgl.setText("");
+        rpciv.setText("");
+        rpcie.setText("");
+        rpcit.setText("");
+        rpcgl.setText("");
+        ic1civ.setText("");
+        ic1cie.setText("");
+        ic1cit.setText("");
+        ic1cgl.setText("");
+        ic2civ.setText("");
+        ic2cie.setText("");
+        ic2cit.setText("");
+        ic2cgl.setText("");
     }
 
     

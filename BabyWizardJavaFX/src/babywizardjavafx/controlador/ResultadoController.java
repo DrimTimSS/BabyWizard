@@ -13,6 +13,7 @@ import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -39,9 +40,7 @@ import javafx.scene.layout.GridPane;
  */
 public class ResultadoController implements Initializable {
     
-    //Arbol para creacion de tablas
-    @FXML
-    private TreeView<String> tree;
+
     //Ids bebes que entran por la busqueda
     LinkedList<Integer> ids;
     
@@ -206,43 +205,33 @@ public class ResultadoController implements Initializable {
     ObservableList<LecturaConjuntaModelo> listaLC = FXCollections.observableArrayList();
     @FXML
     private TableView<?> resultadoswppsi30;
+    @FXML
+    private Button exportar;
+    @FXML
+    private Button atras;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        CheckBoxTreeItem root = new CheckBoxTreeItem<>("Todo");
         
-        CheckBoxTreeItem infante = new CheckBoxTreeItem<>("Infante");
-        CheckBoxTreeItem cuidador = new CheckBoxTreeItem<>("Cuidador");
-        CheckBoxTreeItem sociodemografico = new CheckBoxTreeItem<>("Sociodemográfico");
-        CheckBoxTreeItem socioeconomico = new CheckBoxTreeItem<>("Socioeconómico");
-        CheckBoxTreeItem pruebas = new CheckBoxTreeItem<>("Pruebas");
         
-        tree = new TreeView<>();
-        tree.getStyleClass().add("tree");
-        root.getChildren().addAll(infante,cuidador,sociodemografico,socioeconomico,pruebas);
-        tree.setRoot(root);
-        root.setExpanded(true);
-        
-        tree.setCellFactory(CheckBoxTreeCell.<String>forTreeView());
-        
-        grid.getChildren().add(tree);
+
         
         resultadosbebe.setTableMenuButtonVisible(true);
         resultadoscuidador.setTableMenuButtonVisible(true);
         resultadossd.setTableMenuButtonVisible(true);
         resultadosexpcab.setTableMenuButtonVisible(true);
         resultadoslc.setTableMenuButtonVisible(true);
+        
     }    
 
     @FXML
     private void exportar(ActionEvent event) {
     }
 
-    @FXML
-    private void crearTablas(ActionEvent event) {
+    private void crearTablas() {
         resultadosbebe.getItems().clear();
         resultadoscuidador.getItems().clear();
         resultadossd.getItems().clear();
@@ -420,6 +409,11 @@ public class ResultadoController implements Initializable {
     
     public void meterIds(LinkedList<Integer> ids){
         this.ids = ids;
+        crearTablas();
+    }
+
+    @FXML
+    private void atras(ActionEvent event) {
     }
     
 }
