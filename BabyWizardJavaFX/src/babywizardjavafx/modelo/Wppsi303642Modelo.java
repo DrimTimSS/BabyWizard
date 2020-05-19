@@ -210,7 +210,7 @@ public class Wppsi303642Modelo {
     }
     
     
-    public int[] setEscalares() throws SQLException{
+    public boolean setEscalares() throws SQLException{
         int[] res = new int[5];
         Wppsi303642Controller wcont = new Wppsi303642Controller();
         BebeModelo bm = new BebeModelo();
@@ -224,16 +224,16 @@ public class Wppsi303642Modelo {
             Period tiempo = Period.between(fechaNac, fechaApl);
             edad = tiempo.getMonths()+(tiempo.getYears()*12);
         } else {
-            return null;
+            return false;
         }
-        if(edad<30) return null;
+        if(edad<30) return false;
         if(edad >= 30 && edad <= 32) res = wcont.naturalesAEscalares2628(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 33 && edad <= 35) res = wcont.naturalesAEscalares29211(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 36 && edad <= 38) res = wcont.naturalesAEscalares3032(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 39 && edad <= 41) res = wcont.naturalesAEscalares3335(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 42 && edad <= 44) res = wcont.naturalesAEscalares3638(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 45 && edad <= 47) res = wcont.naturalesAEscalares39311(this.getVocabularioReceptivoNatural(), this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
-        if(edad>47) return null;
+        if(edad>47) return false;
         
         this.setVocabularioReceptivoEscalar(res[0]);
         this.setDisenioCubosEscalar(res[1]);
@@ -241,7 +241,7 @@ public class Wppsi303642Modelo {
         this.setRompecabezasEscalar(res[3]);
         this.setDenominacionesEscalar(res[4]);
         
-        return res;
+        return true;
     }
     
     public int[] setEquivalentes(boolean sustdn) {

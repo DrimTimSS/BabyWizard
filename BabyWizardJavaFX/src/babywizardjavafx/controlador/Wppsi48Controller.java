@@ -6,19 +6,27 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.Wppsi48Modelo;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -168,12 +176,14 @@ public class Wppsi48Controller implements Initializable {
     private Label sumacit;
     @FXML
     private Label sumacgl;
+    
+    boolean creable;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        wm = new Wppsi48Modelo();
+        creable = false;
     }    
       
     public int[] naturalesAEscalares4042(int dc, int in, int mt,int vb, int cd, int bs, int ps, int cl, int cm, int fi, int se, int vr, int rc, int dn){
@@ -771,7 +781,7 @@ public class Wppsi48Controller implements Initializable {
         int rc = (rcn.getText().equals(""))?-1:Integer.parseInt(rcn.getText());
         int dn = (dnn.getText().equals(""))?-1:Integer.parseInt(dnn.getText());
         
-        
+        try{
         String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         wm.setFkBebe(idbebe);
         wm.setDisenioCubosNatural(dc);
@@ -789,7 +799,7 @@ public class Wppsi48Controller implements Initializable {
         wm.setRompecabezasNatural(rc);
         wm.setDenominacionesNatural(dn);
         wm.setFechaAplicacion(fechan);
-        wm.setEscalares();
+        creable = wm.setEscalares();
         
         int[] sumas = wm.setEquivalentes(cpfi.isSelected(), dcrc.isSelected(), incm.isSelected(), inse.isSelected(), cpfi.isSelected(), mtrc.isSelected(), vccm.isSelected(), vcse.isSelected(), cpfi.isSelected(), cprc.isSelected(), pscm.isSelected(), psse.isSelected(), clbs.isSelected());
         
@@ -832,9 +842,28 @@ public class Wppsi48Controller implements Initializable {
         rpcgl.setText(wm.getEquivcgl()[1]);
         ic1cgl.setText(wm.getEquivcgl()[2]);
         ic2cgl.setText(wm.getEquivcgl()[3]);
+        } catch (Exception e) {
+            creable = false;
+        }
     }
 
     @FXML
-    private void agregar(ActionEvent event) {
+    private void agregar(ActionEvent event) throws SQLException, IOException {
+        if(wm==null || creable == false) return; //Poner mensaje si se quiere
+        wm.createWppsi48();
+        Stage actualWindow = (Stage) dcn.getScene().getWindow();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
+                    Parent root = (Parent) loader.load();
+                    JMetro jmetro = new JMetro(Style.LIGHT);
+                    jmetro.setParent(root);
+                    CreadoExitosamenteController cec = loader.getController();
+                    cec.queEsCreado("Infante Registrado Exitosamente.");
+                    Scene exito = new Scene(root);
+                    actualWindow.setScene(exito);
+                    Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                    actualWindow.getIcons().add(image);
+                    actualWindow.setTitle("Exito");
+                    actualWindow.show();
+                    actualWindow.centerOnScreen();
     }
 }

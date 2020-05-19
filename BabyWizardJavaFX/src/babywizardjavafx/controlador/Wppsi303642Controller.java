@@ -114,6 +114,7 @@ public class Wppsi303642Controller implements Initializable {
     
     Wppsi303642Modelo wm;
     
+    boolean creable;
     
     
 
@@ -139,6 +140,7 @@ public class Wppsi303642Controller implements Initializable {
             }
         }
     });
+        creable = false;
     }
     
     //Estas son las funciones que pasan las puntuaciones naturales a puntuaciones escalares usando las tablas
@@ -400,7 +402,7 @@ public class Wppsi303642Controller implements Initializable {
         wm.setRompecabezasNatural(rc);
         wm.setDenominacionesNatural(dn);
         wm.setFechaAplicacion(fechan);
-        wm.setEscalares();
+        creable = wm.setEscalares();
         
         int[] sumas = wm.setEquivalentes(sust.isSelected());
         vre.setText(wm.getVocabularioReceptivoEscalar()+"");
@@ -429,13 +431,15 @@ public class Wppsi303642Controller implements Initializable {
         ic1cgl.setText(wm.getEquivcgl()[2]);
         ic2cgl.setText(wm.getEquivcgl()[3]);
        
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            creable = false;
+        }
         
     }
 
     @FXML
     private void agregar(ActionEvent event) throws SQLException, IOException {
-        if(wm==null) return; //Poner mensaje si se quiere
+        if(wm==null || creable ==false) return; //Poner mensaje si se quiere
         wm.createWppsi303642();
         Stage actualWindow = (Stage) grid.getScene().getWindow();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));

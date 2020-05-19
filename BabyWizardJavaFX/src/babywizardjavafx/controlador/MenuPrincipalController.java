@@ -167,4 +167,18 @@ public class MenuPrincipalController implements Initializable {
                 mainWindow.setTitle("Agregar Prueba");
                 mainWindow.show();
     }
+
+    @FXML
+    private void editar(ActionEvent event) throws IOException {
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Editar.fxml"));
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);     
+                Stage mainWindow = new Stage();
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                mainWindow.getIcons().add(image);
+                mainWindow.setScene(menuPrincipalScene);
+                mainWindow.setTitle("Editar");
+                mainWindow.show();
+    }
 }
