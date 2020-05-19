@@ -403,7 +403,7 @@ public class Wppsi48Modelo {
     }
     
     
-    public int[] setEscalares() throws SQLException{
+    public boolean setEscalares() throws SQLException{
         int[] res = new int[14];
         Wppsi48Controller wcont = new Wppsi48Controller();
         BebeModelo bm = new BebeModelo();
@@ -418,9 +418,10 @@ public class Wppsi48Modelo {
             Period tiempo = Period.between(fechaNac, fechaApl);
             edad = tiempo.getMonths()+(tiempo.getYears()*12);
         } else {
-            return null;
+            return false;
         }
         
+        if(edad<48) return false;
         if(edad >= 48 && edad <= 50) res = wcont.naturalesAEscalares4042(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 51 && edad <= 53) res = wcont.naturalesAEscalares4345(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 54 && edad <= 56) res = wcont.naturalesAEscalares4648(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
@@ -450,7 +451,7 @@ public class Wppsi48Modelo {
         this.setRompecabezasEscalar(res[12]);
         this.setDenominacionesEscalar(res[13]);
         
-        return res;
+        return true;
     }
     
     public int[] setEquivalentes(boolean dcfi, boolean dcrc, boolean incm, boolean inse, boolean mtfi, boolean mtrc, boolean vccm, boolean vcse, boolean cpfi, boolean cprc, boolean pscm, boolean psse, boolean clbs) {
