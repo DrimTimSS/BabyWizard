@@ -420,7 +420,7 @@ public class Wppsi48Modelo {
         } else {
             return false;
         }
-        
+        System.out.println(edad);
         if(edad<48) return false;
         if(edad >= 48 && edad <= 50) res = wcont.naturalesAEscalares4042(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 51 && edad <= 53) res = wcont.naturalesAEscalares4345(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());

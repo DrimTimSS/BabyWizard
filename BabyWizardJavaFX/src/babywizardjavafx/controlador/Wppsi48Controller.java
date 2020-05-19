@@ -229,7 +229,7 @@ public class Wppsi48Controller implements Initializable {
         int[] conBS = {4, 6, 7, 8, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 18, 18, 18, 18, 19, 19, 19, 19};
         int[] conPS = {3, 5, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 19, 19};
         int[] conCL = {3, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 19, 19, 19, 19};
-        int[] conCM = {4, 6, 7, 8, 8, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 13, 13, 14, 14, 14, 15, 15, 16, 16, 16, 16, 17, 17, 17, 18, 18, 18, 19, 19, 19, 19, 19};
+        int[] conCM = {4, 6, 7, 8, 8, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 16, 16, 16, 16, 17, 17, 17, 18, 18, 18, 19, 19, 19, 19, 19};
         int[] conFI = {1, 3, 4, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19};
         int[] conSE = {5, 6, 7, 7, 8, 8, 9, 9, 9, 10, 10, 10, 10, 10, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 15, 15, 15, 16, 16, 16, 17, 17, 17, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19};
         int[] conVR = {1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 7, 7, 8, 8, 9, 9, 9, 10, 10, 11, 11, 12, 13, 13, 14, 15, 16, 17, 18, 19, 19, 19};
@@ -256,7 +256,7 @@ public class Wppsi48Controller implements Initializable {
         int[] ptsEsc = new int[14];
         int[] conDC = {1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 11, 11, 12, 13, 13, 14, 15, 16, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19};
         int[] conIN = {1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 6, 7, 8, 8, 9, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 19, 19, 19};
-        int[] conMT = {1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 16, 16, 17, 17, 17, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19};
+        int[] conMT = {1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10, 11, 11, 12, 12, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 19, 19};
         int[] conVB = {1, 2, 2, 3, 4, 5, 5, 6, 6, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 15, 16, 16, 17, 17, 17, 17, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19};
         int[] conCD = {2, 4, 5, 6, 7, 7, 8, 9, 9, 10, 10, 11, 11, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 19};
         int[] conBS = {4, 6, 7, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 18, 18, 18, 18, 19, 19, 19};
@@ -764,6 +764,7 @@ public class Wppsi48Controller implements Initializable {
 
     @FXML
     private void calcular(ActionEvent event) throws SQLException {
+        clear();
         wm = new Wppsi48Modelo();
         
         int dc = (dcn.getText().equals(""))?-1:Integer.parseInt(dcn.getText());
@@ -845,6 +846,48 @@ public class Wppsi48Controller implements Initializable {
         } catch (Exception e) {
             creable = false;
         }
+    }
+    
+    public void clear() {
+        dce.setText("");
+        ine.setText("");
+        mte.setText("");
+        vce.setText("");
+        cpe.setText("");
+        bse.setText("");
+        pse.setText("");
+        cle.setText("");
+        cme.setText("");
+        fie.setText("");
+        see.setText("");
+        vre.setText("");
+        rce.setText("");
+        dne.setText("");
+        sumaciv.setText("0");
+        sumacie.setText("0");
+        sumacvp.setText("0");
+        sumacit.setText("0");
+        sumacgl.setText("0");
+        compciv.setText("");
+        compcie.setText("");
+        compcvp.setText("");
+        compcit.setText("");
+        compcgl.setText("");
+        rpciv.setText("");
+        rpcie.setText("");
+        rpcvp.setText("");
+        rpcit.setText("");
+        rpcgl.setText("");
+        ic1civ.setText("");
+        ic1cie.setText("");
+        ic1cvp.setText("");
+        ic1cit.setText("");
+        ic1cgl.setText("");
+        ic2civ.setText("");
+        ic2cie.setText("");
+        ic2cvp.setText("");
+        ic2cit.setText("");
+        ic2cgl.setText("");
     }
 
     @FXML
