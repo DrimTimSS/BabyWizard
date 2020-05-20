@@ -31,6 +31,8 @@ public class Wppsi303642Modelo {
     int denominacionesNatural;
     int fkBebe;
     
+    int sustdn;
+    
     int vocabularioReceptivoEscalar;
     int disenioCubosEscalar;
     int informacionEscalar;
@@ -129,6 +131,14 @@ public class Wppsi303642Modelo {
         this.fkBebe = fkBebe;
     }
 
+    public int getSustdn() {
+        return sustdn;
+    }
+
+    public void setSustdn(int sustdn) {
+        this.sustdn = sustdn;
+    }
+
     public int getVocabularioReceptivoEscalar() {
         return vocabularioReceptivoEscalar;
     }
@@ -180,6 +190,18 @@ public class Wppsi303642Modelo {
     public String[] getEquivciv() {
         return equivciv;
     }
+    public String getCiv0() {
+        return equivciv[0];
+    }
+    public String getCiv1() {
+        return equivciv[1];
+    }
+    public String getCiv2() {
+        return equivciv[2];
+    }
+    public String getCiv3() {
+        return equivciv[3];
+    }
 
     public void setEquivciv(String[] equivciv) {
         this.equivciv = equivciv;
@@ -187,6 +209,18 @@ public class Wppsi303642Modelo {
 
     public String[] getEquivcie() {
         return equivcie;
+    }
+    public String getCie0() {
+        return equivcie[0];
+    }
+    public String getCie1() {
+        return equivcie[1];
+    }
+    public String getCie2() {
+        return equivcie[2];
+    }
+    public String getCie3() {
+        return equivcie[3];
     }
 
     public void setEquivcie(String[] equivcie) {
@@ -196,6 +230,18 @@ public class Wppsi303642Modelo {
     public String[] getEquivcit() {
         return equivcit;
     }
+    public String getCit0() {
+        return equivcit[0];
+    }
+    public String getCit1() {
+        return equivcit[1];
+    }
+    public String getCit2() {
+        return equivcit[2];
+    }
+    public String getCit3() {
+        return equivcit[3];
+    }
 
     public void setEquivcit(String[] equivcit) {
         this.equivcit = equivcit;
@@ -203,6 +249,18 @@ public class Wppsi303642Modelo {
 
     public String[] getEquivcgl() {
         return equivcgl;
+    }
+    public String getCgl0() {
+        return equivcgl[0];
+    }
+    public String getCgl1() {
+        return equivcgl[1];
+    }
+    public String getCgl2() {
+        return equivcgl[2];
+    }
+    public String getCgl3() {
+        return equivcgl[3];
     }
 
     public void setEquivcgl(String[] equivcgl) {
@@ -244,7 +302,7 @@ public class Wppsi303642Modelo {
         return true;
     }
     
-    public int[] setEquivalentes(boolean sustdn) {
+    public int[] setEquivalentes() {
         int[] sumas = {0,0,0,0};
         
         Wppsi303642Controller wcont = new Wppsi303642Controller();
@@ -254,7 +312,7 @@ public class Wppsi303642Modelo {
         int rc = this.getRompecabezasEscalar();
         int dn = this.getDenominacionesEscalar();
         
-        if(sustdn) vr=dn;
+        if(sustdn==1) vr=dn;
         if(vr>0 && in>0) {
             this.setEquivciv(wcont.equivalentesCIV(vr+in));
             sumas[0] = vr+in;
@@ -267,10 +325,10 @@ public class Wppsi303642Modelo {
             this.setEquivcit(wcont.equivalentesCIT(vr+in+dc+rc));
             sumas[2] = vr+in+dc+rc;
         }
-        if(vr>0 && dn>0) { 
+        if(vr>0 && dn>0 && sustdn!=1) { 
             this.setEquivcgl(wcont.equivalentesCGL(vr+dn));
             sumas[3] = vr + dn;
-        }
+        } 
         
         return sumas;
     }
@@ -279,8 +337,8 @@ public class Wppsi303642Modelo {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
-        query = "INSERT INTO `babywizard`.`wppsi303642` (`vocabularioReceptivoNatural`, `disenioCubosNatural`, `informacionNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fechaAplicacion`, `fkBebe`) "
-                + "VALUES ('"+this.getVocabularioReceptivoNatural()+"', '"+this.getDisenioCubosNatural()+"', '"+this.getInformacionNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"',  '"+this.getFechaAplicacion()+"', '"+this.getFkBebe()+"');";
+        query = "INSERT INTO `babywizard`.`wppsi303642` (`vocabularioReceptivoNatural`, `disenioCubosNatural`, `informacionNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fechaAplicacion`, `fkBebe`, `sustdn`) "
+                + "VALUES ('"+this.getVocabularioReceptivoNatural()+"', '"+this.getDisenioCubosNatural()+"', '"+this.getInformacionNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"',  '"+this.getFechaAplicacion()+"', '"+this.getFkBebe()+"', '"+this.getSustdn()+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -292,7 +350,7 @@ public class Wppsi303642Modelo {
         con.close();
     }
     
-    public LinkedList<Wppsi303642Modelo> readWppsi303642(int idWppsi303642, int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) throws SQLException {
+    public LinkedList<Wppsi303642Modelo> readWppsi303642(int idWppsi303642, int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe, int sustdn) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -304,6 +362,7 @@ public class Wppsi303642Modelo {
         if(denominacionesNatural > -1) toRead.add("denominacionesNatural = '"+denominacionesNatural+"'");
         if(!"".equals(fechaAplicacion)) toRead.add("fechaAplicacion = '"+fechaAplicacion+"'");
         if(fkBebe > -1) toRead.add("fkBebe = '"+fkBebe+"'");
+        if(sustdn == 0 || sustdn == 1) toRead.add("sustdn = '"+sustdn+"'");
         String query1 = "SELECT * FROM babywizard.wppsi303642 WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
@@ -329,13 +388,14 @@ public class Wppsi303642Modelo {
             wm.setRompecabezasNatural(rs.getInt("rompecabezasNatural"));
             wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivoNatural"));
             wm.setFechaAplicacion(rs.getString("fechaAplicacion"));
+            wm.setSustdn(rs.getInt("sustdn"));
             wppsis.add(wm);
         }
         con.close();
         return wppsis;
     }
     
-    public void updateWppsi303642(int idWppsi303642Actualizar, int idWppsi303642, int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) throws SQLException {
+    public void updateWppsi303642(int idWppsi303642Actualizar, int idWppsi303642, int vocabularioReceptivoNatural, int disenioCubosNatural, int informacionNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe, int sustdn) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -370,6 +430,10 @@ public class Wppsi303642Modelo {
         if (fkBebe > -1) {
            String fkBebeQ = "`fkBebe` = '"+fkBebe+"'";
            toUpdate.add(fkBebeQ);
+        }
+        if (sustdn == 0 || sustdn == 1) {
+           String sustdnQ = "`sustdn` = '"+sustdn+"'";
+           toUpdate.add(sustdnQ);
         }
       
         String query1 = "UPDATE `babywizard`.`wppsi303642` SET ";

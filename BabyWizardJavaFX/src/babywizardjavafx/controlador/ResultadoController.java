@@ -11,6 +11,7 @@ import babywizardjavafx.modelo.ExperimentoCabinaModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
+import babywizardjavafx.modelo.Wppsi303642Modelo;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -203,27 +204,95 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<LecturaConjuntaModelo,Integer> ininteligiblelc;
     ObservableList<LecturaConjuntaModelo> listaLC = FXCollections.observableArrayList();
+    
     @FXML
-    private TableView<?> resultadoswppsi30;
+    private TableView<Wppsi303642Modelo> resultadoswppsi30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> idinfantew30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> vrnw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> vrew30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> dcnw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> dcew30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> innw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> inew30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> rcnw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> rcew30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> dnnw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, Integer> dnew30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> civw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> civrpw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> civnc90w30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> civnc95w30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> ciew30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> cierpw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> cienc90w30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> cienc95w30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> citw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> citrpw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> citnc90w30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> citnc95w30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> cglw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> cglrpw30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> cglnc90w30;
+    @FXML
+    private TableColumn<Wppsi303642Modelo, String> cglnc95w30;
+    ObservableList<Wppsi303642Modelo> listaWppsi303642 = FXCollections.observableArrayList();
+    
     @FXML
     private Button exportar;
     @FXML
     private Button atras;
-    
+    boolean flaginf;
+    boolean flagcuid;
+    boolean flagsd;
+    boolean flaglc;
+    boolean flagexpc;
+    boolean flagw30;
+    boolean flagw48;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        
-        
-
+        flaginf = false;
+        flagcuid = false;
+        flagsd = false;
+        flaglc = false;
+        flagexpc = false;
+        flagw30 = false;
+        flagw48 = false;    
         
         resultadosbebe.setTableMenuButtonVisible(true);
         resultadoscuidador.setTableMenuButtonVisible(true);
         resultadossd.setTableMenuButtonVisible(true);
         resultadosexpcab.setTableMenuButtonVisible(true);
         resultadoslc.setTableMenuButtonVisible(true);
+        resultadoswppsi30.setTableMenuButtonVisible(true);
         
     }    
 
@@ -231,11 +300,16 @@ public class ResultadoController implements Initializable {
     private void exportar(ActionEvent event) {
     }
 
-    private void crearTablas() {
-        resultadosbebe.getItems().clear();
-        resultadoscuidador.getItems().clear();
-        resultadossd.getItems().clear();
-        //Infante
+    @FXML
+    private void showInfante(ActionEvent event) {
+        resultadosbebe.toFront();
+        if(!flaginf) {
+            crearTablaInf();
+            flaginf=true;
+        }
+    }
+    
+    private void crearTablaInf(){
         try {
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = new LinkedList<BebeModelo>();
@@ -252,11 +326,22 @@ public class ResultadoController implements Initializable {
             resmeses.setCellValueFactory(new PropertyValueFactory<>("edad"));
             resusuario.setCellValueFactory(new PropertyValueFactory<>("fkUsuario"));
             resultadosbebe.setItems(listaBebes);
-            //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
+            //resultadosbebe.getColumns().addAll(resid,resnombre,resapellidop,resapellidom,ressexo,resfechan,resusuario);
         } catch (SQLException ex) {
             Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Cuidador
+    }
+
+    @FXML
+    private void showCuidador(ActionEvent event) {
+        resultadoscuidador.toFront();
+        if(!flagcuid) {
+            crearTablaCuid();
+            flagcuid=true;
+        }
+    }
+    
+    private void crearTablaCuid() {
         try {
             CuidadorModelo cm = new CuidadorModelo();
             LinkedList<CuidadorModelo> resultados = new LinkedList<CuidadorModelo>();
@@ -276,12 +361,22 @@ public class ResultadoController implements Initializable {
             resaniosestudio.setCellValueFactory(new PropertyValueFactory<>("aniosEstudio"));
             residbebec.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
             resultadoscuidador.setItems(listaCuidadores);
-            //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
+            //resultadoscuidador.getColumns().addAll(residc,resnombrec,resapellidopc,resapellidomc,resocupacion,resfechanc,restelefono1,restelefono2,resaniosestudio,residbebec);
         } catch (SQLException ex) {
             Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        //sociodem socioec
+    }
+
+    @FXML
+    private void showSociode(ActionEvent event) {
+        resultadossd.toFront();
+        if(!flagsd) {
+            crearTablaSociode();
+            flagsd=true;
+        }
+    }
+    
+    private void crearTablaSociode() {
         try {
             SociodemograficoModelo sm = new SociodemograficoModelo();
             LinkedList<SociodemograficoModelo> resultados = new LinkedList<>();
@@ -316,12 +411,22 @@ public class ResultadoController implements Initializable {
             nsesd.setCellValueFactory(new PropertyValueFactory<>("nse"));
             puntajecrudosd.setCellValueFactory(new PropertyValueFactory<>("puntajeCrudo"));
             resultadossd.setItems(listaSD);
-            //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
+            //resultadossd.getColumns().addAll(idinfantesd,fechacitasd,gestacionsd,semnacsd,apgar1sd,apgar2sd,pesosd,prnacsd,prsaludsd,praudsd,prvissd,otroidiomasd,hermsd,lugocupasd,adultossd,niniossd,cuidprincsd,guarderiasd,mesesgsd,horasasistegsd,preescolarsd,mesespsd,horasasistepsd,observacionessd,nsesd,puntajecrudosd);
         } catch (SQLException ex) {
             Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        //Experimento Cabina
+    }
+
+    @FXML
+    private void showExpCab(ActionEvent event) {
+        resultadosexpcab.toFront();
+        if(!flagexpc) {
+            crearTablaExpc();
+            flagexpc=true;
+        }
+    }
+    
+    private void crearTablaExpc() {
         try {
             ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo();
             LinkedList<ExperimentoCabinaModelo> resultados = new LinkedList<>();
@@ -337,15 +442,23 @@ public class ResultadoController implements Initializable {
             llkdifpreec.setCellValueFactory(new PropertyValueFactory<>("llkdifPre"));
             llkdifposec.setCellValueFactory(new PropertyValueFactory<>("llkdifPos"));
             trec.setCellValueFactory(new PropertyValueFactory<>("tr"));
-            
-            
             resultadosexpcab.setItems(listaEC);
-            //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
+            //resultadosexpcab.getColumns().addAll(idinfanteec,tipoexpec,entoprec,protarpreec,protarposec,llkdifpreec,llkdifposec,trec);
         } catch (SQLException ex) {
             Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        //Lectura Conjunta
+    }
+
+    @FXML
+    private void showLectCab(ActionEvent event) {
+        resultadoslc.toFront();
+        if(!flaglc) {
+            crearTablaLc();
+            flaglc=true;
+        }
+    }
+    
+    private void crearTablaLc() {
         try {
             LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
             LinkedList<LecturaConjuntaModelo> resultados = new LinkedList<>();
@@ -366,50 +479,84 @@ public class ResultadoController implements Initializable {
             conjuncionlc.setCellValueFactory(new PropertyValueFactory<>("conjuncion"));
             interjeccionlc.setCellValueFactory(new PropertyValueFactory<>("interjeccion"));
             ininteligiblelc.setCellValueFactory(new PropertyValueFactory<>("ininteligible"));
-            
             resultadoslc.setItems(listaLC);
-            //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
+            //resultadoslc.getColumns().addAll(idinfantelc,typetokenlc,cuidadorbebelc,preposicionlc,sustantivolc,articulolc,verbolc,adjetivolc,pronombrelc,adverbiolc,conjuncionlc,interjeccionlc,ininteligiblelc);
         } catch (SQLException ex) {
             Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void showInfante(ActionEvent event) {
-        resultadosbebe.toFront();
-    }
-
-    @FXML
-    private void showCuidador(ActionEvent event) {
-        resultadoscuidador.toFront();
-    }
-
-    @FXML
-    private void showSociode(ActionEvent event) {
-        resultadossd.toFront();
-    }
-
-    @FXML
-    private void showExpCab(ActionEvent event) {
-        resultadosexpcab.toFront();
-    }
-
-    @FXML
-    private void showLectCab(ActionEvent event) {
-        resultadoslc.toFront();
-    }
-
-    @FXML
     private void showWppsi30(ActionEvent event) {
+        resultadoswppsi30.toFront();
+        if(!flagw30) {
+            crearTablaW30();
+            flagw30=true;
+        }
+    }
+    
+    private void crearTablaW30() {
+        try {
+            Wppsi303642Modelo w30 = new Wppsi303642Modelo();
+            LinkedList<Wppsi303642Modelo> resultados = new LinkedList<>();
+            for(int i:ids){
+            LinkedList<Wppsi303642Modelo> r = w30.readWppsi303642(-1, -1, -1, -1, -1, -1, "", i, -1);
+            if(r.size()>0){
+            w30 = r.get(0);
+            w30.setEscalares();
+            w30.setEquivalentes();
+            resultados.add(w30);
+            }
+            }
+            for(Wppsi303642Modelo m:resultados) listaWppsi303642.add(m);
+            idinfantew30.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+            vrnw30.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoNatural"));
+            vrew30.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoEscalar"));
+            dcnw30.setCellValueFactory(new PropertyValueFactory<>("disenioCubosNatural"));
+            dcew30.setCellValueFactory(new PropertyValueFactory<>("disenioCubosEscalar"));
+            innw30.setCellValueFactory(new PropertyValueFactory<>("informacionNatural"));
+            inew30.setCellValueFactory(new PropertyValueFactory<>("informacionEscalar"));
+            rcnw30.setCellValueFactory(new PropertyValueFactory<>("rompecabezasNatural"));
+            rcew30.setCellValueFactory(new PropertyValueFactory<>("rompecabezasEscalar"));
+            dnnw30.setCellValueFactory(new PropertyValueFactory<>("denominacionesNatural"));
+            dnew30.setCellValueFactory(new PropertyValueFactory<>("denominacionesEscalar"));
+            civw30.setCellValueFactory(new PropertyValueFactory<>("civ0"));
+            civrpw30.setCellValueFactory(new PropertyValueFactory<>("civ1"));
+            civnc90w30.setCellValueFactory(new PropertyValueFactory<>("civ2"));
+            civnc95w30.setCellValueFactory(new PropertyValueFactory<>("civ3"));
+            ciew30.setCellValueFactory(new PropertyValueFactory<>("cie0"));
+            cierpw30.setCellValueFactory(new PropertyValueFactory<>("cie1"));
+            cienc90w30.setCellValueFactory(new PropertyValueFactory<>("cie2"));
+            cienc95w30.setCellValueFactory(new PropertyValueFactory<>("cie3"));
+            citw30.setCellValueFactory(new PropertyValueFactory<>("cit0"));
+            citrpw30.setCellValueFactory(new PropertyValueFactory<>("cit1"));
+            citnc90w30.setCellValueFactory(new PropertyValueFactory<>("cit2"));
+            citnc95w30.setCellValueFactory(new PropertyValueFactory<>("cit3"));
+            cglw30.setCellValueFactory(new PropertyValueFactory<>("cgl0"));
+            cglrpw30.setCellValueFactory(new PropertyValueFactory<>("cgl1"));
+            cglnc90w30.setCellValueFactory(new PropertyValueFactory<>("cgl2"));
+            cglnc95w30.setCellValueFactory(new PropertyValueFactory<>("cgl3"));
+            resultadoswppsi30.setItems(listaWppsi303642);
+            //resultadoslc.getColumns().addAll(idinfantelc,typetokenlc,cuidadorbebelc,preposicionlc,sustantivolc,articulolc,verbolc,adjetivolc,pronombrelc,adverbiolc,conjuncionlc,interjeccionlc,ininteligiblelc);
+        } catch (SQLException ex) {
+            Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void showWppsi48(ActionEvent event) {
+        if(!flagw48) {
+            crearTablaW48();
+            flagw48=true;
+        }
+    }
+    
+    private void crearTablaW48() {
+    
     }
     
     public void meterIds(LinkedList<Integer> ids){
         this.ids = ids;
-        crearTablas();
     }
 
     @FXML

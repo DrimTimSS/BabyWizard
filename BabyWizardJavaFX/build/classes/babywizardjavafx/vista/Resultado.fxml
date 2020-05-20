@@ -36,7 +36,7 @@
             <Button minWidth="64.0" mnemonicParsing="false" onAction="#showWppsi48" text="WPPSI48" />
          </children>
       </HBox>
-      <TableView fx:id="resultadoscuidador" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <TableView fx:id="resultadoscuidador" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <columns>
             <TableColumn fx:id="residbebec" maxWidth="1.7976931348623157E308" minWidth="72.0" prefWidth="72.0" text="ID Infante" />
             <TableColumn fx:id="residc" maxWidth="1.7976931348623157E308" minWidth="50.20001220703125" prefWidth="85.59996795654297" text="ID Cuidador" visible="false" />
@@ -51,7 +51,7 @@
             <TableColumn fx:id="resaniosestudio" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" text="Años Estudio" />
          </columns>
       </TableView>
-      <TableView fx:id="resultadosexpcab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <TableView fx:id="resultadosexpcab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <columns>
             <TableColumn fx:id="idinfanteec" minWidth="-Infinity" prefWidth="72.0" text="ID Infante" />
             <TableColumn fx:id="tipoexpec" minWidth="-Infinity" prefWidth="72.0" text="Tipo Exp." />
@@ -63,7 +63,7 @@
             <TableColumn fx:id="trec" minWidth="-Infinity" prefWidth="64.0" text="TR" />
          </columns>
       </TableView>
-      <TableView fx:id="resultadossd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <TableView fx:id="resultadossd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
         <columns>
           <TableColumn fx:id="idinfantesd" minWidth="-Infinity" prefWidth="72.0" text="ID Infante" />
           <TableColumn fx:id="fechacitasd" minWidth="100.0" prefWidth="100.0" text="Fecha de Cita" />
@@ -93,7 +93,7 @@
             <TableColumn fx:id="puntajecrudosd" prefWidth="75.0" text="Puntaje Crudo" />
         </columns>
       </TableView>
-      <TableView fx:id="resultadoslc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <TableView fx:id="resultadoslc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <columns>
             <TableColumn fx:id="idinfantelc" minWidth="-Infinity" prefWidth="75.0" text="ID Infante" />
             <TableColumn fx:id="typetokenlc" minWidth="-Infinity" prefWidth="90.0" text="Type/Token" />
@@ -110,7 +110,7 @@
             <TableColumn fx:id="ininteligiblelc" minWidth="-Infinity" prefWidth="90.0" text="Ininteligible" />
          </columns>
       </TableView>
-      <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
         <columns>
           <TableColumn prefWidth="75.0" text="DCn" />
           <TableColumn prefWidth="75.0" text="DCe" />
@@ -143,28 +143,6 @@
             <TableColumn prefWidth="75.0" text="Column X" />
         </columns>
       </TableView>
-      <TableView fx:id="resultadoswppsi30" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="608.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-         <columns>
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="ID Infante" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="VRn" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="VRe" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="DCn" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="DCe" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="INn" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="INe" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="RCn" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="RCe" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="DCn" />
-            <TableColumn minWidth="-Infinity" prefWidth="75.0" text="DCe" />
-            <TableColumn prefWidth="75.0" text="CIV" />
-            <TableColumn prefWidth="75.0" text="CIE" />
-            <TableColumn prefWidth="75.0" text="CIT" />
-            <TableColumn prefWidth="75.0" text="CGL" />
-            <TableColumn prefWidth="75.0" text="Rango Perc." />
-            <TableColumn prefWidth="75.0" text="N.C. 90%" />
-            <TableColumn prefWidth="75.0" text="N.C. 95%" />
-         </columns>
-      </TableView>
       <TableView fx:id="resultadosbebe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
         <columns>
           <TableColumn fx:id="resid" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="90.0" text="ID" />
@@ -175,6 +153,90 @@
             <TableColumn fx:id="resfechan" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="170.0" text="Fecha de Nac." />
             <TableColumn fx:id="resmeses" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Meses" />
             <TableColumn fx:id="resusuario" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="130.0" text="Registró" />
+        </columns>
+      </TableView>
+      <TableView fx:id="resultadoswppsi30" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <columns>
+            <TableColumn fx:id="idinfantew30" minWidth="-Infinity" prefWidth="75.0" text="ID Infante" />
+            <TableColumn fx:id="vrnw30" minWidth="-Infinity" prefWidth="75.0" text="VRn" />
+            <TableColumn fx:id="vrew30" minWidth="-Infinity" prefWidth="75.0" text="VRe" />
+            <TableColumn fx:id="dcnw30" minWidth="-Infinity" prefWidth="75.0" text="DCn" />
+            <TableColumn fx:id="dcew30" minWidth="-Infinity" prefWidth="75.0" text="DCe" />
+            <TableColumn fx:id="innw30" minWidth="-Infinity" prefWidth="75.0" text="INn" />
+            <TableColumn fx:id="inew30" minWidth="-Infinity" prefWidth="75.0" text="INe" />
+            <TableColumn fx:id="rcnw30" minWidth="-Infinity" prefWidth="75.0" text="RCn" />
+            <TableColumn fx:id="rcew30" minWidth="-Infinity" prefWidth="75.0" text="RCe" />
+            <TableColumn fx:id="dnnw30" minWidth="-Infinity" prefWidth="75.0" text="DNn" />
+            <TableColumn fx:id="dnew30" minWidth="-Infinity" prefWidth="75.0" text="DNe" />
+            <TableColumn fx:id="civw30" prefWidth="75.0" text="CIV" />
+            <TableColumn fx:id="civrpw30" prefWidth="75.0" text="CIV Rango Perc." />
+            <TableColumn fx:id="civnc90w30" prefWidth="75.0" text="CIV I.C. 90%" />
+            <TableColumn fx:id="civnc95w30" prefWidth="75.0" text="CIV I.C. 95%" />
+            <TableColumn fx:id="ciew30" prefWidth="75.0" text="CIE" />
+            <TableColumn fx:id="cierpw30" prefWidth="75.0" text="CIE Rango Perc." />
+            <TableColumn fx:id="cienc90w30" prefWidth="75.0" text="CIE I.C. 90%" />
+            <TableColumn fx:id="cienc95w30" prefWidth="75.0" text="CIE I.C. 95%" />
+            <TableColumn fx:id="citw30" prefWidth="75.0" text="CIT" />
+            <TableColumn fx:id="citrpw30" prefWidth="75.0" text="CIT Rango Perc." />
+            <TableColumn fx:id="citnc90w30" prefWidth="75.0" text="CIT I.C. 90%" />
+            <TableColumn fx:id="citnc95w30" prefWidth="75.0" text="CIT I.C. 95%" />
+            <TableColumn fx:id="cglw30" prefWidth="75.0" text="CGL" />
+            <TableColumn fx:id="cglrpw30" prefWidth="75.0" text="CGL Rango Perc." />
+            <TableColumn fx:id="cglnc90w30" prefWidth="75.0" text="CGL I.C. 90%" />
+            <TableColumn fx:id="cglnc95w30" prefWidth="75.0" text="CGL I.C. 95%" />
+         </columns>
+      </TableView>
+      <TableView fx:id="resultadoswppsi48" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID Infante" />
+          <TableColumn prefWidth="75.0" text="DCn" />
+            <TableColumn prefWidth="75.0" text="DCe" />
+            <TableColumn prefWidth="75.0" text="INn" />
+            <TableColumn prefWidth="75.0" text="INe" />
+            <TableColumn prefWidth="75.0" text="MTn" />
+            <TableColumn prefWidth="75.0" text="MTe" />
+            <TableColumn prefWidth="75.0" text="VCn" />
+            <TableColumn prefWidth="75.0" text="VCe" />
+            <TableColumn prefWidth="75.0" text="CPn" />
+            <TableColumn prefWidth="75.0" text="CPe" />
+            <TableColumn prefWidth="75.0" text="BSn" />
+            <TableColumn prefWidth="75.0" text="BSe" />
+            <TableColumn prefWidth="75.0" text="PSn" />
+            <TableColumn prefWidth="75.0" text="PSe" />
+            <TableColumn prefWidth="75.0" text="CLn" />
+            <TableColumn prefWidth="75.0" text="CLe" />
+            <TableColumn prefWidth="75.0" text="CMn" />
+            <TableColumn prefWidth="75.0" text="CMe" />
+            <TableColumn prefWidth="75.0" text="FIn" />
+            <TableColumn prefWidth="75.0" text="FIe" />
+            <TableColumn prefWidth="75.0" text="SEn" />
+            <TableColumn prefWidth="75.0" text="SEe" />
+            <TableColumn prefWidth="75.0" text="VRn" />
+            <TableColumn prefWidth="75.0" text="VRe" />
+            <TableColumn prefWidth="75.0" text="RCn" />
+            <TableColumn prefWidth="75.0" text="RCe" />
+            <TableColumn prefWidth="75.0" text="DNn" />
+            <TableColumn prefWidth="75.0" text="DNe" />
+            <TableColumn prefWidth="75.0" text="CIV" />
+            <TableColumn prefWidth="75.0" text="CIV Rango Perc." />
+            <TableColumn prefWidth="75.0" text="CIV 90% I.C." />
+            <TableColumn prefWidth="75.0" text="CIV 95% I.C" />
+            <TableColumn prefWidth="75.0" text="CIE" />
+            <TableColumn prefWidth="75.0" text="CIE Rango Perc." />
+            <TableColumn prefWidth="75.0" text="CIE 90% I.C." />
+            <TableColumn prefWidth="75.0" text="CIE 95% I.C." />
+            <TableColumn prefWidth="75.0" text="CVP" />
+            <TableColumn prefWidth="75.0" text="CVP Rango Perc." />
+            <TableColumn prefWidth="75.0" text="CVP 90% I.C." />
+            <TableColumn prefWidth="75.0" text="CVP 95% I.C." />
+            <TableColumn prefWidth="75.0" text="CIT" />
+            <TableColumn prefWidth="75.0" text="CIT Rango Perc." />
+            <TableColumn prefWidth="75.0" text="CIT 90% I.C." />
+            <TableColumn prefWidth="75.0" text="CIT 95% I.C." />
+            <TableColumn prefWidth="75.0" text="CGL" />
+            <TableColumn prefWidth="75.0" text="CGL Rango Perc." />
+            <TableColumn prefWidth="75.0" text="CGL 90% I.C." />
+            <TableColumn prefWidth="75.0" text="CGL 95% I.C." />
         </columns>
       </TableView>
       <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />

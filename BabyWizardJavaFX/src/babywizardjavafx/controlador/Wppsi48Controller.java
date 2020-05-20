@@ -800,9 +800,22 @@ public class Wppsi48Controller implements Initializable {
         wm.setRompecabezasNatural(rc);
         wm.setDenominacionesNatural(dn);
         wm.setFechaAplicacion(fechan);
+        wm.setDcfi(dcfi.isSelected()?1:0);
+        wm.setDcrc(dcrc.isSelected()?1:0);
+        wm.setIncm(incm.isSelected()?1:0);
+        wm.setInse(inse.isSelected()?1:0);
+        wm.setMtfi(mtfi.isSelected()?1:0);
+        wm.setMtrc(mtrc.isSelected()?1:0);
+        wm.setVccm(vccm.isSelected()?1:0);
+        wm.setVcse(vcse.isSelected()?1:0);
+        wm.setCpfi(cpfi.isSelected()?1:0);
+        wm.setCprc(cprc.isSelected()?1:0);
+        wm.setPscm(pscm.isSelected()?1:0);
+        wm.setPsse(psse.isSelected()?1:0);
+        wm.setClbs(clbs.isSelected()?1:0);
         creable = wm.setEscalares();
         
-        int[] sumas = wm.setEquivalentes(cpfi.isSelected(), dcrc.isSelected(), incm.isSelected(), inse.isSelected(), cpfi.isSelected(), mtrc.isSelected(), vccm.isSelected(), vcse.isSelected(), cpfi.isSelected(), cprc.isSelected(), pscm.isSelected(), psse.isSelected(), clbs.isSelected());
+        int[] sumas = wm.setEquivalentes();
         
         dce.setText(wm.getDisenioCubosEscalar()+"");
         ine.setText(wm.getInformacionEscalar()+"");

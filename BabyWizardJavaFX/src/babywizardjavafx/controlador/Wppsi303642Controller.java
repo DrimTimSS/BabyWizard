@@ -402,9 +402,11 @@ public class Wppsi303642Controller implements Initializable {
         wm.setRompecabezasNatural(rc);
         wm.setDenominacionesNatural(dn);
         wm.setFechaAplicacion(fechan);
+        wm.setSustdn(sust.isSelected()?1:0);
         creable = wm.setEscalares();
         
-        int[] sumas = wm.setEquivalentes(sust.isSelected());
+        
+        int[] sumas = wm.setEquivalentes();
         vre.setText(wm.getVocabularioReceptivoEscalar()+"");
         dce.setText(wm.getDisenioCubosEscalar()+"");
         ine.setText(wm.getInformacionEscalar()+"");
