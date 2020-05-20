@@ -447,7 +447,7 @@ public class Wppsi303642Controller implements Initializable {
                     JMetro jmetro = new JMetro(Style.LIGHT);
                     jmetro.setParent(root);
                     CreadoExitosamenteController cec = loader.getController();
-                    cec.queEsCreado("Infante Registrado Exitosamente.");
+                    cec.queEsCreado("WPPSI agregado exitosamente.");
                     Scene exito = new Scene(root);
                     actualWindow.setScene(exito);
                     Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");

@@ -39,6 +39,11 @@
     -fx-font-weight: bold;
 }
 
+#subtitulo{
+    -fx-font-weight: bold;
+    -fx-font-color: red;
+}
+
 #cabecera {
     -fx-background-color:  #E76A06;
 }
