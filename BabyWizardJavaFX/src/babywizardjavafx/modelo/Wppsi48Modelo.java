@@ -43,6 +43,20 @@ public class Wppsi48Modelo {
     int denominacionesNatural;
     int fkBebe;
     
+    int dcfi;
+    int dcrc;
+    int incm;
+    int inse;
+    int mtfi;
+    int mtrc;
+    int vccm;
+    int vcse;
+    int cpfi;
+    int cprc;
+    int pscm;
+    int psse;
+    int clbs;
+    
     int disenioCubosEscalar;
     int informacionEscalar;
     int semejanzasEscalar;
@@ -86,6 +100,19 @@ public class Wppsi48Modelo {
         this.equivcvp = new String[4];
         this.equivcit = new String[4];
         this.equivcgl = new String[4];
+        this.dcfi = 0;
+        this.dcrc = 0;
+        this.incm = 0;
+        this.inse = 0;
+        this.mtfi = 0;
+        this.mtrc = 0;
+        this.vccm = 0;
+        this.vcse = 0;
+        this.cpfi = 0;
+        this.cprc = 0;
+        this.pscm = 0;
+        this.psse = 0;
+        this.clbs = 0;
     }
 
     public Wppsi48Modelo() {
@@ -110,6 +137,19 @@ public class Wppsi48Modelo {
         this.equivcvp = new String[4];
         this.equivcit = new String[4];
         this.equivcgl = new String[4];
+        this.dcfi = 0;
+        this.dcrc = 0;
+        this.incm = 0;
+        this.inse = 0;
+        this.mtfi = 0;
+        this.mtrc = 0;
+        this.vccm = 0;
+        this.vcse = 0;
+        this.cpfi = 0;
+        this.cprc = 0;
+        this.pscm = 0;
+        this.psse = 0;
+        this.clbs = 0;
     }
     
     
@@ -362,6 +402,110 @@ public class Wppsi48Modelo {
         this.fkBebe = fkBebe;
     }
 
+    public int getDcfi() {
+        return dcfi;
+    }
+
+    public void setDcfi(int dcfi) {
+        this.dcfi = dcfi;
+    }
+
+    public int getDcrc() {
+        return dcrc;
+    }
+
+    public void setDcrc(int dcrc) {
+        this.dcrc = dcrc;
+    }
+
+    public int getIncm() {
+        return incm;
+    }
+
+    public void setIncm(int incm) {
+        this.incm = incm;
+    }
+
+    public int getInse() {
+        return inse;
+    }
+
+    public void setInse(int inse) {
+        this.inse = inse;
+    }
+
+    public int getMtfi() {
+        return mtfi;
+    }
+
+    public void setMtfi(int mtfi) {
+        this.mtfi = mtfi;
+    }
+
+    public int getMtrc() {
+        return mtrc;
+    }
+
+    public void setMtrc(int mtrc) {
+        this.mtrc = mtrc;
+    }
+
+    public int getVccm() {
+        return vccm;
+    }
+
+    public void setVccm(int vccm) {
+        this.vccm = vccm;
+    }
+
+    public int getVcse() {
+        return vcse;
+    }
+
+    public void setVcse(int vcse) {
+        this.vcse = vcse;
+    }
+
+    public int getCpfi() {
+        return cpfi;
+    }
+
+    public void setCpfi(int cpfi) {
+        this.cpfi = cpfi;
+    }
+
+    public int getCprc() {
+        return cprc;
+    }
+
+    public void setCprc(int cprc) {
+        this.cprc = cprc;
+    }
+
+    public int getPscm() {
+        return pscm;
+    }
+
+    public void setPscm(int pscm) {
+        this.pscm = pscm;
+    }
+
+    public int getPsse() {
+        return psse;
+    }
+
+    public void setPsse(int psse) {
+        this.psse = psse;
+    }
+
+    public int getClbs() {
+        return clbs;
+    }
+
+    public void setClbs(int clbs) {
+        this.clbs = clbs;
+    }
+
     public String[] getEquivciv() {
         return equivciv;
     }
@@ -454,7 +598,7 @@ public class Wppsi48Modelo {
         return true;
     }
     
-    public int[] setEquivalentes(boolean dcfi, boolean dcrc, boolean incm, boolean inse, boolean mtfi, boolean mtrc, boolean vccm, boolean vcse, boolean cpfi, boolean cprc, boolean pscm, boolean psse, boolean clbs) {
+    public int[] setEquivalentes() {
         int[] sumas = {0,0,0,0,0};
         
         Wppsi48Controller wcont = new Wppsi48Controller();
@@ -510,11 +654,11 @@ public class Wppsi48Modelo {
         return sumas;
     }
     
-    public int valorreal(int original, int valor1, int valor2, boolean sust1, boolean sust2) {
+    public int valorreal(int original, int valor1, int valor2, int sust1, int sust2) {
         int real = original;
-        if(sust1) {
+        if(sust1==1) {
             real = valor1;
-        } else if (sust2) {
+        } else if (sust2==1) {
             real = valor2;
         }
         return real;
@@ -524,8 +668,8 @@ public class Wppsi48Modelo {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
-        query = "INSERT INTO `babywizard`.`wppsi48` (`disenioConCubosNatural`, `informacionNatural`, `semejanzasNatural`, `matricesNatural`, `vocabularioNatural`, `conceptosConDibujosNatural`, `busquedaSimbolosNatural`, `pistasNatural`, `clavesNatural`, `comprensionNatural`, `figurasIncompletasNatural`, `vocabularioReceptivoNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fechaAplicacion`, `fkBebe`) "
-                + "VALUES ('"+this.getDisenioCubosNatural()+"', '"+this.informacionNatural+"', '"+this.getSemejanzasNatural()+"', '"+this.getMatricesNatural()+"', '"+this.getVocabularioNatural()+"', '"+this.conceptosConDibujosNatural+"', '"+this.busquedaSimbolosNatural+"', '"+this.getPistasNatural()+"', '"+this.getClavesNatural()+"', '"+this.getComprensionNatural()+"', '"+this.getFigurasIncompletasNatural()+"', '"+this.getVocabularioReceptivoNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"', '"+this.getFechaAplicacion()+"', '"+this.getFkBebe()+"');";
+        query = "INSERT INTO `babywizard`.`wppsi48` (`disenioConCubosNatural`, `informacionNatural`, `semejanzasNatural`, `matricesNatural`, `vocabularioNatural`, `conceptosConDibujosNatural`, `busquedaSimbolosNatural`, `pistasNatural`, `clavesNatural`, `comprensionNatural`, `figurasIncompletasNatural`, `vocabularioReceptivoNatural`, `rompecabezasNatural`, `denominacionesNatural`, `fechaAplicacion`, `fkBebe`, `dcfi`, `dcrc`, `incm`, `inse`, `mtfi`, `mtrc`, `vccm`, `vcse`, `cpfi`, `cprc`, `pscm`, `psse`, `clbs`) "
+                + "VALUES ('"+this.getDisenioCubosNatural()+"', '"+this.informacionNatural+"', '"+this.getSemejanzasNatural()+"', '"+this.getMatricesNatural()+"', '"+this.getVocabularioNatural()+"', '"+this.conceptosConDibujosNatural+"', '"+this.busquedaSimbolosNatural+"', '"+this.getPistasNatural()+"', '"+this.getClavesNatural()+"', '"+this.getComprensionNatural()+"', '"+this.getFigurasIncompletasNatural()+"', '"+this.getVocabularioReceptivoNatural()+"', '"+this.getRompecabezasNatural()+"', '"+this.getDenominacionesNatural()+"', '"+this.getFechaAplicacion()+"', '"+this.getFkBebe()+"', '"+this.getDcfi()+"', '"+this.getDcrc()+"', '"+this.getIncm()+"', '"+this.getInse()+"', '"+this.getMtfi()+"', '"+this.getMtrc()+"', '"+this.getVccm()+"', '"+this.getVcse()+"', '"+this.getCpfi()+"', '"+this.getCprc()+"', '"+this.getPscm()+"', '"+this.getPsse()+"', '"+this.getClbs()+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -537,7 +681,7 @@ public class Wppsi48Modelo {
         con.close();
     }
     
-    public LinkedList<Wppsi48Modelo> readWppsi48(int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) throws SQLException {
+    public LinkedList<Wppsi48Modelo> readWppsi48(int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe, int dcfi, int dcrc, int incm, int inse, int mtfi, int mtrc, int vccm, int vcse, int cpfi, int cprc, int pscm, int psse, int clbs) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -558,6 +702,19 @@ public class Wppsi48Modelo {
         if(!"".equals(fechaAplicacion)) toRead.add("fechaAplicacion = '"+fechaAplicacion+"'");
         if(denominacionesNatural > -1) toRead.add("denominacionesNatural = '"+denominacionesNatural+"'");
         if(fkBebe > -1) toRead.add("fkBebe = '"+fkBebe+"'");
+        if(dcfi == 0 || dcfi == 1) toRead.add("dcfi = '"+dcfi+"'");
+        if(dcrc == 0 || dcrc == 1) toRead.add("dcrc = '"+dcrc+"'");
+        if(incm == 0 || incm == 1) toRead.add("incm = '"+incm+"'");
+        if(inse == 0 || inse == 1) toRead.add("inse = '"+inse+"'");
+        if(mtfi == 0 || mtfi == 1) toRead.add("mtfi = '"+mtfi+"'");
+        if(mtrc == 0 || mtrc == 1) toRead.add("mtrc = '"+mtrc+"'");
+        if(vccm == 0 || vccm == 1) toRead.add("vccm = '"+vccm+"'");
+        if(vcse == 0 || vcse == 1) toRead.add("vcse = '"+vcse+"'");
+        if(cpfi == 0 || cpfi == 1) toRead.add("cpfi = '"+cpfi+"'");
+        if(cprc == 0 || cprc == 1) toRead.add("cprc = '"+cprc+"'");
+        if(pscm == 0 || pscm == 1) toRead.add("pscm = '"+pscm+"'");
+        if(psse == 0 || psse == 1) toRead.add("psse = '"+psse+"'");
+        if(clbs == 0 || clbs == 1) toRead.add("clbs = '"+clbs+"'");
         String query1 = "SELECT * FROM babywizard.wppsi48 WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
@@ -592,13 +749,26 @@ public class Wppsi48Modelo {
             wm.setRompecabezasNatural(rs.getInt("rompecabezasNatural"));
             wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivoNatural"));
             wm.setFechaAplicacion(rs.getString("fechaAplicacion"));
+            wm.setDcfi(rs.getInt("dcfi"));
+            wm.setDcrc(rs.getInt("dcrc"));
+            wm.setIncm(rs.getInt("incm"));
+            wm.setInse(rs.getInt("inse"));
+            wm.setMtfi(rs.getInt("mtfi"));
+            wm.setMtrc(rs.getInt("mtrc"));
+            wm.setVccm(rs.getInt("vccm"));
+            wm.setVcse(rs.getInt("vcse"));
+            wm.setCpfi(rs.getInt("cpfi"));
+            wm.setCprc(rs.getInt("cprc"));
+            wm.setPscm(rs.getInt("pscm"));
+            wm.setPsse(rs.getInt("psse"));
+            wm.setClbs(rs.getInt("clbs"));
             wppsis.add(wm);
         }
         con.close();
         return wppsis;
     }
     
-    public void updateWppsi48(int idWppsi48Actualizar, int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe) throws SQLException {
+    public void updateWppsi48(int idWppsi48Actualizar, int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe, int dcfi, int dcrc, int incm, int inse, int mtfi, int mtrc, int vccm, int vcse, int cpfi, int cprc, int pscm, int psse, int clbs) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -669,6 +839,58 @@ public class Wppsi48Modelo {
         if (fkBebe > -1) {
            String fkBebeQ = "`fkBebe` = '"+fkBebe+"'";
            toUpdate.add(fkBebeQ);
+        }
+        if (dcfi == 0 || dcfi == 1) {
+           String dcfiQ = "`dcfi` = '"+dcfi+"'";
+           toUpdate.add(dcfiQ);
+        }
+        if (dcrc == 0 || dcrc == 1) {
+           String dcrcQ = "`dcrc` = '"+dcrc+"'";
+           toUpdate.add(dcrcQ);
+        }
+        if (incm == 0 || incm == 1) {
+           String incmQ = "`incm` = '"+incm+"'";
+           toUpdate.add(incmQ);
+        }
+        if (inse == 0 || inse == 1) {
+           String inseQ = "`inse` = '"+inse+"'";
+           toUpdate.add(inseQ);
+        }
+        if (mtfi == 0 || mtfi == 1) {
+           String mtfiQ = "`mtfi` = '"+mtfi+"'";
+           toUpdate.add(mtfiQ);
+        }
+        if (mtrc == 0 || mtrc == 1) {
+           String mtrcQ = "`mtrc` = '"+mtrc+"'";
+           toUpdate.add(mtrcQ);
+        }
+        if (vccm == 0 || vccm == 1) {
+           String vccmQ = "`vccm` = '"+vccm+"'";
+           toUpdate.add(vccmQ);
+        }
+        if (vcse == 0 || vcse == 1) {
+           String vcseQ = "`vcse` = '"+vcse+"'";
+           toUpdate.add(vcseQ);
+        }
+        if (cpfi == 0 || cpfi == 1) {
+           String cpfiQ = "`cpfi` = '"+cpfi+"'";
+           toUpdate.add(cpfiQ);
+        }
+        if (cprc == 0 || cprc == 1) {
+           String cprcQ = "`cprc` = '"+cprc+"'";
+           toUpdate.add(cprcQ);
+        }
+        if (pscm == 0 || pscm == 1) {
+           String pscmQ = "`pscm` = '"+pscm+"'";
+           toUpdate.add(pscmQ);
+        }
+        if (psse == 0 || psse == 1) {
+           String psseQ = "`psse` = '"+psse+"'";
+           toUpdate.add(psseQ);
+        }
+        if (clbs == 0 || clbs == 1) {
+           String clbsQ = "`clbs` = '"+clbs+"'";
+           toUpdate.add(clbsQ);
         }
       
         String query1 = "UPDATE `babywizard`.`wppsi48` SET ";
