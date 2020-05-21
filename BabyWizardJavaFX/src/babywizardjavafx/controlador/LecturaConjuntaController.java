@@ -82,6 +82,104 @@ public class LecturaConjuntaController implements Initializable {
             
         });
         
+        inputsust.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputsust.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+        
+        inputart.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputart.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+        
+        inputverb.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputverb.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+        
+        inputinint.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputinint.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+        
+        inputadj.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputadj.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+    
+        inputpron.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputpron.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+        
+        inputadver.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputadver.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+        
+        inputconj.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputconj.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+        
+        inputinter.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputinter.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
     }
     
     public void inicializarBebe(int idbebe){

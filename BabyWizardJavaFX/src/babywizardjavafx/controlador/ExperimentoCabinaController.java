@@ -5,9 +5,11 @@
  */
 package babywizardjavafx.controlador;
 
+import babywizardjavafx.modelo.ExperimentoCabinaModelo;
 import com.mysql.cj.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,7 +75,7 @@ public class ExperimentoCabinaController implements Initializable {
         this.idbebe = idbebe;
     }
     
-    private void agregar(ActionEvent event) throws IOException {
+    private void agregar(ActionEvent event) throws IOException, SQLException {
         
         int eOp = -1;
         if (isEntren.isSelected()) {
@@ -91,8 +93,12 @@ public class ExperimentoCabinaController implements Initializable {
         double llkdifpos = Double.parseDouble(inputLLkDifPos.getText());
         double tr = Double.parseDouble(inputTr.getText());
         
+        ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tipoExp, eOp, protarpre,protarpos, llkdifpre, llkdifpos, tr, idbebe);
+        ecm.createExperimentoCabina();
+        
       } else{
           label.setVisible(true);
+          return;
       }
         
         
