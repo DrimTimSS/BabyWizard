@@ -74,34 +74,34 @@ public class ExperimentoCabinaController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, 
             String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    inputprotarpre.setText(newValue.replaceAll("[^\\d]", ""));
+                if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                    inputprotarpre.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
                 }
             }
             
         });
         
         inputprotarpos.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                inputprotarpos.setText(newValue.replaceAll("[^\\d]", ""));
+            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                inputprotarpos.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
             }
         });
         
         inputLLkDifPre.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                inputLLkDifPre.setText(newValue.replaceAll("[^\\d]", ""));
+            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                inputLLkDifPre.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
             }
         });
         
         inputLLkDifPos.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                inputLLkDifPos.setText(newValue.replaceAll("[^\\d]", ""));
+            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                inputLLkDifPos.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
             }
         });
         
         inputTr.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                inputTr.setText(newValue.replaceAll("[^\\d]", ""));
+            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                inputTr.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
             }
         });
         
