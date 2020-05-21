@@ -5,8 +5,8 @@
  */
 package babywizardjavafx.controlador;
 
+import com.mysql.cj.util.StringUtils;
 import java.io.IOException;
-import static java.lang.Boolean.parseBoolean;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -29,7 +30,7 @@ import jfxtras.styles.jmetro.Style;
  *
  * @author Vicaris
  */
-public class PruebaLaboratorioController implements Initializable {
+public class ExperimentoCabinaController implements Initializable {
     
     int idbebe;
     @FXML
@@ -51,10 +52,18 @@ public class PruebaLaboratorioController implements Initializable {
     @FXML
     private TextField inputTr;
     @FXML
-    private Button agregar;
+    private Button btnagregarpl;
+    @FXML
+    private Label label;
+    
     /**
      * Initializes the controller class.
      */
+    
+    private boolean isEmpty(TextField textfield){
+      return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -64,7 +73,6 @@ public class PruebaLaboratorioController implements Initializable {
         this.idbebe = idbebe;
     }
     
-    @FXML
     private void agregar(ActionEvent event) throws IOException {
         
         int eOp = -1;
@@ -73,23 +81,21 @@ public class PruebaLaboratorioController implements Initializable {
         } else if (isPrueba.isSelected()) {
             eOp = 1;
         }
+       
+      if(!(isEmpty(inputtipoExp) || isEmpty(inputprotarpre) || isEmpty(inputprotarpos) || isEmpty(inputLLkDifPre) || isEmpty(inputLLkDifPos) || isEmpty(inputTr))){
         
-       // Bool tipoExpEmpty = parseBoolean(inputtipoExp.getText()isEmpty());
-        
-       // if(!(inputtipoExp.getText()isEmpty() || inputprotarpre.getText() || inputprotarpos.getText().isEmpty() || inputLLkDifPre.getText().isEmpty() || inputLLkDifPos.getText().isEmpty() || inputTr.getText().isEmpty())){
         String tipoExp = inputtipoExp.getText();
-        String protarpre = inputprotarpre.getText();
-        String protarpos = inputprotarpos.getText();
-        String llkdifpre = inputLLkDifPre.getText();
-        String llkdifpos = inputLLkDifPos.getText();
-        String tr = inputTr.getText();
+        double protarpre = Double.parseDouble(inputprotarpre.getText());
+        double protarpos = Double.parseDouble(inputprotarpos.getText());
+        double llkdifpre = Double.parseDouble(inputLLkDifPre.getText());
+        double llkdifpos = Double.parseDouble(inputLLkDifPos.getText());
+        double tr = Double.parseDouble(inputTr.getText());
         
-        /*if(!(eOp == -1 || tipoExp.equals("") || protarpre.equals("") || .equals("") || protarpos.equals("") || llkdifpre.equals("") || llkdifpos.equals("") || tr.equals(""))){
+      } else{
+          label.setVisible(true);
+      }
         
-            int 
-        */
-    
-    
+        
         Stage actualWindow = (Stage) inputtipoExp.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
         Parent root = (Parent) loader.load();
@@ -106,8 +112,5 @@ public class PruebaLaboratorioController implements Initializable {
         actualWindow.centerOnScreen();
     }
 
- 
     
-    
-
 }

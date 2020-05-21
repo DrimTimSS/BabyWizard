@@ -508,7 +508,7 @@ public class BusquedaController implements Initializable {
         return ids;
     }
     
-    public boolean isEmpty(TextField textfield){
+    private boolean isEmpty(TextField textfield){
         return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
     }
 

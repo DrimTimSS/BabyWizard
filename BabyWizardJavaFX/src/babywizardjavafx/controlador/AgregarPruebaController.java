@@ -167,10 +167,10 @@ public class AgregarPruebaController implements Initializable {
             LecturaConjuntaController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(expcab.isSelected()){
-            direccion = "/babywizardjavafx/vista/PruebaLaboratorio.fxml";
+            direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";
             prueba = "Experimento de Cabina";
             FXMLLoader loader = showWindow(direccion,prueba);
-            PruebaLaboratorioController wcont = loader.getController();
+            ExperimentoCabinaController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else {return;}
         
