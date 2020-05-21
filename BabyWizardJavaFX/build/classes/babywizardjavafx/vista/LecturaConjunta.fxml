@@ -61,5 +61,6 @@
       </GridPane>
       <Button fx:id="btnagregartlc" layoutX="371.0" layoutY="523.0" mnemonicParsing="false" onAction="#agregar" text="Agregar" />
       <Label id="subtitulo" layoutX="310.0" layoutY="76.0" text="Tarea de Lectura Conjunta (RANA)" />
+      <Label fx:id="label" layoutX="310.0" layoutY="481.0" style="-fx-fill: red;" text="No se llenaron todos los campos!" visible="false" />
    </children>
 </AnchorPane>

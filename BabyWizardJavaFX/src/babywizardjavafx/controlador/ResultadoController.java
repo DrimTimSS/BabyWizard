@@ -463,7 +463,7 @@ public class ResultadoController implements Initializable {
             LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
             LinkedList<LecturaConjuntaModelo> resultados = new LinkedList<>();
             for(int i:ids){
-            resultados.addAll(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, i));
+            resultados.addAll(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, i));
             }
             for(LecturaConjuntaModelo m:resultados) listaLC.add(m);
             idinfantelc.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));

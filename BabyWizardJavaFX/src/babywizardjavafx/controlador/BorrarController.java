@@ -209,7 +209,7 @@ public class BorrarController implements Initializable {
         Wppsi48Modelo w48 = new Wppsi48Modelo();
         
         if(ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size()==1) listaPruebas.add("Experimento de Cabina.");
-        if(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, Integer.parseInt(idbebeaborrar.getText())).size()==1){ 
+        if(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size()==1){ 
             listaPruebas.add("Tarea de Lectura Conjunta (Rana).");
         }
         if(w30.readWppsi303642(-1, -1, -1, -1, -1, -1,"", Integer.parseInt(idbebeaborrar.getText()),-1).size()==1) listaPruebas.add("WPPSI 30 36 42.");

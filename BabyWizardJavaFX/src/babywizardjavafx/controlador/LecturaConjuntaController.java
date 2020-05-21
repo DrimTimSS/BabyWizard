@@ -8,7 +8,10 @@ package babywizardjavafx.controlador;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -32,8 +36,6 @@ import jfxtras.styles.jmetro.Style;
 public class LecturaConjuntaController implements Initializable {
 
     int idbebe;
-    @FXML
-    private Button agregar;
     @FXML
     private TextField inputprep;
     @FXML
@@ -60,12 +62,24 @@ public class LecturaConjuntaController implements Initializable {
     private RadioButton isToken;
     @FXML
     private ToggleGroup tipoOToken;
+    @FXML
+    private Button btnagregartlc;
+    @FXML
+    private Label label;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        inputprep.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputprep.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }    
     
     public void inicializarBebe(int idbebe){
@@ -73,7 +87,7 @@ public class LecturaConjuntaController implements Initializable {
     }
 
     @FXML
-    private void agregar(ActionEvent event) throws IOException {
+    private void agregar(ActionEvent event) throws IOException, SQLException {
         
         int tOt = -1;
         if(istype.isSelected()){
@@ -92,12 +106,14 @@ public class LecturaConjuntaController implements Initializable {
         String conj = inputconj.getText();
         String inter = inputinter.getText();
         
-       /* if(!(tOt==-1 || prep.equals("") || sust.equals("") || art.equals("") || verb.equals("") || inint.equals("") || adj.equals("") || pron.equals("") || adver.equals("") || conj.equals("") || inter.equals(""))){
-           LecturaConjuntaModelo lcm = new LecturaConjuntaModelo(tOt, prep, sust, art, verb, inint, adj, pron, adver, conj, inter);
-        else ()
-    */
-       
-       
+        if(!(tOt==-1 || prep.equals("") || sust.equals("") || art.equals("") || verb.equals("") || inint.equals("") || adj.equals("") || pron.equals("") || adver.equals("") || conj.equals("") || inter.equals(""))){
+            LecturaConjuntaModelo lcm = new LecturaConjuntaModelo(tOt, Integer.parseInt(prep), Integer.parseInt(sust), Integer.parseInt(art), Integer.parseInt(verb), Integer.parseInt(inint), Integer.parseInt(adj), Integer.parseInt(pron), Integer.parseInt(adver), Integer.parseInt(conj), Integer.parseInt(inter), idbebe);
+            lcm.createLecturaConjunta();
+        } else {
+            label.setVisible(true);
+            return;
+            }
+              
         Stage actualWindow = (Stage) inputprep.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
         Parent root = (Parent) loader.load();
