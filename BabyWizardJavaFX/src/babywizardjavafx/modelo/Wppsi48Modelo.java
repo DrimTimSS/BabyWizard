@@ -509,6 +509,18 @@ public class Wppsi48Modelo {
     public String[] getEquivciv() {
         return equivciv;
     }
+    public String getCiv0() {
+        return equivciv[0];
+    }
+    public String getCiv1() {
+        return equivciv[1];
+    }
+    public String getCiv2() {
+        return equivciv[2];
+    }
+    public String getCiv3() {
+        return equivciv[3];
+    }
 
     public void setEquivciv(String[] equivciv) {
         this.equivciv = equivciv;
@@ -516,6 +528,18 @@ public class Wppsi48Modelo {
 
     public String[] getEquivcie() {
         return equivcie;
+    }
+    public String getCie0() {
+        return equivcie[0];
+    }
+    public String getCie1() {
+        return equivcie[1];
+    }
+    public String getCie2() {
+        return equivcie[2];
+    }
+    public String getCie3() {
+        return equivcie[3];
     }
 
     public void setEquivcie(String[] equivcie) {
@@ -525,6 +549,18 @@ public class Wppsi48Modelo {
     public String[] getEquivcvp() {
         return equivcvp;
     }
+    public String getCvp0() {
+        return equivcvp[0];
+    }
+    public String getCvp1() {
+        return equivcvp[1];
+    }
+    public String getCvp2() {
+        return equivcvp[2];
+    }
+    public String getCvp3() {
+        return equivcvp[3];
+    }
 
     public void setEquivcvp(String[] equivcvp) {
         this.equivcvp = equivcvp;
@@ -533,13 +569,37 @@ public class Wppsi48Modelo {
     public String[] getEquivcit() {
         return equivcit;
     }
-
+    public String getCit0() {
+        return equivcit[0];
+    }
+    public String getCit1() {
+        return equivcit[1];
+    }
+    public String getCit2() {
+        return equivcit[2];
+    }
+    public String getCit3() {
+        return equivcit[3];
+    }
+    
     public void setEquivcit(String[] equivcit) {
         this.equivcit = equivcit;
     }
 
     public String[] getEquivcgl() {
         return equivcgl;
+    }
+    public String getCgl0() {
+        return equivcgl[0];
+    }
+    public String getCgl1() {
+        return equivcgl[1];
+    }
+    public String getCgl2() {
+        return equivcgl[2];
+    }
+    public String getCgl3() {
+        return equivcgl[3];
     }
 
     public void setEquivcgl(String[] equivcgl) {
@@ -564,7 +624,6 @@ public class Wppsi48Modelo {
         } else {
             return false;
         }
-        System.out.println(edad);
         if(edad<48) return false;
         if(edad >= 48 && edad <= 50) res = wcont.naturalesAEscalares4042(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());
         if(edad >= 51 && edad <= 53) res = wcont.naturalesAEscalares4345(this.getDisenioCubosNatural(), this.getInformacionNatural(), this.getMatricesNatural(), this.getVocabularioNatural(), this.getConceptosConDibujosNatural(), this.getBusquedaSimbolosNatural(), this.getPistasNatural(), this.getClavesNatural(), this.getComprensionNatural(), this.getFigurasIncompletasNatural(), this.getSemejanzasNatural(), this.getVocabularioReceptivoNatural(), this.getRompecabezasNatural(), this.getDenominacionesNatural());

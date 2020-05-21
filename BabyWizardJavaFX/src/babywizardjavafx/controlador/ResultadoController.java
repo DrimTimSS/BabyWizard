@@ -12,6 +12,7 @@ import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
+import babywizardjavafx.modelo.Wppsi48Modelo;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -26,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBoxTreeItem;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeView;
@@ -264,6 +266,108 @@ public class ResultadoController implements Initializable {
     ObservableList<Wppsi303642Modelo> listaWppsi303642 = FXCollections.observableArrayList();
     
     @FXML
+    private TableView<Wppsi48Modelo> resultadoswppsi48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> idinfantew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> dcnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> dcew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> innw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> inew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> mtnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> mtew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> vcnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> vcew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> cpnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> cpew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> bsnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> bsew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> psnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> psew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> clnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> clew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> cmnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> cmew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> finw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> fiew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> senw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> seew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> vrnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> vrew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> rcnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> rcew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> dnnw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, Integer> dnew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> civw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> civrpw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> civ90icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> civ95icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> ciew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cierpw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cie90icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cie95icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cvpw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cvprpw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cvp90icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cvp95icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> citw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> citrpw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cit90icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cit95icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cglw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cglrpw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cgl90icw48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> cgl95icw48;
+    ObservableList<Wppsi48Modelo> listaWppsi48 = FXCollections.observableArrayList();
+    
+    @FXML
     private Button exportar;
     @FXML
     private Button atras;
@@ -293,6 +397,7 @@ public class ResultadoController implements Initializable {
         resultadosexpcab.setTableMenuButtonVisible(true);
         resultadoslc.setTableMenuButtonVisible(true);
         resultadoswppsi30.setTableMenuButtonVisible(true);
+        resultadoswppsi48.setTableMenuButtonVisible(true);
         
     }    
 
@@ -545,6 +650,7 @@ public class ResultadoController implements Initializable {
 
     @FXML
     private void showWppsi48(ActionEvent event) {
+        resultadoswppsi48.toFront();
         if(!flagw48) {
             crearTablaW48();
             flagw48=true;
@@ -552,11 +658,78 @@ public class ResultadoController implements Initializable {
     }
     
     private void crearTablaW48() {
-    
+        try{
+            Wppsi48Modelo w48 = new Wppsi48Modelo();
+            LinkedList<Wppsi48Modelo> resultados = new LinkedList<>();
+            for(int i:ids){
+            LinkedList<Wppsi48Modelo> r = w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", i, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+            if(r.size()>0){
+            w48 = r.get(0);
+            w48.setEscalares();
+            w48.setEquivalentes();
+            resultados.add(w48);
+            }
+            }
+            for(Wppsi48Modelo m:resultados) listaWppsi48.add(m);
+            idinfantew48.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+            dcnw48.setCellValueFactory(new PropertyValueFactory<>("disenioCubosNatural"));
+            dcew48.setCellValueFactory(new PropertyValueFactory<>("disenioCubosEscalar"));
+            innw48.setCellValueFactory(new PropertyValueFactory<>("informacionNatural"));
+            inew48.setCellValueFactory(new PropertyValueFactory<>("informacionEscalar"));
+            mtnw48.setCellValueFactory(new PropertyValueFactory<>("matricesNatural"));
+            mtew48.setCellValueFactory(new PropertyValueFactory<>("matricesEscalar"));
+            vcnw48.setCellValueFactory(new PropertyValueFactory<>("vocabularioNatural"));
+            vcew48.setCellValueFactory(new PropertyValueFactory<>("vocabularioEscalar"));
+            cpnw48.setCellValueFactory(new PropertyValueFactory<>("conceptosConDibujosNatural"));
+            cpew48.setCellValueFactory(new PropertyValueFactory<>("conceptosConDibujosEscalar"));
+            bsnw48.setCellValueFactory(new PropertyValueFactory<>("busquedaSimbolosNatural"));
+            bsew48.setCellValueFactory(new PropertyValueFactory<>("busquedaSimbolosEscalar"));
+            psnw48.setCellValueFactory(new PropertyValueFactory<>("pistasNatural"));
+            psew48.setCellValueFactory(new PropertyValueFactory<>("pistasEscalar"));
+            clnw48.setCellValueFactory(new PropertyValueFactory<>("clavesNatural"));
+            clew48.setCellValueFactory(new PropertyValueFactory<>("clavesEscalar"));
+            cmnw48.setCellValueFactory(new PropertyValueFactory<>("comprensionNatural"));
+            cmew48.setCellValueFactory(new PropertyValueFactory<>("comprensionEscalar"));
+            finw48.setCellValueFactory(new PropertyValueFactory<>("figurasIncompletasNatural"));
+            fiew48.setCellValueFactory(new PropertyValueFactory<>("figurasIncompletasEscalar"));
+            senw48.setCellValueFactory(new PropertyValueFactory<>("semejanzasNatural"));
+            seew48.setCellValueFactory(new PropertyValueFactory<>("semejanzasEscalar"));
+            vrnw48.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoNatural"));
+            vrew48.setCellValueFactory(new PropertyValueFactory<>("vocabularoiReceptivoEscalar"));
+            rcnw48.setCellValueFactory(new PropertyValueFactory<>("rompecabezasNatural"));
+            rcew48.setCellValueFactory(new PropertyValueFactory<>("rompecabezasEscalar"));
+            dnnw48.setCellValueFactory(new PropertyValueFactory<>("denominacionesNatural"));
+            dnew48.setCellValueFactory(new PropertyValueFactory<>("denominacionesEscalar"));         
+            civw48.setCellValueFactory(new PropertyValueFactory<>("civ0"));
+            civrpw48.setCellValueFactory(new PropertyValueFactory<>("civ1"));
+            civ90icw48.setCellValueFactory(new PropertyValueFactory<>("civ2"));
+            civ95icw48.setCellValueFactory(new PropertyValueFactory<>("civ3"));
+            ciew48.setCellValueFactory(new PropertyValueFactory<>("cie0"));
+            cierpw48.setCellValueFactory(new PropertyValueFactory<>("cie1"));
+            cie90icw48.setCellValueFactory(new PropertyValueFactory<>("cie2"));
+            cie95icw48.setCellValueFactory(new PropertyValueFactory<>("cie3"));
+            cvpw48.setCellValueFactory(new PropertyValueFactory<>("cvp0"));
+            cvprpw48.setCellValueFactory(new PropertyValueFactory<>("cvp1"));
+            cvp90icw48.setCellValueFactory(new PropertyValueFactory<>("cvp2"));
+            cvp95icw48.setCellValueFactory(new PropertyValueFactory<>("cvp3"));
+            citw48.setCellValueFactory(new PropertyValueFactory<>("cit0"));
+            citrpw48.setCellValueFactory(new PropertyValueFactory<>("cit1"));
+            cit90icw48.setCellValueFactory(new PropertyValueFactory<>("cit2"));
+            cit95icw48.setCellValueFactory(new PropertyValueFactory<>("cit3"));
+            cglw48.setCellValueFactory(new PropertyValueFactory<>("cgl0"));
+            cglrpw48.setCellValueFactory(new PropertyValueFactory<>("cgl1"));
+            cgl90icw48.setCellValueFactory(new PropertyValueFactory<>("cgl2"));
+            cgl95icw48.setCellValueFactory(new PropertyValueFactory<>("cgl3"));
+            resultadoswppsi48.setItems(listaWppsi48);
+            //resultadoslc.getColumns().addAll(idinfantelc,typetokenlc,cuidadorbebelc,preposicionlc,sustantivolc,articulolc,verbolc,adjetivolc,pronombrelc,adverbiolc,conjuncionlc,interjeccionlc,ininteligiblelc);
+        } catch (SQLException ex) {
+            Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void meterIds(LinkedList<Integer> ids){
         this.ids = ids;
+        showWppsi30(null);
     }
 
     @FXML
