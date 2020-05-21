@@ -66,6 +66,12 @@ public class LecturaConjuntaController implements Initializable {
     private Button btnagregartlc;
     @FXML
     private Label label;
+    @FXML
+    private ToggleGroup cOn;
+    @FXML
+    private RadioButton isCAN;
+    @FXML
+    private RadioButton isNAC;
     /**
      * Initializes the controller class.
      */
@@ -150,6 +156,13 @@ public class LecturaConjuntaController implements Initializable {
         } else if(isToken.isSelected()){
             tOt = 1;
         }
+        
+        int cuidadorBebe = -1;
+        if(isCAN.isSelected()){
+            cuidadorBebe = 0;
+        } else if(isNAC.isSelected()){
+            cuidadorBebe = 1;
+        }
         String prep = inputprep.getText();
         String sust = inputsust.getText();
         String art = inputart.getText();
@@ -161,8 +174,8 @@ public class LecturaConjuntaController implements Initializable {
         String conj = inputconj.getText();
         String inter = inputinter.getText();
         
-        if(!(tOt==-1 || prep.equals("") || sust.equals("") || art.equals("") || verb.equals("") || inint.equals("") || adj.equals("") || pron.equals("") || adver.equals("") || conj.equals("") || inter.equals(""))){
-            LecturaConjuntaModelo lcm = new LecturaConjuntaModelo(tOt, Integer.parseInt(prep), Integer.parseInt(sust), Integer.parseInt(art), Integer.parseInt(verb), Integer.parseInt(inint), Integer.parseInt(adj), Integer.parseInt(pron), Integer.parseInt(adver), Integer.parseInt(conj), Integer.parseInt(inter), idbebe);
+        if(!(tOt==-1 || cuidadorBebe==-1 || prep.equals("") || sust.equals("") || art.equals("") || verb.equals("") || inint.equals("") || adj.equals("") || pron.equals("") || adver.equals("") || conj.equals("") || inter.equals(""))){
+            LecturaConjuntaModelo lcm = new LecturaConjuntaModelo(tOt, Integer.parseInt(prep), Integer.parseInt(sust), Integer.parseInt(art), Integer.parseInt(verb), Integer.parseInt(inint), Integer.parseInt(adj), Integer.parseInt(pron), Integer.parseInt(adver), Integer.parseInt(conj), Integer.parseInt(inter),  cuidadorBebe, idbebe);
             lcm.createLecturaConjunta();
         } else {
             label.setVisible(true);

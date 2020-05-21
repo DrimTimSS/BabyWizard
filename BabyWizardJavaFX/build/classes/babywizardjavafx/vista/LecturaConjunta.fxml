@@ -12,12 +12,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.LecturaConjuntaController">
    <children>
-      <GridPane layoutX="302.0" layoutY="135.0">
+      <GridPane layoutX="291.0" layoutY="105.0" prefHeight="390.0" prefWidth="233.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -31,36 +33,43 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label id="resaltar" text="Preposición:" GridPane.rowIndex="1" />
-            <Label id="resaltar" text="Sustantivo:" GridPane.rowIndex="2" />
-            <Label id="resaltar" text="Artículo:" GridPane.rowIndex="3" />
-            <Label text="Verbo:" GridPane.rowIndex="4" />
-            <Label text="Ininteligible:" GridPane.rowIndex="5" />
-            <Label text="Adjetivo:" GridPane.rowIndex="6" />
-            <Label text="Pronombre:" GridPane.rowIndex="7" />
-            <Label text="Adverbio:" GridPane.rowIndex="8" />
-            <Label text="Conjunción:" GridPane.rowIndex="9" />
-            <Label text="Interjección:" GridPane.rowIndex="10" />
-            <TextField fx:id="inputprep" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="inputsust" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="inputart" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="inputverb" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="inputinint" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="inputadj" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="inputpron" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="inputadver" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="inputconj" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField fx:id="inputinter" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label id="resaltar" text="Preposición:" GridPane.rowIndex="3" />
+            <Label id="resaltar" text="Sustantivo:" GridPane.rowIndex="4" />
+            <Label id="resaltar" text="Artículo:" GridPane.rowIndex="5" />
+            <Label id="resaltar" text="Verbo:" GridPane.rowIndex="6" />
+            <Label id="resaltar" text="Ininteligible:" GridPane.rowIndex="7" />
+            <Label id="resaltar" text="Adjetivo:" GridPane.rowIndex="8" />
+            <Label id="resaltar" text="Pronombre:" GridPane.rowIndex="9" />
+            <Label id="resaltar" text="Adverbio:" GridPane.rowIndex="10" />
+            <Label id="resaltar" text="Conjunción:" GridPane.rowIndex="11" />
+            <Label id="resaltar" text="Interjección:" GridPane.rowIndex="12" />
+            <TextField fx:id="inputprep" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="inputsust" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="inputart" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="inputverb" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="inputinint" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="inputadj" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="inputpron" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="inputadver" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="inputconj" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField fx:id="inputinter" GridPane.columnIndex="1" GridPane.rowIndex="12" />
             <RadioButton fx:id="istype" mnemonicParsing="false" text="Type">
                <toggleGroup>
                   <ToggleGroup fx:id="tipoOToken" />
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="isToken" mnemonicParsing="false" text="Token" toggleGroup="$tipoOToken" GridPane.columnIndex="1" />
+            <Label id="resaltar" text="¿Quién lee?" GridPane.rowIndex="1" />
+            <RadioButton fx:id="isCAN" mnemonicParsing="false" text="Cuidador a niño" GridPane.rowIndex="2">
+               <toggleGroup>
+                  <ToggleGroup fx:id="cOn" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="isNAC" mnemonicParsing="false" text="Niño a cuidador" toggleGroup="$cOn" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="btnagregartlc" layoutX="371.0" layoutY="523.0" mnemonicParsing="false" onAction="#agregar" text="Agregar" />
+      <Button fx:id="btnagregartlc" layoutX="371.0" layoutY="547.0" mnemonicParsing="false" onAction="#agregar" text="Agregar" />
       <Label id="subtitulo" layoutX="310.0" layoutY="76.0" text="Tarea de Lectura Conjunta (RANA)" />
-      <Label fx:id="label" layoutX="310.0" layoutY="481.0" style="-fx-fill: red;" text="No se llenaron todos los campos!" visible="false" />
+      <Label fx:id="label" layoutX="312.0" layoutY="510.0" style="-fx-fill: red;" text="No se llenaron todos los campos!" visible="false" />
    </children>
 </AnchorPane>
