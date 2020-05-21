@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,9 +56,9 @@ public class ExperimentoCabinaController implements Initializable {
     @FXML
     private TextField inputTr;
     @FXML
-    private Button btnagregarpl;
-    @FXML
     private Label label;
+    @FXML
+    private Button agregaredc;
     
     /**
      * Initializes the controller class.
@@ -68,13 +70,49 @@ public class ExperimentoCabinaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        inputprotarpre.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    inputprotarpre.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+            
+        });
+        
+        inputprotarpos.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                inputprotarpos.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        
+        inputLLkDifPre.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                inputLLkDifPre.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        
+        inputLLkDifPos.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                inputLLkDifPos.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        
+        inputTr.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                inputTr.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        
+        
     }    
     
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
     }
     
+    @FXML
     private void agregar(ActionEvent event) throws IOException, SQLException {
         
         int eOp = -1;
@@ -83,9 +121,8 @@ public class ExperimentoCabinaController implements Initializable {
         } else if (isPrueba.isSelected()) {
             eOp = 1;
         }
-       
-      if(!(isEmpty(inputtipoExp) || isEmpty(inputprotarpre) || isEmpty(inputprotarpos) || isEmpty(inputLLkDifPre) || isEmpty(inputLLkDifPos) || isEmpty(inputTr))){
         
+        if(!(eOp==-1 || isEmpty(inputtipoExp) || isEmpty(inputprotarpre) || isEmpty(inputprotarpos) || isEmpty(inputLLkDifPre) || isEmpty(inputLLkDifPos) || isEmpty(inputTr))){       
         String tipoExp = inputtipoExp.getText();
         double protarpre = Double.parseDouble(inputprotarpre.getText());
         double protarpos = Double.parseDouble(inputprotarpos.getText());
@@ -95,7 +132,7 @@ public class ExperimentoCabinaController implements Initializable {
         
         ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tipoExp, eOp, protarpre,protarpos, llkdifpre, llkdifpos, tr, idbebe);
         ecm.createExperimentoCabina();
-        
+
       } else{
           label.setVisible(true);
           return;
