@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.PruebaLaboratorioController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.ExperimentoCabinaController">
    <children>
       <GridPane layoutX="247.0" layoutY="124.0" prefHeight="353.0" prefWidth="306.0">
         <columnConstraints>
@@ -48,6 +48,7 @@
          </children>
       </GridPane>
       <Label id="subtitulo" layoutX="342.0" layoutY="64.0" text="Prueba de laboratorio" />
-      <Button fx:id="btnagregarpl" layoutX="374.0" layoutY="503.0" mnemonicParsing="false" text="Agregar" />
+      <Button fx:id="btnagregarpl" layoutX="375.0" layoutY="526.0" mnemonicParsing="false" text="Agregar" />
+      <Label fx:id="label" layoutX="310.0" layoutY="489.0" text="¡No se llenaron todos los campos!" />
    </children>
 </AnchorPane>

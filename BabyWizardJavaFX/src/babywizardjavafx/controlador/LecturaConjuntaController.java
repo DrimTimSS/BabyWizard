@@ -70,7 +70,7 @@ public class LecturaConjuntaController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb){
         inputprep.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -79,8 +79,10 @@ public class LecturaConjuntaController implements Initializable {
                     inputprep.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
+            
         });
-    }    
+        
+    }
     
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
