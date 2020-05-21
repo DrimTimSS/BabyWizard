@@ -5,10 +5,14 @@
  */
 package babywizardjavafx.controlador;
 
+import babywizardjavafx.modelo.ExperimentoCabinaModelo;
 import com.mysql.cj.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,9 +56,9 @@ public class ExperimentoCabinaController implements Initializable {
     @FXML
     private TextField inputTr;
     @FXML
-    private Button btnagregarpl;
-    @FXML
     private Label label;
+    @FXML
+    private Button agregaredc;
     
     /**
      * Initializes the controller class.
@@ -66,14 +70,50 @@ public class ExperimentoCabinaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        inputprotarpre.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                    inputprotarpre.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
+                }
+            }
+            
+        });
+        
+        inputprotarpos.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                inputprotarpos.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
+            }
+        });
+        
+        inputLLkDifPre.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                inputLLkDifPre.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
+            }
+        });
+        
+        inputLLkDifPos.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                inputLLkDifPos.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
+            }
+        });
+        
+        inputTr.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
+                inputTr.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
+            }
+        });
+        
+        
     }    
     
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
     }
     
-    private void agregar(ActionEvent event) throws IOException {
+    @FXML
+    private void agregar(ActionEvent event) throws IOException, SQLException {
         
         int eOp = -1;
         if (isEntren.isSelected()) {
@@ -81,9 +121,8 @@ public class ExperimentoCabinaController implements Initializable {
         } else if (isPrueba.isSelected()) {
             eOp = 1;
         }
-       
-      if(!(isEmpty(inputtipoExp) || isEmpty(inputprotarpre) || isEmpty(inputprotarpos) || isEmpty(inputLLkDifPre) || isEmpty(inputLLkDifPos) || isEmpty(inputTr))){
         
+        if(!(eOp==-1 || isEmpty(inputtipoExp) || isEmpty(inputprotarpre) || isEmpty(inputprotarpos) || isEmpty(inputLLkDifPre) || isEmpty(inputLLkDifPos) || isEmpty(inputTr))){       
         String tipoExp = inputtipoExp.getText();
         double protarpre = Double.parseDouble(inputprotarpre.getText());
         double protarpos = Double.parseDouble(inputprotarpos.getText());
@@ -91,8 +130,12 @@ public class ExperimentoCabinaController implements Initializable {
         double llkdifpos = Double.parseDouble(inputLLkDifPos.getText());
         double tr = Double.parseDouble(inputTr.getText());
         
+        ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tipoExp, eOp, protarpre,protarpos, llkdifpre, llkdifpos, tr, idbebe);
+        ecm.createExperimentoCabina();
+
       } else{
           label.setVisible(true);
+          return;
       }
         
         
