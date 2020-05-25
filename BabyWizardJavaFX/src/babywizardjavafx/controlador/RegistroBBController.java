@@ -199,10 +199,14 @@ public class RegistroBBController implements Initializable {
         });
         cuidadorprinc.getItems().add("Madre");
         cuidadorprinc.getItems().add("Padre");
-        cuidadorprinc.getItems().add("Abuela");
-        cuidadorprinc.getItems().add("Abuelo");
-        cuidadorprinc.getItems().add("Tía");
-        cuidadorprinc.getItems().add("Tío");
+        cuidadorprinc.getItems().add("Abuela P.");
+        cuidadorprinc.getItems().add("Abuela M.");
+        cuidadorprinc.getItems().add("Abuelo P.");
+        cuidadorprinc.getItems().add("Abuelo M.");
+        cuidadorprinc.getItems().add("Tía P.");
+        cuidadorprinc.getItems().add("Tía M.");
+        cuidadorprinc.getItems().add("Tío P.");
+        cuidadorprinc.getItems().add("Tío M.");
         cuidadorprinc.getItems().add("Hermana");
         cuidadorprinc.getItems().add("Hermano");
         cuidadorprinc.getItems().add("Otro");

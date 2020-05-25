@@ -91,7 +91,7 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<CuidadorModelo, String> restelefono2;
     @FXML
-    private TableColumn<CuidadorModelo, String> resfechanc;
+    private TableColumn<CuidadorModelo, Integer> edad;
     @FXML
     private TableColumn<CuidadorModelo, Integer> resaniosestudio;
     @FXML
@@ -451,7 +451,7 @@ public class ResultadoController implements Initializable {
             CuidadorModelo cm = new CuidadorModelo();
             LinkedList<CuidadorModelo> resultados = new LinkedList<CuidadorModelo>();
             for(int i:ids){
-            resultados.addAll(cm.readCuidador(-1, "", "", "", "", "", "", "", "", -1, i));
+            resultados.addAll(cm.readCuidador(-1, "", -1, "", "", "", "", "", "", -1, i));
             }
             for(CuidadorModelo c:resultados) listaCuidadores.add(c);
             residc.setCellValueFactory(new PropertyValueFactory<>("idCuidador"));
@@ -460,7 +460,7 @@ public class ResultadoController implements Initializable {
             resapellidopc.setCellValueFactory(new PropertyValueFactory<>("primerApellidoC"));
             resapellidomc.setCellValueFactory(new PropertyValueFactory<>("segundoApellidoC"));
             resocupacion.setCellValueFactory(new PropertyValueFactory<>("ocupacion"));
-            resfechanc.setCellValueFactory(new PropertyValueFactory<>("fechaDeNacimiento"));
+            edad.setCellValueFactory(new PropertyValueFactory<>("edad"));
             restelefono1.setCellValueFactory(new PropertyValueFactory<>("primerTelefono"));
             restelefono2.setCellValueFactory(new PropertyValueFactory<>("segundoTelefono"));
             resaniosestudio.setCellValueFactory(new PropertyValueFactory<>("aniosEstudio"));
@@ -607,10 +607,11 @@ public class ResultadoController implements Initializable {
             for(int i:ids){
             LinkedList<Wppsi303642Modelo> r = w30.readWppsi303642(-1, -1, -1, -1, -1, -1, "", i, -1);
             if(r.size()>0){
-            w30 = r.get(0);
-            w30.setEscalares();
-            w30.setEquivalentes();
-            resultados.add(w30);
+                for(Wppsi303642Modelo w:r) {
+                    w.setEscalares();
+                    w.setEquivalentes();
+                    resultados.add(w);
+                }
             }
             }
             for(Wppsi303642Modelo m:resultados) listaWppsi303642.add(m);
@@ -664,11 +665,12 @@ public class ResultadoController implements Initializable {
             for(int i:ids){
             LinkedList<Wppsi48Modelo> r = w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", i, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
             if(r.size()>0){
-            w48 = r.get(0);
-            w48.setEscalares();
-            w48.setEquivalentes();
-            resultados.add(w48);
-            }
+                for(Wppsi48Modelo w:r) {
+                    w.setEscalares();
+                    w.setEquivalentes();
+                    resultados.add(w);
+                }
+            }   
             }
             for(Wppsi48Modelo m:resultados) listaWppsi48.add(m);
             idinfantew48.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
@@ -729,7 +731,7 @@ public class ResultadoController implements Initializable {
     
     public void meterIds(LinkedList<Integer> ids){
         this.ids = ids;
-        showWppsi30(null);
+        showInfante(null);
     }
 
     @FXML

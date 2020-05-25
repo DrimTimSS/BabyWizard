@@ -61,8 +61,6 @@ public class RegistroCController implements Initializable {
     @FXML
     private TextField telefono1;
     @FXML
-    private DatePicker fechanacimiento;
-    @FXML
     private TextField telefono2;
     @FXML
     private TextField aniosestudio;
@@ -82,12 +80,13 @@ public class RegistroCController implements Initializable {
 
     BebeModelo bm;
     SociodemograficoModelo sm;
-    @FXML
     private ChoiceBox<String> relacion;
     @FXML
     private Label llenadodatos;
     
     Scene escenaAnterior;
+    @FXML
+    private TextField edad;
     
     
     /**
@@ -95,15 +94,6 @@ public class RegistroCController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        relacion.getItems().add("Madre");
-        relacion.getItems().add("Padre");
-        relacion.getItems().add("Abuela");
-        relacion.getItems().add("Abuelo");
-        relacion.getItems().add("Tía");
-        relacion.getItems().add("Tío");
-        relacion.getItems().add("Hermana");
-        relacion.getItems().add("Hermano");
-        relacion.getItems().add("Otro");
         
         nse.getItems().add("A\\B");
         nse.getItems().add("C+");
@@ -259,13 +249,8 @@ public class RegistroCController implements Initializable {
     }
     
     public CuidadorModelo crearCuidador(){
-        if(!(isEmpty(correo)||isEmpty(nombres)||isEmpty(apellidop)||isEmpty(apellidom)||isEmpty(ocupacion)||isEmpty(telefono1)||isEmpty(aniosestudio))){
-            try{
-                String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                return new CuidadorModelo(correo.getText(), fechan, nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()),0);
-            } catch(Exception e){
-                llenadodatos.setText("No se han llenado todos los campos obligatorios.");
-            }           
+        if(!(isEmpty(edad)||isEmpty(correo)||isEmpty(nombres)||isEmpty(apellidop)||isEmpty(apellidom)||isEmpty(ocupacion)||isEmpty(telefono1)||isEmpty(aniosestudio))){
+                return new CuidadorModelo(correo.getText(), Integer.parseInt(edad.getText()), nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()),0);
         } else{
             llenadodatos.setText("No se han llenado todos los campos obligatorios.");
         }

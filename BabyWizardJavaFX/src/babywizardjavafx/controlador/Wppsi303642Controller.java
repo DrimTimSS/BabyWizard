@@ -393,7 +393,7 @@ public class Wppsi303642Controller implements Initializable {
         int rc = (rcn.getText().equals(""))?-1:Integer.parseInt(rcn.getText());
         int dn = (dnn.getText().equals(""))?-1:Integer.parseInt(dnn.getText());
         
-        try{
+        try {
         String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         wm.setFkBebe(idbebe);
         wm.setVocabularioReceptivoNatural(vr);

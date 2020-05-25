@@ -16,130 +16,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="894.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BusquedaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="893.0" prefWidth="894.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.BusquedaController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="384.0" stylesheets="@EstiloGeneral.css">
-         <children>
-             <GridPane hgap="5.0" layoutX="16.0" layoutY="78.0" prefHeight="284.0" prefWidth="346.0" vgap="5.0">
-               <columnConstraints>
-                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="141.6000183105469" minWidth="10.0" prefWidth="88.80000610351563" />
-                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="168.79999389648435" minWidth="10.0" prefWidth="168.79999389648435" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0000030517578" minWidth="10.0" prefWidth="79.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label text="ID del bebé" />
-                  <Label text="Nombre" GridPane.rowIndex="1" />
-                  <Label text="Apellido P." GridPane.rowIndex="2" />
-                  <Label text="Apellido M." GridPane.rowIndex="3" />
-                  <Label text="Edad" GridPane.rowIndex="4" />
-                  <Label text="Sexo" GridPane.rowIndex="6" />
-                  <TextField id="input" fx:id="idbebebusqueda" GridPane.columnIndex="1" />
-                  <TextField id="input" fx:id="nombrebusqueda" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField id="input" fx:id="apellidopbusqueda" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField id="input" fx:id="apellidombusqueda" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="114.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <Label text="Min:">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <TextField id="input" fx:id="edadbusquedamin" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <children>
-                  <Label text="Max:" />
-                  <TextField id="input" fx:id="edadbusquedamax" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" />
-               </children>
-            </HBox>
-                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <children>
-                        <RadioButton fx:id="mbusqueda" mnemonicParsing="false" text="M">
-                            <toggleGroup>
-                                <javafx.scene.control.ToggleGroup fx:id="sexotoggle" />
-                            </toggleGroup>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="fbusqueda" mnemonicParsing="false" text="F" toggleGroup="$sexotoggle" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="btnbuscar1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscarBebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-               </children>
-            </GridPane>
-            
-            
-            <Separator layoutX="382.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="810.0" prefWidth="4.0" />
-            <Label layoutX="55.0" layoutY="380.0" text="Búsqueda socioeconómica">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <Label layoutX="28.0" layoutY="22.0" text="Búsqueda por datos de bebé">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <GridPane hgap="3.0" layoutX="46.0" layoutY="427.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="304.0" vgap="5.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.99999999999999" minWidth="10.0" prefWidth="77.6" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.40005187988282" minWidth="52.799963378906256" prefWidth="76.80000000000001" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="40.80000000000001" minHeight="0.0" prefHeight="24.400000000000006" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label text="Puntaje Crudo" GridPane.halignment="CENTER" />
-                  <Label text="NSE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <TextField fx:id="pcbusqueda" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="nse" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="btnbuscar2" mnemonicParsing="false" onAction="#buscarSocioeconomico" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-               </children>
-            </GridPane>
-            <Label layoutX="14.0" layoutY="554.0" text="Búsqueda por usuario que registró">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <Separator layoutX="-2.0" layoutY="532.0" prefHeight="3.0" prefWidth="384.0" />
-            <GridPane hgap="3.0" layoutX="46.0" layoutY="604.0" prefHeight="60.0" prefWidth="322.0" vgap="5.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.20001220703125" minWidth="10.0" prefWidth="86.00003051757812" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.79998168945312" minWidth="10.0" prefWidth="127.59996948242187" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.59998779296876" minWidth="52.799963378906256" prefWidth="93.59998779296876" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="40.80000000000001" minHeight="0.0" prefHeight="24.400000000000006" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label text="Usuario" GridPane.halignment="CENTER" />
-                  <TextField fx:id="usuariobusqueda" GridPane.columnIndex="1" />
-                  <Button fx:id="btnbuscar3" mnemonicParsing="false" onAction="#buscarPorUsuario" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
-            <Separator layoutY="376.0" prefHeight="3.0" prefWidth="384.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="383.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="506.0" stylesheets="@EstiloGeneral.css">
+      <AnchorPane layoutX="383.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="893.0" prefWidth="506.0" stylesheets="@EstiloGeneral.css">
          <children>
             <GridPane layoutX="32.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="456.0">
                <columnConstraints>
@@ -306,7 +185,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <ComboBox fx:id="cuidadorbusqueda" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                  <ComboBox fx:id="cuidadorbusqueda" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
                   <HBox alignment="CENTER" prefHeight="27.0" prefWidth="206.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
                      <children>
                         <RadioButton fx:id="guarderiasi" mnemonicParsing="false" onAction="#guarderiaChecked" text="Sí">
@@ -384,7 +263,7 @@
                </font>
             </Label>
             <Separator layoutX="-7.0" layoutY="609.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="521.0" />
-            <Label layoutX="129.0" layoutY="629.0" text="Búsqueda por Prueba">
+            <Label layoutX="129.0" layoutY="629.0" text="Búsqueda por prueba">
                <font>
                   <Font size="23.0" />
                </font>
@@ -409,6 +288,145 @@
                   <CheckBox fx:id="experimentocabina" mnemonicParsing="false" text="Experimento de Cab." GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
+            <GridPane layoutX="-122.0" layoutY="783.0" prefHeight="86.0" prefWidth="406.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Búsqueda completa" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnbuscar6" alignment="CENTER" mnemonicParsing="false" onAction="#buscarCompleto" text="Buscar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Separator layoutX="-413.0" layoutY="767.0" prefHeight="3.0" prefWidth="937.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="893.0" prefWidth="384.0" stylesheets="@EstiloGeneral.css">
+         <children>
+             <GridPane hgap="5.0" layoutX="16.0" layoutY="78.0" prefHeight="284.0" prefWidth="346.0" vgap="5.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="141.6000183105469" minWidth="10.0" prefWidth="88.80000610351563" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="168.79999389648435" minWidth="10.0" prefWidth="168.79999389648435" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0000030517578" minWidth="10.0" prefWidth="79.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="ID del bebé" />
+                  <Label text="Nombre" GridPane.rowIndex="1" />
+                  <Label text="Apellido P." GridPane.rowIndex="2" />
+                  <Label text="Apellido M." GridPane.rowIndex="3" />
+                  <Label text="Edad" GridPane.rowIndex="4" />
+                  <Label text="Sexo" GridPane.rowIndex="6" />
+                  <TextField id="input" fx:id="idbebebusqueda" GridPane.columnIndex="1" />
+                  <TextField id="input" fx:id="nombrebusqueda" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField id="input" fx:id="apellidopbusqueda" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField id="input" fx:id="apellidombusqueda" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="114.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label text="Min:">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField id="input" fx:id="edadbusquedamin" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <Label text="Max:" />
+                  <TextField id="input" fx:id="edadbusquedamax" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="90.0" />
+               </children>
+            </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <children>
+                        <RadioButton fx:id="mbusqueda" mnemonicParsing="false" text="M">
+                            <toggleGroup>
+                                <javafx.scene.control.ToggleGroup fx:id="sexotoggle" />
+                            </toggleGroup>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="fbusqueda" mnemonicParsing="false" text="F" toggleGroup="$sexotoggle" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnbuscar1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscarBebes" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+            
+            
+            <Separator layoutX="382.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="769.0" prefWidth="2.0" />
+            <Label layoutX="55.0" layoutY="380.0" text="Búsqueda socioeconómica">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="22.0" text="Búsqueda por datos de bebé">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <GridPane hgap="3.0" layoutX="46.0" layoutY="427.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="304.0" vgap="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.99999999999999" minWidth="10.0" prefWidth="77.6" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.40005187988282" minWidth="52.799963378906256" prefWidth="76.80000000000001" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.80000000000001" minHeight="0.0" prefHeight="24.400000000000006" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Puntaje Crudo" GridPane.halignment="CENTER" />
+                  <Label text="NSE" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <TextField fx:id="pcbusqueda" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="nse" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnbuscar2" mnemonicParsing="false" onAction="#buscarSocioeconomico" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <Label layoutX="14.0" layoutY="554.0" text="Búsqueda por usuario que registró">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Separator layoutX="-2.0" layoutY="532.0" prefHeight="3.0" prefWidth="384.0" />
+            <GridPane hgap="3.0" layoutX="46.0" layoutY="604.0" prefHeight="60.0" prefWidth="322.0" vgap="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.20001220703125" minWidth="10.0" prefWidth="86.00003051757812" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.79998168945312" minWidth="10.0" prefWidth="127.59996948242187" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.59998779296876" minWidth="52.799963378906256" prefWidth="93.59998779296876" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.80000000000001" minHeight="0.0" prefHeight="24.400000000000006" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Usuario" GridPane.halignment="CENTER" />
+                  <TextField fx:id="usuariobusqueda" GridPane.columnIndex="1" />
+                  <Button fx:id="btnbuscar3" mnemonicParsing="false" onAction="#buscarPorUsuario" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Separator layoutY="376.0" prefHeight="3.0" prefWidth="384.0" />
          </children>
       </AnchorPane>
    </children>

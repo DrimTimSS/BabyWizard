@@ -19,8 +19,10 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -169,12 +171,16 @@ public class BusquedaController implements Initializable {
     private Button btnbuscar4;
     @FXML
     private Button btnbuscar5;
+    @FXML
+    private Button btnbuscar6;
+    private boolean abrir;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        abrir = true;
         for (int i=0;i<11;i++){
         apgar1busqueda.getItems().add(i);
         apgar2busqueda.getItems().add(i);
@@ -504,7 +510,7 @@ public class BusquedaController implements Initializable {
         for(SociodemograficoModelo b:resultados){
                 ids.add(b.getFkBebeSociodemografico());
             }
-        abrirResultado(ids);
+        if(abrir)abrirResultado(ids);
         return ids;
     }
     
@@ -625,7 +631,7 @@ public class BusquedaController implements Initializable {
         while(rs.next()){
             ids.add(rs.getInt(1));
         }
-        abrirResultado(ids);
+        if(abrir)abrirResultado(ids);
         return ids;
     }
 
@@ -654,7 +660,7 @@ public class BusquedaController implements Initializable {
             for(BebeModelo b:resultados){
                 ids.add(b.getIdBebe());
             }
-            abrirResultado(ids);
+            if(abrir)abrirResultado(ids);
             return ids;
     }
 
@@ -682,7 +688,7 @@ public class BusquedaController implements Initializable {
         
         idst.add(sdm.readSociodemografico(ids.get(i), "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", -1).get(0).getFkBebeSociodemografico());
         }
-        abrirResultado(ids);
+        if(abrir)abrirResultado(ids);
         return idst;
     }
 
@@ -701,7 +707,7 @@ public class BusquedaController implements Initializable {
         bbs.forEach((bb) -> {
             ids.add(bb.getIdBebe());
         });
-        abrirResultado(ids);
+        if(abrir)abrirResultado(ids);
         return ids;
     }
     
@@ -716,5 +722,23 @@ public class BusquedaController implements Initializable {
         Stage mainWindow = (Stage) idbebebusqueda.getScene().getWindow();
         mainWindow.setScene(CuidadorScene);
         mainWindow.show();  
+    }
+
+    @FXML
+    private LinkedList<Integer> buscarCompleto(ActionEvent event) throws SQLException, IOException {
+        LinkedList<Integer> ids = new LinkedList<>();
+        abrir = false;
+        ids = intersection(intersection(intersection(intersection(buscarBebes(null),buscarPorUsuario(null)),buscarPrueba(null)),buscarSociodemografico(null)),buscarSocioeconomico(null));
+        abrir=true;
+        abrirResultado(ids);
+        return ids;
+    }
+    
+    private LinkedList<Integer> intersection(LinkedList<Integer> list1, LinkedList<Integer> list2) {
+        for(int i = list2.size() - 1; i > -1; --i){
+            Integer entero = list2.get(i);
+            if(!list1.remove(entero)) list2.remove(entero);
+        }
+        return list2;
     }
 }

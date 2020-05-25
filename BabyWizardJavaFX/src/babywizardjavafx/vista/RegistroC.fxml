@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -72,13 +71,6 @@
                         <Label text="*" />
                      </children>
                   </HBox>
-                    <HBox alignment="CENTER" prefHeight="48.0" prefWidth="232.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                 <children>
-                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Relación:" />
-                                    <ChoiceBox fx:id="relacion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
-                        <Label text="*" />
-                                 </children>
-                              </HBox>
                   <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
@@ -97,7 +89,7 @@
                <children>
                   <HBox alignment="BOTTOM_CENTER">
                      <children>
-                        <DatePicker fx:id="fechanacimiento" promptText="Nacimiento" />
+                        <TextField fx:id="edad" promptText="Edad" />
                         <Label text="*" />
                      </children>
                   </HBox>
