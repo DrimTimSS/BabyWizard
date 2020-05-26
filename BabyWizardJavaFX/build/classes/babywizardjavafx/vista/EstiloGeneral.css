@@ -2,6 +2,14 @@
  * El color del diseño predeterminado es ete: #D8B9F7
  */
 
+.dialog-pane {
+    -fx-background-color: #FF8D33;
+}
+
+.dialog-pane .header-panel{
+    -fx-background-color: #B24F00;
+    -fx-font-weight: bold;
+}
 
 .root { 
     -fx-background-color: #B24F00,#FF8D33;

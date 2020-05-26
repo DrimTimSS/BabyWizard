@@ -26,11 +26,17 @@ import java.util.regex.*;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -120,7 +126,7 @@ public class BorrarController implements Initializable {
             //selectedItems.addAll(selection.getSelectedItems());
             try{
             idbebeaborrar.setText(String.valueOf(selectedItems.get(0).getIdBebe()));
-            
+            encontrarPruebas();
             } catch (Exception e) {
                 //System.out.println("No pasa nada oiga");
             }
@@ -185,17 +191,34 @@ public class BorrarController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(BorrarController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        encontrarPruebas();
+        
     }
     
     @FXML
     public void borrarconid(ActionEvent event) throws SQLException{
-        if(!idbebeaborrar.getText().equals("")){
-        BebeModelo bm = new BebeModelo();
-        bm.deleteBebe(Integer.parseInt(idbebeaborrar.getText()));
-        tablabebes.getItems().clear();
-        this.buscarbebes(event);
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+        alert.setTitle("Confirmar.");
+        alert.setHeaderText("Se borrará el infante con todos \nsus registros y pruebas.");
+        alert.setContentText("¿Está seguro?");
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        //Scene scene = alert.getDialogPane().getScene();
+        //JMetro jmetro = new JMetro(Style.LIGHT);
+        //jmetro.setScene(scene);
+        
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            if (!idbebeaborrar.getText().equals("")) {
+                BebeModelo bm = new BebeModelo();
+                bm.deleteBebe(Integer.parseInt(idbebeaborrar.getText()));
+                tablabebes.getItems().clear();
+                this.buscarbebes(event);
+            }
+        } else {
+            // ... user chose CANCEL or closed the dialog
         }
+        
     }
     
     public void encontrarPruebas() throws SQLException{

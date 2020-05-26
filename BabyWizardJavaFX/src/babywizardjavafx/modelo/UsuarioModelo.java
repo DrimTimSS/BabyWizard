@@ -101,7 +101,7 @@ public class UsuarioModelo {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
-        if(!"".equals(usuario)) toRead.add("usuario = '"+usuario+"'");
+        if(!"".equals(usuario)) toRead.add("usuario = BINARY '"+usuario+"'");
         if(!"".equals(nombreU)) toRead.add("nombreU = '"+nombreU+"'");
         if(!"".equals(apellidoMaternoU)) toRead.add("apellidoMaternoU = '"+apellidoMaternoU+"'");
         if(!"".equals(apellidoPaternoU)) toRead.add("apellidoPaternoU = '"+apellidoPaternoU+"'");

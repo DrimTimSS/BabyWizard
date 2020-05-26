@@ -13,6 +13,10 @@ import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
 import babywizardjavafx.modelo.Wppsi48Modelo;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -35,6 +39,11 @@ import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  * FXML Controller class
@@ -402,7 +411,46 @@ public class ResultadoController implements Initializable {
     }    
 
     @FXML
-    private void exportar(ActionEvent event) {
+    private void exportar(ActionEvent event) throws FileNotFoundException, IOException {
+        Workbook workbook = new HSSFWorkbook();
+        
+        crearHoja(workbook,"Infantes",resultadosbebe);
+        crearHoja(workbook,"Cuidador",resultadoscuidador);
+        
+        String pathToExport = System.getProperty("user.home");
+        File file = new File(pathToExport+"/BabyWizard");
+        file.mkdirs();
+        FileOutputStream fileOut = new FileOutputStream(pathToExport +"/BabyWizard/TablasBabyWizard.xls");
+        workbook.write(fileOut);
+        fileOut.close();
+    }
+    
+    public void crearHoja(Workbook workbook, String tabla, TableView tv) {
+        Sheet nuevahoja = workbook.createSheet(tabla);
+        
+        Row row = nuevahoja.createRow(0);
+        ObservableList<TableColumn<?,?>> columns = tv.getColumns();
+        ObservableList<TableColumn<?,?>> columnasVisibles = FXCollections.observableArrayList();
+              
+        int contadorVisibles = 0;
+        for (int j = 0; j < columns.size(); j++) {
+            if(columns.get(j).isVisible()) {
+                row.createCell(contadorVisibles).setCellValue(columns.get(j).getText());
+                contadorVisibles++;
+            }
+        }
+        
+        for (int i = 0; i < tv.getItems().size(); i++) {
+            row = nuevahoja.createRow(i + 1);
+            contadorVisibles = 0;
+            for (int j = 0; j < columns.size(); j++) {
+                if(columns.get(j).getCellData(i) != null && columns.get(j).isVisible()) {
+                    row.createCell(contadorVisibles).setCellValue(columns.get(j).getCellData(i).toString());
+                    contadorVisibles++;
+                }
+                
+            }
+        }
     }
 
     @FXML
