@@ -421,7 +421,13 @@ public class ResultadoController implements Initializable {
             new FileChooser.ExtensionFilter("Archivo Excel xlsx", "*.xlsx"),
             new FileChooser.ExtensionFilter("Archivo Excel xls", "*.xls"));
         Stage stage = (Stage) exportar.getScene().getWindow();
-        
+        showCuidador(null);
+        showExpCab(null);
+        showLectCab(null);
+        showSociode(null);
+        showWppsi30(null);
+        showWppsi48(null);
+        showInfante(null);
         try {
             File selectedFile = fileChooser.showSaveDialog(stage);
             if (selectedFile != null) {

@@ -36,39 +36,6 @@
             <Button minWidth="64.0" mnemonicParsing="false" onAction="#showWppsi48" text="WPPSI48" />
          </children>
       </HBox>
-      <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="DCn" />
-          <TableColumn prefWidth="75.0" text="DCe" />
-            <TableColumn prefWidth="75.0" text="INn" />
-            <TableColumn prefWidth="75.0" text="INe" />
-            <TableColumn prefWidth="75.0" text="MTn" />
-            <TableColumn prefWidth="75.0" text="MTe" />
-            <TableColumn prefWidth="75.0" text="VBn" />
-            <TableColumn prefWidth="75.0" text="VBe" />
-            <TableColumn prefWidth="75.0" text="CDn" />
-            <TableColumn prefWidth="75.0" text="CDe" />
-            <TableColumn prefWidth="75.0" text="BSn" />
-            <TableColumn prefWidth="75.0" text="BSe" />
-            <TableColumn prefWidth="75.0" text="PSn" />
-            <TableColumn prefWidth="75.0" text="Pse" />
-            <TableColumn prefWidth="75.0" text="CLn" />
-            <TableColumn prefWidth="75.0" text="CLe" />
-            <TableColumn prefWidth="75.0" text="CMn" />
-            <TableColumn prefWidth="75.0" text="CMe" />
-            <TableColumn prefWidth="75.0" text="FIn" />
-            <TableColumn prefWidth="75.0" text="FIe" />
-            <TableColumn prefWidth="75.0" text="SEn" />
-            <TableColumn prefWidth="75.0" text="SEe" />
-            <TableColumn prefWidth="75.0" text="VRn" />
-            <TableColumn prefWidth="75.0" text="VRe" />
-            <TableColumn prefWidth="75.0" text="RCn" />
-            <TableColumn prefWidth="75.0" text="RCe" />
-            <TableColumn prefWidth="75.0" text="DNn" />
-            <TableColumn prefWidth="75.0" text="DNe" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-        </columns>
-      </TableView>
       <TableView fx:id="resultadosbebe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
         <columns>
           <TableColumn fx:id="resid" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="90.0" text="ID" />
@@ -195,7 +162,6 @@
             <TableColumn fx:id="conjuncionlc" minWidth="-Infinity" prefWidth="160.0" text="Conjuncion" />
             <TableColumn fx:id="interjeccionlc" minWidth="-Infinity" prefWidth="160.0" text="Interjección" />
             <TableColumn fx:id="ininteligiblelc" minWidth="-Infinity" prefWidth="160.0" text="Ininteligible" />
-            <TableColumn prefWidth="160.0" text="¿Quién lee?" />
          </columns>
       </TableView>
       <TableView fx:id="resultadosexpcab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">

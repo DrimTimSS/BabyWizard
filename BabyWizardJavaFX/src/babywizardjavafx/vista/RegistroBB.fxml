@@ -71,25 +71,6 @@
                         <Label text="*" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="4">
-                     <children>
-                        <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" />
-                        <Label text="*" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" GridPane.rowIndex="6">
-                     <children>
-                        <TextField fx:id="semanasnacio" promptText="Semanas a las que nació:" />
-                        <Label text="*" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" GridPane.rowIndex="7">
-                     <children>
-                        <TextField fx:id="pa1" promptText="Pt. Apgar 1" />
-                        <Label text="*" />
-                     </children>
-                  </HBox>
-                  <TextField fx:id="pa2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Pt. Apgar 2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
                   <HBox alignment="CENTER" prefHeight="22.0" prefWidth="232.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <children>
                         <Label text="Sexo:" />
@@ -104,7 +85,26 @@
                         <Insets />
                      </opaqueInsets>
                   </HBox>
-                  <CheckBox fx:id="prematuro" mnemonicParsing="false" text="Prematuro" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                  <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="4">
+                     <children>
+                        <DatePicker fx:id="fechanacimiento" prefHeight="25.0" prefWidth="150.0" promptText="Nacimiento" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <CheckBox fx:id="prematuro" mnemonicParsing="false" text="Prematuro" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER" GridPane.rowIndex="6">
+                     <children>
+                        <TextField fx:id="semanasnacio" promptText="Semanas a las que nació:" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="7">
+                     <children>
+                        <TextField fx:id="pa1" promptText="Pt. Apgar 1" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="pa2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" promptText="Pt. Apgar 2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
                   <CheckBox fx:id="probnacer" mnemonicParsing="false" text="Problemas al nacer" GridPane.halignment="LEFT" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
@@ -130,6 +130,10 @@
                         <Label text="*" />
                      </children>
                   </HBox>
+                  <CheckBox fx:id="probsalud" mnemonicParsing="false" text="Problemas de salud" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="probaudicion" mnemonicParsing="false" text="Problemas de audición" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="probvision" mnemonicParsing="false" text="Problemas de visión" GridPane.rowIndex="3" />
+                  <CheckBox fx:id="otroidioma" mnemonicParsing="false" text="Otro idioma" GridPane.rowIndex="4" />
                   <HBox alignment="CENTER" GridPane.rowIndex="5">
                      <children>
                         <TextField fx:id="numhermanos" promptText="Número de hermanos" />
@@ -142,20 +146,16 @@
                         <Label text="*" />
                      </children>
                   </HBox>
-                  <CheckBox fx:id="probsalud" mnemonicParsing="false" text="Problemas de salud" GridPane.rowIndex="1" />
-                  <CheckBox fx:id="probaudicion" mnemonicParsing="false" text="Problemas de audición" GridPane.rowIndex="2" />
-                  <CheckBox fx:id="probvision" mnemonicParsing="false" text="Problemas de visión" GridPane.rowIndex="3" />
-                  <CheckBox fx:id="otroidioma" mnemonicParsing="false" text="Otro idioma" GridPane.rowIndex="4" />
-                  <HBox alignment="CENTER" GridPane.rowIndex="8">
-                     <children>
-                        <TextField fx:id="adultosvive" promptText="Adultos con los que vive:" />
-                        <Label text="*" />
-                     </children>
-                  </HBox>
                   <HBox alignment="CENTER" GridPane.rowIndex="7">
                      <children>
                         <TextField fx:id="niniosvive" alignment="TOP_LEFT" promptText="Niños con las que vive:" />
                         <Label alignment="TOP_LEFT" text="*" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="8">
+                     <children>
+                        <TextField fx:id="adultosvive" promptText="Adultos con los que vive:" />
+                        <Label text="*" />
                      </children>
                   </HBox>
                </children>
@@ -176,23 +176,23 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
+                  <HBox alignment="CENTER" spacing="10.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Cuidador Principal:" />
+                        <ChoiceBox fx:id="cuidadorprinc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                        <Label text="*" />
+                     </children>
+                  </HBox>
+                  <CheckBox fx:id="guarderia" mnemonicParsing="false" onAction="#guarderiaChecked" text="Guardería" GridPane.rowIndex="1" />
                   <TextField fx:id="tiempoasistiendog" disable="true" promptText="¿Cuánto tiempo tiene asistiendo?" GridPane.rowIndex="2" />
                   <TextField fx:id="tiempoqueasisteg" disable="true" promptText="¿Cuántas horas al día?" GridPane.rowIndex="3" />
+                  <CheckBox fx:id="preescolar" mnemonicParsing="false" onAction="#preescolarChecked" text="Preescolar" GridPane.rowIndex="4" />
                   <TextField fx:id="tiempoasistiendop" disable="true" promptText="¿Cuánto tiempo tiene asistiendo?" GridPane.rowIndex="5" />
                   <TextField fx:id="tiempoqueasistep" disable="true" promptText="¿Cuántas horas al día?" GridPane.rowIndex="6" />
                   <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <children>
                         <Label text="Fecha de cita: " />
                         <DatePicker fx:id="fechadecita" prefHeight="25.0" prefWidth="150.0" promptText="Fecha de cita" />
-                        <Label text="*" />
-                     </children>
-                  </HBox>
-                  <CheckBox fx:id="guarderia" mnemonicParsing="false" onAction="#guarderiaChecked" text="Guardería" GridPane.rowIndex="1" />
-                  <CheckBox fx:id="preescolar" mnemonicParsing="false" onAction="#preescolarChecked" text="Preescolar" GridPane.rowIndex="4" />
-                  <HBox alignment="CENTER" spacing="10.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Cuidador Principal:" />
-                        <ChoiceBox fx:id="cuidadorprinc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
                         <Label text="*" />
                      </children>
                   </HBox>

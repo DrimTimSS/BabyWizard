@@ -158,8 +158,6 @@ public class BorrarController implements Initializable {
     public void buscarbebes(ActionEvent event) throws SQLException{
         tablabebes.getItems().clear();
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
             BebeModelo bm = new BebeModelo();
             int id = -1;
             if(Pattern.matches("-?\\d+",idbebebusqueda.getText())){
@@ -239,4 +237,5 @@ public class BorrarController implements Initializable {
         }
         
     }
+    
 }
