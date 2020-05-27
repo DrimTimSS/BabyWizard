@@ -190,8 +190,7 @@ public class BorrarController implements Initializable {
             //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
         } catch (SQLException ex) {
             Logger.getLogger(BorrarController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }     
     }
     
     @FXML
