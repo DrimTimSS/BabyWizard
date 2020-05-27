@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.Wppsi303642Modelo;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -92,15 +93,11 @@ public class EditarController implements Initializable {
     @FXML
     private RadioButton cuidador;
     @FXML
-    private RadioButton sociodem;
-    @FXML
-    private RadioButton socioeco;
-    @FXML
     private RadioButton infante;
     @FXML
-    private Label idbebeprueba;
-    
-    ObservableList<BebeModelo> listaBebes = FXCollections.observableArrayList();
+    private Label idbebeprueba;//id bebe a editar
+    @FXML
+    private ToggleGroup pruebas;
 
     /**
      * Initializes the controller class.
@@ -140,6 +137,7 @@ public class EditarController implements Initializable {
         });
     }    
 
+    @FXML
     public void buscarbebes(ActionEvent event) throws SQLException{
         tablabebes.getItems().clear();
         try {
@@ -178,7 +176,48 @@ public class EditarController implements Initializable {
     }
 
     @FXML
-    private void buscarbebes(ActionEvent event) {
-        return;
+    private void irAPrueba(ActionEvent event) throws SQLException {
+        
+        int id = 0; 
+        if(idbebeprueba.getText().equals("")){
+            return;
+        } else{
+            id = Integer.parseInt(idbebeprueba.getText());           
+        }
+
+        String direccion = "";
+        String prueba = "";
+        if (infante.isSelected()){
+        
+        } else if (w303642.isSelected()) {
+            Wppsi303642Modelo wm = new Wppsi303642Modelo();          
+            wm = wm.readWppsi303642(id, -1, -1, -1, -1, -1, "", -1, -1).getFirst();
+            direccion = "/babywizardjavafx/vista/Wppsi303642.fxml";
+            prueba = "WPPSI 30 36 42";
+            FXMLLoader loader = showWindow(direccion, prueba);
+            Wppsi303642Controller wcont = loader.getController();
+
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            //wcont.setBandera(true);
+        } else if (w48.isSelected()) {
+            direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
+            prueba = "WPPSI 48";
+            FXMLLoader loader = showWindow(direccion, prueba);
+
+            Wppsi48Controller wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        } else if (lectconj.isSelected()) {
+            direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
+            prueba = "Tarea de Lectura Conjunta";
+            FXMLLoader loader = showWindow(direccion, prueba);
+            LecturaConjuntaController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        } else if (expcab.isSelected()) {
+            direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";
+            prueba = "Experimento de Cabina";
+            FXMLLoader loader = showWindow(direccion, prueba);
+            ExperimentoCabinaController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        }
     }
 }

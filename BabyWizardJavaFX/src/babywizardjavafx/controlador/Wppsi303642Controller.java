@@ -116,6 +116,23 @@ public class Wppsi303642Controller implements Initializable {
     
     boolean creable;
     
+    public boolean editable;
+    public int idBebeActualizar;
+    public Wppsi303642Modelo wppsiAEditar;
+
+    public void setIdBebeActualizar(int idBebeActualizar) {
+        this.idBebeActualizar = idBebeActualizar;
+    }
+
+    public void setWppsiAEditar(Wppsi303642Modelo wppsiAEditar) {
+        this.wppsiAEditar = wppsiAEditar;
+        //fechaaplic.
+        
+    }
+    
+    public void setEditable(boolean valor){
+        editable = valor;
+    }
     
 
     /**
@@ -123,6 +140,7 @@ public class Wppsi303642Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        editable = false;
         agregar.setOnKeyPressed(new EventHandler<KeyEvent>()
     {
         @Override
@@ -443,6 +461,10 @@ public class Wppsi303642Controller implements Initializable {
     private void agregar(ActionEvent event) throws SQLException, IOException {
         if(wm==null || creable ==false) return; //Poner mensaje si se quiere
         wm.createWppsi303642();
+        if(editable==true){
+            wppsiAEditar.updateWppsi303642(idBebeActualizar, -1, wppsiAEditar.getVocabularioReceptivoNatural(), wppsiAEditar.getDisenioCubosNatural(), wppsiAEditar.getInformacionNatural(), wppsiAEditar.getRompecabezasNatural(), wppsiAEditar.getDenominacionesNatural(), wppsiAEditar.getFechaAplicacion(), wppsiAEditar.getFkBebe(), wppsiAEditar.getSustdn());
+        }
+        
         Stage actualWindow = (Stage) grid.getScene().getWindow();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
                     Parent root = (Parent) loader.load();

@@ -116,6 +116,9 @@ public class RegistroBBController implements Initializable {
     @FXML
     private Label nollenado;
     
+    public boolean editar;
+    public int idBebeActualizar;
+    
 
     /**
      * Initializes the controller class.
@@ -253,24 +256,29 @@ public class RegistroBBController implements Initializable {
     }
     
     @FXML
-    private void continuarACuidador(ActionEvent event) throws IOException{
-        BebeModelo bm = crearbebe();
-        SociodemograficoModelo sm = crearSociodemografico();
-        
-        if(!(bm == null||sm==null)){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroC.fxml"));
-        Parent loadCuidador = (Parent) loader.load(); 
-        JMetro jmetro = new JMetro(Style.LIGHT);
-        jmetro.setParent(loadCuidador);
-        Scene CuidadorScene = new Scene(loadCuidador);
-        RegistroCController rcc = loader.getController();
-        rcc.getBebeySD(bm,sm);
-        Scene current = nombres.getScene();
-        rcc.escenaInfante(current);
-        Stage mainWindow = (Stage) continuar.getScene().getWindow();
-        mainWindow.setScene(CuidadorScene);
-        mainWindow.show();  
-        }
+    private void continuarACuidador(ActionEvent event) throws IOException, SQLException{
+            BebeModelo bm = crearbebe();
+            SociodemograficoModelo sm = crearSociodemografico();
+
+            if (!(bm == null || sm == null)) {
+                if(editar==true){
+                    bm.updateBebe(idBebeActualizar, -1, bm.getNombre(), bm.getApellidoMaterno(), bm.getApellidoPaterno(), bm.getSexo().equals("M") ? 0 : 1, bm.getFechaNacimiento(), "");
+                    return;
+                }
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroC.fxml"));
+                Parent loadCuidador = (Parent) loader.load();
+                JMetro jmetro = new JMetro(Style.LIGHT);
+                jmetro.setParent(loadCuidador);
+                Scene CuidadorScene = new Scene(loadCuidador);
+                RegistroCController rcc = loader.getController();
+                rcc.getBebeySD(bm, sm);
+                Scene current = nombres.getScene();
+                rcc.escenaInfante(current);
+                Stage mainWindow = (Stage) continuar.getScene().getWindow();
+                mainWindow.setScene(CuidadorScene);
+                mainWindow.show();
+            } 
+
     }
     
     public void inicializarUsuario(String usuariois){
