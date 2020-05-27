@@ -676,19 +676,17 @@ public class BusquedaController implements Initializable {
         if(pcbusqueda.getText().matches("\\d+")) pc = Integer.parseInt(pcbusqueda.getText());
         String n = "";
         if(!(nse.getValue()==null)) n = nse.getValue().replaceAll("\\\\", "");
-        LinkedList<SocioeconomicoModelo> resultados = sem.readSocioeconomico(-1, pc, n, -1);
+        LinkedList<SocioeconomicoModelo> resultados = sem.readSocioeconomico(-1, pc, n, -1);    
         for(SocioeconomicoModelo s:resultados){
             ids.add(s.getFkSociodemografico());
         }
         
-        
         SociodemograficoModelo sdm = new SociodemograficoModelo();
         
-        for(int i=0; i<resultados.size();i++){
-        
+        for(int i=0; i<resultados.size();i++){  
         idst.add(sdm.readSociodemografico(ids.get(i), "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", -1).get(0).getFkBebeSociodemografico());
         }
-        if(abrir)abrirResultado(ids);
+        if(abrir)abrirResultado(idst);
         return idst;
     }
 

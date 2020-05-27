@@ -39,7 +39,10 @@ import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -412,15 +415,45 @@ public class ResultadoController implements Initializable {
 
     @FXML
     private void exportar(ActionEvent event) throws FileNotFoundException, IOException {
-        Workbook workbook = new HSSFWorkbook();
         
-        crearHoja(workbook,"Infantes",resultadosbebe);
-        crearHoja(workbook,"Cuidador",resultadoscuidador);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Archivo Excel xlsx", "*.xlsx"),
+            new FileChooser.ExtensionFilter("Archivo Excel xls", "*.xls"));
+        Stage stage = (Stage) exportar.getScene().getWindow();
         
-        String pathToExport = System.getProperty("user.home");
-        File file = new File(pathToExport+"/BabyWizard");
-        file.mkdirs();
-        FileOutputStream fileOut = new FileOutputStream(pathToExport +"/BabyWizard/TablasBabyWizard.xls");
+        try {
+            File selectedFile = fileChooser.showSaveDialog(stage);
+            if (selectedFile != null) {
+                String name = selectedFile.getName();
+                String extension = name.substring(name.lastIndexOf(".") + 1, name.length());
+                Workbook workbook;
+                if(extension.equals("xlsx")){
+                    
+                    workbook = new XSSFWorkbook();
+                    write(workbook,selectedFile);
+                }
+                if(extension.equals("xls")){
+                    workbook = new HSSFWorkbook();
+                    write(workbook,selectedFile);
+                }
+                
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+    
+    public void write(Workbook workbook, File selectedFile) throws FileNotFoundException, IOException {
+        crearHoja(workbook, "Infantes", resultadosbebe);
+        crearHoja(workbook, "Cuidador", resultadoscuidador);
+        crearHoja(workbook, "SocioDyE", resultadossd);
+        crearHoja(workbook, "WPPSI30", resultadoswppsi30);
+        crearHoja(workbook, "WPPSI48", resultadoswppsi48);
+        crearHoja(workbook, "Lectura Conjuta", resultadoslc);
+        crearHoja(workbook, "Experimento Cab.", resultadosexpcab);
+        //File dir = selectedFile.getParentFile();//gets the selected directory
+        FileOutputStream fileOut = new FileOutputStream(selectedFile.getAbsolutePath());
         workbook.write(fileOut);
         fileOut.close();
     }
