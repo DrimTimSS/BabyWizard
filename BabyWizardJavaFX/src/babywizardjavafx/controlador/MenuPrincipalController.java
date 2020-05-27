@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.UsuarioModelo;
+import babywizardjavafx.vista.ConfUsuarioController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -40,8 +41,6 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private MenuItem nuevoinfante;
     @FXML
-    private MenuItem configusuario;
-    @FXML
     private MenuItem ayudareg;
     @FXML
     private MenuItem ayudabus;
@@ -65,6 +64,8 @@ public class MenuPrincipalController implements Initializable {
     private Button registrarprueba;
     
     String usuariois;
+    @FXML
+    private MenuItem confusuario;
     /**
      * Initializes the controller class.
      */
@@ -148,11 +149,7 @@ public class MenuPrincipalController implements Initializable {
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
     }
-    
-    public void configusuario(ActionEvent event){
-    
-    }
-    
+        
     @FXML
     public void cerrarsesion(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/InicioSesion.fxml"));
@@ -200,6 +197,20 @@ public class MenuPrincipalController implements Initializable {
                 mainWindow.getIcons().add(image);
                 mainWindow.setScene(menuPrincipalScene);
                 mainWindow.setTitle("Editar");
+                mainWindow.show();
+    }
+
+    @FXML
+    private void confusuario(ActionEvent event) throws IOException {
+        Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/ConfUsuario.fxml"));
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);     
+                Stage mainWindow = new Stage();
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                mainWindow.getIcons().add(image);
+                mainWindow.setTitle("Configurar usuarios");
+                mainWindow.setScene(menuPrincipalScene);
                 mainWindow.show();
     }
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="446.0" prefWidth="645.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.vista.ConfUsuarioController">
+   <children>
+      <Label layoutX="14.0" layoutY="414.0" opacity="0.51" text="Un usuario solo puede ser modificado por un administrador" />
+      <Label layoutX="209.0" layoutY="25.0" text="Modificar un usuario">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="datosincorrectos" layoutX="84.0" layoutY="180.0" textAlignment="CENTER" textFill="#d1281f">
+         <effect>
+            <SepiaTone />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <GridPane alignment="CENTER" layoutX="78.0" layoutY="53.0" prefHeight="140.0" prefWidth="169.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="usuarioadm" promptText="Nombre de usuario" GridPane.rowIndex="2" />
+            <Label text="Usuario administrador" textAlignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </Label>
+            <PasswordField fx:id="contraseniaadm" prefWidth="204.0" promptText="Contraseña" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="315.0" layoutY="64.0" prefHeight="338.0" prefWidth="282.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.599981689453124" minHeight="10.0" prefHeight="28.19998779296875" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="42.60001220703124" minHeight="10.0" prefHeight="32.7999755859375" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="44.80002441406249" minHeight="10.0" prefHeight="33.60000000000001" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.400000000000006" minHeight="10.0" prefHeight="31.199975585937494" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="46.20001220703125" minHeight="10.0" prefHeight="29.600012207031256" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="79.99998779296874" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="usuario" maxWidth="-Infinity" promptText="Nombre de usuario" GridPane.rowIndex="1" />
+            <Button fx:id="registrar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#registrar" text="Modificar usuario" GridPane.rowIndex="8" />
+            <Label text="Usuario a modificar" textAlignment="CENTER">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </Label>
+            <Label fx:id="errorusuario" textAlignment="CENTER" textFill="#d2131e" wrapText="true" GridPane.rowIndex="7">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="nuevacontra" maxWidth="-Infinity" promptText="Nueva contraseña" GridPane.rowIndex="4" />
+            <PasswordField fx:id="confnuevacontra" maxWidth="-Infinity" promptText="Confirmar nueva contraseña" GridPane.rowIndex="5" />
+            <Label text="Modificar constraseña:" GridPane.rowIndex="3" />
+            <Label text="Modificar privilegios:" GridPane.rowIndex="6" />
+            <RadioButton mnemonicParsing="false" text="Es administrador" GridPane.rowIndex="7" />
+         </children>
+      </GridPane>
+      <ImageView fitHeight="222.0" fitWidth="233.0" layoutX="46.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagenes/bwsmileytransparent.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
