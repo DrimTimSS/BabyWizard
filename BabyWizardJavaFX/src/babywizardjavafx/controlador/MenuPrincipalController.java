@@ -109,17 +109,8 @@ public class MenuPrincipalController implements Initializable {
         //System.out.println(usuariois);
         UsuarioModelo um = new UsuarioModelo();
         int permiso = um.readUsuario(usuariois, "", "", "", -1).getFirst().getAdministrador();
-        System.out.println(permiso);
         if (permiso == 0) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.initOwner(menu.getParent().getScene().getWindow());
-            alert.setTitle("Error");
-            alert.setHeaderText("No tiene los permisos necesarios");
-            alert.setContentText("El usuario con el que intenta acceder a esta opcion no tiene los permisos necesarios para "
-                    + "llevar a cabo la acción.");
-            alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
-            alert.showAndWait();
-            return;
+            sinPermiso();
         }
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Borrar.fxml"));
         JMetro jmetro = new JMetro(Style.LIGHT);
@@ -133,6 +124,17 @@ public class MenuPrincipalController implements Initializable {
                 mainWindow.show();
     }
     
+    private void sinPermiso() throws SQLException {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.initOwner(menu.getParent().getScene().getWindow());
+        alert.setTitle("Error");
+        alert.setHeaderText("No tiene los permisos necesarios");
+        alert.setContentText("El usuario con el que intenta acceder a esta opcion no tiene los permisos necesarios para "
+                + "llevar a cabo la acción.");
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.showAndWait();
+    }
+
     @FXML
     public void busqueda(ActionEvent event) throws IOException{
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Busqueda.fxml"));

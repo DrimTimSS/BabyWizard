@@ -9,6 +9,7 @@ import babywizardjavafx.modelo.Wppsi303642Modelo;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,6 +21,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -126,12 +129,24 @@ public class Wppsi303642Controller implements Initializable {
 
     public void setWppsiAEditar(Wppsi303642Modelo wppsiAEditar) {
         this.wppsiAEditar = wppsiAEditar;
-        //fechaaplic.
         
     }
     
     public void setEditable(boolean valor){
         editable = valor;
+    }
+    
+    public void setCampos() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(wppsiAEditar.getFechaAplicacion(), formatter);
+        fechaaplic.setValue(localDate);
+        vrn.setText(wppsiAEditar.getVocabularioReceptivoNatural()+"");
+        dcn.setText(wppsiAEditar.getDisenioCubosNatural()+"");
+        inn.setText(wppsiAEditar.getInformacionNatural()+"");
+        rcn.setText(wppsiAEditar.getRompecabezasNatural()+"");
+        dnn.setText(wppsiAEditar.getDenominacionesNatural()+"");
+        sust.setSelected(wppsiAEditar.getSustdn()==1?true:false);
+        
     }
     
 
@@ -421,6 +436,7 @@ public class Wppsi303642Controller implements Initializable {
         wm.setDenominacionesNatural(dn);
         wm.setFechaAplicacion(fechan);
         wm.setSustdn(sust.isSelected()?1:0);
+        
         creable = wm.setEscalares();
         
         
@@ -450,7 +466,7 @@ public class Wppsi303642Controller implements Initializable {
         rpcgl.setText(wm.getEquivcgl()[1]);
         ic1cgl.setText(wm.getEquivcgl()[2]);
         ic2cgl.setText(wm.getEquivcgl()[3]);
-       
+        if(editable) creable = false;
         } catch (Exception e) {
             creable = false;
         }
@@ -459,26 +475,44 @@ public class Wppsi303642Controller implements Initializable {
 
     @FXML
     private void agregar(ActionEvent event) throws SQLException, IOException {
+        
+        if(editable==true){
+            int vr = (vrn.getText().equals("")) ? -1 : Integer.parseInt(vrn.getText());
+            int dc = (dcn.getText().equals("")) ? -1 : Integer.parseInt(dcn.getText());
+            int in = (inn.getText().equals("")) ? -1 : Integer.parseInt(inn.getText());
+            int rc = (rcn.getText().equals("")) ? -1 : Integer.parseInt(rcn.getText());
+            int dn = (dnn.getText().equals("")) ? -1 : Integer.parseInt(dnn.getText());
+            try{
+                String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                wppsiAEditar.updateWppsi303642(wppsiAEditar.getIdWppsi303642(), -1, vr, dc, in, rc, dn, fechan, -1, sust.isSelected() ? 1 : 0);
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Edición");
+                alert.setHeaderText("Editado exitosamente");
+                alert.setContentText("WPPSI editado de forma exitosa.");
+
+                alert.showAndWait();
+                Stage actualWindow = (Stage) grid.getScene().getWindow();
+                actualWindow.close();
+            } catch (Exception e) {}
+        }
         if(wm==null || creable ==false) return; //Poner mensaje si se quiere
         wm.createWppsi303642();
-        if(editable==true){
-            wppsiAEditar.updateWppsi303642(idBebeActualizar, -1, wppsiAEditar.getVocabularioReceptivoNatural(), wppsiAEditar.getDisenioCubosNatural(), wppsiAEditar.getInformacionNatural(), wppsiAEditar.getRompecabezasNatural(), wppsiAEditar.getDenominacionesNatural(), wppsiAEditar.getFechaAplicacion(), wppsiAEditar.getFkBebe(), wppsiAEditar.getSustdn());
-        }
+        
         
         Stage actualWindow = (Stage) grid.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-                    Parent root = (Parent) loader.load();
-                    JMetro jmetro = new JMetro(Style.LIGHT);
-                    jmetro.setParent(root);
-                    CreadoExitosamenteController cec = loader.getController();
-                    cec.queEsCreado("WPPSI agregado exitosamente.");
-                    Scene exito = new Scene(root);
-                    actualWindow.setScene(exito);
-                    Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-                    actualWindow.getIcons().add(image);
-                    actualWindow.setTitle("Exito");
-                    actualWindow.show();
-                    actualWindow.centerOnScreen();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
+        Parent root = (Parent) loader.load();
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(root);
+        CreadoExitosamenteController cec = loader.getController();
+        cec.queEsCreado("WPPSI agregado exitosamente.");
+        Scene exito = new Scene(root);
+        actualWindow.setScene(exito);
+        Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+        actualWindow.getIcons().add(image);
+        actualWindow.setTitle("Exito");
+        actualWindow.show();
+        actualWindow.centerOnScreen();
     }
 
     private void clear() {

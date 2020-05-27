@@ -225,6 +225,8 @@ public class RegistroBBController implements Initializable {
                     continuarACuidador(null);
                 } catch (IOException ex) {
                     Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegistroBBController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

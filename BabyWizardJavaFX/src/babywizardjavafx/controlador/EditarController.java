@@ -7,12 +7,15 @@ package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -34,6 +38,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 /**
  * FXML Controller class
@@ -176,7 +184,7 @@ public class EditarController implements Initializable {
     }
 
     @FXML
-    private void irAPrueba(ActionEvent event) throws SQLException {
+    private void irAPrueba(ActionEvent event) throws SQLException, IOException {
         
         int id = 0; 
         if(idbebeprueba.getText().equals("")){
@@ -190,15 +198,35 @@ public class EditarController implements Initializable {
         if (infante.isSelected()){
         
         } else if (w303642.isSelected()) {
-            Wppsi303642Modelo wm = new Wppsi303642Modelo();          
-            wm = wm.readWppsi303642(id, -1, -1, -1, -1, -1, "", -1, -1).getFirst();
-            direccion = "/babywizardjavafx/vista/Wppsi303642.fxml";
-            prueba = "WPPSI 30 36 42";
-            FXMLLoader loader = showWindow(direccion, prueba);
-            Wppsi303642Controller wcont = loader.getController();
+            Wppsi303642Modelo wm = new Wppsi303642Modelo();
+            List<Integer> choices = new LinkedList<>();
+            LinkedList<Wppsi303642Modelo> wppsis = wm.readWppsi303642(-1, -1, -1, -1, -1, -1, "", id, -1);
+            if(wppsis.size()<1) {return;}
+            for(Wppsi303642Modelo w:wppsis){
+                choices.add(w.getIdWppsi303642());
+            }
 
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
-            //wcont.setBandera(true);
+            ChoiceDialog<Integer> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.setTitle("Choice Dialog");
+            dialog.setHeaderText("Look, a Choice Dialog");
+            dialog.setContentText("Choose your letter:");
+
+            Optional<Integer> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                wm = wm.readWppsi303642(result.get(), -1, -1, -1, -1, -1, "", -1, -1).getFirst();
+                direccion = "/babywizardjavafx/vista/Wppsi303642.fxml";
+                prueba = "WPPSI 30 36 42";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                Wppsi303642Controller wcont = loader.getController();
+
+                wcont.setEditable(true);
+                wcont.setIdBebeActualizar(id);
+                wcont.inicializarBebe(id);
+                wcont.setWppsiAEditar(wm);
+                wcont.setCampos();
+            }
+            
+            
         } else if (w48.isSelected()) {
             direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
             prueba = "WPPSI 48";
@@ -219,5 +247,22 @@ public class EditarController implements Initializable {
             ExperimentoCabinaController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         }
+    }
+
+    public FXMLLoader showWindow(String direccion, String prueba) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(direccion));
+        Parent loadMenuPrincipal = (Parent) loader.load();
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(loadMenuPrincipal);
+        //RegistroBBController rbc = loader.getController();
+                Scene menuPrincipalScene = new Scene(loadMenuPrincipal);       
+                Stage mainWindow =(Stage) idbebebusqueda.getScene().getWindow();
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                mainWindow.getIcons().add(image);
+                mainWindow.setTitle(prueba);
+                mainWindow.setScene(menuPrincipalScene);
+                mainWindow.show();
+                mainWindow.centerOnScreen();
+        return loader;
     }
 }

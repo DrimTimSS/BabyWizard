@@ -151,7 +151,6 @@ public class AgregarPruebaController implements Initializable {
             prueba = "WPPSI 30 36 42";
             FXMLLoader loader = showWindow(direccion,prueba);
             Wppsi303642Controller wcont = loader.getController();
-            
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(w48.isSelected()){
             direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
