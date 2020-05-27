@@ -5,8 +5,10 @@
  */
 package babywizardjavafx.controlador;
 
+import babywizardjavafx.modelo.UsuarioModelo;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -101,7 +105,22 @@ public class MenuPrincipalController implements Initializable {
     }
     
     @FXML
-    public void borrarinfante(ActionEvent event) throws IOException{
+    public void borrarinfante(ActionEvent event) throws IOException, SQLException{
+        //System.out.println(usuariois);
+        UsuarioModelo um = new UsuarioModelo();
+        int permiso = um.readUsuario(usuariois, "", "", "", -1).getFirst().getAdministrador();
+        System.out.println(permiso);
+        if (permiso == 0) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(menu.getParent().getScene().getWindow());
+            alert.setTitle("Error");
+            alert.setHeaderText("No tiene los permisos necesarios");
+            alert.setContentText("El usuario con el que intenta acceder a esta opcion no tiene los permisos necesarios para "
+                    + "llevar a cabo la acción.");
+            alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            alert.showAndWait();
+            return;
+        }
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Borrar.fxml"));
         JMetro jmetro = new JMetro(Style.LIGHT);
         jmetro.setParent(loadMenuPrincipal);

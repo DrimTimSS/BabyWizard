@@ -125,29 +125,13 @@
                 <javafx.scene.control.ToggleGroup fx:id="pruebas" />
             </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="w48" mnemonicParsing="false" text="WPPSI 48" toggleGroup="$pruebas" GridPane.rowIndex="3" />
+            <RadioButton fx:id="w48" mnemonicParsing="false" text="WPPSI 48" toggleGroup="$pruebas" GridPane.rowIndex="3"/>
             <RadioButton fx:id="expcab" mnemonicParsing="false" text="Experimento de cabina" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <RadioButton fx:id="lectconj" mnemonicParsing="false" text="Tarea de Lectura conjunta" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <RadioButton fx:id="cuidador" mnemonicParsing="false" text="Cuidador" GridPane.columnIndex="1">
-               <toggleGroup>
-                  <ToggleGroup fx:id="pruebas1" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="sociodem" mnemonicParsing="false" text="Sociodemográfico" GridPane.rowIndex="1">
-               <toggleGroup>
-                  <ToggleGroup fx:id="pruebas11" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="socioeco" mnemonicParsing="false" text="Socioeconómico" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <toggleGroup>
-                  <ToggleGroup fx:id="pruebas111" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="infante" mnemonicParsing="false" text="Infante">
-               <toggleGroup>
-                  <ToggleGroup fx:id="pruebas1111" />
-               </toggleGroup>
-            </RadioButton>
+            <RadioButton fx:id="cuidador" mnemonicParsing="false" text="Cuidador" GridPane.columnIndex="1" toggleGroup="$pruebas"/>
+            <RadioButton fx:id="sociodem" mnemonicParsing="false" text="Sociodemográfico" GridPane.rowIndex="1" toggleGroup="$pruebas" />
+            <RadioButton fx:id="socioeco" mnemonicParsing="false" text="Socioeconómico" GridPane.columnIndex="1" GridPane.rowIndex="1" toggleGroup="$pruebas"/>
+            <RadioButton fx:id="infante" mnemonicParsing="false" text="Infante" toggleGroup="$pruebas"/>
          </children>
       </GridPane>
       <Label id="subtitulo" layoutX="729.0" layoutY="271.0" text="A editar">
