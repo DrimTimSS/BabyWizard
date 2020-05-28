@@ -9,6 +9,7 @@ import babywizardjavafx.modelo.Wppsi48Modelo;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -38,6 +40,8 @@ public class Wppsi48Controller implements Initializable {
     int idbebe;
     @FXML
     private TextField dcn;
+    @FXML
+    private TextField inn;
     @FXML
     private TextField mtn;
     @FXML
@@ -162,8 +166,7 @@ public class Wppsi48Controller implements Initializable {
     private Button calcular;
     @FXML
     private Button agregar;
-    @FXML
-    private TextField inn;
+    
     
     Wppsi48Modelo wm;
     @FXML
@@ -178,6 +181,9 @@ public class Wppsi48Controller implements Initializable {
     private Label sumacgl;
     
     boolean creable;
+    private int idBebeAtualizar;
+    private boolean editable;
+    private Wppsi48Modelo wppsi48AEditar;
     /**
      * Initializes the controller class.
      */
@@ -856,6 +862,7 @@ public class Wppsi48Controller implements Initializable {
         rpcgl.setText(wm.getEquivcgl()[1]);
         ic1cgl.setText(wm.getEquivcgl()[2]);
         ic2cgl.setText(wm.getEquivcgl()[3]);
+        if(editable) creable = false;
         } catch (Exception e) {
             creable = false;
         }
@@ -905,6 +912,34 @@ public class Wppsi48Controller implements Initializable {
 
     @FXML
     private void agregar(ActionEvent event) throws SQLException, IOException {
+        if(editable == true) {
+            int dc = (dcn.getText().equals("")) ? -1 : Integer.parseInt(dcn.getText());
+            int in = (inn.getText().equals("")) ? -1 : Integer.parseInt(inn.getText());
+            int mt = (mtn.getText().equals("")) ? -1 : Integer.parseInt(mtn.getText());
+            int vc = (vcn.getText().equals("")) ? -1 : Integer.parseInt(vcn.getText());
+            int cp = (cpn.getText().equals("")) ? -1 : Integer.parseInt(cpn.getText());
+            int bs = (bsn.getText().equals("")) ? -1 : Integer.parseInt(bsn.getText());
+            int ps = (psn.getText().equals("")) ? -1 : Integer.parseInt(psn.getText());
+            int cl = (cln.getText().equals("")) ? -1 : Integer.parseInt(cln.getText());
+            int cm = (cmn.getText().equals("")) ? -1 : Integer.parseInt(cmn.getText());
+            int fi = (fin.getText().equals("")) ? -1 : Integer.parseInt(fin.getText());
+            int se = (sen.getText().equals("")) ? -1 : Integer.parseInt(sen.getText());
+            int vr = (vrn.getText().equals("")) ? -1 : Integer.parseInt(vrn.getText());
+            int rc = (rcn.getText().equals("")) ? -1 : Integer.parseInt(rcn.getText());
+            int dn = (dnn.getText().equals("")) ? -1 : Integer.parseInt(dnn.getText());
+            //try{
+                String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                wppsi48AEditar.updateWppsi48(wppsi48AEditar.getIdWppsi48(), -1, dc, in, se, mt, vc, cp, bs, ps, cl, cm, fi, vr, rc, dn, fechan, -1, dcfi.isSelected() ? 1 : 0, dcrc.isSelected() ? 1 : 0, pscm.isSelected() ? 1 : 0, psse.isSelected() ? 1 : 0, clbs.isSelected() ? 1 : 0, mtfi.isSelected() ? 1 : 0, mtrc.isSelected() ? 1 : 0, incm.isSelected() ? 1 : 0, inse.isSelected() ? 1 : 0, vccm.isSelected() ? 1 : 0, vcse.isSelected() ? 1 : 0, cpfi.isSelected() ? 1 : 0, cprc.isSelected() ? 1 : 0);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Edición");
+                alert.setHeaderText("Editado exitosamente");
+                alert.setContentText("WPPSI editado de forma exitosa.");
+
+                alert.showAndWait();
+                Stage actualWindow = (Stage) dcn.getScene().getWindow();
+                actualWindow.close();
+            //} catch (Exception e) {}
+        }
         if(wm==null || creable == false) return; //Poner mensaje si se quiere
         wm.createWppsi48();
         Stage actualWindow = (Stage) dcn.getScene().getWindow();
@@ -921,5 +956,49 @@ public class Wppsi48Controller implements Initializable {
                     actualWindow.setTitle("Exito");
                     actualWindow.show();
                     actualWindow.centerOnScreen();
+    }
+    void setEditable(boolean b) {
+        this.editable = b;
+    }
+
+    void setIdBebeActualizar(int id) {
+        this.idBebeAtualizar = id;
+    }
+
+    void setWppsiAEditar(Wppsi48Modelo wm) {
+        this.wppsi48AEditar = wm;
+    }
+
+    void setCampos() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(wppsi48AEditar.getFechaAplicacion(), formatter);
+        fechaaplic.setValue(localDate);
+        dcn.setText(wppsi48AEditar.getDisenioCubosNatural()+"");
+        mtn.setText(wppsi48AEditar.getMatricesNatural()+"");
+        vcn.setText(wppsi48AEditar.getVocabularioNatural()+"");
+        cpn.setText(wppsi48AEditar.getConceptosConDibujosNatural()+"");
+        bsn.setText(wppsi48AEditar.getBusquedaSimbolosNatural()+"");
+        psn.setText(wppsi48AEditar.getPistasNatural()+"");
+        cln.setText(wppsi48AEditar.getClavesNatural()+"");
+        cmn.setText(wppsi48AEditar.getComprensionNatural()+"");
+        fin.setText(wppsi48AEditar.getFigurasIncompletasNatural()+"");
+        sen.setText(wppsi48AEditar.getSemejanzasNatural()+"");
+        vrn.setText(wppsi48AEditar.getVocabularioReceptivoNatural()+"");
+        inn.setText(wppsi48AEditar.getInformacionNatural()+"");
+        rcn.setText(wppsi48AEditar.getRompecabezasNatural()+"");
+        dnn.setText(wppsi48AEditar.getDenominacionesNatural()+"");
+        dcfi.setSelected(wppsi48AEditar.getDcfi()==1?true:false);
+        dcrc.setSelected(wppsi48AEditar.getDcrc()==1?true:false);
+        pscm.setSelected(wppsi48AEditar.getPscm()==1?true:false);
+        psse.setSelected(wppsi48AEditar.getPsse()==1?true:false);
+        clbs.setSelected(wppsi48AEditar.getClbs()==1?true:false);
+        mtfi.setSelected(wppsi48AEditar.getMtfi()==1?true:false);
+        mtrc.setSelected(wppsi48AEditar.getMtrc()==1?true:false);
+        incm.setSelected(wppsi48AEditar.getIncm()==1?true:false);
+        inse.setSelected(wppsi48AEditar.getInse()==1?true:false);
+        vccm.setSelected(wppsi48AEditar.getVccm()==1?true:false);
+        vcse.setSelected(wppsi48AEditar.getVcse()==1?true:false);
+        cpfi.setSelected(wppsi48AEditar.getCpfi()==1?true:false);
+        cprc.setSelected(wppsi48AEditar.getCprc()==1?true:false);
     }
 }

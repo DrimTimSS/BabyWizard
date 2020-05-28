@@ -740,7 +740,7 @@ public class Wppsi48Modelo {
         con.close();
     }
     
-    public LinkedList<Wppsi48Modelo> readWppsi48(int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int fkBebe, int dcfi, int dcrc, int incm, int inse, int mtfi, int mtrc, int vccm, int vcse, int cpfi, int cprc, int pscm, int psse, int clbs) throws SQLException {
+    public LinkedList<Wppsi48Modelo> readWppsi48(int idWppsi48,int disenioCubosNatural, int informacionNatural, int semejanzasNatural, int matricesNatural, int vocabularioNatural, int conceptosConDibujosNatural, int busquedaSimbolosNatural, int pistasNatural, int clavesNatural, int comprensionNatural, int figurasIncompletasNatural, int vocabularioReceptivoNatural, int rompecabezasNatural, int denominacionesNatural, String fechaAplicacion, int dcfi, int dcrc, int incm, int inse, int mtfi, int mtrc, int vccm, int vcse, int cpfi, int cprc, int pscm, int psse, int clbs, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -836,7 +836,7 @@ public class Wppsi48Modelo {
            toUpdate.add(idWppsi48Q);
         }
         if (disenioCubosNatural > -1) {
-           String disenioCubosNaturalQ = "`disenioCubosNatural` = '"+disenioCubosNatural+"'";
+           String disenioCubosNaturalQ = "`disenioConCubosNatural` = '"+disenioCubosNatural+"'";
            toUpdate.add(disenioCubosNaturalQ);
         }
         if (informacionNatural > -1) {

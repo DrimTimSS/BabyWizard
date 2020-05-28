@@ -7,6 +7,7 @@ package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
+import babywizardjavafx.modelo.Wppsi48Modelo;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -207,9 +208,11 @@ public class EditarController implements Initializable {
             }
 
             ChoiceDialog<Integer> dialog = new ChoiceDialog<>(choices.get(0), choices);
-            dialog.setTitle("Choice Dialog");
-            dialog.setHeaderText("Look, a Choice Dialog");
-            dialog.setContentText("Choose your letter:");
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
 
             Optional<Integer> result = dialog.showAndWait();
             if (result.isPresent()) {
@@ -228,12 +231,35 @@ public class EditarController implements Initializable {
             
             
         } else if (w48.isSelected()) {
-            direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
-            prueba = "WPPSI 48";
-            FXMLLoader loader = showWindow(direccion, prueba);
+            Wppsi48Modelo wm = new Wppsi48Modelo();
+            List<Integer> choices = new LinkedList<>();
+            LinkedList<Wppsi48Modelo> wppsis = wm.readWppsi48(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);
+            if(wppsis.size()<1) {return;} //echar notificacion
+            for(Wppsi48Modelo w:wppsis){
+                choices.add(w.getIdWppsi48());
+            }
 
-            Wppsi48Controller wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            ChoiceDialog<Integer> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<Integer> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                wm = wm.readWppsi48(result.get(), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1).getFirst();
+                direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
+                prueba = "WPPSI 48";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                Wppsi48Controller wcont = loader.getController();
+
+                wcont.setEditable(true);
+                wcont.setIdBebeActualizar(id);
+                wcont.inicializarBebe(id);
+                wcont.setWppsiAEditar(wm);
+                wcont.setCampos();
+            }
         } else if (lectconj.isSelected()) {
             direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
             prueba = "Tarea de Lectura Conjunta";

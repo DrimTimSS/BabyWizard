@@ -195,10 +195,10 @@ public class BorrarController implements Initializable {
     public void borrarconid(ActionEvent event) throws SQLException{
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
         alert.setTitle("Confirmar.");
         alert.setHeaderText("Se borrará el infante con todos \nsus registros y pruebas.");
         alert.setContentText("¿Está seguro?");
-        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
         //Scene scene = alert.getDialogPane().getScene();
         //JMetro jmetro = new JMetro(Style.LIGHT);
         //jmetro.setScene(scene);

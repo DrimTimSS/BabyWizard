@@ -89,7 +89,7 @@
             <PasswordField fx:id="confnuevacontra" maxWidth="-Infinity" promptText="Confirmar nueva contraseña" GridPane.rowIndex="5" />
             <Label text="Modificar constraseña:" GridPane.rowIndex="3" />
             <Label text="Modificar privilegios:" GridPane.rowIndex="6" />
-            <RadioButton mnemonicParsing="false" text="Es administrador" GridPane.rowIndex="7" />
+            <RadioButton fx:id="isAdmin" mnemonicParsing="false" text="Es administrador" GridPane.rowIndex="7" />
          </children>
       </GridPane>
       <ImageView fitHeight="222.0" fitWidth="233.0" layoutX="46.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
