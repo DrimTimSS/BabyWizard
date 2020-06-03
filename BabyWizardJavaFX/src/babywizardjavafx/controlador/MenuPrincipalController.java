@@ -83,7 +83,7 @@ public class MenuPrincipalController implements Initializable {
         Label label3 = new Label("Borrar Infante");
         label3.setStyle("-fx-text-fill: black");
         borrar.setGraphic(label3);
-        Label label4 = new Label("Registrar Prueba");
+        Label label4 = new Label("Registrar Datos");
         label4.setStyle("-fx-text-fill: black");
         registrarprueba.setGraphic(label4);
     }    

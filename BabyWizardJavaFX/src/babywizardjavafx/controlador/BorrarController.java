@@ -94,6 +94,8 @@ public class BorrarController implements Initializable {
     private ListView<String> listaexperimentos;
     
     ObservableList<String> listaPruebas = FXCollections.observableArrayList();
+    @FXML
+    private Button borrarpureba;
 
     /**
      * Initializes the controller class.
@@ -236,6 +238,10 @@ public class BorrarController implements Initializable {
         listaexperimentos.getItems().addAll(listaPruebas);
         }
         
+    }
+
+    @FXML
+    private void borrarprueba(ActionEvent event) {
     }
     
 }

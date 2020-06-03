@@ -29,11 +29,12 @@ public class CuidadorModelo {
     String segundoTelefono;
     int aniosEstudio;
     int fkBebe;
+    String relacion;
 
     public CuidadorModelo() {
     }
 
-    public CuidadorModelo(String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, int fkBebe) {
+    public CuidadorModelo(String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, String relacion, int fkBebe) {
         this.correoElectronico = correoElectronico;
         this.edad = edad;
         this.nombreC = nombreC;
@@ -43,9 +44,18 @@ public class CuidadorModelo {
         this.primerTelefono = primerTelefono;
         this.segundoTelefono = segundoTelefono;
         this.aniosEstudio = aniosEstudio;
+        this.relacion = relacion;
         this.fkBebe = fkBebe;
     }
 
+    public String getRelacion() {
+        return relacion;
+    }
+
+    public void setRelacion(String relacion) {
+        this.relacion = relacion;
+    }
+    
     public int getIdCuidador() {
         return idCuidador;
     }
@@ -142,8 +152,8 @@ public class CuidadorModelo {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
-        query = "INSERT INTO `babywizard`.`cuidador` (correoElectronico, edad, nombreC, primerApellidoC, segundoApellidoC, ocupacion, primerTelefono, segundoTelefono, aniosEstudio, fkBebe) "
-                + "VALUES ('"+correoElectronico+"', '"+edad+"', '"+nombreC+"', '"+primerApellidoC+"', '"+segundoApellidoC+"', '"+ocupacion+"', '"+primerTelefono+"', '"+segundoTelefono+"', '"+aniosEstudio+"', '"+fkBebe+"');";
+        query = "INSERT INTO `babywizard`.`cuidador` (correoElectronico, edad, nombreC, primerApellidoC, segundoApellidoC, ocupacion, primerTelefono, segundoTelefono, aniosEstudio, relacion, fkBebe) "
+                + "VALUES ('"+correoElectronico+"', '"+edad+"', '"+nombreC+"', '"+primerApellidoC+"', '"+segundoApellidoC+"', '"+ocupacion+"', '"+primerTelefono+"', '"+segundoTelefono+"', '"+aniosEstudio+"', "+relacion+", '"+fkBebe+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -155,7 +165,7 @@ public class CuidadorModelo {
         con.close();
     }
     
-    public LinkedList<CuidadorModelo> readCuidador(int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, int fkBebe) throws SQLException {
+    public LinkedList<CuidadorModelo> readCuidador(int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, String relacion, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -168,6 +178,7 @@ public class CuidadorModelo {
         if(!"".equals(ocupacion)) toRead.add("ocupacion = '"+ocupacion+"'");
         if(!"".equals(primerTelefono)) toRead.add("primerTelefono = '"+primerTelefono+"'");
         if(!"".equals(segundoTelefono)) toRead.add("segundoTelefono = '"+segundoTelefono+"'");
+        if(!"".equals(relacion)) toRead.add("relacion = '"+relacion+"'");
         if(aniosEstudio > -1) toRead.add("aniosEstudio = '"+aniosEstudio+"'");
         if(fkBebe>-1) toRead.add("fkBebe = '"+fkBebe+"'");
         String query1 = "SELECT * FROM babywizard.cuidador WHERE ";
@@ -197,6 +208,7 @@ public class CuidadorModelo {
             cm.setSegundoTelefono(rs.getString("segundoTelefono"));
             cm.setOcupacion(rs.getString("ocupacion"));
             cm.setAniosEstudio(rs.getInt("aniosEstudio"));
+            cm.setRelacion(rs.getString("relacion"));
             cm.setFkBebe(rs.getInt("fkBebe"));
             cuidadores.add(cm);
         }
@@ -204,7 +216,7 @@ public class CuidadorModelo {
         return cuidadores;
     }
     
-    public void updateCuidador(int idCuidadorActualizar, int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, int fkBebe) throws SQLException {
+    public void updateCuidador(int idCuidadorActualizar, int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, String cuidador, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -247,6 +259,10 @@ public class CuidadorModelo {
         if (aniosEstudio > -1) {
            String aniosEstudioQ = "`aniosEstudio` = '"+aniosEstudio+"'";
            toUpdate.add(aniosEstudioQ);
+        }
+        if (!"".equals(relacion)) {
+            String relacionQ = "`relacion` = '"+relacion+"'";
+            toUpdate.add(relacionQ);
         }
         if (fkBebe > -1) {
            String fkBebeQ = "`fkBebe` = '"+fkBebe+"'";

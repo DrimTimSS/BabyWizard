@@ -390,6 +390,8 @@ public class ResultadoController implements Initializable {
     boolean flagexpc;
     boolean flagw30;
     boolean flagw48;
+    @FXML
+    private TableColumn<?, ?> resrelacionc;
     /**
      * Initializes the controller class.
      */
@@ -506,7 +508,12 @@ public class ResultadoController implements Initializable {
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = new LinkedList<BebeModelo>();
             for(int i:ids){
-            resultados.addAll(bm.readBebe(i, "", "", "", -1, "",-1,-1, ""));
+                LinkedList<BebeModelo> r = bm.readBebe(i, "", "", "", -1, "",-1,-1, "");
+                if (r.size() > 0) {
+                    for (BebeModelo b : r) {
+                        resultados.add(b);
+                    }
+                }
             }
             for(BebeModelo b:resultados) listaBebes.add(b);
             resid.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
@@ -538,7 +545,12 @@ public class ResultadoController implements Initializable {
             CuidadorModelo cm = new CuidadorModelo();
             LinkedList<CuidadorModelo> resultados = new LinkedList<CuidadorModelo>();
             for(int i:ids){
-            resultados.addAll(cm.readCuidador(-1, "", -1, "", "", "", "", "", "", -1, i));
+                LinkedList<CuidadorModelo> r = cm.readCuidador(-1, "", -1, "", "", "", "", "", "", -1,"", i);
+                if (r.size() > 0) {
+                    for (CuidadorModelo c : r) {
+                        resultados.add(c);
+                    }
+                }
             }
             for(CuidadorModelo c:resultados) listaCuidadores.add(c);
             residc.setCellValueFactory(new PropertyValueFactory<>("idCuidador"));
@@ -552,6 +564,7 @@ public class ResultadoController implements Initializable {
             restelefono2.setCellValueFactory(new PropertyValueFactory<>("segundoTelefono"));
             resaniosestudio.setCellValueFactory(new PropertyValueFactory<>("aniosEstudio"));
             residbebec.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+            resrelacionc.setCellValueFactory(new PropertyValueFactory<>("relacion"));
             resultadoscuidador.setItems(listaCuidadores);
             //resultadoscuidador.getColumns().addAll(residc,resnombrec,resapellidopc,resapellidomc,resocupacion,resfechanc,restelefono1,restelefono2,resaniosestudio,residbebec);
         } catch (SQLException ex) {

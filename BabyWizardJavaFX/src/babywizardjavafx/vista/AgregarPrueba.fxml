@@ -95,12 +95,12 @@
       </TableView>
       <Separator layoutX="358.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="6.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="358.0" AnchorPane.topAnchor="0.0" />
       <Separator layoutY="160.0" prefHeight="5.0" prefWidth="359.0" />
-      <Label layoutX="96.0" layoutY="31.0" text="ID de infante&#10;para registrar prueba" textAlignment="CENTER">
+      <Label layoutX="48.0" layoutY="31.0" prefHeight="27.0" prefWidth="263.0" text="ID de infante para ingresar datos" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="77.0" layoutY="183.0" text="Buscar infante a borrar" textAlignment="CENTER">
+      <Label layoutX="124.0" layoutY="185.0" text="Buscar infante" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -113,6 +113,8 @@
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <RadioButton fx:id="w303642" mnemonicParsing="false" text="WPPSI 30 36 42">
@@ -123,6 +125,9 @@
             <RadioButton fx:id="w48" mnemonicParsing="false" text="WPPSI 48" toggleGroup="$pruebas" GridPane.rowIndex="1" />
             <RadioButton fx:id="expcab" mnemonicParsing="false" text="Experimento de cabina" toggleGroup="$pruebas" GridPane.columnIndex="1" />
             <RadioButton fx:id="lectconj" mnemonicParsing="false" text="Tarea de Lectura conjunta" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <RadioButton fx:id="cuid" mnemonicParsing="false" text="Cuidador" toggleGroup="$pruebas" GridPane.rowIndex="2" />
+            <RadioButton fx:id="sociod" mnemonicParsing="false" text="Sociodemográfico" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <RadioButton fx:id="socioe" mnemonicParsing="false" text="Socioeconómico" toggleGroup="$pruebas" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Label layoutX="691.0" layoutY="273.0" text="Prueba a registrar">
@@ -131,7 +136,7 @@
          </font>
       </Label>
       <Button layoutX="1003.0" layoutY="431.0" mnemonicParsing="false" onAction="#irAPrueba" text="Continuar" />
-      <Label fx:id="idbebeprueba" alignment="BOTTOM_CENTER" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="359.0" text="0" textFill="#3e0a0a">
+      <Label fx:id="idbebeprueba" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="359.0" text="0" textFill="#3e0a0a">
          <padding>
             <Insets bottom="40.0" />
          </padding>

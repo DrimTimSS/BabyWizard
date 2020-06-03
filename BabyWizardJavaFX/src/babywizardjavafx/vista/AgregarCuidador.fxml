@@ -12,42 +12,36 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.RegistroCController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="680.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.AgregarCuidadorController">
     <children>
-      <Label fx:id="llenadodatos" alignment="BOTTOM_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" textFill="#c21414">
-         <padding>
-            <Insets bottom="10.0" />
-         </padding>
-      </Label>
-      <Label fx:id="titulo" layoutX="244.0" layoutY="44.0" prefHeight="54.0" prefWidth="311.0" text="Datos del cuidador">
+      <Label fx:id="titulo" layoutX="184.0" layoutY="14.0" prefHeight="54.0" prefWidth="311.0" text="Datos del cuidador">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <GridPane alignment="CENTER" hgap="10.0" layoutX="7.0" layoutY="91.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="758.0">
+      <GridPane alignment="CENTER" layoutX="15.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="650.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.800048828125" minWidth="10.0" prefWidth="281.99997558593753" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.3999877929687" minWidth="10.0" prefWidth="200.4000244140625" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.60001220703123" minWidth="5.6843418860808015E-14" prefWidth="226.60001220703123" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.800048828125" minWidth="10.0" prefWidth="237.40001220703124" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="382.3999877929687" minWidth="10.0" prefWidth="222.99998779296874" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="232.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="232.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="140.6" minHeight="10.0" prefHeight="140.6" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="140.6" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="82.0000228881836" minHeight="0.0" prefHeight="48.599993896484364" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="88.0000244140625" minHeight="0.0" prefHeight="37.400006103515636" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="292.80002136230473" minHeight="0.0" prefHeight="50.800006103515614" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="344.000048828125" minHeight="-Infinity" prefHeight="41.000018310546864" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="281.59999999999997" minHeight="10.0" prefHeight="161.2" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <HBox alignment="BOTTOM_CENTER">
+                  <HBox alignment="CENTER">
                      <children>
                         <TextField fx:id="nombres" promptText="Nombre(s)" />
                         <Label text="*" />
@@ -71,7 +65,6 @@
                         <Label text="*" />
                      </children>
                   </HBox>
-                  <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
                   <HBox alignment="CENTER" spacing="2.0" GridPane.rowIndex="4">
                      <children>
                         <Label text="Relación: " />
@@ -81,20 +74,19 @@
                   </HBox>
                </children>
             </GridPane>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="131.80003204345704" minHeight="10.0" prefHeight="131.80003204345704" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="131.80003204345704" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="110.79999504089355" minHeight="10.0" prefHeight="50.19996795654296" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="145.2000289916992" minHeight="10.0" prefHeight="47.19996643066406" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="170.60001525878909" minHeight="10.0" prefHeight="52.00001220703126" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="156.5999755859375" minHeight="0.0" prefHeight="48.599999999999966" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="256.8000183105469" minHeight="10.0" prefHeight="139.1999938964844" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <HBox alignment="BOTTOM_CENTER">
+                  <HBox alignment="CENTER">
                      <children>
                         <TextField fx:id="edad" promptText="Edad" />
                         <Label text="*" />
@@ -118,54 +110,15 @@
                         <Label text="*" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" GridPane.rowIndex="4">
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="206.0" GridPane.rowIndex="4">
                      <children>
                         <TextField fx:id="aniosestudio" promptText="Años de estudio:" />
                         <Label text="*" />
                      </children>
                   </HBox>
-                  <Button fx:id="yaregistrado" mnemonicParsing="false" onAction="#yaRegistrado" text="Cuidador ya registrado" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="199.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="171.19998931884766" minHeight="10.0" prefHeight="157.7999755859375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="79.99999389648437" minHeight="6.400010681152338" prefHeight="46.60002441406249" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="111.80001220703124" minHeight="0.0" prefHeight="56.399993896484375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="258.8000183105469" minHeight="10.0" prefHeight="213.8000061035156" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label alignment="CENTER" text="Datos Socioeconomicos" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets bottom="5.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <HBox alignment="CENTER" spacing="2.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <children>
-                        <Label text="NSE:" />
-                        <ChoiceBox fx:id="nse" minHeight="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
-                        <Label text="*" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" GridPane.rowIndex="2">
-                     <children>
-                        <TextField fx:id="puntajecrudo" promptText="Puntaje Crudo:" />
-                        <Label text="*" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="finalizar" mnemonicParsing="false" onAction="#finalizar" text="Continuar" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-               </children>
-            </GridPane>
+            <Button fx:id="agregar" alignment="CENTER" mnemonicParsing="false" onAction="#agregar" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />

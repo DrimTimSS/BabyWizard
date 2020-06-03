@@ -80,6 +80,7 @@ public class RegistroCController implements Initializable {
 
     BebeModelo bm;
     SociodemograficoModelo sm;
+    @FXML
     private ChoiceBox<String> relacion;
     @FXML
     private Label llenadodatos;
@@ -102,6 +103,21 @@ public class RegistroCController implements Initializable {
         nse.getItems().add("D+");
         nse.getItems().add("D");
         nse.getItems().add("E");
+        
+        relacion.getItems().add("Madre");
+        relacion.getItems().add("Padre");
+        relacion.getItems().add("Abuela P.");
+        relacion.getItems().add("Abuela M.");
+        relacion.getItems().add("Abuelo P.");
+        relacion.getItems().add("Abuelo M.");
+        relacion.getItems().add("Tía P.");
+        relacion.getItems().add("Tía M.");
+        relacion.getItems().add("Tío P.");
+        relacion.getItems().add("Tío M.");
+        relacion.getItems().add("Hermana");
+        relacion.getItems().add("Hermano");
+        relacion.getItems().add("Otro");
+     
         
         aniosestudio.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -250,7 +266,11 @@ public class RegistroCController implements Initializable {
     
     public CuidadorModelo crearCuidador(){
         if(!(isEmpty(edad)||isEmpty(correo)||isEmpty(nombres)||isEmpty(apellidop)||isEmpty(apellidom)||isEmpty(ocupacion)||isEmpty(telefono1)||isEmpty(aniosestudio))){
-                return new CuidadorModelo(correo.getText(), Integer.parseInt(edad.getText()), nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()),0);
+            try {
+                return new CuidadorModelo(correo.getText(), Integer.parseInt(edad.getText()), nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()), relacion.getValue(),0);
+            } catch (Exception e) {
+                llenadodatos.setText("No se han llenado todos los campos obligatorios.");
+            }
         } else{
             llenadodatos.setText("No se han llenado todos los campos obligatorios.");
         }

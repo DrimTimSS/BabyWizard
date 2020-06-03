@@ -72,6 +72,9 @@ public class LecturaConjuntaController implements Initializable {
     private RadioButton isCAN;
     @FXML
     private RadioButton isNAC;
+    private boolean editable;
+    private int idBebeActualizar;
+    private LecturaConjuntaModelo lecturaAEditar;
     /**
      * Initializes the controller class.
      */
@@ -175,28 +178,56 @@ public class LecturaConjuntaController implements Initializable {
         String inter = inputinter.getText();
         
         if(!(tOt==-1 || cuidadorBebe==-1 || prep.equals("") || sust.equals("") || art.equals("") || verb.equals("") || inint.equals("") || adj.equals("") || pron.equals("") || adver.equals("") || conj.equals("") || inter.equals(""))){
-            LecturaConjuntaModelo lcm = new LecturaConjuntaModelo(tOt, Integer.parseInt(prep), Integer.parseInt(sust), Integer.parseInt(art), Integer.parseInt(verb), Integer.parseInt(inint), Integer.parseInt(adj), Integer.parseInt(pron), Integer.parseInt(adver), Integer.parseInt(conj), Integer.parseInt(inter),  cuidadorBebe, idbebe);
-            lcm.createLecturaConjunta();
+            if(!editable) {
+                LecturaConjuntaModelo lcm = new LecturaConjuntaModelo(tOt, Integer.parseInt(prep), Integer.parseInt(sust), Integer.parseInt(art), Integer.parseInt(verb), Integer.parseInt(inint), Integer.parseInt(adj), Integer.parseInt(pron), Integer.parseInt(adver), Integer.parseInt(conj), Integer.parseInt(inter),  cuidadorBebe, idbebe);
+                lcm.createLecturaConjunta();
+                Stage actualWindow = (Stage) inputprep.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
+                Parent root = (Parent) loader.load();
+                JMetro jmetro = new JMetro(Style.LIGHT);
+                jmetro.setParent(root);
+                CreadoExitosamenteController cec = loader.getController();
+                cec.queEsCreado("Lectura Conjunta agregada exitosamente.");
+                Scene exito = new Scene(root);
+                actualWindow.setScene(exito);
+                Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
+                actualWindow.getIcons().add(image);
+                actualWindow.setTitle("Exito");
+                actualWindow.show();
+                actualWindow.centerOnScreen();
+            } else {
+                lecturaAEditar.updateLecturaConjunta(lecturaAEditar.getIdLecturaConjunta(), -1, tOt, Integer.parseInt(prep), Integer.parseInt(sust), Integer.parseInt(art), Integer.parseInt(verb), Integer.parseInt(inint), Integer.parseInt(adj), Integer.parseInt(pron), Integer.parseInt(adver), Integer.parseInt(conj), Integer.parseInt(inter),  cuidadorBebe, idBebeActualizar);
+            }
         } else {
             label.setVisible(true);
-            return;
             }
-              
-        Stage actualWindow = (Stage) inputprep.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-        Parent root = (Parent) loader.load();
-        JMetro jmetro = new JMetro(Style.LIGHT);
-        jmetro.setParent(root);
-        CreadoExitosamenteController cec = loader.getController();
-        cec.queEsCreado("Lectura Conjunta agregada exitosamente.");
-        Scene exito = new Scene(root);
-        actualWindow.setScene(exito);
-        Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-        actualWindow.getIcons().add(image);
-        actualWindow.setTitle("Exito");
-        actualWindow.show();
-        actualWindow.centerOnScreen();
+    }
 
+    void setEditable(boolean b) {
+        this.editable = b;
+    }
+
+    void setIdBebeActualizar(int id) {
+        this.idBebeActualizar = id;
+    }
+
+    void setCampos() {
+        if(lecturaAEditar.getTypeOrToken()==0) {istype.setSelected(true);} else {isToken.setSelected(true);}
+        if(lecturaAEditar.getCuidadorBebe()==0) {isCAN.setSelected(true);} else {isNAC.setSelected(true);}
+        inputprep.setText(lecturaAEditar.getPreposicion()+"");
+        inputsust.setText(lecturaAEditar.getSustantivo()+"");
+        inputart.setText(lecturaAEditar.getArticulo()+"");
+        inputverb.setText(lecturaAEditar.getVerbo()+"");
+        inputinint.setText(lecturaAEditar.getIninteligible()+"");
+        inputadj.setText(lecturaAEditar.getAdjetivo()+"");
+        inputpron.setText(lecturaAEditar.getPronombre()+"");
+        inputadver.setText(lecturaAEditar.getAdverbio()+"");
+        inputconj.setText(lecturaAEditar.getConjuncion()+"");
+        inputinter.setText(lecturaAEditar.getInterjeccion()+"");
+    }
+
+    void setLecturaAEditar(LecturaConjuntaModelo lcm) {
+        this.lecturaAEditar = lcm;
     }
     
 }

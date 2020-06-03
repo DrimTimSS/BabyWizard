@@ -99,6 +99,12 @@ public class AgregarPruebaController implements Initializable {
     private RadioButton lectconj;
     @FXML
     private Label idbebeprueba;
+    @FXML
+    private RadioButton cuid;
+    @FXML
+    private RadioButton sociod;
+    @FXML
+    private RadioButton socioe;
 
     /**
      * Initializes the controller class.
@@ -168,6 +174,24 @@ public class AgregarPruebaController implements Initializable {
         } else if(expcab.isSelected()){
             direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";
             prueba = "Experimento de Cabina";
+            FXMLLoader loader = showWindow(direccion,prueba);
+            ExperimentoCabinaController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        } else if(cuid.isSelected()){
+            direccion = "/babywizardjavafx/vista/AgregarCuidador.fxml";
+            prueba = "Cuidador";
+            FXMLLoader loader = showWindow(direccion,prueba);
+            ExperimentoCabinaController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        } else if(sociod.isSelected()){
+            direccion = "/babywizardjavafx/vista/AgregarSociod.fxml";
+            prueba = "Sociodemográfico";
+            FXMLLoader loader = showWindow(direccion,prueba);
+            ExperimentoCabinaController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        } else if(socioe.isSelected()){
+            direccion = "/babywizardjavafx/vista/AgregarSocioe.fxml";
+            prueba = "Socioeconómico";
             FXMLLoader loader = showWindow(direccion,prueba);
             ExperimentoCabinaController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));

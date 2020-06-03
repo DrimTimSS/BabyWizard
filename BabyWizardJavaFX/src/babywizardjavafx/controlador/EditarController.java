@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
 import babywizardjavafx.modelo.Wppsi48Modelo;
 import java.io.IOException;
@@ -107,6 +108,10 @@ public class EditarController implements Initializable {
     private Label idbebeprueba;//id bebe a editar
     @FXML
     private ToggleGroup pruebas;
+    @FXML
+    private RadioButton socio;
+    @FXML
+    private ToggleGroup pruebas1;
 
     /**
      * Initializes the controller class.
@@ -261,11 +266,35 @@ public class EditarController implements Initializable {
                 wcont.setCampos();
             }
         } else if (lectconj.isSelected()) {
-            direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
-            prueba = "Tarea de Lectura Conjunta";
-            FXMLLoader loader = showWindow(direccion, prueba);
-            LecturaConjuntaController wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
+            List<Integer> choices = new LinkedList<>();
+            LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);
+            if(lecturas.size()<1) {return;} //echar notificacion
+            for(LecturaConjuntaModelo l:lecturas){
+                choices.add(l.getIdLecturaConjunta());
+            }
+
+            ChoiceDialog<Integer> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<Integer> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                lcm = lcm.readLecturaConjunta(result.get(), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1).getFirst();
+                direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
+                prueba = "Lectura Conjunta";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                LecturaConjuntaController lcont = loader.getController();
+
+                lcont.setEditable(true);
+                lcont.setIdBebeActualizar(id);
+                lcont.inicializarBebe(id);
+                lcont.setLecturaAEditar(lcm);
+                lcont.setCampos();
+            }
         } else if (expcab.isSelected()) {
             direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";
             prueba = "Experimento de Cabina";
