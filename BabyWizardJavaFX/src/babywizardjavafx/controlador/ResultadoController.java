@@ -19,6 +19,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -416,7 +418,7 @@ public class ResultadoController implements Initializable {
     }    
 
     @FXML
-    private void exportar(ActionEvent event) throws FileNotFoundException, IOException {
+    private void exportar(ActionEvent event) throws FileNotFoundException, IOException, SQLException {
         
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
@@ -495,7 +497,7 @@ public class ResultadoController implements Initializable {
     }
 
     @FXML
-    private void showInfante(ActionEvent event) {
+    private void showInfante(ActionEvent event) throws SQLException {
         resultadosbebe.toFront();
         if(!flaginf) {
             crearTablaInf();
@@ -503,18 +505,20 @@ public class ResultadoController implements Initializable {
         }
     }
     
-    private void crearTablaInf(){
-        try {
+    private void crearTablaInf() throws SQLException{
+        try { 
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = new LinkedList<BebeModelo>();
-            for(int i:ids){
-                LinkedList<BebeModelo> r = bm.readBebe(i, "", "", "", -1, "",-1,-1, "");
-                if (r.size() > 0) {
-                    for (BebeModelo b : r) {
+            Instant inicio = Instant.now();
+            LinkedList<BebeModelo> bebes = bm.readBebePorIds(ids);
+                if (bebes.size() > 0) {
+                    for (BebeModelo b : bebes) {
                         resultados.add(b);
                     }
                 }
-            }
+            Instant fin = Instant.now();
+            long timeElapsed = Duration.between(inicio, fin).toMillis();
+            System.out.println(timeElapsed);
             for(BebeModelo b:resultados) listaBebes.add(b);
             resid.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
             resnombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -829,7 +833,7 @@ public class ResultadoController implements Initializable {
         }
     }
     
-    public void meterIds(LinkedList<Integer> ids){
+    public void meterIds(LinkedList<Integer> ids) throws SQLException{
         this.ids = ids;
         showInfante(null);
     }

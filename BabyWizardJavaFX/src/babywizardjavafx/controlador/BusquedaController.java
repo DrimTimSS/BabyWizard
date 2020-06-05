@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -637,8 +639,6 @@ public class BusquedaController implements Initializable {
 
     @FXML
     private LinkedList<Integer> buscarBebes(ActionEvent event) throws SQLException, IOException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = new Date();
             BebeModelo bm = new BebeModelo();
             int id = -1;
             if(Pattern.matches("-?\\d+",idbebebusqueda.getText())){
@@ -655,12 +655,18 @@ public class BusquedaController implements Initializable {
             int mesesmax = -1;
             if(edadbusquedamin.getText().matches("\\d+")) mesesmin = Integer.parseInt(edadbusquedamin.getText());
             if(edadbusquedamax.getText().matches("\\d+")) mesesmax = Integer.parseInt(edadbusquedamax.getText());
+            
             LinkedList<BebeModelo> resultados = bm.readBebe(id, nombrebusqueda.getText(), apellidombusqueda.getText(), apellidopbusqueda.getText(), sexoinfante, "", mesesmin, mesesmax, "");
+            
+            
             LinkedList<Integer> ids = new LinkedList<>();
             for(BebeModelo b:resultados){
                 ids.add(b.getIdBebe());
             }
+            
+            
             if(abrir)abrirResultado(ids);
+            
             return ids;
     }
 
@@ -716,6 +722,7 @@ public class BusquedaController implements Initializable {
         jmetro.setParent(loadCuidador);
         Scene CuidadorScene = new Scene(loadCuidador);
         ResultadoController rc = loader.getController();
+        Instant iniciobusquedadeids = Instant.now();
         rc.meterIds(ids);
         Stage mainWindow = (Stage) idbebebusqueda.getScene().getWindow();
         mainWindow.setScene(CuidadorScene);
@@ -724,11 +731,21 @@ public class BusquedaController implements Initializable {
 
     @FXML
     private LinkedList<Integer> buscarCompleto(ActionEvent event) throws SQLException, IOException {
+        System.out.println("Hola");
+        //Instant start = Instant.now();
         LinkedList<Integer> ids = new LinkedList<>();
         abrir = false;
         ids = intersection(intersection(intersection(intersection(buscarBebes(null),buscarPorUsuario(null)),buscarPrueba(null)),buscarSociodemografico(null)),buscarSocioeconomico(null));
+        //Instant busquedatodosids = Instant.now();
+        //long busquedaids = Duration.between(start, busquedatodosids).toMillis();
+        //System.out.println(busquedaids);
         abrir=true;
+        //Instant abririnicio = Instant.now();
         abrirResultado(ids);
+        //Instant abrirfinal = Instant.now();
+        //long abrirtodo = Duration.between(abririnicio, abrirfinal).toMillis();
+        
+        //System.out.println(abrirtodo);
         return ids;
     }
     

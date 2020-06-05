@@ -103,6 +103,7 @@ public class RegistroCController implements Initializable {
         nse.getItems().add("D+");
         nse.getItems().add("D");
         nse.getItems().add("E");
+                
         
         relacion.getItems().add("Madre");
         relacion.getItems().add("Padre");
