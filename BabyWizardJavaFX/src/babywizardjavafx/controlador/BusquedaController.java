@@ -715,7 +715,7 @@ public class BusquedaController implements Initializable {
         return ids;
     }
     
-    public void abrirResultado(LinkedList<Integer> ids) throws IOException{
+    public void abrirResultado(LinkedList<Integer> ids) throws IOException, SQLException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/Resultado.fxml"));
         Parent loadCuidador = (Parent) loader.load();
         JMetro jmetro = new JMetro(Style.LIGHT);
@@ -731,7 +731,6 @@ public class BusquedaController implements Initializable {
 
     @FXML
     private LinkedList<Integer> buscarCompleto(ActionEvent event) throws SQLException, IOException {
-        System.out.println("Hola");
         //Instant start = Instant.now();
         LinkedList<Integer> ids = new LinkedList<>();
         abrir = false;

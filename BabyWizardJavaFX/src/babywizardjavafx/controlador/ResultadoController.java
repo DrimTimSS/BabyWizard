@@ -509,16 +509,12 @@ public class ResultadoController implements Initializable {
         try { 
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = new LinkedList<BebeModelo>();
-            Instant inicio = Instant.now();
             LinkedList<BebeModelo> bebes = bm.readBebePorIds(ids);
-                if (bebes.size() > 0) {
-                    for (BebeModelo b : bebes) {
-                        resultados.add(b);
-                    }
+            if (bebes.size() > 0) {
+                for (BebeModelo b : bebes) {
+                    resultados.add(b);
                 }
-            Instant fin = Instant.now();
-            long timeElapsed = Duration.between(inicio, fin).toMillis();
-            System.out.println(timeElapsed);
+            }
             for(BebeModelo b:resultados) listaBebes.add(b);
             resid.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
             resnombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -548,12 +544,10 @@ public class ResultadoController implements Initializable {
         try {
             CuidadorModelo cm = new CuidadorModelo();
             LinkedList<CuidadorModelo> resultados = new LinkedList<CuidadorModelo>();
-            for(int i:ids){
-                LinkedList<CuidadorModelo> r = cm.readCuidador(-1, "", -1, "", "", "", "", "", "", -1,"", i);
-                if (r.size() > 0) {
-                    for (CuidadorModelo c : r) {
-                        resultados.add(c);
-                    }
+            LinkedList<CuidadorModelo> cuidadores = cm.readCuidadorPorIds(ids);
+            if (cuidadores.size() > 0) {
+                for (CuidadorModelo m : cuidadores) {
+                    resultados.add(m);
                 }
             }
             for(CuidadorModelo c:resultados) listaCuidadores.add(c);
@@ -589,8 +583,11 @@ public class ResultadoController implements Initializable {
         try {
             SociodemograficoModelo sm = new SociodemograficoModelo();
             LinkedList<SociodemograficoModelo> resultados = new LinkedList<>();
-            for(int i:ids){
-            resultados.addAll(sm.readSociodemografico(-1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", i));
+            LinkedList<SociodemograficoModelo> sociodes = sm.readSociodemograficoPorIds(ids);
+            if (sociodes.size() > 0) {
+                for (SociodemograficoModelo m : sociodes) {
+                    resultados.add(m);
+                }
             }
             for(SociodemograficoModelo s:resultados) listaSD.add(s);
             idinfantesd.setCellValueFactory(new PropertyValueFactory<>("fkBebeSociodemografico"));
@@ -671,8 +668,11 @@ public class ResultadoController implements Initializable {
         try {
             LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
             LinkedList<LecturaConjuntaModelo> resultados = new LinkedList<>();
-            for(int i:ids){
-            resultados.addAll(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, i));
+            LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjuntaPorIds(ids);
+            if (lecturas.size() > 0) {
+                for (LecturaConjuntaModelo m : lecturas) {
+                    resultados.add(m);
+                }
             }
             for(LecturaConjuntaModelo m:resultados) listaLC.add(m);
             idinfantelc.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
@@ -696,7 +696,7 @@ public class ResultadoController implements Initializable {
     }
 
     @FXML
-    private void showWppsi30(ActionEvent event) {
+    private void showWppsi30(ActionEvent event) throws SQLException {
         resultadoswppsi30.toFront();
         if(!flagw30) {
             crearTablaW30();
@@ -704,57 +704,50 @@ public class ResultadoController implements Initializable {
         }
     }
     
-    private void crearTablaW30() {
-        try {
-            Wppsi303642Modelo w30 = new Wppsi303642Modelo();
-            LinkedList<Wppsi303642Modelo> resultados = new LinkedList<>();
-            for(int i:ids){
-            LinkedList<Wppsi303642Modelo> r = w30.readWppsi303642(-1, -1, -1, -1, -1, -1, "", i, -1);
-            if(r.size()>0){
-                for(Wppsi303642Modelo w:r) {
-                    w.setEscalares();
-                    w.setEquivalentes();
-                    resultados.add(w);
-                }
+    private void crearTablaW30() throws SQLException {
+        Wppsi303642Modelo w30 = new Wppsi303642Modelo();
+        LinkedList<Wppsi303642Modelo> resultados = new LinkedList<>();
+        LinkedList<Wppsi303642Modelo> wppsis = w30.readWppsi303642PorIds(ids);
+        System.out.println(wppsis.size());
+        if (wppsis.size() > 0) {
+            for (Wppsi303642Modelo m : wppsis) {
+                resultados.add(m);
             }
-            }
-            for(Wppsi303642Modelo m:resultados) listaWppsi303642.add(m);
-            idinfantew30.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
-            vrnw30.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoNatural"));
-            vrew30.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoEscalar"));
-            dcnw30.setCellValueFactory(new PropertyValueFactory<>("disenioCubosNatural"));
-            dcew30.setCellValueFactory(new PropertyValueFactory<>("disenioCubosEscalar"));
-            innw30.setCellValueFactory(new PropertyValueFactory<>("informacionNatural"));
-            inew30.setCellValueFactory(new PropertyValueFactory<>("informacionEscalar"));
-            rcnw30.setCellValueFactory(new PropertyValueFactory<>("rompecabezasNatural"));
-            rcew30.setCellValueFactory(new PropertyValueFactory<>("rompecabezasEscalar"));
-            dnnw30.setCellValueFactory(new PropertyValueFactory<>("denominacionesNatural"));
-            dnew30.setCellValueFactory(new PropertyValueFactory<>("denominacionesEscalar"));
-            civw30.setCellValueFactory(new PropertyValueFactory<>("civ0"));
-            civrpw30.setCellValueFactory(new PropertyValueFactory<>("civ1"));
-            civnc90w30.setCellValueFactory(new PropertyValueFactory<>("civ2"));
-            civnc95w30.setCellValueFactory(new PropertyValueFactory<>("civ3"));
-            ciew30.setCellValueFactory(new PropertyValueFactory<>("cie0"));
-            cierpw30.setCellValueFactory(new PropertyValueFactory<>("cie1"));
-            cienc90w30.setCellValueFactory(new PropertyValueFactory<>("cie2"));
-            cienc95w30.setCellValueFactory(new PropertyValueFactory<>("cie3"));
-            citw30.setCellValueFactory(new PropertyValueFactory<>("cit0"));
-            citrpw30.setCellValueFactory(new PropertyValueFactory<>("cit1"));
-            citnc90w30.setCellValueFactory(new PropertyValueFactory<>("cit2"));
-            citnc95w30.setCellValueFactory(new PropertyValueFactory<>("cit3"));
-            cglw30.setCellValueFactory(new PropertyValueFactory<>("cgl0"));
-            cglrpw30.setCellValueFactory(new PropertyValueFactory<>("cgl1"));
-            cglnc90w30.setCellValueFactory(new PropertyValueFactory<>("cgl2"));
-            cglnc95w30.setCellValueFactory(new PropertyValueFactory<>("cgl3"));
-            resultadoswppsi30.setItems(listaWppsi303642);
-            //resultadoslc.getColumns().addAll(idinfantelc,typetokenlc,cuidadorbebelc,preposicionlc,sustantivolc,articulolc,verbolc,adjetivolc,pronombrelc,adverbiolc,conjuncionlc,interjeccionlc,ininteligiblelc);
-        } catch (SQLException ex) {
-            Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        for(Wppsi303642Modelo m:resultados) listaWppsi303642.add(m);
+        idinfantew30.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+        vrnw30.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoNatural"));
+        vrew30.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoEscalar"));
+        dcnw30.setCellValueFactory(new PropertyValueFactory<>("disenioCubosNatural"));
+        dcew30.setCellValueFactory(new PropertyValueFactory<>("disenioCubosEscalar"));
+        innw30.setCellValueFactory(new PropertyValueFactory<>("informacionNatural"));
+        inew30.setCellValueFactory(new PropertyValueFactory<>("informacionEscalar"));
+        rcnw30.setCellValueFactory(new PropertyValueFactory<>("rompecabezasNatural"));
+        rcew30.setCellValueFactory(new PropertyValueFactory<>("rompecabezasEscalar"));
+        dnnw30.setCellValueFactory(new PropertyValueFactory<>("denominacionesNatural"));
+        dnew30.setCellValueFactory(new PropertyValueFactory<>("denominacionesEscalar"));
+        civw30.setCellValueFactory(new PropertyValueFactory<>("civ0"));
+        civrpw30.setCellValueFactory(new PropertyValueFactory<>("civ1"));
+        civnc90w30.setCellValueFactory(new PropertyValueFactory<>("civ2"));
+        civnc95w30.setCellValueFactory(new PropertyValueFactory<>("civ3"));
+        ciew30.setCellValueFactory(new PropertyValueFactory<>("cie0"));
+        cierpw30.setCellValueFactory(new PropertyValueFactory<>("cie1"));
+        cienc90w30.setCellValueFactory(new PropertyValueFactory<>("cie2"));
+        cienc95w30.setCellValueFactory(new PropertyValueFactory<>("cie3"));
+        citw30.setCellValueFactory(new PropertyValueFactory<>("cit0"));
+        citrpw30.setCellValueFactory(new PropertyValueFactory<>("cit1"));
+        citnc90w30.setCellValueFactory(new PropertyValueFactory<>("cit2"));
+        citnc95w30.setCellValueFactory(new PropertyValueFactory<>("cit3"));
+        cglw30.setCellValueFactory(new PropertyValueFactory<>("cgl0"));
+        cglrpw30.setCellValueFactory(new PropertyValueFactory<>("cgl1"));
+        cglnc90w30.setCellValueFactory(new PropertyValueFactory<>("cgl2"));
+        cglnc95w30.setCellValueFactory(new PropertyValueFactory<>("cgl3"));
+        resultadoswppsi30.setItems(listaWppsi303642);
+        //resultadoslc.getColumns().addAll(idinfantelc,typetokenlc,cuidadorbebelc,preposicionlc,sustantivolc,articulolc,verbolc,adjetivolc,pronombrelc,adverbiolc,conjuncionlc,interjeccionlc,ininteligiblelc);
     }
 
     @FXML
-    private void showWppsi48(ActionEvent event) {
+    private void showWppsi48(ActionEvent event) throws SQLException {
         resultadoswppsi48.toFront();
         if(!flagw48) {
             crearTablaW48();
@@ -762,75 +755,70 @@ public class ResultadoController implements Initializable {
         }
     }
     
-    private void crearTablaW48() {
-        try{
-            Wppsi48Modelo w48 = new Wppsi48Modelo();
-            LinkedList<Wppsi48Modelo> resultados = new LinkedList<>();
-            for(int i:ids){
-            LinkedList<Wppsi48Modelo> r = w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", i, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-            if(r.size()>0){
-                for(Wppsi48Modelo w:r) {
-                    w.setEscalares();
-                    w.setEquivalentes();
-                    resultados.add(w);
-                }
-            }   
+    private void crearTablaW48() throws SQLException {
+        Wppsi48Modelo w48 = new Wppsi48Modelo();
+        LinkedList<Wppsi48Modelo> resultados = new LinkedList<>();
+        LinkedList<Wppsi48Modelo> wppsis = w48.readWppsi48PorIds(ids);
+        System.out.println(wppsis.size());
+        if (wppsis.size() > 0) {
+            for (Wppsi48Modelo m : wppsis) {
+                resultados.add(m);
             }
-            for(Wppsi48Modelo m:resultados) listaWppsi48.add(m);
-            idinfantew48.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
-            dcnw48.setCellValueFactory(new PropertyValueFactory<>("disenioCubosNatural"));
-            dcew48.setCellValueFactory(new PropertyValueFactory<>("disenioCubosEscalar"));
-            innw48.setCellValueFactory(new PropertyValueFactory<>("informacionNatural"));
-            inew48.setCellValueFactory(new PropertyValueFactory<>("informacionEscalar"));
-            mtnw48.setCellValueFactory(new PropertyValueFactory<>("matricesNatural"));
-            mtew48.setCellValueFactory(new PropertyValueFactory<>("matricesEscalar"));
-            vcnw48.setCellValueFactory(new PropertyValueFactory<>("vocabularioNatural"));
-            vcew48.setCellValueFactory(new PropertyValueFactory<>("vocabularioEscalar"));
-            cpnw48.setCellValueFactory(new PropertyValueFactory<>("conceptosConDibujosNatural"));
-            cpew48.setCellValueFactory(new PropertyValueFactory<>("conceptosConDibujosEscalar"));
-            bsnw48.setCellValueFactory(new PropertyValueFactory<>("busquedaSimbolosNatural"));
-            bsew48.setCellValueFactory(new PropertyValueFactory<>("busquedaSimbolosEscalar"));
-            psnw48.setCellValueFactory(new PropertyValueFactory<>("pistasNatural"));
-            psew48.setCellValueFactory(new PropertyValueFactory<>("pistasEscalar"));
-            clnw48.setCellValueFactory(new PropertyValueFactory<>("clavesNatural"));
-            clew48.setCellValueFactory(new PropertyValueFactory<>("clavesEscalar"));
-            cmnw48.setCellValueFactory(new PropertyValueFactory<>("comprensionNatural"));
-            cmew48.setCellValueFactory(new PropertyValueFactory<>("comprensionEscalar"));
-            finw48.setCellValueFactory(new PropertyValueFactory<>("figurasIncompletasNatural"));
-            fiew48.setCellValueFactory(new PropertyValueFactory<>("figurasIncompletasEscalar"));
-            senw48.setCellValueFactory(new PropertyValueFactory<>("semejanzasNatural"));
-            seew48.setCellValueFactory(new PropertyValueFactory<>("semejanzasEscalar"));
-            vrnw48.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoNatural"));
-            vrew48.setCellValueFactory(new PropertyValueFactory<>("vocabularoiReceptivoEscalar"));
-            rcnw48.setCellValueFactory(new PropertyValueFactory<>("rompecabezasNatural"));
-            rcew48.setCellValueFactory(new PropertyValueFactory<>("rompecabezasEscalar"));
-            dnnw48.setCellValueFactory(new PropertyValueFactory<>("denominacionesNatural"));
-            dnew48.setCellValueFactory(new PropertyValueFactory<>("denominacionesEscalar"));         
-            civw48.setCellValueFactory(new PropertyValueFactory<>("civ0"));
-            civrpw48.setCellValueFactory(new PropertyValueFactory<>("civ1"));
-            civ90icw48.setCellValueFactory(new PropertyValueFactory<>("civ2"));
-            civ95icw48.setCellValueFactory(new PropertyValueFactory<>("civ3"));
-            ciew48.setCellValueFactory(new PropertyValueFactory<>("cie0"));
-            cierpw48.setCellValueFactory(new PropertyValueFactory<>("cie1"));
-            cie90icw48.setCellValueFactory(new PropertyValueFactory<>("cie2"));
-            cie95icw48.setCellValueFactory(new PropertyValueFactory<>("cie3"));
-            cvpw48.setCellValueFactory(new PropertyValueFactory<>("cvp0"));
-            cvprpw48.setCellValueFactory(new PropertyValueFactory<>("cvp1"));
-            cvp90icw48.setCellValueFactory(new PropertyValueFactory<>("cvp2"));
-            cvp95icw48.setCellValueFactory(new PropertyValueFactory<>("cvp3"));
-            citw48.setCellValueFactory(new PropertyValueFactory<>("cit0"));
-            citrpw48.setCellValueFactory(new PropertyValueFactory<>("cit1"));
-            cit90icw48.setCellValueFactory(new PropertyValueFactory<>("cit2"));
-            cit95icw48.setCellValueFactory(new PropertyValueFactory<>("cit3"));
-            cglw48.setCellValueFactory(new PropertyValueFactory<>("cgl0"));
-            cglrpw48.setCellValueFactory(new PropertyValueFactory<>("cgl1"));
-            cgl90icw48.setCellValueFactory(new PropertyValueFactory<>("cgl2"));
-            cgl95icw48.setCellValueFactory(new PropertyValueFactory<>("cgl3"));
-            resultadoswppsi48.setItems(listaWppsi48);
-            //resultadoslc.getColumns().addAll(idinfantelc,typetokenlc,cuidadorbebelc,preposicionlc,sustantivolc,articulolc,verbolc,adjetivolc,pronombrelc,adverbiolc,conjuncionlc,interjeccionlc,ininteligiblelc);
-        } catch (SQLException ex) {
-            Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        for (Wppsi48Modelo m : resultados) {
+            listaWppsi48.add(m);
+        }
+        idinfantew48.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+        dcnw48.setCellValueFactory(new PropertyValueFactory<>("disenioCubosNatural"));
+        dcew48.setCellValueFactory(new PropertyValueFactory<>("disenioCubosEscalar"));
+        innw48.setCellValueFactory(new PropertyValueFactory<>("informacionNatural"));
+        inew48.setCellValueFactory(new PropertyValueFactory<>("informacionEscalar"));
+        mtnw48.setCellValueFactory(new PropertyValueFactory<>("matricesNatural"));
+        mtew48.setCellValueFactory(new PropertyValueFactory<>("matricesEscalar"));
+        vcnw48.setCellValueFactory(new PropertyValueFactory<>("vocabularioNatural"));
+        vcew48.setCellValueFactory(new PropertyValueFactory<>("vocabularioEscalar"));
+        cpnw48.setCellValueFactory(new PropertyValueFactory<>("conceptosConDibujosNatural"));
+        cpew48.setCellValueFactory(new PropertyValueFactory<>("conceptosConDibujosEscalar"));
+        bsnw48.setCellValueFactory(new PropertyValueFactory<>("busquedaSimbolosNatural"));
+        bsew48.setCellValueFactory(new PropertyValueFactory<>("busquedaSimbolosEscalar"));
+        psnw48.setCellValueFactory(new PropertyValueFactory<>("pistasNatural"));
+        psew48.setCellValueFactory(new PropertyValueFactory<>("pistasEscalar"));
+        clnw48.setCellValueFactory(new PropertyValueFactory<>("clavesNatural"));
+        clew48.setCellValueFactory(new PropertyValueFactory<>("clavesEscalar"));
+        cmnw48.setCellValueFactory(new PropertyValueFactory<>("comprensionNatural"));
+        cmew48.setCellValueFactory(new PropertyValueFactory<>("comprensionEscalar"));
+        finw48.setCellValueFactory(new PropertyValueFactory<>("figurasIncompletasNatural"));
+        fiew48.setCellValueFactory(new PropertyValueFactory<>("figurasIncompletasEscalar"));
+        senw48.setCellValueFactory(new PropertyValueFactory<>("semejanzasNatural"));
+        seew48.setCellValueFactory(new PropertyValueFactory<>("semejanzasEscalar"));
+        vrnw48.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoNatural"));
+        vrew48.setCellValueFactory(new PropertyValueFactory<>("vocabularoiReceptivoEscalar"));
+        rcnw48.setCellValueFactory(new PropertyValueFactory<>("rompecabezasNatural"));
+        rcew48.setCellValueFactory(new PropertyValueFactory<>("rompecabezasEscalar"));
+        dnnw48.setCellValueFactory(new PropertyValueFactory<>("denominacionesNatural"));
+        dnew48.setCellValueFactory(new PropertyValueFactory<>("denominacionesEscalar"));
+        civw48.setCellValueFactory(new PropertyValueFactory<>("civ0"));
+        civrpw48.setCellValueFactory(new PropertyValueFactory<>("civ1"));
+        civ90icw48.setCellValueFactory(new PropertyValueFactory<>("civ2"));
+        civ95icw48.setCellValueFactory(new PropertyValueFactory<>("civ3"));
+        ciew48.setCellValueFactory(new PropertyValueFactory<>("cie0"));
+        cierpw48.setCellValueFactory(new PropertyValueFactory<>("cie1"));
+        cie90icw48.setCellValueFactory(new PropertyValueFactory<>("cie2"));
+        cie95icw48.setCellValueFactory(new PropertyValueFactory<>("cie3"));
+        cvpw48.setCellValueFactory(new PropertyValueFactory<>("cvp0"));
+        cvprpw48.setCellValueFactory(new PropertyValueFactory<>("cvp1"));
+        cvp90icw48.setCellValueFactory(new PropertyValueFactory<>("cvp2"));
+        cvp95icw48.setCellValueFactory(new PropertyValueFactory<>("cvp3"));
+        citw48.setCellValueFactory(new PropertyValueFactory<>("cit0"));
+        citrpw48.setCellValueFactory(new PropertyValueFactory<>("cit1"));
+        cit90icw48.setCellValueFactory(new PropertyValueFactory<>("cit2"));
+        cit95icw48.setCellValueFactory(new PropertyValueFactory<>("cit3"));
+        cglw48.setCellValueFactory(new PropertyValueFactory<>("cgl0"));
+        cglrpw48.setCellValueFactory(new PropertyValueFactory<>("cgl1"));
+        cgl90icw48.setCellValueFactory(new PropertyValueFactory<>("cgl2"));
+        cgl95icw48.setCellValueFactory(new PropertyValueFactory<>("cgl3"));
+        resultadoswppsi48.setItems(listaWppsi48);
+        //resultadoslc.getColumns().addAll(idinfantelc,typetokenlc,cuidadorbebelc,preposicionlc,sustantivolc,articulolc,verbolc,adjetivolc,pronombrelc,adverbiolc,conjuncionlc,interjeccionlc,ininteligiblelc);
     }
     
     public void meterIds(LinkedList<Integer> ids) throws SQLException{

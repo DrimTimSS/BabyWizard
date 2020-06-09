@@ -454,4 +454,36 @@ public class Wppsi303642Modelo {
         stmt.executeUpdate("DELETE FROM `babywizard`.`wippsi303642` WHERE (`idWippsi303642` = '"+idWippsi303642+"');");
         con.close();
     }
+
+    public LinkedList<Wppsi303642Modelo> readWppsi303642PorIds(LinkedList<Integer> ids) throws SQLException {
+        LinkedList<Wppsi303642Modelo> wppsis = new LinkedList<Wppsi303642Modelo>();
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        String query;
+        String abuscar = "(";
+        int size = ids.size();
+        for(int i = 0; i < size-1; i++) abuscar += ids.get(i)+",";
+        abuscar+=ids.get(size-1)+")";
+        
+        query = "select * FROM wppsi303642 where fkBebe in "+abuscar+";";
+        //System.out.print(con);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next()){
+            Wppsi303642Modelo wm = new Wppsi303642Modelo();
+            wm.setDenominacionesNatural(rs.getInt("denominacionesNatural"));
+            wm.setDisenioCubosNatural(rs.getInt("disenioCubosNatural"));
+            wm.setFkBebe(rs.getInt("fkBebe"));
+            wm.setIdWppsi303642(rs.getInt("idWppsi303642"));
+            wm.setInformacionNatural(rs.getInt("informacionNatural"));
+            wm.setRompecabezasNatural(rs.getInt("rompecabezasNatural"));
+            wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivoNatural"));
+            wm.setFechaAplicacion(rs.getString("fechaAplicacion"));
+            wm.setSustdn(rs.getInt("sustdn"));
+            wppsis.add(wm);
+        }
+        con.close();
+        return wppsis;
+    }
 }

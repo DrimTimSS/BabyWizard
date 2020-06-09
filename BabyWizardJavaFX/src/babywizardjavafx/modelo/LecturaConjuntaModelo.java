@@ -320,4 +320,41 @@ public class LecturaConjuntaModelo {
         stmt.executeUpdate("DELETE FROM `babywizard`.`lecturaconjunta` WHERE (`idLecturaConjunta` = '"+idLecturaConjunta+"');");
         con.close();
     }
+
+    public LinkedList<LecturaConjuntaModelo> readLecturaConjuntaPorIds(LinkedList<Integer> ids) throws SQLException {
+        LinkedList<LecturaConjuntaModelo> lecturas = new LinkedList<LecturaConjuntaModelo>();
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        String query;
+        String abuscar = "(";
+        int size = ids.size();
+        for(int i = 0; i < size-1; i++) abuscar += ids.get(i)+",";
+        abuscar+=ids.get(size-1)+")";
+        
+        query = "select * FROM lecturaconjunta where fkBebe in "+abuscar+";";
+        //System.out.print(con);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next()){
+            LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
+            lcm.setIdLecturaConjunta(rs.getInt("idLecturaConjunta"));
+            lcm.setTypeOrToken(rs.getInt("typeOrToken"));
+            lcm.setAdjetivo(rs.getInt("adjetivo"));
+            lcm.setAdverbio(rs.getInt("adverbio"));
+            lcm.setArticulo(rs.getInt("articulo"));
+            lcm.setConjuncion(rs.getInt("conjuncion"));
+            lcm.setFkBebe(rs.getInt("fkBebe"));
+            lcm.setIninteligible(rs.getInt("ininteligible"));
+            lcm.setInterjeccion(rs.getInt("interjeccion"));
+            lcm.setPreposicion(rs.getInt("preposicion"));
+            lcm.setPronombre(rs.getInt("pronombre"));
+            lcm.setSustantivo(rs.getInt("sustantivo"));
+            lcm.setVerbo(rs.getInt("verbo"));
+            lcm.setCuidadorBebe(rs.getInt("cuidadorBebe"));
+            lecturas.add(lcm);
+        }
+        con.close();
+        return lecturas;
+    }
 }

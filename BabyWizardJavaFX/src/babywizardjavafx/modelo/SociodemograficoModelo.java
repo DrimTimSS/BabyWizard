@@ -507,4 +507,52 @@ public class SociodemograficoModelo {
         stmt.executeUpdate("DELETE FROM `babywizard`.`Sociodemografico` WHERE (`idSociodemografico` = '"+idSociodemografico+"');");
         con.close();
     }
+
+    public LinkedList<SociodemograficoModelo> readSociodemograficoPorIds(LinkedList<Integer> ids) throws SQLException {
+        LinkedList<SociodemograficoModelo> sdms = new LinkedList<SociodemograficoModelo>();
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        String query;
+        String abuscar = "(";
+        int size = ids.size();
+        for(int i = 0; i < size-1; i++) abuscar += ids.get(i)+",";
+        abuscar+=ids.get(size-1)+")";
+        
+        query = "select * FROM sociodemografico where fkBebeSociodemografico in "+abuscar+";";
+        //System.out.print(con);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next()){
+            SociodemograficoModelo sdm = new SociodemograficoModelo();
+            sdm.setAdultos(rs.getInt("adultos"));
+            sdm.setCuidadorPrincipal(rs.getString("cuidadorPrincipal"));
+            sdm.setFechaDeCita(rs.getString("fechaCita"));
+            sdm.setFkBebeSociodemografico(rs.getInt("fkBebeSociodemografico"));
+            sdm.setGestacion(rs.getInt("gestacion"));
+            sdm.setGuarderia(rs.getInt("guarderia"));
+            sdm.setHermanos(rs.getInt("hermanos"));
+            sdm.setIdSociodemografico(rs.getInt("idSociodemografico"));
+            sdm.setLugarOcupa(rs.getInt("lugarOcupa"));
+            sdm.setNinios(rs.getInt("ninios"));
+            sdm.setObservaciones(rs.getString("observaciones"));
+            sdm.setOtroIdioma(rs.getInt("otroIdioma"));
+            sdm.setPesoAlNacer(rs.getDouble("pesoAlNacer"));
+            sdm.setPreescolar(rs.getInt("preescolar"));
+            sdm.setProblemasAlNacer(rs.getInt("problemasAlNacer"));
+            sdm.setProblemasDeAudicion(rs.getInt("problemasDeAudicion"));
+            sdm.setProblemasDeSalud(rs.getInt("problemasDeSalud"));
+            sdm.setProblemasDeVision(rs.getInt("problemasDeVision"));
+            sdm.setPtApgar1(rs.getInt("ptApgar1"));
+            sdm.setPtApgar2(rs.getInt("ptApgar2"));
+            sdm.setSemanasDeNacimiento(rs.getInt("semanasDeNacimiento"));
+            sdm.setTiempoAsistiendoMesesG(rs.getInt("tiempoAsistiendoMesesG"));
+            sdm.setTiempoAsistiendoMesesP(rs.getInt("tiempoAsistiendoMesesP"));
+            sdm.setTiempoQueAsisteG(rs.getInt("tiempoQueAsisteG"));
+            sdm.setTiempoQueAsisteP(rs.getInt("tiempoQueAsisteP"));
+            sdms.add(sdm);
+        }
+        con.close();
+        return sdms;
+    }
 }

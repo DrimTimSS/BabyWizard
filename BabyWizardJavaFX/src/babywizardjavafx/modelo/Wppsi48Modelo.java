@@ -970,4 +970,57 @@ public class Wppsi48Modelo {
         stmt.executeUpdate("DELETE FROM `babywizard`.`wippsi48` WHERE (`idWippsi48` = '"+idWippsi48+"');");
         con.close();
     }
+
+    public LinkedList<Wppsi48Modelo> readWppsi48PorIds(LinkedList<Integer> ids) throws SQLException {
+        LinkedList<Wppsi48Modelo> wppsis = new LinkedList<Wppsi48Modelo>();
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        String query;
+        String abuscar = "(";
+        int size = ids.size();
+        for(int i = 0; i < size-1; i++) abuscar += ids.get(i)+",";
+        abuscar+=ids.get(size-1)+")";
+        
+        query = "select * FROM wppsi48 where fkBebe in "+abuscar+";";
+        //System.out.print(con);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next()){
+            Wppsi48Modelo wm = new Wppsi48Modelo();
+            wm.setBusquedaSimbolosNatural(rs.getInt("busquedaSimbolosNatural"));
+            wm.setClavesNatural(rs.getInt("clavesNatural"));
+            wm.setComprensionNatural(rs.getInt("comprensionNatural"));
+            wm.setConceptosConDibujosNatural(rs.getInt("conceptosConDibujosNatural"));
+            wm.setFigurasIncompletasNatural(rs.getInt("figurasIncompletasNatural"));
+            wm.setMatricesNatural(rs.getInt("matricesNatural"));
+            wm.setPistasNatural(rs.getInt("pistasNatural"));
+            wm.setSemejanzasNatural(rs.getInt("semejanzasNatural"));
+            wm.setVocabularioNatural(rs.getInt("vocabularioNatural"));
+            wm.setDenominacionesNatural(rs.getInt("denominacionesNatural"));
+            wm.setDisenioCubosNatural(rs.getInt("disenioConCubosNatural"));
+            wm.setFkBebe(rs.getInt("fkBebe"));
+            wm.setIdWppsi48(rs.getInt("idWppsi48"));
+            wm.setInformacionNatural(rs.getInt("informacionNatural"));
+            wm.setRompecabezasNatural(rs.getInt("rompecabezasNatural"));
+            wm.setVocabularioReceptivoNatural(rs.getInt("vocabularioReceptivoNatural"));
+            wm.setFechaAplicacion(rs.getString("fechaAplicacion"));
+            wm.setDcfi(rs.getInt("dcfi"));
+            wm.setDcrc(rs.getInt("dcrc"));
+            wm.setIncm(rs.getInt("incm"));
+            wm.setInse(rs.getInt("inse"));
+            wm.setMtfi(rs.getInt("mtfi"));
+            wm.setMtrc(rs.getInt("mtrc"));
+            wm.setVccm(rs.getInt("vccm"));
+            wm.setVcse(rs.getInt("vcse"));
+            wm.setCpfi(rs.getInt("cpfi"));
+            wm.setCprc(rs.getInt("cprc"));
+            wm.setPscm(rs.getInt("pscm"));
+            wm.setPsse(rs.getInt("psse"));
+            wm.setClbs(rs.getInt("clbs"));
+            wppsis.add(wm);
+        }
+        con.close();
+        return wppsis;
+    }
 }

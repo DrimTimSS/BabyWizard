@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -163,6 +166,41 @@ public class CuidadorModelo {
         }
         rs.close();
         con.close();
+    }
+    
+    public LinkedList<CuidadorModelo> readCuidadorPorIds(LinkedList<Integer> ids) throws SQLException {
+        LinkedList<CuidadorModelo> cuidadores = new LinkedList<CuidadorModelo>();
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        String query;
+        String abuscar = "(";
+        int size = ids.size();
+        for(int i = 0; i < size-1; i++) abuscar += ids.get(i)+",";
+        abuscar+=ids.get(size-1)+")";
+        
+        query = "select * FROM cuidador where fkBebe in "+abuscar+";";
+        //System.out.print(con);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next()){
+            CuidadorModelo cm = new CuidadorModelo();
+            cm.setIdCuidador(rs.getInt("idCuidador"));
+            cm.setCorreoElectronico(rs.getString("correoElectronico"));
+            cm.setEdad(rs.getInt("edad"));
+            cm.setNombreC(rs.getString("nombreC"));
+            cm.setPrimerApellidoC(rs.getString("primerApellidoC"));
+            cm.setSegundoApellidoC(rs.getString("segundoApellidoC"));
+            cm.setPrimerTelefono(rs.getString("primerTelefono"));
+            cm.setSegundoTelefono(rs.getString("segundoTelefono"));
+            cm.setOcupacion(rs.getString("ocupacion"));
+            cm.setAniosEstudio(rs.getInt("aniosEstudio"));
+            cm.setRelacion(rs.getString("relacion"));
+            cm.setFkBebe(rs.getInt("fkBebe"));
+            cuidadores.add(cm);
+        }
+        con.close();
+        return cuidadores;
     }
     
     public LinkedList<CuidadorModelo> readCuidador(int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, String relacion, int fkBebe) throws SQLException {
