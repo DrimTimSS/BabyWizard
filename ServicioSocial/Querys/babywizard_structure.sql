@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
 -- Host: localhost    Database: babywizard
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,7 +34,7 @@ CREATE TABLE `bebe` (
   UNIQUE KEY `idBebe_UNIQUE` (`idBebe`),
   KEY `fkUsuario_idx` (`fkUsuario`),
   CONSTRAINT `fkUsuario` FOREIGN KEY (`fkUsuario`) REFERENCES `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1030 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,18 +50,19 @@ CREATE TABLE `cuidador` (
   `nombreC` varchar(45) NOT NULL,
   `primerApellidoC` varchar(45) NOT NULL,
   `segundoApellidoC` varchar(45) NOT NULL,
-  `fechaDeNacimiento` date NOT NULL,
   `ocupacion` varchar(45) NOT NULL,
   `primerTelefono` varchar(15) NOT NULL,
   `segundoTelefono` varchar(15) DEFAULT NULL,
   `aniosEstudio` int NOT NULL,
   `fkBebe` int NOT NULL,
+  `edad` int NOT NULL,
+  `relacion` varchar(45) NOT NULL,
   PRIMARY KEY (`idCuidador`),
   UNIQUE KEY `idCuidador_UNIQUE` (`idCuidador`),
   UNIQUE KEY `correoElectronico_UNIQUE` (`correoElectronico`),
-  UNIQUE KEY `fkbebe` (`fkBebe`),
+  KEY `fkbebecuidador` (`fkBebe`),
   CONSTRAINT `fkbebecuidador` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1051 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +85,7 @@ CREATE TABLE `experimentocabina` (
   PRIMARY KEY (`idExperimentoCabina`),
   KEY `fkBebeEC_idx` (`fkBebe`),
   CONSTRAINT `fkBebeEC` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,11 +109,12 @@ CREATE TABLE `lecturaconjunta` (
   `conjuncion` int NOT NULL,
   `interjeccion` int NOT NULL,
   `fkBebe` int DEFAULT NULL,
+  `cuidadorBebe` tinyint NOT NULL,
   PRIMARY KEY (`idLecturaConjunta`),
   UNIQUE KEY `idCategoriaGramatical_UNIQUE` (`idLecturaConjunta`),
   KEY `fkInfante_idx` (`fkBebe`),
   CONSTRAINT `fkBebeRana` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1008 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,10 +152,9 @@ CREATE TABLE `sociodemografico` (
   `fkBebeSociodemografico` int NOT NULL,
   PRIMARY KEY (`idSociodemografico`),
   UNIQUE KEY `idSociodemografico_UNIQUE` (`idSociodemografico`),
-  UNIQUE KEY `fkBebeSociodemografico_UNIQUE` (`fkBebeSociodemografico`),
   KEY `fkBebe_idx` (`fkBebeSociodemografico`),
   CONSTRAINT `fkBebeSociodemografico` FOREIGN KEY (`fkBebeSociodemografico`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1017 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,12 +168,12 @@ CREATE TABLE `socioeconomico` (
   `idSocioeconomico` int NOT NULL AUTO_INCREMENT,
   `puntajeCrudo` int NOT NULL,
   `nse` varchar(3) NOT NULL,
-  `fkSociodemografico` int DEFAULT NULL,
+  `fkSociodemografico` int NOT NULL,
   PRIMARY KEY (`idSocioeconomico`),
   UNIQUE KEY `idSocioeconomico_UNIQUE` (`idSocioeconomico`),
-  UNIQUE KEY `fkSociodemografico_UNIQUE` (`fkSociodemografico`),
+  KEY `fkSociodemografico` (`fkSociodemografico`),
   CONSTRAINT `fkSociodemografico` FOREIGN KEY (`fkSociodemografico`) REFERENCES `sociodemografico` (`idSociodemografico`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1015 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,11 +210,13 @@ CREATE TABLE `wppsi303642` (
   `rompecabezasNatural` int NOT NULL,
   `denominacionesNatural` int NOT NULL,
   `fkBebe` int NOT NULL,
+  `fechaAplicacion` date NOT NULL,
+  `sustdn` tinyint DEFAULT NULL,
   PRIMARY KEY (`idWppsi303642`),
   UNIQUE KEY `idWPPSI303642_UNIQUE` (`idWppsi303642`),
   KEY `fkBebeWPPSI303642_idx` (`fkBebe`),
   CONSTRAINT `fkBebeWppsi303642` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,17 +243,26 @@ CREATE TABLE `wppsi48` (
   `rompecabezasNatural` int NOT NULL,
   `denominacionesNatural` int NOT NULL,
   `fkBebe` int NOT NULL,
+  `fechaAplicacion` date NOT NULL,
+  `dcfi` tinyint NOT NULL,
+  `dcrc` tinyint NOT NULL,
+  `incm` tinyint NOT NULL,
+  `inse` tinyint NOT NULL,
+  `mtfi` tinyint NOT NULL,
+  `mtrc` tinyint NOT NULL,
+  `vccm` tinyint NOT NULL,
+  `vcse` tinyint NOT NULL,
+  `cpfi` tinyint NOT NULL,
+  `cprc` tinyint NOT NULL,
+  `pscm` tinyint NOT NULL,
+  `psse` tinyint NOT NULL,
+  `clbs` tinyint NOT NULL,
   PRIMARY KEY (`idWppsi48`),
   UNIQUE KEY `idWPPSI48_UNIQUE` (`idWppsi48`),
   KEY `fkBebeWPPSI48_idx` (`fkBebe`),
   CONSTRAINT `fkBebeWppsi48` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
-
---
--- Dumping events for database 'babywizard'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -261,4 +273,4 @@ CREATE TABLE `wppsi48` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-30 13:08:09
+-- Dump completed on 2020-06-09 16:28:11
