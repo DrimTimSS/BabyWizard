@@ -1,6 +1,6 @@
 Query examples
 
-insert into babywizard.usuario (contrasenia,administrador,nombreU,apellidoMaternoU,apellidoPaternoU)
-values (AES_ENCRYPT('segura','babywizard'),1,'Quees','Crotolamo','Padalustro');
+insert into babywizard.usuario (usuario,contrasenia,administrador,nombreU,apellidoMaternoU,apellidoPaternoU)
+values ('root',AES_ENCRYPT('1234','babywizard'),1,'el','verdadero','root');
 SELECT * FROM babywizard.usuario;
 select cast(aes_decrypt(contrasenia,'babywizard') as char) from babywizard.usuario;
