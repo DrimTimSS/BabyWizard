@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 
 import babywizardjavafx.modelo.SocioeconomicoModelo;
 import java.sql.SQLException;
+import javafx.beans.value.ObservableValue;
 
 /**
  * FXML Controller class
@@ -38,7 +39,12 @@ public class AgregarSocioeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        puntajecrudo.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                puntajecrudo.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        
     }    
 
     public void inicializarBebe(int idbebe) {

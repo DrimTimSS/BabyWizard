@@ -142,6 +142,48 @@ public class AgregarSociodController implements Initializable {
 
     @FXML
     private void agregar(ActionEvent event) {
+        //prematuro o a termino
+        int pOt = -1;
+        if (prematuro.isSelected()) {
+            pOt = 0;
+        } else if (atermino.isSelected()) {
+            pOt = 1;
+        }
+        //problemas al nacer
+        int pAn = -1;
+        if (pnacersi.isSelected()) {
+            pAn = 0;
+        } else if (pnacerno.isSelected()) {
+            pAn = 1;
+        } 
+        //problemas de salud
+        int pDs = -1;
+        if (psaludsi.isSelected()) {
+            pDs = 0;
+        } else if (psaludno.isSelected()) {
+            pDs = 1;
+        }
+        //problemas de audicion
+        int pDa = -1;
+        if (paudicionsi.isSelected()) {
+            pDa = 0;
+        } else if (paudicionno.isSelected()) {
+            pDa = 1;
+        }
+        //problemas de vision
+        int pDv = -1;
+        if (pvisionsi.isSelected()) {
+            pDv = 0;
+        } else if (pvisionno.isSelected()) {
+            pDv = 1;
+        }
+        //otro idioma
+        int oId = -1;
+        if (otroidiomasi.isSelected()) {
+            oId = 0;
+        } else if (otroidiomano.isSelected()) {
+            oId = 1;
+        }
     }
     
 }
