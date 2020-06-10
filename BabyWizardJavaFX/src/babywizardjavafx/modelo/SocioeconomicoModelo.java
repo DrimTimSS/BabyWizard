@@ -19,15 +19,15 @@ public class SocioeconomicoModelo {
     int idSocioeconomico;
     int puntajeCrudo;
     String nse;
-    int fkSociodemografico;
+    int fkBebe;
 
     public SocioeconomicoModelo() {
     }
 
-    public SocioeconomicoModelo(int puntajeCrudo, String nse, int fkSociodemografico) {
+    public SocioeconomicoModelo(int puntajeCrudo, String nse, int fkBebe) {
         this.puntajeCrudo = puntajeCrudo;
         this.nse = nse;
-        this.fkSociodemografico = fkSociodemografico;
+        this.fkBebe = fkBebe;
     }
 
     public int getIdSocioeconomico() {
@@ -54,20 +54,20 @@ public class SocioeconomicoModelo {
         this.nse = nse;
     }
 
-    public int getFkSociodemografico() {
-        return fkSociodemografico;
+    public int getfkBebe() {
+        return fkBebe;
     }
 
-    public void setFkSociodemografico(int fkSociodemografico) {
-        this.fkSociodemografico = fkSociodemografico;
+    public void setfkBebe(int fkBebe) {
+        this.fkBebe = fkBebe;
     }
     
     public void createSocioeconomico() throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
-        query = "INSERT INTO `babywizard`.`socioeconomico` (`puntajeCrudo`, `nse`, `fkSociodemografico`) "
-                + "VALUES ('"+this.getPuntajeCrudo()+"', '"+this.getNse()+"', '"+this.getFkSociodemografico()+"');";
+        query = "INSERT INTO `babywizard`.`socioeconomico` (`puntajeCrudo`, `nse`, `fkBebe`) "
+                + "VALUES ('"+this.getPuntajeCrudo()+"', '"+this.getNse()+"', '"+this.getfkBebe()+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -79,14 +79,14 @@ public class SocioeconomicoModelo {
         con.close();
     }
     
-    public LinkedList<SocioeconomicoModelo> readSocioeconomico(int idSocioeconomico, int puntajeCrudo, String nse, int fkSociodemografico) throws SQLException{
+    public LinkedList<SocioeconomicoModelo> readSocioeconomico(int idSocioeconomico, int puntajeCrudo, String nse, int fkBebe) throws SQLException{
     JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
         if(idSocioeconomico>-1) toRead.add("idSocioeconomico = '"+idSocioeconomico+"'");
         if(!"".equals(nse)) toRead.add("nse = '"+nse+"'");
         if(puntajeCrudo>-1) toRead.add("puntajeCrudo = '"+puntajeCrudo+"'");
-        if(fkSociodemografico>-1) toRead.add("fkSociodemografico = '"+fkSociodemografico+"'");
+        if(fkBebe>-1) toRead.add("fkBebe = '"+fkBebe+"'");
         
         String query1 = "SELECT * FROM babywizard.socioeconomico WHERE ";
         String query2 = "";
@@ -105,7 +105,7 @@ public class SocioeconomicoModelo {
         LinkedList<SocioeconomicoModelo> sms = new LinkedList<>();
         while(rs.next()){
             SocioeconomicoModelo sm = new SocioeconomicoModelo();
-            sm.setFkSociodemografico(rs.getInt("fkSociodemografico"));
+            sm.setfkBebe(rs.getInt("fkBebe"));
             sm.setIdSocioeconomico(rs.getInt("idSocioeconomico"));
             sm.setNse(rs.getString("nse"));
             sm.setPuntajeCrudo(rs.getInt("puntajeCrudo"));
@@ -115,7 +115,7 @@ public class SocioeconomicoModelo {
         return sms;
     }
     
-    public void updateSocioeconomico(int idSocioeconomicoActualizar, int idSocioeconomico, int puntajeCrudo, String nse, int fkSociodemografico) throws SQLException {
+    public void updateSocioeconomico(int idSocioeconomicoActualizar, int idSocioeconomico, int puntajeCrudo, String nse, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -131,9 +131,9 @@ public class SocioeconomicoModelo {
            String puntajeCrudoQ = "`puntajeCrudo` = '"+puntajeCrudo+"'";
            toUpdate.add(puntajeCrudoQ);
         }
-        if (fkSociodemografico > -1) {
-           String fkSociodemograficoQ = "`fkSociodemografico` = '"+fkSociodemografico+"'";
-           toUpdate.add(fkSociodemograficoQ);
+        if (fkBebe > -1) {
+           String fkBebeQ = "`fkBebe` = '"+fkBebe+"'";
+           toUpdate.add(fkBebeQ);
         }
         
         String query1 = "UPDATE `babywizard`.`socioeconomico` SET ";

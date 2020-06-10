@@ -222,7 +222,7 @@ public class RegistroCController implements Initializable {
                 sm.createSociodemografico();
                 cm.setFkBebe(bm.getIdBebe());
                 cm.createCuidador();
-                sem.setFkSociodemografico(sm.getIdSociodemografico());
+                sem.setfkBebe(sm.getIdSociodemografico());
                 sem.createSocioeconomico();
                 
                 Stage actualWindow = (Stage) titulo.getScene().getWindow();

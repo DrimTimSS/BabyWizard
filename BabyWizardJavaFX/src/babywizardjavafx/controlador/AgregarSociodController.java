@@ -105,6 +105,8 @@ public class AgregarSociodController implements Initializable {
     private Label titulo;
     @FXML
     private TextArea observaciones;
+    @FXML
+    private Label label;
 
     /**
      * Initializes the controller class.
