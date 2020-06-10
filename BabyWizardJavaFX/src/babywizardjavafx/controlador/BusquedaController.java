@@ -684,7 +684,7 @@ public class BusquedaController implements Initializable {
         if(!(nse.getValue()==null)) n = nse.getValue().replaceAll("\\\\", "");
         LinkedList<SocioeconomicoModelo> resultados = sem.readSocioeconomico(-1, pc, n, -1);    
         for(SocioeconomicoModelo s:resultados){
-            ids.add(s.getfkBebe()); //lo moví al cambiar la tabla de fkBebe
+            ids.add(s.getfkBebe());
         }
         
         SociodemograficoModelo sdm = new SociodemograficoModelo();
@@ -717,15 +717,16 @@ public class BusquedaController implements Initializable {
     
     public void abrirResultado(LinkedList<Integer> ids) throws IOException, SQLException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/Resultado.fxml"));
-        Parent loadCuidador = (Parent) loader.load();
+        Parent loadResultado = (Parent) loader.load();
         JMetro jmetro = new JMetro(Style.LIGHT);
-        jmetro.setParent(loadCuidador);
-        Scene CuidadorScene = new Scene(loadCuidador);
+        jmetro.setParent(loadResultado);
+        Scene ResultadoScene = new Scene(loadResultado);
         ResultadoController rc = loader.getController();
-        Instant iniciobusquedadeids = Instant.now();
         rc.meterIds(ids);
-        Stage mainWindow = (Stage) idbebebusqueda.getScene().getWindow();
-        mainWindow.setScene(CuidadorScene);
+        Scene current = idbebebusqueda.getScene();
+        rc.escenaBusqueda(current);
+        Stage mainWindow = (Stage) current.getWindow();
+        mainWindow.setScene(ResultadoScene);
         mainWindow.show();  
     }
 

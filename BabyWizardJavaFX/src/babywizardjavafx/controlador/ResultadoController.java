@@ -30,7 +30,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.SelectionMode;
@@ -43,6 +46,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -394,6 +399,7 @@ public class ResultadoController implements Initializable {
     boolean flagw48;
     @FXML
     private TableColumn<?, ?> resrelacionc;
+    private Scene escenaAnterior;
     /**
      * Initializes the controller class.
      */
@@ -827,7 +833,17 @@ public class ResultadoController implements Initializable {
     }
 
     @FXML
-    private void atras(ActionEvent event) {
+    private void atras(ActionEvent event) throws IOException {
+        Stage actualWindow = (Stage) grid.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/Busqueda.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene exito = escenaAnterior;
+        JMetro jmetro = new JMetro(Style.LIGHT);
+        jmetro.setParent(root);
+        actualWindow.setScene(exito);
     }
     
+    public void escenaBusqueda(Scene anterior){
+        escenaAnterior = anterior;
+    }
 }

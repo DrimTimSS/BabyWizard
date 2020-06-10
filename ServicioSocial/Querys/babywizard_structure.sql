@@ -168,11 +168,11 @@ CREATE TABLE `socioeconomico` (
   `idSocioeconomico` int NOT NULL AUTO_INCREMENT,
   `puntajeCrudo` int NOT NULL,
   `nse` varchar(3) NOT NULL,
-  `fkSociodemografico` int NOT NULL,
+  `fkBebe` int NOT NULL,
   PRIMARY KEY (`idSocioeconomico`),
   UNIQUE KEY `idSocioeconomico_UNIQUE` (`idSocioeconomico`),
-  KEY `fkSociodemografico` (`fkSociodemografico`),
-  CONSTRAINT `fkSociodemografico` FOREIGN KEY (`fkSociodemografico`) REFERENCES `sociodemografico` (`idSociodemografico`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fkBebe` (`fkBebe`),
+  CONSTRAINT `socioeconomico_ibfk_1` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1015 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -273,4 +273,4 @@ CREATE TABLE `wppsi48` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-09 16:28:11
+-- Dump completed on 2020-06-10 14:53:40
