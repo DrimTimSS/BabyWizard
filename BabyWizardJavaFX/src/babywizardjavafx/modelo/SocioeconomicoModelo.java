@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
 import java.util.LinkedList;
 
 /**
@@ -54,11 +55,11 @@ public class SocioeconomicoModelo {
         this.nse = nse;
     }
 
-    public int getfkBebe() {
+    public int getFkBebe() {
         return fkBebe;
     }
 
-    public void setfkBebe(int fkBebe) {
+    public void setFkBebe(int fkBebe) {
         this.fkBebe = fkBebe;
     }
     
@@ -67,7 +68,7 @@ public class SocioeconomicoModelo {
         Connection con = jdbc.getConnection();
         String query;
         query = "INSERT INTO `babywizard`.`socioeconomico` (`puntajeCrudo`, `nse`, `fkBebe`) "
-                + "VALUES ('"+this.getPuntajeCrudo()+"', '"+this.getNse()+"', '"+this.getfkBebe()+"');";
+                + "VALUES ('"+this.getPuntajeCrudo()+"', '"+this.getNse()+"', '"+this.getFkBebe()+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -105,7 +106,7 @@ public class SocioeconomicoModelo {
         LinkedList<SocioeconomicoModelo> sms = new LinkedList<>();
         while(rs.next()){
             SocioeconomicoModelo sm = new SocioeconomicoModelo();
-            sm.setfkBebe(rs.getInt("fkBebe"));
+            sm.setFkBebe(rs.getInt("fkBebe"));
             sm.setIdSocioeconomico(rs.getInt("idSocioeconomico"));
             sm.setNse(rs.getString("nse"));
             sm.setPuntajeCrudo(rs.getInt("puntajeCrudo"));
@@ -154,6 +155,33 @@ public class SocioeconomicoModelo {
         Statement stmt = con.createStatement();
         stmt.executeUpdate("DELETE FROM `babywizard`.`socioeconomico` WHERE (`idSocioeconomico` = '"+idSocioeconomico+"');");
         con.close();
+    }
+
+    public LinkedList<SocioeconomicoModelo> readSocioeconomicoPorIds(LinkedList<Integer> ids) throws SQLException {
+        LinkedList<SocioeconomicoModelo> sems = new LinkedList<SocioeconomicoModelo>();
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        String query;
+        String abuscar = "(";
+        int size = ids.size();
+        for(int i = 0; i < size-1; i++) abuscar += ids.get(i)+",";
+        abuscar+=ids.get(size-1)+")";
+        
+        query = "select * FROM socioeconomico where fkBebe in "+abuscar+";";
+        //System.out.print(con);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next()){
+            SocioeconomicoModelo sm = new SocioeconomicoModelo();
+            sm.setFkBebe(rs.getInt("fkBebe"));
+            sm.setIdSocioeconomico(rs.getInt("idSocioeconomico"));
+            sm.setNse(rs.getString("nse"));
+            sm.setPuntajeCrudo(rs.getInt("puntajeCrudo"));
+            sems.add(sm);
+        }
+        con.close();
+        return sems;
     }
 }
 

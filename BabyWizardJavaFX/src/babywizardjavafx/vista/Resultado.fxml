@@ -29,7 +29,8 @@
          <children>
             <Button mnemonicParsing="false" onAction="#showInfante" text="Infante" />
             <Button minWidth="64.0" mnemonicParsing="false" onAction="#showCuidador" text="Cuidador" />
-            <Button minWidth="56.0" mnemonicParsing="false" onAction="#showSociode" text="SocDyE" />
+            <Button minWidth="56.0" mnemonicParsing="false" onAction="#showSociode" text="SocioD" />
+            <Button minWidth="56.0" mnemonicParsing="false" onAction="#showSocioec" text="SocioE" />
             <Button minWidth="64.0" mnemonicParsing="false" onAction="#showExpCab" text="Exp. Cab." />
             <Button minWidth="70.0" mnemonicParsing="false" onAction="#showLectCab" text="Lect. Conj." />
             <Button minWidth="64.0" mnemonicParsing="false" onAction="#showWppsi30" text="WPPSI30" />
@@ -203,8 +204,13 @@
             <TableColumn fx:id="mesespsd" minWidth="-Infinity" prefWidth="150.0" text="Meses P." />
             <TableColumn fx:id="horasasistepsd" minWidth="-Infinity" prefWidth="195.0" text="Horas Asiste P." />
             <TableColumn fx:id="observacionessd" minWidth="-Infinity" prefWidth="180.0" text="Observaciones" />
-            <TableColumn fx:id="nsesd" prefWidth="100.0" text="NSE" />
-            <TableColumn fx:id="puntajecrudosd" prefWidth="195.0" text="Puntaje Crudo" />
+        </columns>
+      </TableView>
+      <TableView fx:id="resultadossocioec" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idinfantese" minWidth="-Infinity" prefWidth="135.0" text="ID Infante" />
+          <TableColumn fx:id="puntajecrudose" minWidth="-Infinity" prefWidth="160.0" text="Puntaje Crudo" />
+            <TableColumn fx:id="nsese" minWidth="-Infinity" prefWidth="140.0" text="NSE" />
         </columns>
       </TableView>
       <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />

@@ -75,15 +75,6 @@ public class SociodemograficoModelo {
         this.fkBebeSociodemografico = fkBebeSociodemografico;
         sem = new SocioeconomicoModelo();
     }
-    
-    public int getPuntajeCrudo() throws SQLException{
-        if(getFkBebeSociodemografico()!=0) return sem.readSocioeconomico(-1, -1, "", this.getFkBebeSociodemografico()).getFirst().getPuntajeCrudo();
-        return 0;
-    }
-    public String getNse() throws SQLException{
-        if(getFkBebeSociodemografico()!=0) return sem.readSocioeconomico(-1, -1, "", this.getFkBebeSociodemografico()).getFirst().getNse();
-        return "";
-    }
 
     public int getIdSociodemografico() {
         return idSociodemografico;

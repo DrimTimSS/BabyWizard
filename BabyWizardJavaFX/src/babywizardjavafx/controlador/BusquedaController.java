@@ -684,7 +684,7 @@ public class BusquedaController implements Initializable {
         if(!(nse.getValue()==null)) n = nse.getValue().replaceAll("\\\\", "");
         LinkedList<SocioeconomicoModelo> resultados = sem.readSocioeconomico(-1, pc, n, -1);    
         for(SocioeconomicoModelo s:resultados){
-            ids.add(s.getfkBebe());
+            ids.add(s.getFkBebe());
         }
         
         SociodemograficoModelo sdm = new SociodemograficoModelo();

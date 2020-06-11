@@ -115,6 +115,8 @@ public class ResultadoController implements Initializable {
     private TableColumn<CuidadorModelo, Integer> resaniosestudio;
     @FXML
     private TableColumn<CuidadorModelo, Integer> residbebec;
+    @FXML
+    private TableColumn<CuidadorModelo, String> resrelacionc;
     ObservableList<CuidadorModelo> listaCuidadores = FXCollections.observableArrayList();
     
     //Tabla sociodemografico socioeconomico
@@ -386,6 +388,17 @@ public class ResultadoController implements Initializable {
     private TableColumn<Wppsi48Modelo, String> cgl95icw48;
     ObservableList<Wppsi48Modelo> listaWppsi48 = FXCollections.observableArrayList();
     
+    private Scene escenaAnterior;
+    @FXML
+    private TableView<SocioeconomicoModelo> resultadossocioec;
+    @FXML
+    private TableColumn<SocioeconomicoModelo, Integer> idinfantese;
+    @FXML
+    private TableColumn<SocioeconomicoModelo, Integer> puntajecrudose;
+    @FXML
+    private TableColumn<SocioeconomicoModelo, String> nsese;
+    ObservableList<SocioeconomicoModelo> listaSE = FXCollections.observableArrayList();
+    
     @FXML
     private Button exportar;
     @FXML
@@ -397,9 +410,8 @@ public class ResultadoController implements Initializable {
     boolean flagexpc;
     boolean flagw30;
     boolean flagw48;
-    @FXML
-    private TableColumn<?, ?> resrelacionc;
-    private Scene escenaAnterior;
+    boolean flagsocioec;
+    
     /**
      * Initializes the controller class.
      */
@@ -408,6 +420,7 @@ public class ResultadoController implements Initializable {
         flaginf = false;
         flagcuid = false;
         flagsd = false;
+        flagsocioec = false;
         flaglc = false;
         flagexpc = false;
         flagw30 = false;
@@ -438,6 +451,7 @@ public class ResultadoController implements Initializable {
         showWppsi30(null);
         showWppsi48(null);
         showInfante(null);
+        showSocioec(null);
         try {
             File selectedFile = fileChooser.showSaveDialog(stage);
             if (selectedFile != null) {
@@ -463,7 +477,8 @@ public class ResultadoController implements Initializable {
     public void write(Workbook workbook, File selectedFile) throws FileNotFoundException, IOException {
         crearHoja(workbook, "Infantes", resultadosbebe);
         crearHoja(workbook, "Cuidador", resultadoscuidador);
-        crearHoja(workbook, "SocioDyE", resultadossd);
+        crearHoja(workbook, "SocioD", resultadossd);
+        crearHoja(workbook, "SocioE", resultadossocioec);
         crearHoja(workbook, "WPPSI30", resultadoswppsi30);
         crearHoja(workbook, "WPPSI48", resultadoswppsi48);
         crearHoja(workbook, "Lectura Conjuta", resultadoslc);
@@ -620,13 +635,38 @@ public class ResultadoController implements Initializable {
             mesespsd.setCellValueFactory(new PropertyValueFactory<>("tiempoAsistiendoMesesP"));
             horasasistepsd.setCellValueFactory(new PropertyValueFactory<>("tiempoQueAsisteP"));
             observacionessd.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
-            nsesd.setCellValueFactory(new PropertyValueFactory<>("nse"));
-            puntajecrudosd.setCellValueFactory(new PropertyValueFactory<>("puntajeCrudo"));
+            
             resultadossd.setItems(listaSD);
             //resultadossd.getColumns().addAll(idinfantesd,fechacitasd,gestacionsd,semnacsd,apgar1sd,apgar2sd,pesosd,prnacsd,prsaludsd,praudsd,prvissd,otroidiomasd,hermsd,lugocupasd,adultossd,niniossd,cuidprincsd,guarderiasd,mesesgsd,horasasistegsd,preescolarsd,mesespsd,horasasistepsd,observacionessd,nsesd,puntajecrudosd);
         } catch (SQLException ex) {
             Logger.getLogger(ResultadoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @FXML
+    private void showSocioec(ActionEvent event) throws SQLException {
+        resultadossocioec.toFront();
+        if(!flagsocioec) {
+            crearTablaSocioec();
+            flagsocioec=true;
+        }
+    }
+    
+    private void crearTablaSocioec() throws SQLException {
+        SocioeconomicoModelo sem = new SocioeconomicoModelo();
+        LinkedList<SocioeconomicoModelo> resultados = new LinkedList<>();
+        LinkedList<SocioeconomicoModelo> socioecs = sem.readSocioeconomicoPorIds(ids);
+        if (socioecs.size() > 0) {
+            for (SocioeconomicoModelo m : socioecs) {
+                resultados.add(m);
+            }
+        }
+        for(SocioeconomicoModelo em:resultados) listaSE.add(em);
+        idinfantese.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+        nsese.setCellValueFactory(new PropertyValueFactory<>("nse"));
+        puntajecrudose.setCellValueFactory(new PropertyValueFactory<>("puntajeCrudo"));
+        resultadossocioec.setItems(listaSE);
+        //resultadosexpcab.getColumns().addAll(idinfanteec,tipoexpec,entoprec,protarpreec,protarposec,llkdifpreec,llkdifposec,trec);
     }
 
     @FXML
@@ -714,7 +754,6 @@ public class ResultadoController implements Initializable {
         Wppsi303642Modelo w30 = new Wppsi303642Modelo();
         LinkedList<Wppsi303642Modelo> resultados = new LinkedList<>();
         LinkedList<Wppsi303642Modelo> wppsis = w30.readWppsi303642PorIds(ids);
-        System.out.println(wppsis.size());
         if (wppsis.size() > 0) {
             for (Wppsi303642Modelo m : wppsis) {
                 resultados.add(m);
@@ -765,7 +804,6 @@ public class ResultadoController implements Initializable {
         Wppsi48Modelo w48 = new Wppsi48Modelo();
         LinkedList<Wppsi48Modelo> resultados = new LinkedList<>();
         LinkedList<Wppsi48Modelo> wppsis = w48.readWppsi48PorIds(ids);
-        System.out.println(wppsis.size());
         if (wppsis.size() > 0) {
             for (Wppsi48Modelo m : wppsis) {
                 resultados.add(m);
