@@ -133,7 +133,7 @@ public class ExperimentoCabinaController implements Initializable {
         ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tipoExp, eOp, protarpre,protarpos, llkdifpre, llkdifpos, tr, idbebe);
         ecm.createExperimentoCabina();
 
-      } else{
+        } else{
           label.setVisible(true);
           return;
       }
