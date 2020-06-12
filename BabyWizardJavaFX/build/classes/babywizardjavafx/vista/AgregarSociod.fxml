@@ -216,7 +216,7 @@
             </HBox>
             <HBox prefHeight="26.0" prefWidth="150.0" GridPane.rowIndex="9">
                <children>
-                  <Label text="Tiempo asistiendo">
+                  <Label prefHeight="17.0" prefWidth="131.0" text="Tiempo asistiendo">
                      <padding>
                         <Insets right="5.0" />
                      </padding>

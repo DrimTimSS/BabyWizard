@@ -181,19 +181,19 @@ public class AgregarPruebaController implements Initializable {
             direccion = "/babywizardjavafx/vista/AgregarCuidador.fxml";
             prueba = "Cuidador";
             FXMLLoader loader = showWindow(direccion,prueba);
-            ExperimentoCabinaController wcont = loader.getController();
+            AgregarCuidadorController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(sociod.isSelected()){
             direccion = "/babywizardjavafx/vista/AgregarSociod.fxml";
             prueba = "Sociodemográfico";
             FXMLLoader loader = showWindow(direccion,prueba);
-            ExperimentoCabinaController wcont = loader.getController();
+            AgregarSociodController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else if(socioe.isSelected()){
             direccion = "/babywizardjavafx/vista/AgregarSocioe.fxml";
             prueba = "Socioeconómico";
             FXMLLoader loader = showWindow(direccion,prueba);
-            ExperimentoCabinaController wcont = loader.getController();
+            AgregarSocioeController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else {return;}
         
