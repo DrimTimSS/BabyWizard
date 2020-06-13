@@ -313,7 +313,7 @@ public class RegistroBBController implements Initializable {
 
     private SociodemograficoModelo crearSociodemografico() {
 
-        int gest = (prematuro.isSelected()) ? 1 : 0;
+        int gest = (prematuro.isSelected())?1:0;
         int probnac = probnacer.isSelected()?1:0;
         int probsal = probsalud.isSelected()?1:0;
         int probaud = probaudicion.isSelected()?1:0;

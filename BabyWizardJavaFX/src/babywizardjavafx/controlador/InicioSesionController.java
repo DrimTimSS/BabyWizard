@@ -67,10 +67,10 @@ public class InicioSesionController implements Initializable {
     
     @FXML
     private void iniciarSesion(ActionEvent event) throws IOException, SQLException {
-        UsuarioController uc = new UsuarioController();
+        UsuarioModelo um = new UsuarioModelo();
         LinkedList<UsuarioModelo> usuarioregistro = new LinkedList<>();
         if(!usuario.getText().equals("")){
-            usuarioregistro = uc.selectUsuario(usuario.getText(), "", "", "", -1);
+            usuarioregistro = um.readUsuario(usuario.getText(), "", "", "", -1);
         }
         String contrareal="";
         if(usuarioregistro.size()>0){
