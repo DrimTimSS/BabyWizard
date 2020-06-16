@@ -195,7 +195,8 @@ public class EditarController implements Initializable {
     private void irAPrueba(ActionEvent event) throws SQLException, IOException {
         
         int id = 0; 
-        if(idbebeprueba.getText().equals("")){
+        if(idbebeprueba.getText().equals("0")){
+            alertInformation("Alerta","","No se ha seleccionado un infante al cual se desee editar datos.");
             return;
         } else{
             id = Integer.parseInt(idbebeprueba.getText());           
