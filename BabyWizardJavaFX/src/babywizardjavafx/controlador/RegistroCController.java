@@ -218,11 +218,12 @@ public class RegistroCController implements Initializable {
         if(!(bm == null||sm==null||cm==null||sem==null)) {
             try {
                 bm.createBebe();
-                sm.setFkBebeSociodemografico(bm.getIdBebe());
+                int idBebe = bm.getIdBebe();
+                sm.setFkBebeSociodemografico(idBebe);
                 sm.createSociodemografico();
-                cm.setFkBebe(bm.getIdBebe());
+                cm.setFkBebe(idBebe);
                 cm.createCuidador();
-                sem.setFkBebe(sm.getIdSociodemografico());
+                sem.setFkBebe(idBebe);
                 sem.createSocioeconomico();
                 
                 Stage actualWindow = (Stage) titulo.getScene().getWindow();
@@ -251,7 +252,7 @@ public class RegistroCController implements Initializable {
                 mainWindow.show();
                 **/
             } catch (Exception e) {
-                System.out.println("No se llenaron los campos.");
+                System.out.println("No se pudo registrar al infante.");
             }
         }
     }
