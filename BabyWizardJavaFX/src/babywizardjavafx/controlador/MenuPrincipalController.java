@@ -6,7 +6,6 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.UsuarioModelo;
-import babywizardjavafx.vista.ConfUsuarioController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

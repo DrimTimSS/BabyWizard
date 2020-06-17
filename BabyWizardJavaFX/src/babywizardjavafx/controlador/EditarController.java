@@ -31,6 +31,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
@@ -193,7 +195,8 @@ public class EditarController implements Initializable {
     private void irAPrueba(ActionEvent event) throws SQLException, IOException {
         
         int id = 0; 
-        if(idbebeprueba.getText().equals("")){
+        if(idbebeprueba.getText().equals("0")){
+            alertInformation("Alerta","","No se ha seleccionado un infante al cual se desee editar datos.");
             return;
         } else{
             id = Integer.parseInt(idbebeprueba.getText());           
@@ -207,7 +210,10 @@ public class EditarController implements Initializable {
             Wppsi303642Modelo wm = new Wppsi303642Modelo();
             List<Integer> choices = new LinkedList<>();
             LinkedList<Wppsi303642Modelo> wppsis = wm.readWppsi303642(-1, -1, -1, -1, -1, -1, "", id, -1);
-            if(wppsis.size()<1) {return;}
+            if(wppsis.size()<1) {
+                alertInformation("Alerta","","No hay WPPSI 30 36 42 registrado.");
+                return;
+            }
             for(Wppsi303642Modelo w:wppsis){
                 choices.add(w.getIdWppsi303642());
             }
@@ -239,7 +245,10 @@ public class EditarController implements Initializable {
             Wppsi48Modelo wm = new Wppsi48Modelo();
             List<Integer> choices = new LinkedList<>();
             LinkedList<Wppsi48Modelo> wppsis = wm.readWppsi48(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);
-            if(wppsis.size()<1) {return;} //echar notificacion
+            if(wppsis.size()<1) {
+                alertInformation("Alerta","","No hay WPPSI 48 registrado.");
+                return;
+            } //echar notificacion
             for(Wppsi48Modelo w:wppsis){
                 choices.add(w.getIdWppsi48());
             }
@@ -266,10 +275,14 @@ public class EditarController implements Initializable {
                 wcont.setCampos();
             }
         } else if (lectconj.isSelected()) {
+            System.out.println("Hola");
             LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
             List<Integer> choices = new LinkedList<>();
             LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);
-            if(lecturas.size()<1) {return;} //echar notificacion
+            if(lecturas.size()<1) {
+                alertInformation("Alerta","","No hay Lectura Conjunta registrada.");
+                return;
+            } //echar notificacion
             for(LecturaConjuntaModelo l:lecturas){
                 choices.add(l.getIdLecturaConjunta());
             }
@@ -319,5 +332,17 @@ public class EditarController implements Initializable {
                 mainWindow.show();
                 mainWindow.centerOnScreen();
         return loader;
+    }
+    
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
 }

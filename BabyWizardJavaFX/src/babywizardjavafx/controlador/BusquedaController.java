@@ -673,7 +673,6 @@ public class BusquedaController implements Initializable {
     @FXML
     private LinkedList<Integer> buscarSocioeconomico(ActionEvent event) throws SQLException, IOException {
         LinkedList<Integer> ids = new LinkedList<>();
-        LinkedList<Integer> idst = new LinkedList<>();
         
         SocioeconomicoModelo sem = new SocioeconomicoModelo();
         int pc = -1;
@@ -687,13 +686,8 @@ public class BusquedaController implements Initializable {
             ids.add(s.getFkBebe());
         }
         
-        SociodemograficoModelo sdm = new SociodemograficoModelo();
-        
-        for(int i=0; i<resultados.size();i++){  
-        idst.add(sdm.readSociodemografico(ids.get(i), "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", -1).get(0).getFkBebeSociodemografico());
-        }
-        if(abrir)abrirResultado(idst);
-        return idst;
+        if(abrir)abrirResultado(ids);
+        return ids;
     }
 
     @FXML

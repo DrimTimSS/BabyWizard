@@ -156,7 +156,7 @@ public class CuidadorModelo {
         Connection con = jdbc.getConnection();
         String query;
         query = "INSERT INTO `babywizard`.`cuidador` (correoElectronico, edad, nombreC, primerApellidoC, segundoApellidoC, ocupacion, primerTelefono, segundoTelefono, aniosEstudio, relacion, fkBebe) "
-                + "VALUES ('"+correoElectronico+"', '"+edad+"', '"+nombreC+"', '"+primerApellidoC+"', '"+segundoApellidoC+"', '"+ocupacion+"', '"+primerTelefono+"', '"+segundoTelefono+"', '"+aniosEstudio+"', "+relacion+", '"+fkBebe+"');";
+                + "VALUES ('"+correoElectronico+"', '"+edad+"', '"+nombreC+"', '"+primerApellidoC+"', '"+segundoApellidoC+"', '"+ocupacion+"', '"+primerTelefono+"', '"+segundoTelefono+"', '"+aniosEstudio+"', '"+relacion+"', '"+fkBebe+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
