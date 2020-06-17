@@ -52,10 +52,6 @@ public class AgregarSociodController implements Initializable {
     @FXML
     private CheckBox probsalud;
     @FXML
-    private CheckBox probaudicion;
-    @FXML
-    private CheckBox probvision;
-    @FXML
     private CheckBox otroidioma;
     @FXML
     private CheckBox probnacer;
@@ -87,6 +83,10 @@ public class AgregarSociodController implements Initializable {
     private TextArea observaciones;
     @FXML
     private Label label;
+    @FXML
+    private CheckBox probaudicion;
+    @FXML
+    private CheckBox probvision;
 
     public boolean isEmpty(TextField textfield) {
         return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
@@ -168,16 +168,11 @@ public class AgregarSociodController implements Initializable {
             int locu = Integer.parseInt(lugarocupa.getText());
             int adultos = Integer.parseInt(adultosvive.getText());
             int ninios = Integer.parseInt(niniosvive.getText());
-            try {
-                String cuidprinc = cuidadorprinc.getValue();
                 String fechacita = fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 String cpr = cuidadorprinc.getValue();
                 
                 SociodemograficoModelo sdm = new SociodemograficoModelo(fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
                 sdm.createSociodemografico();
-            } catch (Exception e) {
-                label.setVisible(true);
-            }
         } else {label.setVisible(true);}
 
 
@@ -188,7 +183,7 @@ public class AgregarSociodController implements Initializable {
             JMetro jmetro = new JMetro(Style.LIGHT);
             jmetro.setParent(root);
             CreadoExitosamenteController cec = loader.getController();
-            cec.queEsCreado("Cuidador agregado exitosamente.");
+            cec.queEsCreado("Sociodemográfico agregado exitosamente.");
             Scene exito = new Scene(root);
             actualWindow.setScene(exito);
             Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");

@@ -63,8 +63,8 @@
             <Label text="Otro idioma:" GridPane.rowIndex="8" />
             <Label text="Fecha de cita:" />
             <CheckBox fx:id="probnacer" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <CheckBox fx:id="probaud" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <CheckBox fx:id="probvis" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <CheckBox fx:id="probaudicion" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <CheckBox fx:id="probvision" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <CheckBox fx:id="otroidioma" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <CheckBox fx:id="prematuro" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <CheckBox fx:id="probsalud" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
