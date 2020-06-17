@@ -18,14 +18,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
@@ -40,81 +38,49 @@ public class AgregarSociodController implements Initializable {
     
     int idbebe;
     @FXML
-    private DatePicker fechacita;
+    private DatePicker fechadecita;
     @FXML
-    private RadioButton prematuro;
+    private TextField semanasnacio;
     @FXML
-    private ToggleGroup gestacion;
+    private TextField pa1;
     @FXML
-    private RadioButton atermino;
+    private TextField pa2;
     @FXML
-    private TextField semnacim;
+    private CheckBox prematuro;
     @FXML
-    private TextField peso;
+    private TextField pesonacer;
     @FXML
-    private ChoiceBox<String> apgar1;
+    private CheckBox probsalud;
     @FXML
-    private ChoiceBox<String> apgar2;
+    private CheckBox probaudicion;
     @FXML
-    private RadioButton pnacersi;
+    private CheckBox probvision;
     @FXML
-    private RadioButton pnacerno;
+    private CheckBox otroidioma;
     @FXML
-    private ToggleGroup gestacion1;
+    private CheckBox probnacer;
     @FXML
-    private RadioButton psaludsi;
+    private ChoiceBox<String> cuidadorprinc;
     @FXML
-    private ToggleGroup gestacion2;
+    private CheckBox guarderia;
     @FXML
-    private RadioButton psaludno;
+    private TextField tiempoasistiendog;
     @FXML
-    private RadioButton paudicionsi;
+    private TextField tiempoqueasisteg;
     @FXML
-    private ToggleGroup gestacion3;
+    private CheckBox preescolar;
     @FXML
-    private RadioButton paudicionno;
+    private TextField tiempoasistiendop;
     @FXML
-    private RadioButton pvisionsi;
+    private TextField tiempoqueasistep;
     @FXML
-    private ToggleGroup gestacion4;
-    @FXML
-    private RadioButton pvisionno;
-    @FXML
-    private RadioButton otroidiomasi;
-    @FXML
-    private RadioButton otroidiomano;
-    @FXML
-    private ToggleGroup gestacion41;
-    @FXML
-    private ChoiceBox<String> cuidador;
-    @FXML
-    private RadioButton guarderiasi;
-    @FXML
-    private ToggleGroup gestacion4111;
-    @FXML
-    private RadioButton guarderiano;
-    @FXML
-    private ToggleGroup gestacion41111;
-    @FXML
-    private TextField gtiempo;
-    @FXML
-    private TextField gasistencia;
-    @FXML
-    private RadioButton preescolarsi;
-    @FXML
-    private RadioButton preescolarno;
-    @FXML
-    private TextField ptiempo;
-    @FXML
-    private TextField pasistencia;
-    @FXML
-    private TextField hermanos;
+    private TextField numhermanos;
     @FXML
     private TextField lugarocupa;
     @FXML
-    private TextField adultos;
+    private TextField adultosvive;
     @FXML
-    private TextField ninios;
+    private TextField niniosvive;
     @FXML
     private Label titulo;
     @FXML
@@ -134,150 +100,89 @@ public class AgregarSociodController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        cuidador.getItems().add("Madre");
-        cuidador.getItems().add("Padre");
-        cuidador.getItems().add("Abuela P.");
-        cuidador.getItems().add("Abuela M.");
-        cuidador.getItems().add("Abuelo P.");
-        cuidador.getItems().add("Abuelo M.");
-        cuidador.getItems().add("Tía P.");
-        cuidador.getItems().add("Tía M.");
-        cuidador.getItems().add("Tío P.");
-        cuidador.getItems().add("Tío M.");
-        cuidador.getItems().add("Hermana");
-        cuidador.getItems().add("Hermano");
-        cuidador.getItems().add("Otro");
+        cuidadorprinc.getItems().add("Madre");
+        cuidadorprinc.getItems().add("Padre");
+        cuidadorprinc.getItems().add("Abuela P.");
+        cuidadorprinc.getItems().add("Abuela M.");
+        cuidadorprinc.getItems().add("Abuelo P.");
+        cuidadorprinc.getItems().add("Abuelo M.");
+        cuidadorprinc.getItems().add("Tía P.");
+        cuidadorprinc.getItems().add("Tía M.");
+        cuidadorprinc.getItems().add("Tío P.");
+        cuidadorprinc.getItems().add("Tío M.");
+        cuidadorprinc.getItems().add("Hermana");
+        cuidadorprinc.getItems().add("Hermano");
+        cuidadorprinc.getItems().add("Otro");
         
-        apgar1.getItems().add("1");
-        apgar1.getItems().add("2");
-        apgar1.getItems().add("3");
-        apgar1.getItems().add("4");
-        apgar1.getItems().add("5");
-        apgar1.getItems().add("6");
-        apgar1.getItems().add("7");
-        apgar1.getItems().add("8");
-        apgar1.getItems().add("9");
-        apgar1.getItems().add("10");
-        
-        apgar2.getItems().add("1");
-        apgar2.getItems().add("2");
-        apgar2.getItems().add("3");
-        apgar2.getItems().add("4");
-        apgar2.getItems().add("5");
-        apgar2.getItems().add("6");
-        apgar2.getItems().add("7");
-        apgar2.getItems().add("8");
-        apgar2.getItems().add("9");
-        apgar2.getItems().add("10");
     }    
 
     @FXML
-    private void guarderiaChecked(ActionEvent event) {
-        boolean checked = guarderiasi.isSelected();
+    private void preescolarChecked(ActionEvent event){
+        boolean checked = preescolar.isSelected();
         if(checked==true){
-            gtiempo.setDisable(false);
-            gasistencia.setDisable(false);
+            tiempoasistiendop.setDisable(false);
+            tiempoqueasistep.setDisable(false);
         } else {
-            gtiempo.setDisable(true);
-            gasistencia.setDisable(true);
+            tiempoasistiendop.setDisable(true);
+            tiempoqueasistep.setDisable(true);
         }
     }
 
     @FXML
-    private void preescolarChecked(ActionEvent event) {
-        boolean checked = preescolarsi.isSelected();
-        if (checked == true) {
-            ptiempo.setDisable(false);
-            pasistencia.setDisable(false);
+    private void guarderiaChecked(ActionEvent event) {
+        boolean checked = guarderia.isSelected();
+        if(checked==true){
+            tiempoasistiendog.setDisable(false);
+            tiempoqueasisteg.setDisable(false);
         } else {
-            ptiempo.setDisable(true);
-            pasistencia.setDisable(true);
+            tiempoasistiendog.setDisable(true);
+            tiempoqueasisteg.setDisable(true);
         }
     }
 
     @FXML
     private void agregar(ActionEvent event) throws SQLException, IOException {
-        //prematuro o a termino
-        int pOt = -1;
-        if (prematuro.isSelected()) {
-            pOt = 0;
-        } else if (atermino.isSelected()) {
-            pOt = 1;
-        }
-        //problemas al nacer
-        int pAn = -1;
-        if (pnacersi.isSelected()) {
-            pAn = 0;
-        } else if (pnacerno.isSelected()) {
-            pAn = 1;
-        } 
-        //problemas de salud
-        int pDs = -1;
-        if (psaludsi.isSelected()) {
-            pDs = 0;
-        } else if (psaludno.isSelected()) {
-            pDs = 1;
-        }
-        //problemas de audicion
-        int pDa = -1;
-        if (paudicionsi.isSelected()) {
-            pDa = 0;
-        } else if (paudicionno.isSelected()) {
-            pDa = 1;
-        }
-        //problemas de vision
-        int pDv = -1;
-        if (pvisionsi.isSelected()) {
-            pDv = 0;
-        } else if (pvisionno.isSelected()) {
-            pDv = 1;
-        }
-        //otro idioma
-        int oId = -1;
-        if (otroidiomasi.isSelected()) {
-            oId = 0;
-        } else if (otroidiomano.isSelected()) {
-            oId = 1;
-        }
-        //guarderia
-        int guard = -1;
-        if (guarderiasi.isSelected()) {
-            guard = 0;
-        } else if (guarderiano.isSelected()) {
-            guard = 1;
-        }
-        //preescolar
-        int pree = -1;
-        if (preescolarsi.isSelected()) {
-            pree = 0;
-        } else if (preescolarno.isSelected()) {
-            pree = 1;
-        }
         
-        String cui = cuidador.getValue();
-        String apg1 = apgar1.getValue();
-        String apg2 = apgar2.getValue();
+        int gest = (prematuro.isSelected()) ? 1 : 0;
+        int probnac = probnacer.isSelected() ? 1 : 0;
+        int probsal = probsalud.isSelected() ? 1 : 0;
+        int probaud = probaudicion.isSelected() ? 1 : 0;
+        int probvis = probvision.isSelected() ? 1 : 0;
+        int otroidi = otroidioma.isSelected() ? 1 : 0;
+        int pta2 = isEmpty(pa2) ? 0 : Integer.parseInt(pa2.getText());
         
-        if(!(isEmpty(semnacim) || isEmpty(peso) || cui.equals("") || apg1.equals("") || isEmpty(hermanos) || isEmpty(lugarocupa) || isEmpty(adultos) || isEmpty(ninios))){
-            int semanasnacimiento = Integer.parseInt(semnacim.getText());
-            int apgarcito1 = Integer.parseInt(apg1);
-            int apgarcito2 = Integer.parseInt(apg2);
-            int pesoalnacer = Integer.parseInt(peso.getText());
-            int herm = Integer.parseInt(hermanos.getText());
-            int lugar = Integer.parseInt(lugarocupa.getText());
-            int ad = Integer.parseInt(adultos.getText());
-            int nin = Integer.parseInt(ninios.getText());
-            int guardt = Integer.parseInt(gtiempo.getText());
-            int guarda = Integer.parseInt(gasistencia.getText());
-            int preesct = Integer.parseInt(ptiempo.getText());
-            int preesca = Integer.parseInt(pasistencia.getText());
-            String obser = observaciones.getText();
-            String fecha = fechacita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        int g = guarderia.isSelected() ? 1 : 0;
+        int tag = isEmpty(tiempoasistiendog) ? 0 : Integer.parseInt(tiempoasistiendog.getText());
+        int tqag = isEmpty(tiempoqueasisteg) ? 0 : Integer.parseInt(tiempoqueasisteg.getText());
+        int p = preescolar.isSelected()?1:0;
+        int tap = isEmpty(tiempoasistiendop) ? 0 : Integer.parseInt(tiempoasistiendop.getText());
+        int tqap = isEmpty(tiempoqueasistep) ? 0 : Integer.parseInt(tiempoqueasistep.getText());
+        
+        String obs = observaciones.getText();
+        
+        if(!(isEmpty(semanasnacio)||isEmpty(pesonacer)||isEmpty(numhermanos)||isEmpty(lugarocupa)||isEmpty(adultosvive)||isEmpty(niniosvive)||isEmpty(pa1))){
+            int pta1 = Integer.parseInt(pa1.getText());
+            int semnacimiento = Integer.parseInt(semanasnacio.getText());
+            double pesoalnac = Double.parseDouble(pesonacer.getText());
+            int herm = Integer.parseInt(numhermanos.getText());
+            int locu = Integer.parseInt(lugarocupa.getText());
+            int adultos = Integer.parseInt(adultosvive.getText());
+            int ninios = Integer.parseInt(niniosvive.getText());
+            try {
+                String cuidprinc = cuidadorprinc.getValue();
+                String fechacita = fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                String cpr = cuidadorprinc.getValue();
+                
+                SociodemograficoModelo sdm = new SociodemograficoModelo(fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
+                sdm.createSociodemografico();
+            } catch (Exception e) {
+                label.setVisible(true);
+            }
+        } else {label.setVisible(true);}
+
+
             
-            SociodemograficoModelo sdm = new SociodemograficoModelo(fecha, pOt, semanasnacimiento, apgarcito1, apgarcito2, pesoalnacer, pAn, pDs, pDa, pDv, oId, herm, lugar, ad, nin, cui, guard, guardt, guarda, pree, preesct, preesca, obser, idbebe);
-            sdm.createSociodemografico();
-            
-            Stage actualWindow = (Stage) semnacim.getScene().getWindow();
+            Stage actualWindow = (Stage) semanasnacio.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
             Parent root = (Parent) loader.load();
             JMetro jmetro = new JMetro(Style.LIGHT);
@@ -292,15 +197,4 @@ public class AgregarSociodController implements Initializable {
             actualWindow.show();
             actualWindow.centerOnScreen();
         }
-        
-        else{
-            label.setVisible(true);
-            return;
-        }
-        
-    }
-    
 }
-
-
-
