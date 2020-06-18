@@ -124,64 +124,80 @@ public class SociodemograficoModelo {
         this.pesoAlNacer = pesoAlNacer;
     }
 
-    public int getGestacion() {
-        return gestacion;
+    public String getGestacion() {
+        String g = "";
+        g = (gestacion==0) ? "A término":"Prematuro";
+        return g;
     }
 
     public void setGestacion(int gestacion) {
         this.gestacion = gestacion;
     }
 
-    public int getProblemasAlNacer() {
-        return problemasAlNacer;
+    public String getProblemasAlNacer() {
+        String p = "";
+        p = (problemasAlNacer==0) ? "No" : "Sí";
+        return p;
     }
 
     public void setProblemasAlNacer(int problemasAlNacer) {
         this.problemasAlNacer = problemasAlNacer;
     }
 
-    public int getProblemasDeSalud() {
-        return problemasDeSalud;
+    public String getProblemasDeSalud() {
+        String p = "";
+        p = (problemasDeSalud==0) ? "No" : "Sí";
+        return p;
     }
 
     public void setProblemasDeSalud(int problemasDeSalud) {
         this.problemasDeSalud = problemasDeSalud;
     }
 
-    public int getProblemasDeAudicion() {
-        return problemasDeAudicion;
+    public String getProblemasDeAudicion() {
+        String p = "";
+        p = (problemasDeAudicion==0) ? "No" : "Sí";
+        return p;
     }
 
     public void setProblemasDeAudicion(int problemasDeAudicion) {
         this.problemasDeAudicion = problemasDeAudicion;
     }
 
-    public int getProblemasDeVision() {
-        return problemasDeVision;
+    public String getProblemasDeVision() {
+        String p = "";
+        p = (problemasDeVision==0) ? "No" : "Sí";
+        return p;
     }
 
     public void setProblemasDeVision(int problemasDeVision) {
         this.problemasDeVision = problemasDeVision;
     }
 
-    public int getOtroIdioma() {
-        return otroIdioma;
+    public String getOtroIdioma() {
+        String p = "";
+        p = (otroIdioma==0) ? "No" : "Sí";
+        return p;
     }
 
     public void setOtroIdioma(int otroIdioma) {
         this.otroIdioma = otroIdioma;
     }
 
-    public int getGuarderia() {
-        return guarderia;
+    public String getGuarderia() {
+        String p = "";
+        p = (guarderia==0) ? "No" : "Sí";
+        return p;
     }
 
     public void setGuarderia(int guarderia) {
         this.guarderia = guarderia;
     }
 
-    public int getPreescolar() {
-        return preescolar;
+    public String getPreescolar() {
+        String p = "";
+        p = (preescolar==0) ? "No" : "Sí";
+        return p;
     }
 
     public void setPreescolar(int preescolar) {

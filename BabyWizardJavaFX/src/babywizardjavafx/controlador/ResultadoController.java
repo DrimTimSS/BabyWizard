@@ -119,7 +119,7 @@ public class ResultadoController implements Initializable {
     private TableColumn<CuidadorModelo, String> resrelacionc;
     ObservableList<CuidadorModelo> listaCuidadores = FXCollections.observableArrayList();
     
-    //Tabla sociodemografico socioeconomico
+    //Tabla sociodemografico
     @FXML
     private TableView<SociodemograficoModelo> resultadossd;
     @FXML
@@ -127,7 +127,7 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<SociodemograficoModelo, String> fechacitasd;
     @FXML
-    private TableColumn<SociodemograficoModelo, Integer> gestacionsd;
+    private TableColumn<SociodemograficoModelo, String> gestacionsd;
     @FXML
     private TableColumn<SociodemograficoModelo, Integer> semnacsd;
     @FXML
@@ -137,15 +137,15 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<SociodemograficoModelo, Double> pesosd;
     @FXML
-    private TableColumn<SociodemograficoModelo, Integer> prnacsd;
+    private TableColumn<SociodemograficoModelo, String> prnacsd;
     @FXML
-    private TableColumn<SociodemograficoModelo, Integer> prsaludsd;
+    private TableColumn<SociodemograficoModelo, String> prsaludsd;
     @FXML
-    private TableColumn<SociodemograficoModelo, Integer> praudsd;
+    private TableColumn<SociodemograficoModelo, String> praudsd;
     @FXML
-    private TableColumn<SociodemograficoModelo, Integer> prvissd;
+    private TableColumn<SociodemograficoModelo, String> prvissd;
     @FXML
-    private TableColumn<SociodemograficoModelo, Integer> otroidiomasd;
+    private TableColumn<SociodemograficoModelo, String> otroidiomasd;
     @FXML
     private TableColumn<SociodemograficoModelo, Integer> hermsd;
     @FXML
@@ -157,13 +157,13 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<SociodemograficoModelo, String> cuidprincsd;
     @FXML
-    private TableColumn<SociodemograficoModelo, Integer> guarderiasd;
+    private TableColumn<SociodemograficoModelo, String> guarderiasd;
     @FXML
     private TableColumn<SociodemograficoModelo, Integer> mesesgsd;
     @FXML
     private TableColumn<SociodemograficoModelo, Integer> horasasistegsd;
     @FXML
-    private TableColumn<SociodemograficoModelo, Integer> preescolarsd;
+    private TableColumn<SociodemograficoModelo, String> preescolarsd;
     @FXML
     private TableColumn<SociodemograficoModelo, Integer> mesespsd;
     @FXML
@@ -509,7 +509,9 @@ public class ResultadoController implements Initializable {
             contadorVisibles = 0;
             for (int j = 0; j < columns.size(); j++) {
                 if(columns.get(j).getCellData(i) != null && columns.get(j).isVisible()) {
-                    row.createCell(contadorVisibles).setCellValue(columns.get(j).getCellData(i).toString());
+                    if (columns.get(j).getCellData(i) instanceof Double) row.createCell(contadorVisibles).setCellValue(Double.parseDouble(columns.get(j).getCellData(i).toString()));
+                    if (columns.get(j).getCellData(i) instanceof Integer) row.createCell(contadorVisibles).setCellValue(Integer.parseInt(columns.get(j).getCellData(i).toString()));
+                    if (columns.get(j).getCellData(i) instanceof String) row.createCell(contadorVisibles).setCellValue(columns.get(j).getCellData(i).toString());
                     contadorVisibles++;
                 }
                 

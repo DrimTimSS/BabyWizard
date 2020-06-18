@@ -60,7 +60,7 @@
             <TableColumn fx:id="resocupacion" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="140.0" text="Ocupación" />
             <TableColumn fx:id="restelefono1" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="140.80010986328125" text="Primer Tel." />
             <TableColumn fx:id="restelefono2" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="160.0" text="Segundo Tel." />
-            <TableColumn fx:id="resrelacionc" prefWidth="75.0" text="Relacion" />
+            <TableColumn fx:id="resrelacionc" minWidth="-Infinity" prefWidth="150.0" text="Relacion" />
             <TableColumn fx:id="edad" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="110.0" text="Edad" />
             <TableColumn fx:id="resaniosestudio" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="160.0" text="Años Estudio" />
          </columns>

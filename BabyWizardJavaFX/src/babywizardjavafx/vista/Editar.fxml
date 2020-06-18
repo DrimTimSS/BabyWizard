@@ -130,11 +130,8 @@
             <RadioButton fx:id="lectconj" mnemonicParsing="false" text="Tarea de Lectura conjunta" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <RadioButton fx:id="cuidador" mnemonicParsing="false" text="Cuidador" toggleGroup="$pruebas" GridPane.columnIndex="1" />
             <RadioButton fx:id="infante" mnemonicParsing="false" text="Infante" toggleGroup="$pruebas" />
-            <RadioButton fx:id="socio" mnemonicParsing="false" text="SocioDyE" GridPane.rowIndex="1">
-               <toggleGroup>
-                  <ToggleGroup fx:id="pruebas1" />
-               </toggleGroup>
-            </RadioButton>
+            <RadioButton fx:id="socio" mnemonicParsing="false" text="SocioDyE" GridPane.rowIndex="1" toggleGroup="$pruebas" />
+            
          </children>
       </GridPane>
       <Label id="subtitulo" layoutX="729.0" layoutY="271.0" text="A editar">
