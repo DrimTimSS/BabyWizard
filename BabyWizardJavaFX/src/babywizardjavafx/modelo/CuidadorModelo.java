@@ -254,7 +254,7 @@ public class CuidadorModelo {
         return cuidadores;
     }
     
-    public void updateCuidador(int idCuidadorActualizar, int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, String cuidador, int fkBebe) throws SQLException {
+    public void updateCuidador(int idCuidadorActualizar, int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, String relacion, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -275,11 +275,11 @@ public class CuidadorModelo {
             toUpdate.add(primerApellidoCQ);
         }
         if (!"".equals(segundoApellidoC)) {
-            String segundoApellidoCQ = "`segundoApellidoCQ` = '"+segundoApellidoC.replace("'","''")+"'";
+            String segundoApellidoCQ = "`segundoApellidoC` = '"+segundoApellidoC.replace("'","''")+"'";
             toUpdate.add(segundoApellidoCQ);
         }
         if (edad>-1) {
-            String edadCQ = "`edadCQ` = '"+edad+"'";
+            String edadCQ = "`edad` = '"+edad+"'";
             toUpdate.add(edadCQ);
         }
         if (!"".equals(ocupacion)) {
@@ -299,6 +299,7 @@ public class CuidadorModelo {
            toUpdate.add(aniosEstudioQ);
         }
         if (!"".equals(relacion)) {
+            System.out.println(relacion);
             String relacionQ = "`relacion` = '"+relacion+"'";
             toUpdate.add(relacionQ);
         }
@@ -314,6 +315,7 @@ public class CuidadorModelo {
         }
         String query3 = toUpdate.getLast()+" WHERE (`idCuidador` = '"+idCuidadorActualizar+"');";
         Statement stmt = con.createStatement();
+        System.out.println(query1+query2+query3);
         if(toUpdate.size() > 0) stmt.executeUpdate(query1+query2+query3);
         con.close();
     }

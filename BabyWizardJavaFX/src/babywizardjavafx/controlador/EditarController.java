@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.CuidadorModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
 import babywizardjavafx.modelo.Wppsi48Modelo;
@@ -219,7 +220,47 @@ public class EditarController implements Initializable {
             wcont.setIdBebeActualizar(id);
             wcont.setBBAEditar(bm);
             wcont.setCampos();
-        } else
+        } 
+        else
+        //====================================================
+        //Para editar Cuidador
+        //====================================================
+        if (cuidador.isSelected()) {
+            CuidadorModelo cm = new CuidadorModelo();
+            List<String> choices = new LinkedList<>();
+            LinkedList<CuidadorModelo> cuidadores = cm.readCuidador(-1, "", -1, "", "", "", "", "", "", -1, "", id);
+            if(cuidadores.size()<1) {
+                alertInformation("Alerta","","No hay cuidadores registrado.");
+                return;
+            }
+            for(CuidadorModelo c:cuidadores){
+                choices.add(c.getIdCuidador()+" - "+c.getRelacion());
+            }
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                cm = cm.readCuidador(Integer.parseInt(result.get().split(" ")[0]), "", -1, "", "", "", "", "", "", -1, "", -1).getFirst();
+                direccion = "/babywizardjavafx/vista/AgregarCuidador.fxml";
+                prueba = "Cuidador";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                AgregarCuidadorController wcont = loader.getController();
+
+                wcont.setEditable(true);
+                wcont.setCuidadorActualizar(cm.getIdCuidador());
+                wcont.inicializarBebe(id);
+                wcont.setCuidadorAEditar(cm);
+                wcont.setCampos();
+            }
+            
+            
+        }else
         //====================================================
         //Para editar WPPSI 303642
         //====================================================
@@ -341,6 +382,9 @@ public class EditarController implements Initializable {
         }
     }
 
+    //====================================================
+    //Metodo que recibe una direccion para ubicar la vista a ser cargada y el titulo de la ventana
+    //====================================================
     public FXMLLoader showWindow(String direccion, String prueba) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(direccion));
         Parent loadMenuPrincipal = (Parent) loader.load();
