@@ -20,6 +20,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
@@ -36,11 +38,13 @@ public class AgregarSocioeController implements Initializable {
     @FXML
     private TextField puntajecrudo;
     @FXML
-    private TextField nse;
+    private ComboBox<String> nse;
     @FXML
     private Label titulo;
     @FXML
     private Label label;
+    @FXML
+    private Button agregar;
 
     /**
      * Initializes the controller class.
@@ -53,6 +57,13 @@ public class AgregarSocioeController implements Initializable {
             }
         });
         
+        nse.getItems().add("A\\B");
+        nse.getItems().add("C+");
+        nse.getItems().add("C");
+        nse.getItems().add("C-");
+        nse.getItems().add("D+");
+        nse.getItems().add("D");
+        nse.getItems().add("E");
     }    
 
     public void inicializarBebe(int idbebe) {
@@ -62,7 +73,7 @@ public class AgregarSocioeController implements Initializable {
     @FXML
     private void agregar(ActionEvent event) throws SQLException, IOException {
         String puntaje = puntajecrudo.getText();
-        String n = nse.getText();
+        String n = nse.getValue();
         
         if(!(puntaje.equals("") || n.equals(""))){
             SocioeconomicoModelo sem = new SocioeconomicoModelo(Integer.parseInt(puntaje), n, idbebe);

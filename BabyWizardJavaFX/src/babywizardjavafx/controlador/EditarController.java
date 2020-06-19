@@ -204,9 +204,26 @@ public class EditarController implements Initializable {
 
         String direccion = "";
         String prueba = "";
+        //====================================================
+        //Para editar Infante
+        //====================================================
         if (infante.isSelected()){
-        
-        } else if (w303642.isSelected()) {
+            BebeModelo bm = new BebeModelo();
+            bm = bm.readBebe(id, "", "", "", -1, "", -1, -1, "").getFirst();
+            direccion = "/babywizardjavafx/vista/EditarBB.fxml";
+            prueba = "Infante";
+            FXMLLoader loader = showWindow(direccion, prueba);
+            
+            EditarBBController wcont = loader.getController();
+            
+            wcont.setIdBebeActualizar(id);
+            wcont.setBBAEditar(bm);
+            wcont.setCampos();
+        } else
+        //====================================================
+        //Para editar WPPSI 303642
+        //====================================================
+        if (w303642.isSelected()) {
             Wppsi303642Modelo wm = new Wppsi303642Modelo();
             List<Integer> choices = new LinkedList<>();
             LinkedList<Wppsi303642Modelo> wppsis = wm.readWppsi303642(-1, -1, -1, -1, -1, -1, "", id, -1);
@@ -241,7 +258,11 @@ public class EditarController implements Initializable {
             }
             
             
-        } else if (w48.isSelected()) {
+        } else 
+        //====================================================
+        //Para editar WPPSI 48
+        //====================================================
+        if (w48.isSelected()) {
             Wppsi48Modelo wm = new Wppsi48Modelo();
             List<Integer> choices = new LinkedList<>();
             LinkedList<Wppsi48Modelo> wppsis = wm.readWppsi48(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);
@@ -274,8 +295,11 @@ public class EditarController implements Initializable {
                 wcont.setWppsiAEditar(wm);
                 wcont.setCampos();
             }
-        } else if (lectconj.isSelected()) {
-            System.out.println("Hola");
+        } else 
+        //====================================================
+        //Para editar Lectura Conjunta
+        //====================================================
+        if (lectconj.isSelected()) {
             LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
             List<Integer> choices = new LinkedList<>();
             LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);

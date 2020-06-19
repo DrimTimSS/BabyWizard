@@ -116,7 +116,7 @@ public class BebeModelo {
         Connection con = jdbc.getConnection();
         String query;
         query = "INSERT INTO `babywizard`.`bebe` (`nombre`, `apellidoMaterno`, `apellidoPaterno`, `sexo`, `fechaNacimientoBb`, `fkUsuario`) "
-                + "VALUES ('"+nombre+"', '"+apellidoMaterno+"', '"+apellidoPaterno+"', '"+sexo+"', '"+fechaNacimiento+"', '"+fkUsuario+"');";
+                + "VALUES ('"+nombre.replace("'","''")+"', '"+apellidoMaterno.replace("'","''")+"', '"+apellidoPaterno.replace("'","''")+"', '"+sexo+"', '"+fechaNacimiento+"', '"+fkUsuario.replace("'","''")+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -216,15 +216,15 @@ public class BebeModelo {
            toUpdate.add(idBebeQ);
         }
         if (!"".equals(nombre)) {
-            String nombreQ = "`nombre` = '"+nombre+"'";
+            String nombreQ = "`nombre` = '"+nombre.replace("'","''")+"'";
             toUpdate.add(nombreQ);
         }
         if (!"".equals(apellidoMaterno)) {
-            String apellidoMaternoQ = "`apellidoMaterno` = '"+apellidoMaterno+"'";
+            String apellidoMaternoQ = "`apellidoMaterno` = '"+apellidoMaterno.replace("'","''")+"'";
             toUpdate.add(apellidoMaternoQ);
         }
         if (!"".equals(apellidoPaterno)) {
-            String apellidoPaternoQ = "`apellidoPaterno` = '"+apellidoPaterno+"'";
+            String apellidoPaternoQ = "`apellidoPaterno` = '"+apellidoPaterno.replace("'","''")+"'";
             toUpdate.add(apellidoPaternoQ);
         }
         if (sexo == 0 || sexo == 1) {
@@ -236,7 +236,7 @@ public class BebeModelo {
             toUpdate.add(fechaNacimientoQ);
         }
         if (!"".equals(fkUsuario)) {
-            String fkUsuarioQ = "`fkUsuario` = '"+fkUsuario+"'";
+            String fkUsuarioQ = "`fkUsuario` = '"+fkUsuario.replace("'","''")+"'";
             toUpdate.add(fkUsuarioQ);
         }
         String query1 = "UPDATE `babywizard`.`bebe` SET ";
@@ -246,7 +246,7 @@ public class BebeModelo {
         }
         String query3 = toUpdate.getLast()+" WHERE (`idBebe` = '"+idBebeActualizar+"');";
         Statement stmt = con.createStatement();
-        System.out.println(query1+query2+query3);
+        //System.out.println(query1+query2+query3);
         if(toUpdate.size() > 0) stmt.executeUpdate(query1+query2+query3);
         con.close();
     }

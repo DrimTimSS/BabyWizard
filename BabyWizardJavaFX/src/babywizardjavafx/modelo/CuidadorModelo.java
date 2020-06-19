@@ -156,7 +156,7 @@ public class CuidadorModelo {
         Connection con = jdbc.getConnection();
         String query;
         query = "INSERT INTO `babywizard`.`cuidador` (correoElectronico, edad, nombreC, primerApellidoC, segundoApellidoC, ocupacion, primerTelefono, segundoTelefono, aniosEstudio, relacion, fkBebe) "
-                + "VALUES ('"+correoElectronico+"', '"+edad+"', '"+nombreC+"', '"+primerApellidoC+"', '"+segundoApellidoC+"', '"+ocupacion+"', '"+primerTelefono+"', '"+segundoTelefono+"', '"+aniosEstudio+"', '"+relacion+"', '"+fkBebe+"');";
+                + "VALUES ('"+correoElectronico.replace("'","''")+"', '"+edad+"', '"+nombreC.replace("'","''")+"', '"+primerApellidoC.replace("'","''")+"', '"+segundoApellidoC.replace("'","''")+"', '"+ocupacion.replace("'","''")+"', '"+primerTelefono+"', '"+segundoTelefono+"', '"+aniosEstudio+"', '"+relacion+"', '"+fkBebe+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -263,19 +263,19 @@ public class CuidadorModelo {
            toUpdate.add(idCuidadorQ);
         }
         if (!"".equals(correoElectronico)) {
-            String correoElectronicoQ = "`correoElectronico` = '"+correoElectronico+"'";
+            String correoElectronicoQ = "`correoElectronico` = '"+correoElectronico.replace("'","''")+"'";
             toUpdate.add(correoElectronicoQ);
         }
         if (!"".equals(nombreC)) {
-            String nombreCQ = "`nombreC` = '"+nombreC+"'";
+            String nombreCQ = "`nombreC` = '"+nombreC.replace("'","''")+"'";
             toUpdate.add(nombreCQ);
         }
         if (!"".equals(primerApellidoC)) {
-            String primerApellidoCQ = "`primerApellidoC` = '"+primerApellidoC+"'";
+            String primerApellidoCQ = "`primerApellidoC` = '"+primerApellidoC.replace("'","''")+"'";
             toUpdate.add(primerApellidoCQ);
         }
         if (!"".equals(segundoApellidoC)) {
-            String segundoApellidoCQ = "`segundoApellidoCQ` = '"+segundoApellidoC+"'";
+            String segundoApellidoCQ = "`segundoApellidoCQ` = '"+segundoApellidoC.replace("'","''")+"'";
             toUpdate.add(segundoApellidoCQ);
         }
         if (edad>-1) {
@@ -283,7 +283,7 @@ public class CuidadorModelo {
             toUpdate.add(edadCQ);
         }
         if (!"".equals(ocupacion)) {
-            String ocupacionQ = "`ocupacion` = '"+ocupacion+"'";
+            String ocupacionQ = "`ocupacion` = '"+ocupacion.replace("'","''")+"'";
             toUpdate.add(ocupacionQ);
         }
         if (!"".equals(primerTelefono)) {

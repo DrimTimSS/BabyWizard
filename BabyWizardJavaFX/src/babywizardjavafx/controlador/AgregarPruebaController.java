@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -146,7 +147,8 @@ public class AgregarPruebaController implements Initializable {
 
     @FXML
     private void irAPrueba(ActionEvent event) throws IOException {
-        if(idbebeprueba.getText().equals("")){
+        if(idbebeprueba.getText().equals("0")){
+            alertInformation("Alerta","","No se ha seleccionado un infante al cual se le desee agregar datos.");
             return;
         }
         
@@ -258,6 +260,18 @@ public class AgregarPruebaController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(BorrarController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
     
 }
