@@ -400,7 +400,7 @@ public class SociodemograficoModelo {
            toUpdate.add(idSociodemograficoQ);
         }
         if (!"".equals(fechaDeCita)) {
-            String fechaDeCitaQ = "`fechaDeCita` = '"+fechaDeCita+"'";
+            String fechaDeCitaQ = "`fechaCita` = '"+fechaDeCita+"'";
             toUpdate.add(fechaDeCitaQ);
         }
         if (gestacion==0 || gestacion==1) {
@@ -488,7 +488,7 @@ public class SociodemograficoModelo {
            toUpdate.add(tiempoQueAsistePQ);
         }
         if (!"".equals(observaciones)) {
-            String observacionesQ = "`observacionesBb` = '"+observaciones+"'";
+            String observacionesQ = "`Observaciones` = '"+observaciones+"'";
             toUpdate.add(observacionesQ);
         }
         if (!"".equals(fkBebeSociodemografico)) {

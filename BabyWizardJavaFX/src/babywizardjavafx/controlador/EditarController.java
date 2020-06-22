@@ -8,6 +8,7 @@ package babywizardjavafx.controlador;
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.CuidadorModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
+import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
 import babywizardjavafx.modelo.Wppsi48Modelo;
 import java.io.IOException;
@@ -112,9 +113,9 @@ public class EditarController implements Initializable {
     @FXML
     private ToggleGroup pruebas;
     @FXML
-    private RadioButton socio;
+    private RadioButton sociodem;
     @FXML
-    private ToggleGroup pruebas1;
+    private RadioButton socioeco;
 
     /**
      * Initializes the controller class.
@@ -300,6 +301,44 @@ public class EditarController implements Initializable {
             
             
         } else 
+        //====================================================
+        //Para editar SocioDyE
+        //====================================================
+        if (sociodem.isSelected()) {
+            SociodemograficoModelo sdm = new SociodemograficoModelo();
+            List<String> choices = new LinkedList<>();
+            LinkedList<SociodemograficoModelo> socios = sdm.readSociodemografico(-1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", id);
+            if(socios.size()<1) {
+                alertInformation("Alerta","","No hay sociodemográfico registrado.");
+                return;
+            }
+            for(SociodemograficoModelo s:socios){
+                choices.add(s.getIdSociodemografico()+" "+s.getFechaDeCita());
+            }
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                sdm = sdm.readSociodemografico(Integer.parseInt(result.get().split(" ")[0]), "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, "", -1).getFirst();
+                direccion = "/babywizardjavafx/vista/AgregarSociod.fxml";
+                prueba = "Sociodemográfico";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                AgregarSociodController wcont = loader.getController();
+
+                wcont.setEditable(true);
+                wcont.inicializarBebe(id);
+                wcont.setSociodAEditar(sdm);
+                wcont.setCampos();
+            }
+            
+            
+        } else
         //====================================================
         //Para editar WPPSI 48
         //====================================================

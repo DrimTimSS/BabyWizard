@@ -10,6 +10,7 @@ import com.mysql.cj.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -87,6 +88,8 @@ public class AgregarSociodController implements Initializable {
     private CheckBox probaudicion;
     @FXML
     private CheckBox probvision;
+    private boolean editable;
+    private SociodemograficoModelo sdm;
 
     public boolean isEmpty(TextField textfield) {
         return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
@@ -171,8 +174,13 @@ public class AgregarSociodController implements Initializable {
                 String fechacita = fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 String cpr = cuidadorprinc.getValue();
                 
-                SociodemograficoModelo sdm = new SociodemograficoModelo(fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
-                sdm.createSociodemografico();
+                if(!editable) {
+                    SociodemograficoModelo sm = new SociodemograficoModelo(fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
+                    sm.createSociodemografico();
+                } else {
+                    SociodemograficoModelo sm = new SociodemograficoModelo();
+                    sm.updateSociodemografico(sdm.getIdSociodemografico(),-1,fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
+                }
         } else {label.setVisible(true);}
 
 
@@ -192,4 +200,43 @@ public class AgregarSociodController implements Initializable {
             actualWindow.show();
             actualWindow.centerOnScreen();
         }
+
+    void setEditable(boolean b) {
+        this.editable = b;
+    }
+
+    void setSociodAEditar(SociodemograficoModelo sdm) {
+        this.sdm = sdm;
+    }
+
+    void setCampos() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(sdm.getFechaDeCita(), formatter);
+        fechadecita.setValue(localDate);
+        semanasnacio.setText(sdm.getSemanasDeNacimiento()+"");
+        pa1.setText(sdm.getPtApgar1()+"");
+        pa2.setText(sdm.getPtApgar2()+"");
+        prematuro.setSelected(sdm.getGestacion()=="Prematuro");
+        pesonacer.setText(sdm.getPesoAlNacer()+"");
+        probsalud.setSelected(sdm.getProblemasDeSalud()=="Sí");
+        otroidioma.setSelected(sdm.getOtroIdioma()=="Sí");
+        probnacer.setSelected(sdm.getProblemasAlNacer()=="Sí");
+        cuidadorprinc.setValue(sdm.getCuidadorPrincipal());
+        guarderia.setSelected(sdm.getGuarderia()=="Sí");
+        guarderiaChecked(null);
+        tiempoasistiendog.setText(sdm.getTiempoAsistiendoMesesG()+"");
+        tiempoqueasisteg.setText(sdm.getTiempoQueAsisteG()+"");
+        preescolar.setSelected(sdm.getPreescolar()=="Sí");
+        preescolarChecked(null);
+        tiempoasistiendop.setText(sdm.getTiempoAsistiendoMesesP()+"");
+        tiempoqueasistep.setText(sdm.getTiempoQueAsisteP()+"");
+        numhermanos.setText(sdm.getHermanos()+"");
+        lugarocupa.setText(sdm.getLugarOcupa()+"");
+        adultosvive.setText(sdm.getAdultos()+"");
+        niniosvive.setText(sdm.getNinios()+"");
+        observaciones.setText(sdm.getObservaciones());
+        label.setText("No se pudieron editar los datos.");
+        probaudicion.setSelected(sdm.getProblemasDeAudicion()=="Sí");
+        probvision.setSelected(sdm.getProblemasDeVision()=="Sí");
+    }
 }
