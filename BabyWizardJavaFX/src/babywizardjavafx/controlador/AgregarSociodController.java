@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -171,34 +172,32 @@ public class AgregarSociodController implements Initializable {
             int locu = Integer.parseInt(lugarocupa.getText());
             int adultos = Integer.parseInt(adultosvive.getText());
             int ninios = Integer.parseInt(niniosvive.getText());
-                String fechacita = fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String fechacita = "";
+            try{
+                fechacita = fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            } catch (Exception e) {
+                label.setVisible(true);
+            return;
+            }
+                
                 String cpr = cuidadorprinc.getValue();
                 
                 if(!editable) {
                     SociodemograficoModelo sm = new SociodemograficoModelo(fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
                     sm.createSociodemografico();
+                    alertInformation("Éxito","","Sociodemográfico agregado exitosamente.");
                 } else {
                     SociodemograficoModelo sm = new SociodemograficoModelo();
                     sm.updateSociodemografico(sdm.getIdSociodemografico(),-1,fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
+                    alertInformation("Éxito","","Sociodemográfico editado exitosamente.");
                 }
-        } else {label.setVisible(true);}
-
-
-            
-            Stage actualWindow = (Stage) semanasnacio.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-            Parent root = (Parent) loader.load();
-            JMetro jmetro = new JMetro(Style.LIGHT);
-            jmetro.setParent(root);
-            CreadoExitosamenteController cec = loader.getController();
-            cec.queEsCreado("Sociodemográfico agregado exitosamente.");
-            Scene exito = new Scene(root);
-            actualWindow.setScene(exito);
-            Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-            actualWindow.getIcons().add(image);
-            actualWindow.setTitle("Exito");
-            actualWindow.show();
-            actualWindow.centerOnScreen();
+        } else {
+            label.setVisible(true);
+            return;
+        }
+            Stage actualWindow = (Stage) label.getScene().getWindow();
+           
+            actualWindow.close();
         }
 
     void setEditable(boolean b) {
@@ -238,5 +237,17 @@ public class AgregarSociodController implements Initializable {
         label.setText("No se pudieron editar los datos.");
         probaudicion.setSelected(sdm.getProblemasDeAudicion()=="Sí");
         probvision.setSelected(sdm.getProblemasDeVision()=="Sí");
+    }
+    
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(label.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
 }

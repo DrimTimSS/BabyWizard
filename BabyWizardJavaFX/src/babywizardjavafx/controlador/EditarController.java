@@ -9,6 +9,7 @@ import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.CuidadorModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
+import babywizardjavafx.modelo.SocioeconomicoModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
 import babywizardjavafx.modelo.Wppsi48Modelo;
 import java.io.IOException;
@@ -334,6 +335,42 @@ public class EditarController implements Initializable {
                 wcont.setEditable(true);
                 wcont.inicializarBebe(id);
                 wcont.setSociodAEditar(sdm);
+                wcont.setCampos();
+            }
+        } else
+        //====================================================
+        //Para editar socioeconomico
+        //====================================================
+        if (socioeco.isSelected()) {
+            SocioeconomicoModelo sem = new SocioeconomicoModelo();
+            List<String> choices = new LinkedList<>();
+            LinkedList<SocioeconomicoModelo> socios = sem.readSocioeconomico(-1, -1, "", id);
+            if(socios.size()<1) {
+                alertInformation("Alerta","","No hay socioeconómico registrado.");
+                return;
+            }
+            for(SocioeconomicoModelo s:socios){
+                choices.add(s.getIdSocioeconomico()+" "+s.getNse());
+            }
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                sem = sem.readSocioeconomico(Integer.parseInt(result.get().split(" ")[0]), -1, "", -1).getFirst();
+                direccion = "/babywizardjavafx/vista/AgregarSocioe.fxml";
+                prueba = "Socioeconómico";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                AgregarSocioeController wcont = loader.getController();
+
+                wcont.setEditable(true);
+                wcont.inicializarBebe(id);
+                wcont.setSocioeAEditar(sem);
                 wcont.setCampos();
             }
             
