@@ -268,26 +268,26 @@ public class EditarController implements Initializable {
         //====================================================
         if (w303642.isSelected()) {
             Wppsi303642Modelo wm = new Wppsi303642Modelo();
-            List<Integer> choices = new LinkedList<>();
+            List<String> choices = new LinkedList<>();
             LinkedList<Wppsi303642Modelo> wppsis = wm.readWppsi303642(-1, -1, -1, -1, -1, -1, "", id, -1);
             if(wppsis.size()<1) {
                 alertInformation("Alerta","","No hay WPPSI 30 36 42 registrado.");
                 return;
             }
             for(Wppsi303642Modelo w:wppsis){
-                choices.add(w.getIdWppsi303642());
+                choices.add(w.getIdWppsi303642()+" "+w.getFechaAplicacion());
             }
 
-            ChoiceDialog<Integer> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
             dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
             dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
             dialog.setTitle("Elección para edición.");
             dialog.setHeaderText("Escoger el elemento que se desea editar.");
             dialog.setContentText("¿Cuál es el id del elemento a editar? ");
 
-            Optional<Integer> result = dialog.showAndWait();
+            Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                wm = wm.readWppsi303642(result.get(), -1, -1, -1, -1, -1, "", -1, -1).getFirst();
+                wm = wm.readWppsi303642(Integer.parseInt(result.get().split(" ")[0]), -1, -1, -1, -1, -1, "", -1, -1).getFirst();
                 direccion = "/babywizardjavafx/vista/Wppsi303642.fxml";
                 prueba = "WPPSI 30 36 42";
                 FXMLLoader loader = showWindow(direccion, prueba);

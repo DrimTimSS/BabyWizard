@@ -170,10 +170,6 @@ public class ResultadoController implements Initializable {
     private TableColumn<SociodemograficoModelo, Integer> horasasistepsd;
     @FXML
     private TableColumn<SociodemograficoModelo, String> observacionessd;
-    @FXML
-    private TableColumn<SociodemograficoModelo, String> nsesd;
-    @FXML
-    private TableColumn<SociodemograficoModelo, Integer> puntajecrudosd;
     ObservableList<SociodemograficoModelo> listaSD = FXCollections.observableArrayList();
     
     //Tabla experimento cabina
@@ -233,6 +229,8 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<Wppsi303642Modelo, Integer> idinfantew30;
     @FXML
+    private TableColumn<Wppsi303642Modelo, String> fechaaplicw30;
+    @FXML
     private TableColumn<Wppsi303642Modelo, Integer> vrnw30;
     @FXML
     private TableColumn<Wppsi303642Modelo, Integer> vrew30;
@@ -290,6 +288,8 @@ public class ResultadoController implements Initializable {
     private TableView<Wppsi48Modelo> resultadoswppsi48;
     @FXML
     private TableColumn<Wppsi48Modelo, Integer> idinfantew48;
+    @FXML
+    private TableColumn<Wppsi48Modelo, String> fechaaplicw48;
     @FXML
     private TableColumn<Wppsi48Modelo, Integer> dcnw48;
     @FXML
@@ -411,6 +411,8 @@ public class ResultadoController implements Initializable {
     boolean flagw30;
     boolean flagw48;
     boolean flagsocioec;
+    
+    
     
     /**
      * Initializes the controller class.
@@ -758,11 +760,14 @@ public class ResultadoController implements Initializable {
         LinkedList<Wppsi303642Modelo> wppsis = w30.readWppsi303642PorIds(ids);
         if (wppsis.size() > 0) {
             for (Wppsi303642Modelo m : wppsis) {
+                m.setEscalares();
+                m.setEquivalentes();
                 resultados.add(m);
             }
         }
-        for(Wppsi303642Modelo m:resultados) listaWppsi303642.add(m);
+        for(Wppsi303642Modelo m:resultados) listaWppsi303642.add(m);   
         idinfantew30.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+        fechaaplicw30.setCellValueFactory(new PropertyValueFactory<>("fechaAplicacion"));
         vrnw30.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoNatural"));
         vrew30.setCellValueFactory(new PropertyValueFactory<>("vocabularioReceptivoEscalar"));
         dcnw30.setCellValueFactory(new PropertyValueFactory<>("disenioCubosNatural"));
@@ -808,6 +813,8 @@ public class ResultadoController implements Initializable {
         LinkedList<Wppsi48Modelo> wppsis = w48.readWppsi48PorIds(ids);
         if (wppsis.size() > 0) {
             for (Wppsi48Modelo m : wppsis) {
+                m.setEscalares();
+                m.setEquivalentes();
                 resultados.add(m);
             }
         }
@@ -815,6 +822,7 @@ public class ResultadoController implements Initializable {
             listaWppsi48.add(m);
         }
         idinfantew48.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+        fechaaplicw48.setCellValueFactory(new PropertyValueFactory<>("fechaAplicacion"));
         dcnw48.setCellValueFactory(new PropertyValueFactory<>("disenioCubosNatural"));
         dcew48.setCellValueFactory(new PropertyValueFactory<>("disenioCubosEscalar"));
         innw48.setCellValueFactory(new PropertyValueFactory<>("informacionNatural"));

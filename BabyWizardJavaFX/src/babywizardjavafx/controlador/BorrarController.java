@@ -230,14 +230,23 @@ public class BorrarController implements Initializable {
         Wppsi303642Modelo w30 = new Wppsi303642Modelo();
         Wppsi48Modelo w48 = new Wppsi48Modelo();
         if(ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size()>0) listaPruebas.add("Experimento de Cabina.");
-        if(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size()>0){ 
-            listaPruebas.add("Tarea de Lectura Conjunta (Rana).");
+        LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText()));
+        if(lecturas.size()>0){
+            for(LecturaConjuntaModelo l:lecturas){
+                listaPruebas.add("Lectura Conjunta: "+l.getTypeOrTokenString()+" "+l.getCuidadorBebeString());
+            }
         }
-        if(w30.readWppsi303642(-1, -1, -1, -1, -1, -1,"", Integer.parseInt(idbebeaborrar.getText()),-1).size()>0){
-            listaPruebas.add("WPPSI 30 36 42.");
+        LinkedList<Wppsi303642Modelo> w30s = w30.readWppsi303642(-1, -1, -1, -1, -1, -1,"", Integer.parseInt(idbebeaborrar.getText()),-1);
+        if(w30s.size()>0){
+            for(Wppsi303642Modelo w:w30s) {
+                listaPruebas.add("WPPSI303642 "+w.getFechaAplicacion());
+            }       
         }
-        if(w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1,-1,-1,-1,-1,-1,-1,-1,-1,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Integer.parseInt(idbebeaborrar.getText())).size()>0){
-            listaPruebas.add("WPPSI 48.");
+        LinkedList<Wppsi48Modelo> w48s = w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1,-1,-1,-1,-1,-1,-1,-1,-1,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Integer.parseInt(idbebeaborrar.getText()));
+        if(w48s.size()>0){
+            for(Wppsi48Modelo w:w48s) {
+                listaPruebas.add("WPPSI48 "+w.getFechaAplicacion());
+            }  
         }
         listaexperimentos.getItems().addAll(listaPruebas);
         }
