@@ -124,7 +124,11 @@ public class SociodemograficoModelo {
         this.pesoAlNacer = pesoAlNacer;
     }
 
-    public String getGestacion() {
+    public int getGestacion() {
+        return gestacion;
+    }
+    
+    public String getGestacionString() {
         String g = "";
         g = (gestacion==0) ? "A término":"Prematuro";
         return g;
@@ -133,8 +137,12 @@ public class SociodemograficoModelo {
     public void setGestacion(int gestacion) {
         this.gestacion = gestacion;
     }
+    
+    public int getProblemasAlNacer() {
+        return problemasAlNacer;
+    }
 
-    public String getProblemasAlNacer() {
+    public String getProblemasAlNacerString() {
         String p = "";
         p = (problemasAlNacer==0) ? "No" : "Sí";
         return p;
@@ -144,7 +152,11 @@ public class SociodemograficoModelo {
         this.problemasAlNacer = problemasAlNacer;
     }
 
-    public String getProblemasDeSalud() {
+    public int getProblemasDeSalud() {
+        return problemasDeSalud;
+    }
+
+    public String getProblemasDeSaludString() {
         String p = "";
         p = (problemasDeSalud==0) ? "No" : "Sí";
         return p;
@@ -154,7 +166,11 @@ public class SociodemograficoModelo {
         this.problemasDeSalud = problemasDeSalud;
     }
 
-    public String getProblemasDeAudicion() {
+    public int getProblemasDeAudicion() {
+        return problemasDeAudicion;
+    }
+
+    public String getProblemasDeAudicionString() {
         String p = "";
         p = (problemasDeAudicion==0) ? "No" : "Sí";
         return p;
@@ -164,7 +180,11 @@ public class SociodemograficoModelo {
         this.problemasDeAudicion = problemasDeAudicion;
     }
 
-    public String getProblemasDeVision() {
+    public int getProblemasDeVision() {
+        return problemasDeVision;
+    }
+
+    public String getProblemasDeVisionString() {
         String p = "";
         p = (problemasDeVision==0) ? "No" : "Sí";
         return p;
@@ -174,7 +194,11 @@ public class SociodemograficoModelo {
         this.problemasDeVision = problemasDeVision;
     }
 
-    public String getOtroIdioma() {
+    public int getOtroIdioma() {
+        return otroIdioma;
+    }
+
+    public String getOtroIdiomaString() {
         String p = "";
         p = (otroIdioma==0) ? "No" : "Sí";
         return p;
@@ -184,7 +208,11 @@ public class SociodemograficoModelo {
         this.otroIdioma = otroIdioma;
     }
 
-    public String getGuarderia() {
+    public int getGuarderia() {
+        return guarderia;
+    }
+
+    public String getGuarderiaString() {
         String p = "";
         p = (guarderia==0) ? "No" : "Sí";
         return p;
@@ -194,7 +222,11 @@ public class SociodemograficoModelo {
         this.guarderia = guarderia;
     }
 
-    public String getPreescolar() {
+    public int getPreescolar() {
+        return preescolar;
+    }
+
+    public String getPreescolarString() {
         String p = "";
         p = (preescolar==0) ? "No" : "Sí";
         return p;

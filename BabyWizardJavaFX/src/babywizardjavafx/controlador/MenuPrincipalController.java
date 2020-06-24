@@ -111,6 +111,7 @@ public class MenuPrincipalController implements Initializable {
         int permiso = um.readUsuario(usuariois, "", "", "", -1).getFirst().getAdministrador();
         if (permiso == 0) {
             sinPermiso();
+            return;
         }
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Borrar.fxml"));
         JMetro jmetro = new JMetro(Style.LIGHT);
@@ -186,7 +187,13 @@ public class MenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void editar(ActionEvent event) throws IOException {
+    private void editar(ActionEvent event) throws IOException, SQLException {
+        UsuarioModelo um = new UsuarioModelo();
+        int permiso = um.readUsuario(usuariois, "", "", "", -1).getFirst().getAdministrador();
+        if (permiso == 0) {
+            sinPermiso();
+            return;
+        }
         Parent loadMenuPrincipal = FXMLLoader.load(getClass().getResource("/babywizardjavafx/vista/Editar.fxml"));
         JMetro jmetro = new JMetro(Style.LIGHT);
         jmetro.setParent(loadMenuPrincipal);

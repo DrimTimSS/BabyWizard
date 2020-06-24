@@ -381,26 +381,26 @@ public class EditarController implements Initializable {
         //====================================================
         if (w48.isSelected()) {
             Wppsi48Modelo wm = new Wppsi48Modelo();
-            List<Integer> choices = new LinkedList<>();
+            List<String> choices = new LinkedList<>();
             LinkedList<Wppsi48Modelo> wppsis = wm.readWppsi48(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);
             if(wppsis.size()<1) {
                 alertInformation("Alerta","","No hay WPPSI 48 registrado.");
                 return;
             } //echar notificacion
             for(Wppsi48Modelo w:wppsis){
-                choices.add(w.getIdWppsi48());
+                choices.add(w.getIdWppsi48()+" "+w.getFechaAplicacion());
             }
 
-            ChoiceDialog<Integer> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
             dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
             dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
             dialog.setTitle("Elección para edición.");
             dialog.setHeaderText("Escoger el elemento que se desea editar.");
             dialog.setContentText("¿Cuál es el id del elemento a editar? ");
 
-            Optional<Integer> result = dialog.showAndWait();
+            Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                wm = wm.readWppsi48(result.get(), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1).getFirst();
+                wm = wm.readWppsi48(Integer.parseInt(result.get().split(" ")[0]), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1).getFirst();
                 direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
                 prueba = "WPPSI 48";
                 FXMLLoader loader = showWindow(direccion, prueba);
@@ -418,26 +418,26 @@ public class EditarController implements Initializable {
         //====================================================
         if (lectconj.isSelected()) {
             LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
-            List<Integer> choices = new LinkedList<>();
+            List<String> choices = new LinkedList<>();
             LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);
             if(lecturas.size()<1) {
                 alertInformation("Alerta","","No hay Lectura Conjunta registrada.");
                 return;
             } //echar notificacion
             for(LecturaConjuntaModelo l:lecturas){
-                choices.add(l.getIdLecturaConjunta());
+                choices.add(l.getIdLecturaConjunta()+" "+l.getTypeOrTokenString()+" "+l.getCuidadorBebeString());
             }
 
-            ChoiceDialog<Integer> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
             dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
             dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
             dialog.setTitle("Elección para edición.");
             dialog.setHeaderText("Escoger el elemento que se desea editar.");
             dialog.setContentText("¿Cuál es el id del elemento a editar? ");
 
-            Optional<Integer> result = dialog.showAndWait();
+            Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                lcm = lcm.readLecturaConjunta(result.get(), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1).getFirst();
+                lcm = lcm.readLecturaConjunta(Integer.parseInt(result.get().split(" ")[0]), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1).getFirst();
                 direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
                 prueba = "Lectura Conjunta";
                 FXMLLoader loader = showWindow(direccion, prueba);
@@ -455,7 +455,10 @@ public class EditarController implements Initializable {
             FXMLLoader loader = showWindow(direccion, prueba);
             ExperimentoCabinaController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
-        }
+        } else {
+                alertInformation("Alerta","","No hay elemento seleccionado para editar.");
+                return;
+            }
     }
 
     //====================================================

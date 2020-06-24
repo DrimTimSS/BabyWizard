@@ -197,7 +197,10 @@ public class AgregarPruebaController implements Initializable {
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarSocioeController wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
-        } else {return;}
+        } else {
+                alertInformation("Alerta","","No hay elemento seleccionado para agregar.");
+                return;
+            }
         
         
         

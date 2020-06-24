@@ -927,35 +927,21 @@ public class Wppsi48Controller implements Initializable {
             int vr = (vrn.getText().equals("")) ? -1 : Integer.parseInt(vrn.getText());
             int rc = (rcn.getText().equals("")) ? -1 : Integer.parseInt(rcn.getText());
             int dn = (dnn.getText().equals("")) ? -1 : Integer.parseInt(dnn.getText());
-            //try{
+            try{
                 String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 wppsi48AEditar.updateWppsi48(wppsi48AEditar.getIdWppsi48(), -1, dc, in, se, mt, vc, cp, bs, ps, cl, cm, fi, vr, rc, dn, fechan, -1, dcfi.isSelected() ? 1 : 0, dcrc.isSelected() ? 1 : 0, pscm.isSelected() ? 1 : 0, psse.isSelected() ? 1 : 0, clbs.isSelected() ? 1 : 0, mtfi.isSelected() ? 1 : 0, mtrc.isSelected() ? 1 : 0, incm.isSelected() ? 1 : 0, inse.isSelected() ? 1 : 0, vccm.isSelected() ? 1 : 0, vcse.isSelected() ? 1 : 0, cpfi.isSelected() ? 1 : 0, cprc.isSelected() ? 1 : 0);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Edición");
-                alert.setHeaderText("Editado exitosamente");
-                alert.setContentText("WPPSI editado de forma exitosa.");
-
-                alert.showAndWait();
+                alertInformation("Éxito","","WPPSI editado de forma exitosa.");
                 Stage actualWindow = (Stage) dcn.getScene().getWindow();
                 actualWindow.close();
-            //} catch (Exception e) {}
+            } catch (Exception e) {
+            
+            }
         }
         if(wm==null || creable == false) return; //Poner mensaje si se quiere
         wm.createWppsi48();
+        alertInformation("Éxito","","WPPSI creado de forma exitosa.");
         Stage actualWindow = (Stage) dcn.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-                    Parent root = (Parent) loader.load();
-                    JMetro jmetro = new JMetro(Style.LIGHT);
-                    jmetro.setParent(root);
-                    CreadoExitosamenteController cec = loader.getController();
-                    cec.queEsCreado("WPPSI agregado exitosamente.");
-                    Scene exito = new Scene(root);
-                    actualWindow.setScene(exito);
-                    Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-                    actualWindow.getIcons().add(image);
-                    actualWindow.setTitle("Exito");
-                    actualWindow.show();
-                    actualWindow.centerOnScreen();
+        actualWindow.close();
     }
     void setEditable(boolean b) {
         this.editable = b;
@@ -1000,5 +986,17 @@ public class Wppsi48Controller implements Initializable {
         vcse.setSelected(wppsi48AEditar.getVcse()==1?true:false);
         cpfi.setSelected(wppsi48AEditar.getCpfi()==1?true:false);
         cprc.setSelected(wppsi48AEditar.getCprc()==1?true:false);
+    }
+    
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(dcn.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
 }

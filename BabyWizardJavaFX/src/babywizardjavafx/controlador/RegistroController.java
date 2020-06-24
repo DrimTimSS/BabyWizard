@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -115,18 +116,9 @@ public class RegistroController implements Initializable {
                 UsuarioModelo um = new UsuarioModelo(usuario.getText(),nombre.getText(),apellidop.getText(),apellidom.getText(),contrasenia.getText(),0);
                 try{
                     um.createUsuario();
-                    Stage actualWindow = (Stage) errorusuario.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-                    Parent root = (Parent) loader.load();
-                    CreadoExitosamenteController cec = loader.getController();
-                    cec.queEsCreado("Usuario Creado Exitosamente.");
-                    Scene exito = new Scene(root);
-                    actualWindow.setScene(exito);
-                    Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-                    actualWindow.getIcons().add(image);
-                    actualWindow.setTitle("Exito");
-                    actualWindow.show();
-                    actualWindow.centerOnScreen();
+                    alertInformation("Éxito","","Usuario creado de forma exitosa.");
+                    Stage actualWindow = (Stage) usuario.getScene().getWindow();
+                    actualWindow.close();
                 } catch (SQLIntegrityConstraintViolationException e) {
                     errorusuario.setText("¡Nombre usuario ya existente!");
                     usuario.setText("");
@@ -140,4 +132,15 @@ public class RegistroController implements Initializable {
         }
     }
     
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(usuario.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
 }

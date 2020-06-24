@@ -77,14 +77,7 @@ public class EditarBBController implements Initializable {
                 String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 BebeModelo bm = new BebeModelo();
                 bm.updateBebe(idBebeActualizar, -1, nombre, apellidomaterno, apellidopaterno, sexo, fechan, "");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.initOwner(titulo.getParent().getScene().getWindow());
-                alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
-                alert.setTitle("Edición");
-                alert.setHeaderText("Editado exitosamente");
-                alert.setContentText("Infante editado de forma exitosa.");
-
-                alert.showAndWait();
+                alertInformation("Éxito","","Infante editado de forma exitosa.");
                 Stage actualWindow = (Stage) titulo.getScene().getWindow();
                 actualWindow.close();
             } catch (Exception e) {
@@ -111,6 +104,18 @@ public class EditarBBController implements Initializable {
         String s = bm.getSexo();
         if (s.equals("M")) sexom.setSelected(true);
         else sexof.setSelected(true);
+    }
+    
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(nombres.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
     
 }

@@ -63,6 +63,10 @@ public class LecturaConjuntaModelo {
     public int getTypeOrToken() {
         return typeOrToken;
     }
+    
+    public String getTypeOrTokenString() {
+        return (typeOrToken==0)?"Type":"Token";
+    }
 
     public void setTypeOrToken(int typeOrToken) {
         this.typeOrToken = typeOrToken;
@@ -150,6 +154,10 @@ public class LecturaConjuntaModelo {
     
     public int getCuidadorBebe() {
         return cuidadorBebe;
+    }
+    
+    public String getCuidadorBebeString() {
+        return (cuidadorBebe==0)?"Cuidador":"Infante";
     }
 
     public void setCuidadorBebe(int cuidadorBebe) {

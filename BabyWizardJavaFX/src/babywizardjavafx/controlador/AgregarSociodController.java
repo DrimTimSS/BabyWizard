@@ -215,17 +215,17 @@ public class AgregarSociodController implements Initializable {
         semanasnacio.setText(sdm.getSemanasDeNacimiento()+"");
         pa1.setText(sdm.getPtApgar1()+"");
         pa2.setText(sdm.getPtApgar2()+"");
-        prematuro.setSelected(sdm.getGestacion()=="Prematuro");
+        prematuro.setSelected(sdm.getGestacion()==1);
         pesonacer.setText(sdm.getPesoAlNacer()+"");
-        probsalud.setSelected(sdm.getProblemasDeSalud()=="Sí");
-        otroidioma.setSelected(sdm.getOtroIdioma()=="Sí");
-        probnacer.setSelected(sdm.getProblemasAlNacer()=="Sí");
+        probsalud.setSelected(sdm.getProblemasDeSalud()==1);
+        otroidioma.setSelected(sdm.getOtroIdioma()==1);
+        probnacer.setSelected(sdm.getProblemasAlNacer()==1);
         cuidadorprinc.setValue(sdm.getCuidadorPrincipal());
-        guarderia.setSelected(sdm.getGuarderia()=="Sí");
+        guarderia.setSelected(sdm.getGuarderia()==1);
         guarderiaChecked(null);
         tiempoasistiendog.setText(sdm.getTiempoAsistiendoMesesG()+"");
         tiempoqueasisteg.setText(sdm.getTiempoQueAsisteG()+"");
-        preescolar.setSelected(sdm.getPreescolar()=="Sí");
+        preescolar.setSelected(sdm.getPreescolar()==1);
         preescolarChecked(null);
         tiempoasistiendop.setText(sdm.getTiempoAsistiendoMesesP()+"");
         tiempoqueasistep.setText(sdm.getTiempoQueAsisteP()+"");
@@ -235,8 +235,8 @@ public class AgregarSociodController implements Initializable {
         niniosvive.setText(sdm.getNinios()+"");
         observaciones.setText(sdm.getObservaciones());
         label.setText("No se pudieron editar los datos.");
-        probaudicion.setSelected(sdm.getProblemasDeAudicion()=="Sí");
-        probvision.setSelected(sdm.getProblemasDeVision()=="Sí");
+        probaudicion.setSelected(sdm.getProblemasDeAudicion()==1);
+        probvision.setSelected(sdm.getProblemasDeVision()==1);
     }
     
     private void alertInformation(String titulo, String header, String contenido) {

@@ -5,7 +5,6 @@
  */
 package babywizardjavafx.controlador;
 
-import babywizardjavafx.controlador.CreadoExitosamenteController;
 import babywizardjavafx.modelo.UsuarioModelo;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -95,18 +95,9 @@ public class ConfUsuarioController implements Initializable {
                     int admin = (isAdmin.isSelected())?1:0;
                 try{
                     usm.updateUsuario(usuario.getText(), "", "", "", "", admin, nuevacontra.getText());
-                    Stage actualWindow = (Stage) errorusuario.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-                    Parent root = (Parent) loader.load();
-                    CreadoExitosamenteController cec = loader.getController();
-                    cec.queEsCreado("Usuario Modificado Exitosamente.");
-                    Scene exito = new Scene(root);
-                    actualWindow.setScene(exito);
-                    Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-                    actualWindow.getIcons().add(image);
-                    actualWindow.setTitle("Exito");
-                    actualWindow.show();
-                    actualWindow.centerOnScreen();
+                    alertInformation("Éxito","","Usuario configurado de forma exitosa.");
+                    Stage actualWindow = (Stage) datosincorrectos.getScene().getWindow();
+                    actualWindow.close();   
                 } catch (SQLIntegrityConstraintViolationException e) {
                     errorusuario.setText("¡Nombre usuario ya existente!");
                     usuario.setText("");
@@ -120,4 +111,15 @@ public class ConfUsuarioController implements Initializable {
         }
     }
     
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(datosincorrectos.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
 }

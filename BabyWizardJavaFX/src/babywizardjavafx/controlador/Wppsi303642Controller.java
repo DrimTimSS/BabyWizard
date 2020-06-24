@@ -485,34 +485,16 @@ public class Wppsi303642Controller implements Initializable {
             try{
                 String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 wppsiAEditar.updateWppsi303642(wppsiAEditar.getIdWppsi303642(), -1, vr, dc, in, rc, dn, fechan, -1, sust.isSelected() ? 1 : 0);
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Edición");
-                alert.setHeaderText("Editado exitosamente");
-                alert.setContentText("WPPSI editado de forma exitosa.");
-
-                alert.showAndWait();
+                alertInformation("Éxito","","WPPSI editado de forma exitosa.");
                 Stage actualWindow = (Stage) grid.getScene().getWindow();
                 actualWindow.close();
             } catch (Exception e) {}
         }
         if(wm==null || creable ==false) return; //Poner mensaje si se quiere
         wm.createWppsi303642();
-        
-        
+        alertInformation("Éxito","","WPPSI creado de forma exitosa.");
         Stage actualWindow = (Stage) grid.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-        Parent root = (Parent) loader.load();
-        JMetro jmetro = new JMetro(Style.LIGHT);
-        jmetro.setParent(root);
-        CreadoExitosamenteController cec = loader.getController();
-        cec.queEsCreado("WPPSI agregado exitosamente.");
-        Scene exito = new Scene(root);
-        actualWindow.setScene(exito);
-        Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-        actualWindow.getIcons().add(image);
-        actualWindow.setTitle("Exito");
-        actualWindow.show();
-        actualWindow.centerOnScreen();
+        actualWindow.close();
     }
 
     private void clear() {
@@ -543,5 +525,15 @@ public class Wppsi303642Controller implements Initializable {
         ic2cgl.setText("");
     }
 
-    
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.initOwner(grid.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
+    }
 }

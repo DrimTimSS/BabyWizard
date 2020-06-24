@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -216,7 +217,7 @@ public class RegistroCController implements Initializable {
         SocioeconomicoModelo sem = crearSocioeconomico();
         
         if(!(bm == null||sm==null||cm==null||sem==null)) {
-            try {
+            //try {
                 bm.createBebe();
                 int idBebe = bm.getIdBebe();
                 sm.setFkBebeSociodemografico(idBebe);
@@ -226,20 +227,9 @@ public class RegistroCController implements Initializable {
                 sem.setFkBebe(idBebe);
                 sem.createSocioeconomico();
                 
-                Stage actualWindow = (Stage) titulo.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-                    Parent root = (Parent) loader.load();
-                    JMetro jmetro = new JMetro(Style.LIGHT);
-                    jmetro.setParent(root);
-                    CreadoExitosamenteController cec = loader.getController();
-                    cec.queEsCreado("Infante Registrado Exitosamente.");
-                    Scene exito = new Scene(root);
-                    actualWindow.setScene(exito);
-                    Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-                    actualWindow.getIcons().add(image);
-                    actualWindow.setTitle("Exito");
-                    actualWindow.show();
-                    actualWindow.centerOnScreen();
+                alertInformation("Éxito","","Infante con datos sociodemográficos registrado de forma exitosa.");
+                Stage actualWindow = (Stage) nombres.getScene().getWindow();
+                actualWindow.close();
                 
                 /**
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/RegistroC.fxml"));
@@ -251,9 +241,9 @@ public class RegistroCController implements Initializable {
                 mainWindow.setScene(CuidadorScene);
                 mainWindow.show();
                 **/
-            } catch (Exception e) {
-                System.out.println("No se pudo registrar al infante.");
-            }
+            //} catch (Exception e) {
+            //    System.out.println("No se pudo registrar al infante.");
+            //}
         }
     }
     
@@ -295,5 +285,17 @@ public class RegistroCController implements Initializable {
     
     public void escenaInfante(Scene anterior){
         escenaAnterior = anterior;
+    }
+    
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(nombres.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
 }

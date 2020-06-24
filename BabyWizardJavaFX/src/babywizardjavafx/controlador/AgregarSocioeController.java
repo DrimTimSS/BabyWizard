@@ -90,20 +90,9 @@ public class AgregarSocioeController implements Initializable {
             return;            
         }
         
-        Stage actualWindow = (Stage) puntajecrudo.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/babywizardjavafx/vista/CreadoExitosamente.fxml"));
-        Parent root = (Parent) loader.load();
-        JMetro jmetro = new JMetro(Style.LIGHT);
-        jmetro.setParent(root);
-        CreadoExitosamenteController cec = loader.getController();
-        cec.queEsCreado("Información socioeconómica agregada exitosamente.");
-        Scene exito = new Scene(root);
-        actualWindow.setScene(exito);
-        Image image = new Image("/babywizardjavafx/vista/imagenes/bwlogo.jpg");
-        actualWindow.getIcons().add(image);
-        actualWindow.setTitle("Exito");
-        actualWindow.show();
-        actualWindow.centerOnScreen();        
+        alertInformation("Éxito","","Socioeconómico editado de forma exitosa.");
+        Stage actualWindow = (Stage) label.getScene().getWindow();
+        actualWindow.close();       
     }
 
     void setEditable(boolean b) {
@@ -131,5 +120,6 @@ public class AgregarSocioeController implements Initializable {
         alert.setContentText(contenido);
         alert.showAndWait();
     }
+    
     
 }
