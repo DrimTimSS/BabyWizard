@@ -316,7 +316,7 @@ public class LecturaConjuntaModelo {
         }
         String query3 = toUpdate.getLast()+" WHERE (`idLecturaConjunta` = '"+idLecturaConjuntaActualizar+"');";
         Statement stmt = con.createStatement();
-        System.out.println(query1+query2+query3);
+        //System.out.println(query1+query2+query3);
         if(toUpdate.size() > 0) stmt.executeUpdate(query1+query2+query3);
         con.close();
     }

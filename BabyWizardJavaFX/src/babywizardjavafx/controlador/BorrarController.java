@@ -233,8 +233,12 @@ public class BorrarController implements Initializable {
         if(lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size()>0){ 
             listaPruebas.add("Tarea de Lectura Conjunta (Rana).");
         }
-        if(w30.readWppsi303642(-1, -1, -1, -1, -1, -1,"", Integer.parseInt(idbebeaborrar.getText()),-1).size()>0) listaPruebas.add("WPPSI 30 36 42.");
-        if(w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1,-1,-1,-1,-1,-1,-1,-1,-1,"",Integer.parseInt(idbebeaborrar.getText()),-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1).size()>0) listaPruebas.add("WPPSI 48.");
+        if(w30.readWppsi303642(-1, -1, -1, -1, -1, -1,"", Integer.parseInt(idbebeaborrar.getText()),-1).size()>0){
+            listaPruebas.add("WPPSI 30 36 42.");
+        }
+        if(w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1,-1,-1,-1,-1,-1,-1,-1,-1,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Integer.parseInt(idbebeaborrar.getText())).size()>0){
+            listaPruebas.add("WPPSI 48.");
+        }
         listaexperimentos.getItems().addAll(listaPruebas);
         }
         

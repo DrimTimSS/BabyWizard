@@ -43,12 +43,12 @@
         </rowConstraints>
          <children>
             <TextField fx:id="usuarioadm" promptText="Nombre de usuario" GridPane.rowIndex="2" />
+            <PasswordField fx:id="contraseniaadm" prefWidth="204.0" promptText="Contraseña" GridPane.rowIndex="3" />
             <Label text="Usuario administrador" textAlignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <PasswordField fx:id="contraseniaadm" prefWidth="204.0" promptText="Contraseña" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <GridPane layoutX="315.0" layoutY="64.0" prefHeight="338.0" prefWidth="282.0">
@@ -68,6 +68,9 @@
         </rowConstraints>
          <children>
             <TextField fx:id="usuario" maxWidth="-Infinity" promptText="Nombre de usuario" GridPane.rowIndex="1" />
+            <PasswordField fx:id="nuevacontra" maxWidth="-Infinity" promptText="Nueva contraseña" GridPane.rowIndex="3" />
+            <PasswordField fx:id="confnuevacontra" maxWidth="-Infinity" promptText="Confirmar contraseña" GridPane.rowIndex="4" />
+            <CheckBox fx:id="isAdmin" mnemonicParsing="false" text="Administrador" GridPane.rowIndex="6" />
             <Button fx:id="registrar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#registrar" text="Modificar usuario" GridPane.rowIndex="8" />
             <Label text="Usuario a modificar" textAlignment="CENTER">
                <font>
@@ -79,11 +82,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="nuevacontra" maxWidth="-Infinity" promptText="Nueva contraseña" GridPane.rowIndex="3" />
-            <PasswordField fx:id="confnuevacontra" maxWidth="-Infinity" promptText="Confirmar contraseña" GridPane.rowIndex="4" />
             <Label text="Modificar constraseña:" GridPane.rowIndex="2" />
             <Label text="Modificar privilegios:" GridPane.rowIndex="5" />
-            <CheckBox fx:id="isAdmin" mnemonicParsing="false" text="Administrador" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <ImageView fitHeight="222.0" fitWidth="233.0" layoutX="46.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">

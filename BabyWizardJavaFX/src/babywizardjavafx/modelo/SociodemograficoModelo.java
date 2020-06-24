@@ -534,7 +534,7 @@ public class SociodemograficoModelo {
         }
         String query3 = toUpdate.getLast()+" WHERE (`idSociodemografico` = '"+idSociodemograficoActualizar+"');";
         Statement stmt = con.createStatement();
-        System.out.println(query1+query2+query3);
+        //System.out.println(query1+query2+query3);
         if(toUpdate.size() > 0) stmt.executeUpdate(query1+query2+query3);
         con.close();
     }

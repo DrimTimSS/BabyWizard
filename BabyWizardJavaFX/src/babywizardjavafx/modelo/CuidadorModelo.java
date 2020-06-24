@@ -299,7 +299,6 @@ public class CuidadorModelo {
            toUpdate.add(aniosEstudioQ);
         }
         if (!"".equals(relacion)) {
-            System.out.println(relacion);
             String relacionQ = "`relacion` = '"+relacion+"'";
             toUpdate.add(relacionQ);
         }
@@ -315,7 +314,7 @@ public class CuidadorModelo {
         }
         String query3 = toUpdate.getLast()+" WHERE (`idCuidador` = '"+idCuidadorActualizar+"');";
         Statement stmt = con.createStatement();
-        System.out.println(query1+query2+query3);
+        //System.out.println(query1+query2+query3);
         if(toUpdate.size() > 0) stmt.executeUpdate(query1+query2+query3);
         con.close();
     }
