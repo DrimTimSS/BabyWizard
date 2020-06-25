@@ -1,18 +1,23 @@
 /*
- * El color del diseño predeterminado es ete: #D8B9F7
+ * El color del diseño predeterminado son los siguientes:
+    Dorado: #D59F0F   
+    Azul: #002B7A   
+    Dorado más juerte: #A37B0B
+    Dorado más leve: #feb645
  */
 
 .dialog-pane {
-    -fx-background-color: #FF8D33;
+    -fx-background-color: #D59F0F;
 }
 
 .dialog-pane .header-panel{
-    -fx-background-color: #B24F00;
+    -fx-background-color: #002B7A;
     -fx-font-weight: bold;
 }
 
 .root { 
-    -fx-background-color: #B24F00,#FF8D33;
+    /* el original -fx-background-color: #B24F00,#FF8D33; */
+    -fx-background-color: #002B7A,#D59F0F;
     -fx-background-radius: 0,10;
     -fx-border-radius:10,10;
     
@@ -20,10 +25,20 @@
 }
 
 #record-sales {
+    /* este era el original, lo dejamos por si acaso
     -fx-background-color: 
         linear-gradient(#fbb279, #e16b0d),
         linear-gradient(#fbb279 0%, #e36a0b 20%, #e16b0d 100%),
         linear-gradient(#E76A07 0%, #f98931 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );*/
+    
+    -fx-background-color: 
+        linear-gradient(#A37B0B, #D59F0F),
+        linear-gradient(#A37B0B 0%, #feb645 20%, #feb645 100%),
+        linear-gradient(#A37B0B 0%, #feb645 50%);
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
@@ -32,9 +47,9 @@
 
 #record-sales:hover {
     -fx-background-color: 
-        linear-gradient(#fbb279, #e16b0d),
-        linear-gradient(#fbb279 0%, #e36a0b 20%, #e16b0d 100%),
-        linear-gradient(#E76A07 0%, #f98931 50%);
+        linear-gradient(#A37B0B, #D59F0F),
+        linear-gradient(#A37B0B 0%, #feb645 20%, #feb645 100%),
+        linear-gradient(#A37B0B 0%, #feb645 50%);
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
@@ -53,10 +68,10 @@
 }
 
 #cabecera {
-    -fx-background-color:  #E76A06;
+    -fx-background-color:  #002B7A;
 }
 #celda {
-    -fx-background-color: #FFA258;
+    -fx-background-color: #A37B0B;
 }
 /*
 #input {
