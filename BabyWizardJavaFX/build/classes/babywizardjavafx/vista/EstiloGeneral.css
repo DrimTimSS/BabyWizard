@@ -4,6 +4,7 @@
     Azul: #002B7A   
     Dorado más juerte: #A37B0B
     Dorado más leve: #feb645
+    Azul Clarito: #4980e6
  */
 
 .dialog-pane {
@@ -11,7 +12,7 @@
 }
 
 .dialog-pane .header-panel{
-    -fx-background-color: #002B7A;
+    -fx-background-color: #A37B0B;
     -fx-font-weight: bold;
 }
 
@@ -68,10 +69,10 @@
 }
 
 #cabecera {
-    -fx-background-color:  #002B7A;
+    -fx-background-color:  #A37B0B;
 }
 #celda {
-    -fx-background-color: #A37B0B;
+    -fx-background-color: #feb645;
 }
 /*
 #input {

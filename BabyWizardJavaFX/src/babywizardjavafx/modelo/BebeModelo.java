@@ -129,8 +129,8 @@ public class BebeModelo {
     }
     
     public LinkedList<BebeModelo> readBebePorIds(LinkedList<Integer> ids) throws SQLException {
-        if(!(ids.size()>0)) return null;
         LinkedList<BebeModelo> bebes = new LinkedList<BebeModelo>();
+        if(!(ids.size()>0)) return bebes;
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
