@@ -84,6 +84,12 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<BebeModelo, Integer> resmeses;
     @FXML
+    private TableColumn<BebeModelo, Integer> resanios;
+    @FXML
+    private TableColumn<BebeModelo, Integer> resmesest;
+    @FXML
+    private TableColumn<BebeModelo, Integer> resdias;
+    @FXML
     private TableColumn<BebeModelo, Integer> resusuario;
     ObservableList<BebeModelo> listaBebes = FXCollections.observableArrayList();
     
@@ -414,6 +420,7 @@ public class ResultadoController implements Initializable {
     
     
     
+    
     /**
      * Initializes the controller class.
      */
@@ -537,6 +544,7 @@ public class ResultadoController implements Initializable {
             LinkedList<BebeModelo> bebes = bm.readBebePorIds(ids);
             if (bebes.size() > 0) {
                 for (BebeModelo b : bebes) {
+                    b.setEdad();
                     resultados.add(b);
                 }
             }
@@ -547,7 +555,10 @@ public class ResultadoController implements Initializable {
             resapellidom.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));
             ressexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
             resfechan.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-            resmeses.setCellValueFactory(new PropertyValueFactory<>("edad"));
+            resanios.setCellValueFactory(new PropertyValueFactory<>("edadAnios"));
+            resmeses.setCellValueFactory(new PropertyValueFactory<>("edadMeses"));
+            resdias.setCellValueFactory(new PropertyValueFactory<>("edadDias"));
+            resmesest.setCellValueFactory(new PropertyValueFactory<>("edadMesesTotales"));
             resusuario.setCellValueFactory(new PropertyValueFactory<>("fkUsuario"));
             resultadosbebe.setItems(listaBebes);
             //resultadosbebe.getColumns().addAll(resid,resnombre,resapellidop,resapellidom,ressexo,resfechan,resusuario);

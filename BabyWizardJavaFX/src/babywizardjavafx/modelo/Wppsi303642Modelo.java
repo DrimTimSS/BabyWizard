@@ -447,11 +447,11 @@ public class Wppsi303642Modelo {
         con.close();
     }
     
-    public void deleteWippsi303642(int idWippsi303642) throws SQLException {
+    public void deleteWppsi303642(int idWppsi303642) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         Statement stmt = con.createStatement();
-        stmt.executeUpdate("DELETE FROM `babywizard`.`wippsi303642` WHERE (`idWippsi303642` = '"+idWippsi303642+"');");
+        stmt.executeUpdate("DELETE FROM `babywizard`.`wppsi303642` WHERE (`idWppsi303642` = '"+idWppsi303642+"');");
         con.close();
     }
 
