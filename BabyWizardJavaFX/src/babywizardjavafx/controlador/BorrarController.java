@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import java.util.regex.*;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -96,6 +97,10 @@ public class BorrarController implements Initializable {
     ObservableList<String> listaPruebas = FXCollections.observableArrayList();
     @FXML
     private Button borrarpureba;
+    
+    int idelementoaborrar;
+    @FXML
+    private Label elementoaborrar;
 
     /**
      * Initializes the controller class.
@@ -105,14 +110,17 @@ public class BorrarController implements Initializable {
         try {
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = bm.readBebe(-1, "", "", "", -1, "",-1,-1, "");
-            for(BebeModelo b:resultados) listaBebes.add(b);
+            for(BebeModelo b:resultados) {
+                b.setEdad();
+                listaBebes.add(b);
+            }
             idBebe.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
             nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
             apellidoMaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));
             sexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
             fechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-            meses.setCellValueFactory(new PropertyValueFactory<>("edad"));
+            meses.setCellValueFactory(new PropertyValueFactory<>("edadMesesTotales"));
             fkUsuario.setCellValueFactory(new PropertyValueFactory<>("fkUsuario"));
             tablabebes.setItems(listaBebes);
             //tablabebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
@@ -133,6 +141,14 @@ public class BorrarController implements Initializable {
                 //System.out.println("No pasa nada oiga");
             }
         }
+        });
+        listaexperimentos.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> ov, String old_val, String new_val) -> {
+            if (listaexperimentos.getSelectionModel().getSelectedItem()!=null) {
+                String seleccionado = listaexperimentos.getSelectionModel().getSelectedItem();
+                elementoaborrar.setText(seleccionado.split(", ")[1]);
+                String selectedItem = seleccionado.split(" ")[1];
+                idelementoaborrar = Integer.parseInt(selectedItem.substring(0, selectedItem.length()-1));
+            }
         });
         borrarconid.setOnKeyPressed((KeyEvent ke) -> {
             if (ke.getCode().equals(KeyCode.ENTER))
@@ -177,14 +193,17 @@ public class BorrarController implements Initializable {
             if(edadbusquedamin.getText().matches("\\d+")) mesesmin = Integer.parseInt(edadbusquedamin.getText());
             if(edadbusquedamax.getText().matches("\\d+")) mesesmax = Integer.parseInt(edadbusquedamax.getText());
             LinkedList<BebeModelo> resultados = bm.readBebe(id, nombrebusqueda.getText(), apellidombusqueda.getText(), apellidopbusqueda.getText(), sexoinfante, "", mesesmin, mesesmax, "");
-            for(BebeModelo b:resultados) listaBebes.add(b);
+            for(BebeModelo b:resultados) {
+                b.setEdad();
+                listaBebes.add(b);
+            }
             idBebe.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
             nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
             apellidoMaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));
             sexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
             fechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-            meses.setCellValueFactory(new PropertyValueFactory<>("edad"));
+            meses.setCellValueFactory(new PropertyValueFactory<>("edadMesesTotales"));
             fkUsuario.setCellValueFactory(new PropertyValueFactory<>("fkUsuario"));
             tablabebes.setItems(listaBebes);
             //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
@@ -198,7 +217,7 @@ public class BorrarController implements Initializable {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.initOwner(idbebebusqueda.getParent().getScene().getWindow());
         alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
-        alert.setTitle("Confirmar.");
+        alert.setTitle("Confirmar borrar infante.");
         alert.setHeaderText("Se borrará el infante con todos \nsus registros y pruebas.");
         alert.setContentText("¿Está seguro?");
         //Scene scene = alert.getDialogPane().getScene();
@@ -212,7 +231,12 @@ public class BorrarController implements Initializable {
                 BebeModelo bm = new BebeModelo();
                 bm.deleteBebe(Integer.parseInt(idbebeaborrar.getText()));
                 tablabebes.getItems().clear();
+                listaexperimentos.getItems().clear();
+                idbebeaborrar.setText("");
+                idelementoaborrar = 0;
+                elementoaborrar.setText("...");
                 this.buscarbebes(event);
+                alertInformation("Éxito","","Elemento borrado de forma exitosa.");
             }
         } else {
             // ... user chose CANCEL or closed the dialog
@@ -233,19 +257,19 @@ public class BorrarController implements Initializable {
         LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText()));
         if(lecturas.size()>0){
             for(LecturaConjuntaModelo l:lecturas){
-                listaPruebas.add("Lectura Conjunta: "+l.getTypeOrTokenString()+" "+l.getCuidadorBebeString());
+                listaPruebas.add("ID: "+l.getIdLecturaConjunta()+", Lectura Conjunta: "+l.getTypeOrTokenString()+" "+l.getCuidadorBebeString());
             }
         }
         LinkedList<Wppsi303642Modelo> w30s = w30.readWppsi303642(-1, -1, -1, -1, -1, -1,"", Integer.parseInt(idbebeaborrar.getText()),-1);
         if(w30s.size()>0){
             for(Wppsi303642Modelo w:w30s) {
-                listaPruebas.add("WPPSI303642 "+w.getFechaAplicacion());
+                listaPruebas.add("ID: "+w.getIdWppsi303642()+", WPPSI303642 "+w.getFechaAplicacion());
             }       
         }
         LinkedList<Wppsi48Modelo> w48s = w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1,-1,-1,-1,-1,-1,-1,-1,-1,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Integer.parseInt(idbebeaborrar.getText()));
         if(w48s.size()>0){
             for(Wppsi48Modelo w:w48s) {
-                listaPruebas.add("WPPSI48 "+w.getFechaAplicacion());
+                listaPruebas.add("ID: "+w.getIdWppsi48()+", WPPSI48 "+w.getFechaAplicacion());
             }  
         }
         listaexperimentos.getItems().addAll(listaPruebas);
@@ -254,7 +278,50 @@ public class BorrarController implements Initializable {
     }
 
     @FXML
-    private void borrarprueba(ActionEvent event) {
+    private void borrarprueba(ActionEvent event) throws SQLException {
+        if (idelementoaborrar != 0) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            alert.setTitle("Confirmar borrar registro.");
+            alert.setHeaderText("Se borrará el registro seleccionado.");
+            alert.setContentText("¿Está seguro?");
+            
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                String prueba = elementoaborrar.getText().split(" ")[0];
+                if (prueba.equals("Lectura")) {
+                    LecturaConjuntaModelo l = new LecturaConjuntaModelo();
+                    l.deleteLecturaConjunta(idelementoaborrar);
+                    alertInformation("Éxito","","Elemento borrado de forma exitosa.");
+                } else if (prueba.equals("WPPSI303642")) {
+                    Wppsi303642Modelo w = new Wppsi303642Modelo();
+                    w.deleteWppsi303642(idelementoaborrar);
+                    alertInformation("Éxito","","Elemento borrado de forma exitosa.");
+                } else if (prueba.equals("WPPSI48")) {
+                    Wppsi48Modelo w = new Wppsi48Modelo();
+                    w.deleteWppsi48(idelementoaborrar);
+                    alertInformation("Éxito","","Elemento borrado de forma exitosa.");
+                }
+                encontrarPruebas();
+            } else {
+            }
+        } else {
+            alertInformation("Error","","No se ha seleccionado un registro a eliminar.");
+        }
+        
+    }
+    
+    private void alertInformation(String titulo, String header, String contenido) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle(titulo);
+        if(header.equals("")) {
+            alert.setHeaderText(null);
+        } else {alert.setHeaderText(header);}
+        alert.setContentText(contenido);
+        alert.showAndWait();
     }
     
 }

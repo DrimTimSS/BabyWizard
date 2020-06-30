@@ -211,7 +211,10 @@
             <TableColumn fx:id="resapellidom" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="Apellido M." />
             <TableColumn fx:id="ressexo" maxWidth="1.7976931348623157E308" minWidth="105.0" prefWidth="105.0" text="Sexo" />
             <TableColumn fx:id="resfechan" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="170.0" text="Fecha de Nac." />
-            <TableColumn fx:id="resmeses" maxWidth="1.7976931348623157E308" minWidth="120.0" prefWidth="120.0" text="Meses" />
+            <TableColumn fx:id="resanios" minWidth="150.0" prefWidth="150.0" text="Años" visible="false" />
+            <TableColumn fx:id="resmeses" minWidth="150.0" prefWidth="150.0" text="Meses" visible="false" />
+            <TableColumn fx:id="resmesest" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" text="Meses T." />
+            <TableColumn fx:id="resdias" minWidth="120.0" prefWidth="120.0" text="Días" />
             <TableColumn fx:id="resusuario" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="130.0" text="Registró" />
         </columns>
       </TableView>

@@ -963,11 +963,11 @@ public class Wppsi48Modelo {
         con.close();
     }
     
-    public void deleteWippsi48(int idWippsi48) throws SQLException {
+    public void deleteWppsi48(int idwppsi48) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         Statement stmt = con.createStatement();
-        stmt.executeUpdate("DELETE FROM `babywizard`.`wippsi48` WHERE (`idWippsi48` = '"+idWippsi48+"');");
+        stmt.executeUpdate("DELETE FROM `babywizard`.`wppsi48` WHERE (`idwppsi48` = '"+idwppsi48+"');");
         con.close();
     }
 

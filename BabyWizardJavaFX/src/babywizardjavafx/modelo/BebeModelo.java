@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -27,7 +30,9 @@ public class BebeModelo {
     String apellidoPaterno;
     int sexo;
     String fechaNacimiento;
-    int edad;
+    int edadMeses;
+    int edadAnios;
+    int edadDias;
     String fkUsuario;
 
     //Contructores
@@ -41,7 +46,9 @@ public class BebeModelo {
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
         this.fkUsuario = fkUsuario;
-        edad = 0;
+        edadDias = 0;
+        edadMeses = 0;
+        edadAnios = 0;
     }
     
     //Getters and Setters
@@ -101,12 +108,31 @@ public class BebeModelo {
         this.fkUsuario = fkUsuario;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getEdadMeses() {
+        return edadMeses;
     }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
+    
+    public int getEdadMesesTotales() {
+        return edadMeses + edadAnios*12;
+    }
+    
+    public int getEdadAnios() {
+        return edadAnios;
+    }
+    
+    public int getEdadDias() {
+        return edadDias;
+    }
+    
+    public void setEdad() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(fechaNacimiento, formatter);
+        LocalDate now = LocalDate.now();
+        
+        Period diff = Period.between(localDate, now);
+        this.edadAnios = diff.getYears();
+        this.edadMeses = diff.getMonths();
+        this.edadDias = diff.getDays();
     }
     
     //CRUD
@@ -141,7 +167,7 @@ public class BebeModelo {
         //System.out.println(abuscar);
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        query = "select * FROM (SELECT *,TIMESTAMPDIFF(MONTH, fechaNacimientoBb,'"+dateFormat.format(date)+"') as meses FROM babywizard.bebe) as bebes where idBebe in "+abuscar+";";
+        query = "select * FROM babywizard.bebe where idBebe in "+abuscar+";";
         //System.out.print(con);
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(query);
@@ -154,7 +180,6 @@ public class BebeModelo {
             bm.setSexo(rs.getInt("sexo"));
             bm.setFechaNacimiento(rs.getString("fechaNacimientoBb"));
             bm.setFkUsuario(rs.getString("fkUsuario"));
-            bm.setEdad(rs.getInt("meses"));
             bebes.add(bm);
         }
         con.close();
@@ -176,7 +201,7 @@ public class BebeModelo {
         if(mesesmin>-1) toRead.add("meses >= '"+mesesmin+"'");
         if(mesesmax>-1 && mesesmax>=mesesmin) toRead.add("meses <= '"+mesesmax+"'");
         Date date = new Date();
-        String query1 = "SELECT * FROM (SELECT *,TIMESTAMPDIFF(MONTH, fechaNacimientoBb,'"+dateFormat.format(date)+"') as meses FROM babywizard.bebe) as bebes WHERE ";
+        String query1 = "SELECT * FROM babywizard.bebe WHERE ";
         String query2 = "";
         for(int i = 0; i<toRead.size()-1;i++){
             query2 = query2+toRead.get(i)+" AND ";
@@ -188,7 +213,7 @@ public class BebeModelo {
         if (toRead.size()>0) {
         rs = stmt.executeQuery(query1+query2+query3);
         } else {
-        rs = stmt.executeQuery("SELECT * FROM (SELECT *,TIMESTAMPDIFF(MONTH, fechaNacimientoBb,'"+dateFormat.format(date)+"') as meses FROM babywizard.bebe) as bebes");
+        rs = stmt.executeQuery("SELECT * FROM babywizard.bebe");
         }
         LinkedList<BebeModelo> bebes = new LinkedList<>();
         while(rs.next()){
@@ -200,7 +225,6 @@ public class BebeModelo {
             bm.setSexo(rs.getInt("sexo"));
             bm.setFechaNacimiento(rs.getString("fechaNacimientoBb"));
             bm.setFkUsuario(rs.getString("fkUsuario"));
-            bm.setEdad(rs.getInt("meses"));
             bebes.add(bm);
         }
         con.close();

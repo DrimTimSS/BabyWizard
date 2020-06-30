@@ -126,14 +126,17 @@ public class EditarController implements Initializable {
         try {
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = bm.readBebe(-1, "", "", "", -1, "",-1,-1, "");
-            for(BebeModelo b:resultados) listaBebes.add(b);
+            for(BebeModelo b:resultados) {
+                b.setEdad();
+                listaBebes.add(b);
+            }
             idBebe.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
             nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
             apellidoMaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));
             sexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
             fechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-            meses.setCellValueFactory(new PropertyValueFactory<>("edad"));
+            meses.setCellValueFactory(new PropertyValueFactory<>("edadMesesTotales"));
             fkUsuario.setCellValueFactory(new PropertyValueFactory<>("fkUsuario"));
             tablabebes.setItems(listaBebes);
             //tablabebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
@@ -177,14 +180,17 @@ public class EditarController implements Initializable {
             if(edadbusquedamin.getText().matches("\\d+")) mesesmin = Integer.parseInt(edadbusquedamin.getText());
             if(edadbusquedamax.getText().matches("\\d+")) mesesmax = Integer.parseInt(edadbusquedamax.getText());
             LinkedList<BebeModelo> resultados = bm.readBebe(id, nombrebusqueda.getText(), apellidombusqueda.getText(), apellidopbusqueda.getText(), sexoinfante, "", mesesmin, mesesmax, "");
-            for(BebeModelo b:resultados) listaBebes.add(b);
+            for(BebeModelo b:resultados) {
+                b.setEdad();
+                listaBebes.add(b);
+            }
             idBebe.setCellValueFactory(new PropertyValueFactory<>("idBebe"));
             nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             apellidoPaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoPaterno"));
             apellidoMaterno.setCellValueFactory(new PropertyValueFactory<>("apellidoMaterno"));
             sexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
             fechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
-            meses.setCellValueFactory(new PropertyValueFactory<>("edad"));
+            meses.setCellValueFactory(new PropertyValueFactory<>("edadMesesTotales"));
             fkUsuario.setCellValueFactory(new PropertyValueFactory<>("fkUsuario"));
             tablabebes.setItems(listaBebes);
             //tablaBebes.getColumns().addAll(idBebe,nombre,apellidoPaterno,apellidoMaterno,sexo,fechaNacimiento,fkUsuario);
