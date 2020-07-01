@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
@@ -46,8 +49,11 @@ public class AgregarSocioeController implements Initializable {
     private Label label;
     @FXML
     private Button agregar;
+    @FXML
+    private DatePicker fechaaplicacion;
     private boolean editable;
     private SocioeconomicoModelo sem;
+    
 
     /**
      * Initializes the controller class.
@@ -77,20 +83,24 @@ public class AgregarSocioeController implements Initializable {
     private void agregar(ActionEvent event) throws SQLException, IOException {
         String puntaje = puntajecrudo.getText();
         String n = nse.getValue();
+        String fechan = "";
         
-        if(!(puntaje.equals("") || n.equals(""))){
+        if(!(puntaje.equals("") || n.equals("") || fechaaplicacion.getValue()!=null)){
             if(!editable) {
-            SocioeconomicoModelo sem = new SocioeconomicoModelo(Integer.parseInt(puntaje), n, idbebe);
+            fechan = fechaaplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            SocioeconomicoModelo sem = new SocioeconomicoModelo(Integer.parseInt(puntaje), n, fechan, idbebe);
             sem.createSocioeconomico();
+            alertInformation("Éxito","","Socioeconómico agregado de forma exitosa.");
             } else {
-            sem.updateSocioeconomico(sem.getIdSocioeconomico(), -1, Integer.parseInt(puntaje), n, -1);
+            fechan = fechaaplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            sem.updateSocioeconomico(sem.getIdSocioeconomico(), -1, Integer.parseInt(puntaje), n, fechan, -1);
+            alertInformation("Éxito","","Socioeconómico editado de forma exitosa.");
             }
         } else{
             label.setVisible(true);
             return;            
         }
         
-        alertInformation("Éxito","","Socioeconómico editado de forma exitosa.");
         Stage actualWindow = (Stage) label.getScene().getWindow();
         actualWindow.close();       
     }
@@ -106,6 +116,7 @@ public class AgregarSocioeController implements Initializable {
     void setCampos() {
         puntajecrudo.setText(sem.getPuntajeCrudo()+"");
         nse.setValue(sem.getNse());
+        fechaaplicacion.setValue(LocalDate.parse(sem.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         label.setText("No se pudo editar socioeconómico.");
     }
     

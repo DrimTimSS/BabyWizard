@@ -13,6 +13,7 @@ import com.mysql.cj.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -89,6 +90,8 @@ public class RegistroCController implements Initializable {
     Scene escenaAnterior;
     @FXML
     private TextField edad;
+    @FXML
+    private DatePicker fechaaplicacionnse;
     
     
     /**
@@ -254,6 +257,7 @@ public class RegistroCController implements Initializable {
     public void getBebeySD(BebeModelo bm, SociodemograficoModelo sm){
         this.bm = bm;
         this.sm = sm;
+        fechaaplicacionnse.setValue(LocalDate.parse(sm.getFechaDeCita(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
     }
     
     public CuidadorModelo crearCuidador(){
@@ -272,7 +276,7 @@ public class RegistroCController implements Initializable {
     public SocioeconomicoModelo crearSocioeconomico(){
         if(!(isEmpty(puntajecrudo))){
             try{
-                return new SocioeconomicoModelo(Integer.parseInt(puntajecrudo.getText()), nse.getValue(), 0);
+                return new SocioeconomicoModelo(Integer.parseInt(puntajecrudo.getText()), nse.getValue(), fechaaplicacionnse.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), 0);
             } catch(Exception e){
                 llenadodatos.setText("No se han llenado todos los campos obligatorios.");
             }   

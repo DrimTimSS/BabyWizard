@@ -350,7 +350,7 @@ public class EditarController implements Initializable {
         if (socioeco.isSelected()) {
             SocioeconomicoModelo sem = new SocioeconomicoModelo();
             List<String> choices = new LinkedList<>();
-            LinkedList<SocioeconomicoModelo> socios = sem.readSocioeconomico(-1, -1, "", id);
+            LinkedList<SocioeconomicoModelo> socios = sem.readSocioeconomico(-1, -1, "","", id);
             if(socios.size()<1) {
                 alertInformation("Alerta","","No hay socioeconómico registrado.");
                 return;
@@ -368,7 +368,7 @@ public class EditarController implements Initializable {
 
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                sem = sem.readSocioeconomico(Integer.parseInt(result.get().split(" ")[0]), -1, "", -1).getFirst();
+                sem = sem.readSocioeconomico(Integer.parseInt(result.get().split(" ")[0]), -1, "", "", -1).getFirst();
                 direccion = "/babywizardjavafx/vista/AgregarSocioe.fxml";
                 prueba = "Socioeconómico";
                 FXMLLoader loader = showWindow(direccion, prueba);

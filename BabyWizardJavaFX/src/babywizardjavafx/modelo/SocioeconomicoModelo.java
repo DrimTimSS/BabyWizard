@@ -20,14 +20,16 @@ public class SocioeconomicoModelo {
     int idSocioeconomico;
     int puntajeCrudo;
     String nse;
+    String fechaAplicacion;
     int fkBebe;
 
     public SocioeconomicoModelo() {
     }
 
-    public SocioeconomicoModelo(int puntajeCrudo, String nse, int fkBebe) {
+    public SocioeconomicoModelo(int puntajeCrudo, String nse, String fechaAplicacion, int fkBebe) {
         this.puntajeCrudo = puntajeCrudo;
         this.nse = nse;
+        this.fechaAplicacion = fechaAplicacion;
         this.fkBebe = fkBebe;
     }
 
@@ -62,13 +64,23 @@ public class SocioeconomicoModelo {
     public void setFkBebe(int fkBebe) {
         this.fkBebe = fkBebe;
     }
+
+    public String getFechaAplicacion() {
+        return fechaAplicacion;
+    }
+
+    public void setFechaAplicacion(String fechaAplicacion) {
+        this.fechaAplicacion = fechaAplicacion;
+    }
+    
+    
     
     public void createSocioeconomico() throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         String query;
-        query = "INSERT INTO `babywizard`.`socioeconomico` (`puntajeCrudo`, `nse`, `fkBebe`) "
-                + "VALUES ('"+this.getPuntajeCrudo()+"', '"+this.getNse()+"', '"+this.getFkBebe()+"');";
+        query = "INSERT INTO `babywizard`.`socioeconomico` (`puntajeCrudo`, `nse`, `fechaAplicacion`, `fkBebe`) "
+                + "VALUES ('"+this.getPuntajeCrudo()+"', '"+this.getNse()+"', '"+this.getFechaAplicacion()+"', '"+this.getFkBebe()+"');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
         
@@ -80,13 +92,14 @@ public class SocioeconomicoModelo {
         con.close();
     }
     
-    public LinkedList<SocioeconomicoModelo> readSocioeconomico(int idSocioeconomico, int puntajeCrudo, String nse, int fkBebe) throws SQLException{
+    public LinkedList<SocioeconomicoModelo> readSocioeconomico(int idSocioeconomico, int puntajeCrudo, String nse, String fechaAplicacion, int fkBebe) throws SQLException{
     JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
         if(idSocioeconomico>-1) toRead.add("idSocioeconomico = '"+idSocioeconomico+"'");
         if(!"".equals(nse)) toRead.add("nse = '"+nse+"'");
         if(puntajeCrudo>-1) toRead.add("puntajeCrudo = '"+puntajeCrudo+"'");
+        if(!"".equals(fechaAplicacion)) toRead.add("fechaAplicacion = '"+fechaAplicacion+"'");
         if(fkBebe>-1) toRead.add("fkBebe = '"+fkBebe+"'");
         
         String query1 = "SELECT * FROM babywizard.socioeconomico WHERE ";
@@ -116,7 +129,7 @@ public class SocioeconomicoModelo {
         return sms;
     }
     
-    public void updateSocioeconomico(int idSocioeconomicoActualizar, int idSocioeconomico, int puntajeCrudo, String nse, int fkBebe) throws SQLException {
+    public void updateSocioeconomico(int idSocioeconomicoActualizar, int idSocioeconomico, int puntajeCrudo, String nse, String fechaAplicacion, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -131,6 +144,10 @@ public class SocioeconomicoModelo {
         if (puntajeCrudo > -1) {
            String puntajeCrudoQ = "`puntajeCrudo` = '"+puntajeCrudo+"'";
            toUpdate.add(puntajeCrudoQ);
+        }
+        if (!"".equals(fechaAplicacion)) {
+            String fechaAplicacionQ = "`fechaAplicacion` = '"+fechaAplicacion+"'";
+            toUpdate.add(fechaAplicacionQ);
         }
         if (fkBebe > -1) {
            String fkBebeQ = "`fkBebe` = '"+fkBebe+"'";
