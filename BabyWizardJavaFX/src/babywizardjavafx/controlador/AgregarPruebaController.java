@@ -106,6 +106,18 @@ public class AgregarPruebaController implements Initializable {
     private RadioButton sociod;
     @FXML
     private RadioButton socioe;
+    @FXML
+    private RadioButton cdi12;
+    @FXML
+    private ToggleGroup pruebas1;
+    @FXML
+    private RadioButton cdi182430;
+    @FXML
+    private ToggleGroup pruebas2;
+    @FXML
+    private RadioButton icplim;
+    @FXML
+    private ToggleGroup pruebas3;
 
     /**
      * Initializes the controller class.
@@ -199,6 +211,12 @@ public class AgregarPruebaController implements Initializable {
             prueba = "Socioeconómico";
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarSocioeController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        } else if(cdi12.isSelected()){
+            direccion = "/babywizardjavafx/vista/AgregarCdi12.fxml";
+            prueba = "CDI12";
+            FXMLLoader loader = showWindow(direccion,prueba);
+            AgregarCdi12Controller wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else {
                 alertInformation("Alerta","","No hay elemento seleccionado para agregar.");

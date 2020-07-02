@@ -43,6 +43,36 @@ public class Cdi12Modelo {
     String fechaAplicacion;
     int fkBebe;
 
+    public Cdi12Modelo() {
+    }
+
+    
+    
+    public Cdi12Modelo(int primerasFrases, float propPrimerasFrases, int percPrimerasFrases, int comprension, float propComprension, int percComprension, int produccion, float propProduccion, int percProduccion, int totalGestos, float propTotalGestos, int percTotalGestos, int gestosTempranos, float propGestosTempranos, int percGestosTempranos, int gestosTardios, float propGestosTardios, int percGestosTardios, String fechaAplicacion, int fkBebe) {
+        this.primerasFrases = primerasFrases;
+        this.propPrimerasFrases = propPrimerasFrases;
+        this.percPrimerasFrases = percPrimerasFrases;
+        this.comprension = comprension;
+        this.propComprension = propComprension;
+        this.percComprension = percComprension;
+        this.produccion = produccion;
+        this.propProduccion = propProduccion;
+        this.percProduccion = percProduccion;
+        this.totalGestos = totalGestos;
+        this.propTotalGestos = propTotalGestos;
+        this.percTotalGestos = percTotalGestos;
+        this.gestosTempranos = gestosTempranos;
+        this.propGestosTempranos = propGestosTempranos;
+        this.percGestosTempranos = percGestosTempranos;
+        this.gestosTardios = gestosTardios;
+        this.propGestosTardios = propGestosTardios;
+        this.percGestosTardios = percGestosTardios;
+        this.fechaAplicacion = fechaAplicacion;
+        this.fkBebe = fkBebe;
+    }
+
+    
+    
     //Getters y setters (los puedes crear con alt+insert)
     public int getIdCdi12() {
         return idCdi12;

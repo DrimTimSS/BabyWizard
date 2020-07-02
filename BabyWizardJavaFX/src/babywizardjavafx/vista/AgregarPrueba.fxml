@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="1154.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.AgregarPruebaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="1154.0" stylesheets="@EstiloGeneral.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="babywizardjavafx.controlador.AgregarPruebaController">
    <children>
        <GridPane hgap="5.0" layoutX="10.0" layoutY="230.0" prefHeight="300.0" prefWidth="346.0" vgap="5.0">
                <columnConstraints>
@@ -105,7 +105,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <GridPane hgap="10.0" layoutX="595.0" layoutY="311.0" prefHeight="163.0" prefWidth="415.0" vgap="10.0">
+      <GridPane layoutX="595.0" layoutY="311.0" prefHeight="163.0" prefWidth="415.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -115,19 +115,23 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <RadioButton fx:id="w303642" mnemonicParsing="false" text="WPPSI 30 36 42" GridPane.rowIndex="2">
+            <RadioButton fx:id="w303642" mnemonicParsing="false" text="WPPSI 30 36 42" GridPane.rowIndex="1">
             <toggleGroup>
                 <javafx.scene.control.ToggleGroup fx:id="pruebas" />
             </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="w48" mnemonicParsing="false" text="WPPSI 48" toggleGroup="$pruebas" GridPane.rowIndex="3" />
-            <RadioButton fx:id="expcab" mnemonicParsing="false" text="Experimento de cabina" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <RadioButton fx:id="lectconj" mnemonicParsing="false" text="Tarea de Lectura conjunta" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <RadioButton fx:id="cuid" mnemonicParsing="false" text="Cuidador" toggleGroup="$pruebas" GridPane.columnIndex="1" />
-            <RadioButton fx:id="sociod" mnemonicParsing="false" text="Sociodemográfico" toggleGroup="$pruebas" GridPane.rowIndex="1" />
-            <RadioButton fx:id="socioe" mnemonicParsing="false" text="Socioeconómico" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <RadioButton fx:id="w48" mnemonicParsing="false" text="WPPSI 48" toggleGroup="$pruebas" GridPane.rowIndex="2" />
+            <RadioButton fx:id="expcab" mnemonicParsing="false" text="Experimento de cabina" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <RadioButton fx:id="lectconj" mnemonicParsing="false" text="Tarea de Lectura conjunta" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <RadioButton fx:id="cuid" mnemonicParsing="false" text="Cuidador" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <RadioButton fx:id="sociod" mnemonicParsing="false" text="Sociodemográfico" toggleGroup="$pruebas" />
+            <RadioButton fx:id="socioe" mnemonicParsing="false" text="Socioeconómico" toggleGroup="$pruebas" GridPane.columnIndex="1" />
+            <RadioButton fx:id="cdi12" mnemonicParsing="false" text="CDI 12" toggleGroup="$pruebas" GridPane.rowIndex="3" />
+            <RadioButton fx:id="cdi182430" mnemonicParsing="false" text="CDI 18 24 30" toggleGroup="$pruebas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <RadioButton fx:id="icplim" mnemonicParsing="false" text="ICPLIM" toggleGroup="$pruebas" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button layoutX="1040.0" layoutY="475.0" mnemonicParsing="false" onAction="#irAPrueba" text="Continuar" />

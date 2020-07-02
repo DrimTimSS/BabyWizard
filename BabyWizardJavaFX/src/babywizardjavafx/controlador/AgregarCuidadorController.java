@@ -101,12 +101,12 @@ public class AgregarCuidadorController implements Initializable {
             if(!editable){
             CuidadorModelo cm = new CuidadorModelo(correo.getText(), Integer.parseInt(edad.getText()), nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()), relacion.getValue(),idbebe);
             cm.createCuidador();
-            alertInformation("Éxito","","Cuidador agregado exitosamente");
+            alertInformation("Éxito","","Cuidador agregado de forma exitosa");
             Stage actualWindow = (Stage) titulo.getScene().getWindow();
             actualWindow.close();
             } else {
                 cm.updateCuidador(idCuidadorActualizar,-1,correo.getText(), Integer.parseInt(edad.getText()), nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()), relacion.getValue(),idbebe);
-                alertInformation("Éxito","","Cuidador editado exitosamente");
+                alertInformation("Éxito","","Cuidador editado de forma exitosa.");
                 Stage actualWindow = (Stage) titulo.getScene().getWindow();
                 actualWindow.close();
             }
