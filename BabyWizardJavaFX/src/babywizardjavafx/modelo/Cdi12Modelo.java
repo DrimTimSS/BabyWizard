@@ -303,7 +303,7 @@ public class Cdi12Modelo {
             cdi.setGestosTardios(rs.getInt("gestosTardios"));
             cdi.setPropGestosTardios(rs.getFloat("propGestosTardios"));
             cdi.setPercGestosTardios(rs.getInt("percGestosTardios"));
-            
+
             cdi.setFechaAplicacion(rs.getString("fechaAplicacion"));
             cdis.add(cdi);
         }
@@ -375,6 +375,7 @@ public class Cdi12Modelo {
             cdi.setGestosTardios(rs.getInt("gestosTardios"));
             cdi.setPropGestosTardios(rs.getFloat("propGestosTardios"));
             cdi.setPercGestosTardios(rs.getInt("percGestosTardios"));
+            cdi.setFechaAplicacion(rs.getString("fechaAplicacion"));
             cdis.add(cdi);
         }
         con.close();

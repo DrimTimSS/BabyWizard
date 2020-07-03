@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.Cdi12Modelo;
 import babywizardjavafx.modelo.CuidadorModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
@@ -117,6 +118,12 @@ public class EditarController implements Initializable {
     private RadioButton sociodem;
     @FXML
     private RadioButton socioeco;
+    @FXML
+    private RadioButton cdi12;
+    @FXML
+    private RadioButton cdi182430;
+    @FXML
+    private RadioButton icplim;
 
     /**
      * Initializes the controller class.
@@ -454,6 +461,44 @@ public class EditarController implements Initializable {
                 lcont.inicializarBebe(id);
                 lcont.setLecturaAEditar(lcm);
                 lcont.setCampos();
+            }
+        } else
+        //====================================================
+        //Para editar CDI12
+        //====================================================
+        if (cdi12.isSelected()) {
+            Cdi12Modelo cdim = new Cdi12Modelo();
+            List<String> choices = new LinkedList<>();
+            LinkedList<Cdi12Modelo> cdis = cdim.readCdi12(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", id);
+            if(cdis.size()<1) {
+                alertInformation("Alerta","","No hay CDI 12 registrado.");
+                return;
+            } //echar notificacion
+            for(Cdi12Modelo c:cdis){
+                //System.out.println(c.getFechaAplicacion());
+                choices.add(c.getIdCdi12()+" "+c.getFechaAplicacion());
+            }
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                cdim = cdim.readCdi12(Integer.parseInt(result.get().split(" ")[0]), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1).getFirst();
+                direccion = "/babywizardjavafx/vista/AgregarCdi12.fxml";
+                prueba = "CDI 12";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                AgregarCdi12Controller cdicont = loader.getController();
+
+                cdicont.setEditable(true);
+                cdicont.setIdBebeActualizar(id);
+                cdicont.inicializarBebe(id);
+                cdicont.setCdi12AEditar(cdim);
+                cdicont.setCampos();
             }
         } else if (expcab.isSelected()) {
             direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";

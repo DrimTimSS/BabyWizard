@@ -9,6 +9,7 @@ import babywizardjavafx.modelo.Cdi12Modelo;
 import com.mysql.cj.util.StringUtils;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -75,6 +76,8 @@ public class AgregarCdi12Controller implements Initializable {
     
     private int idbebe;
     private boolean editable;
+    private int idBebeActualizar;
+    private Cdi12Modelo cdimactualizar;
 
     /**
      * Initializes the controller class.
@@ -88,15 +91,21 @@ public class AgregarCdi12Controller implements Initializable {
     private void agregar(ActionEvent event) throws SQLException {
         String fechan = "";
         if (!(isEmpty(cmp)||isEmpty(propcmp)||isEmpty(perccmp)||isEmpty(prod)||isEmpty(propprod)||isEmpty(percprod)||isEmpty(gt)||isEmpty(propgt)||isEmpty(percgt)||isEmpty(pf)||isEmpty(proppf)||isEmpty(percpf)||isEmpty(gta)||isEmpty(propgta)||isEmpty(percgta)||isEmpty(gtot)||isEmpty(propgtot)||isEmpty(percgtot)||fechaAplicacion.getValue()==null)) {
-            if (!editable) {
-                //try {
+            try {
+            
+                if (!editable) {
+                    System.out.println("oa");
                     fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     Cdi12Modelo cdim = new Cdi12Modelo(Integer.parseInt(pf.getText()),Float.parseFloat(proppf.getText()),Integer.parseInt(percpf.getText()),Integer.parseInt(cmp.getText()),Float.parseFloat(propcmp.getText()),Integer.parseInt(perccmp.getText()),Integer.parseInt(prod.getText()),Float.parseFloat(propprod.getText()),Integer.parseInt(percprod.getText()),Integer.parseInt(gtot.getText()),Float.parseFloat(propgtot.getText()),Integer.parseInt(percgtot.getText()),Integer.parseInt(gt.getText()),Float.parseFloat(propgt.getText()),Integer.parseInt(percgt.getText()),Integer.parseInt(gta.getText()),Float.parseFloat(propgta.getText()),Integer.parseInt(percgta.getText()),fechan,idbebe);
                     cdim.createCdi12();
-                    alertInformation("Éxito","","CDI 12 agregado de forma exitosa.");
-                //} catch (Exception e) {
-                    
-                //}
+                    alertInformation("Éxito","","CDI 12 agregado de forma exitosa.");   
+                } else {
+                    fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    cdimactualizar.updateCdi12(cdimactualizar.getIdCdi12(), -1, Integer.parseInt(pf.getText()),Float.parseFloat(proppf.getText()),Integer.parseInt(percpf.getText()),Integer.parseInt(cmp.getText()),Float.parseFloat(propcmp.getText()),Integer.parseInt(perccmp.getText()),Integer.parseInt(prod.getText()),Float.parseFloat(propprod.getText()),Integer.parseInt(percprod.getText()),Integer.parseInt(gtot.getText()),Float.parseFloat(propgtot.getText()),Integer.parseInt(percgtot.getText()), Integer.parseInt(gt.getText()),Float.parseFloat(propgt.getText()),Integer.parseInt(percgt.getText()),Integer.parseInt(gta.getText()),Float.parseFloat(propgta.getText()),Integer.parseInt(percgta.getText()), fechan, -1);
+                    alertInformation("Éxito","","CDI 12 editado de forma exitosa.");
+                }
+            } catch (Exception e) {
+                    return;
             }
         } else {
             return;
@@ -124,5 +133,48 @@ public class AgregarCdi12Controller implements Initializable {
         } else {alert.setHeaderText(header);}
         alert.setContentText(contenido);
         alert.showAndWait();
+    }
+
+    void setEditable(boolean b) {
+        this.editable = b;
+    }
+
+    void setIdBebeActualizar(int id) {
+        this.idBebeActualizar = id;
+    }
+
+    void setCdi12AEditar(Cdi12Modelo cdimactualizar) {
+        this.cdimactualizar = cdimactualizar;
+    }
+
+    void setCampos() {
+        try {
+            fechaAplicacion.setValue(LocalDate.parse(cdimactualizar.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        } catch (Exception e) {
+        
+        }
+        cmp.setText(cdimactualizar.getComprension()+"");
+        propcmp.setText(cdimactualizar.getPropComprension()+"");
+        perccmp.setText(cdimactualizar.getPercComprension()+"");
+        
+        prod.setText(cdimactualizar.getProduccion()+"");
+        propprod.setText(cdimactualizar.getPropProduccion()+"");
+        percprod.setText(cdimactualizar.getPercProduccion()+"");
+        
+        gt.setText(cdimactualizar.getGestosTempranos()+"");
+        propgt.setText(cdimactualizar.getPropGestosTempranos()+"");
+        percgt.setText(cdimactualizar.getPercGestosTempranos()+"");
+        
+        pf.setText(cdimactualizar.getPrimerasFrases()+"");
+        proppf.setText(cdimactualizar.getPropPrimerasFrases()+"");
+        percpf.setText(cdimactualizar.getPercPrimerasFrases()+"");
+        
+        gta.setText(cdimactualizar.getGestosTardios()+"");
+        propgta.setText(cdimactualizar.getPropGestosTardios()+"");
+        percgta.setText(cdimactualizar.getPercGestosTardios()+"");
+        
+        gtot.setText(cdimactualizar.getTotalGestos()+"");
+        propgtot.setText(cdimactualizar.getPropTotalGestos()+"");
+        percgtot.setText(cdimactualizar.getPercTotalGestos()+"");
     }
 }
