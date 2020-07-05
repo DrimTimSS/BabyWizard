@@ -497,7 +497,7 @@ public class Cdi12Modelo {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         Statement stmt = con.createStatement();
-        stmt.executeUpdate("DELETE FROM `babywizard`.`cdi12` WHERE (`idBebe` = '"+idCdi12+"');");
+        stmt.executeUpdate("DELETE FROM `babywizard`.`cdi12` WHERE (`idCdi12` = '"+idCdi12+"');");
         con.close();
     }
 }

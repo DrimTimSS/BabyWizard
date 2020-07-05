@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.Cdi12Modelo;
 import babywizardjavafx.modelo.ExperimentoCabinaModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
@@ -246,35 +247,44 @@ public class BorrarController implements Initializable {
     
     public void encontrarPruebas() throws SQLException{
         
-        if(!idbebeaborrar.getText().equals("")){
-        listaexperimentos.getItems().clear();
-        listaPruebas.clear();
-        ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo();
-        LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
-        Wppsi303642Modelo w30 = new Wppsi303642Modelo();
-        Wppsi48Modelo w48 = new Wppsi48Modelo();
-        if(ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size()>0) listaPruebas.add("Experimento de Cabina.");
-        LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText()));
-        if(lecturas.size()>0){
-            for(LecturaConjuntaModelo l:lecturas){
-                listaPruebas.add("ID: "+l.getIdLecturaConjunta()+", Lectura Conjunta: "+l.getTypeOrTokenString()+" "+l.getCuidadorBebeString());
+        if (!idbebeaborrar.getText().equals("")) {
+            listaexperimentos.getItems().clear();
+            listaPruebas.clear();
+            ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo();
+            LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
+            Wppsi303642Modelo w30 = new Wppsi303642Modelo();
+            Wppsi48Modelo w48 = new Wppsi48Modelo();
+            Cdi12Modelo cdi12 = new Cdi12Modelo();
+            if (ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size() > 0) {
+                listaPruebas.add("Experimento de Cabina.");
             }
+            LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText()));
+            if (lecturas.size() > 0) {
+                for (LecturaConjuntaModelo l : lecturas) {
+                    listaPruebas.add("ID: " + l.getIdLecturaConjunta() + ", Lectura Conjunta: " + l.getTypeOrTokenString() + " " + l.getCuidadorBebeString());
+                }
+            }
+            LinkedList<Wppsi303642Modelo> w30s = w30.readWppsi303642(-1, -1, -1, -1, -1, -1, "", Integer.parseInt(idbebeaborrar.getText()), -1);
+            if (w30s.size() > 0) {
+                for (Wppsi303642Modelo w : w30s) {
+                    listaPruebas.add("ID: " + w.getIdWppsi303642() + ", WPPSI303642 " + w.getFechaAplicacion());
+                }
+            }
+            LinkedList<Wppsi48Modelo> w48s = w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText()));
+            if (w48s.size() > 0) {
+                for (Wppsi48Modelo w : w48s) {
+                    listaPruebas.add("ID: " + w.getIdWppsi48() + ", WPPSI48 " + w.getFechaAplicacion());
+                }
+            }
+            LinkedList<Cdi12Modelo> cdi12s = cdi12.readCdi12(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", Integer.parseInt(idbebeaborrar.getText()));
+            if (cdi12s.size() > 0) {
+                for (Cdi12Modelo c : cdi12s) {
+                    listaPruebas.add("ID: " + c.getIdCdi12() + ", CDI12 " + c.getFechaAplicacion());
+                }
+            }
+            
+            listaexperimentos.getItems().addAll(listaPruebas);
         }
-        LinkedList<Wppsi303642Modelo> w30s = w30.readWppsi303642(-1, -1, -1, -1, -1, -1,"", Integer.parseInt(idbebeaborrar.getText()),-1);
-        if(w30s.size()>0){
-            for(Wppsi303642Modelo w:w30s) {
-                listaPruebas.add("ID: "+w.getIdWppsi303642()+", WPPSI303642 "+w.getFechaAplicacion());
-            }       
-        }
-        LinkedList<Wppsi48Modelo> w48s = w48.readWppsi48(-1, -1, -1, -1, -1, -1, -1,-1,-1,-1,-1,-1,-1,-1,-1,"",-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,Integer.parseInt(idbebeaborrar.getText()));
-        if(w48s.size()>0){
-            for(Wppsi48Modelo w:w48s) {
-                listaPruebas.add("ID: "+w.getIdWppsi48()+", WPPSI48 "+w.getFechaAplicacion());
-            }  
-        }
-        listaexperimentos.getItems().addAll(listaPruebas);
-        }
-        
     }
 
     @FXML
@@ -301,6 +311,10 @@ public class BorrarController implements Initializable {
                 } else if (prueba.equals("WPPSI48")) {
                     Wppsi48Modelo w = new Wppsi48Modelo();
                     w.deleteWppsi48(idelementoaborrar);
+                    alertInformation("Éxito","","Elemento borrado de forma exitosa.");
+                } else if (prueba.equals("CDI12")) {
+                    Cdi12Modelo c = new Cdi12Modelo();
+                    c.deleteCdi12(idelementoaborrar);
                     alertInformation("Éxito","","Elemento borrado de forma exitosa.");
                 }
                 encontrarPruebas();
