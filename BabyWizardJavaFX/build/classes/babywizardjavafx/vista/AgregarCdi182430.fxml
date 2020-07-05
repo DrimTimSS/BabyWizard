@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="babywizardjavafx.controlador.AgregarCdi182430Controller">
+    <stylesheets>
+        <URL value="@EstiloGeneral.css" />
+    </stylesheets>
+   <children>
+      <GridPane layoutX="85.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="630.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="146.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="169.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label id="resaltar" text="P3l Palabras" GridPane.rowIndex="3" />
+            <Label text="Perc. P3l Palabras" GridPane.rowIndex="4" />
+            <Label id="resaltar" text="Producción" />
+            <Label text="Prop. Producción" GridPane.rowIndex="1" />
+            <Label text="Perc. Producción" GridPane.rowIndex="2" />
+            <Label id="resaltar" text="Complejidad de frases" GridPane.columnIndex="2" />
+            <Label text="Prop. Complejidad de Frases" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label text="Perc. Complejidad de Frases" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="prod" GridPane.columnIndex="1" />
+            <TextField fx:id="propprod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="percprod" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="p3lpal" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="percp3l" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="complej" GridPane.columnIndex="3" />
+            <TextField fx:id="propcomplej" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="perccomplej" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="agregar" mnemonicParsing="false" onAction="#agregar" text="Agregar" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+         </children>
+      </GridPane>
+      <Label fx:id="label" layoutX="312.0" layoutY="510.0" style="-fx-fill: red;" text="No se llenaron todos los campos!" visible="false" />
+      <DatePicker fx:id="fechaAplicacion" layoutX="49.0" layoutY="34.0" promptText="Fecha Aplicación" />
+      <Label id="subtitulo" fx:id="titulo1" layoutX="402.0" layoutY="47.0" text="CDI 182430">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

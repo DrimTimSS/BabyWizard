@@ -218,6 +218,18 @@ public class AgregarPruebaController implements Initializable {
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarCdi12Controller wcont = loader.getController();
             wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        } else if(cdi182430.isSelected()){
+            direccion = "/babywizardjavafx/vista/AgregarCdi182430.fxml";
+            prueba = "CDI12";
+            FXMLLoader loader = showWindow(direccion,prueba);
+            AgregarCdi182430Controller wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+        } else if(icplim.isSelected()){
+            direccion = "/babywizardjavafx/vista/AgregarIcplim.fxml";
+            prueba = "CDI12";
+            FXMLLoader loader = showWindow(direccion,prueba);
+            AgregarIcplimController wcont = loader.getController();
+            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
         } else {
                 alertInformation("Alerta","","No hay elemento seleccionado para agregar.");
                 return;
