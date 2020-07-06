@@ -320,22 +320,22 @@ public class Cdi12Modelo {
         if(idCdi12>-1) toRead.add("idCdi12 = '"+idCdi12+"'");
         if(primerasFrases>-1) toRead.add("primerasFrases = '"+primerasFrases+"'");
         if(propPrimerasFrases>=0) toRead.add("propPrimerasFrases = '"+propPrimerasFrases+"'");
-        if(percPrimerasFrases>1) toRead.add("percPrimerasFrases = '"+percPrimerasFrases+"'");
+        if(percPrimerasFrases>-1) toRead.add("percPrimerasFrases = '"+percPrimerasFrases+"'");
         if(comprension>-1) toRead.add("comprension = '"+comprension+"'");
         if(propComprension>=0) toRead.add("propComprension = '"+propComprension+"'");
-        if(percComprension>1) toRead.add("percComprension = '"+percComprension+"'");
+        if(percComprension>-1) toRead.add("percComprension = '"+percComprension+"'");
         if(produccion>-1) toRead.add("produccion = '"+produccion+"'");
         if(propProduccion>=0) toRead.add("propProduccion = '"+propProduccion+"'");
-        if(percProduccion>1) toRead.add("percProduccion = '"+percProduccion+"'");
+        if(percProduccion>-1) toRead.add("percProduccion = '"+percProduccion+"'");
         if(totalGestos>-1) toRead.add("totalGestos = '"+totalGestos+"'");
         if(propTotalGestos>=0) toRead.add("propTotalGestos = '"+propTotalGestos+"'");
-        if(percTotalGestos>1) toRead.add("percTotalGestos = '"+percTotalGestos+"'");
+        if(percTotalGestos>-1) toRead.add("percTotalGestos = '"+percTotalGestos+"'");
         if(gestosTempranos>-1) toRead.add("gestosTempranos = '"+gestosTempranos+"'");
         if(propGestosTempranos>=0) toRead.add("propGestosTempranos = '"+propGestosTempranos+"'");
-        if(percGestosTempranos>1) toRead.add("percGestosTempranos = '"+percGestosTempranos+"'");
+        if(percGestosTempranos>-1) toRead.add("percGestosTempranos = '"+percGestosTempranos+"'");
         if(gestosTardios>-1) toRead.add("gestosTardios = '"+gestosTardios+"'");
         if(propGestosTardios>=0) toRead.add("propGestosTardios = '"+propGestosTardios+"'");
-        if(percGestosTardios>1) toRead.add("percGestosTardios = '"+percGestosTardios+"'");
+        if(percGestosTardios>-1) toRead.add("percGestosTardios = '"+percGestosTardios+"'");
         if(!(fechaAplicacion.equals(""))) toRead.add("fechaAplicacion = '"+fechaAplicacion+"'");
         if(fkBebe>-1) toRead.add("fkBebe = '"+fkBebe+"'");
         
@@ -393,7 +393,7 @@ public class Cdi12Modelo {
            toUpdate.add(idCdi12Q);
         }
         
-        if (primerasFrases > 1) {
+        if (primerasFrases > -1) {
            String primerasFrasesQ = "`primerasFrases` = '"+primerasFrases+"'";
            toUpdate.add(primerasFrasesQ);
         }
@@ -401,12 +401,12 @@ public class Cdi12Modelo {
            String propPrimerasFrasesQ = "`propPrimerasFrases` = '"+propPrimerasFrases+"'";
            toUpdate.add(propPrimerasFrasesQ);
         }
-        if (percPrimerasFrases > 1) {
+        if (percPrimerasFrases > -1) {
            String percPrimerasFrasesQ = "`percPrimerasFrases` = '"+percPrimerasFrases+"'";
            toUpdate.add(percPrimerasFrasesQ);
         }
         
-        if (comprension > 1) {
+        if (comprension > -1) {
            String comprensionQ = "`comprension` = '"+comprension+"'";
            toUpdate.add(comprensionQ);
         }
@@ -414,12 +414,12 @@ public class Cdi12Modelo {
            String propComprensionQ = "`propComprension` = '"+propComprension+"'";
            toUpdate.add(propComprensionQ);
         }
-        if (percComprension > 1) {
+        if (percComprension > -1) {
            String percComprensionQ = "`percComprension` = '"+percComprension+"'";
            toUpdate.add(percComprensionQ);
         }
         
-        if (produccion > 1) {
+        if (produccion > -1) {
            String produccionQ = "`produccion` = '"+produccion+"'";
            toUpdate.add(produccionQ);
         }
@@ -427,12 +427,12 @@ public class Cdi12Modelo {
            String propProduccionQ = "`propProduccion` = '"+propProduccion+"'";
            toUpdate.add(propProduccionQ);
         }
-        if (percProduccion > 1) {
+        if (percProduccion > -1) {
            String percProduccionQ = "`percProduccion` = '"+percProduccion+"'";
            toUpdate.add(percProduccionQ);
         }
         
-        if (totalGestos > 1) {
+        if (totalGestos > -1) {
            String totalGestosQ = "`totalGestos` = '"+totalGestos+"'";
            toUpdate.add(totalGestosQ);
         }
@@ -440,12 +440,12 @@ public class Cdi12Modelo {
            String propTotalGestosQ = "`propTotalGestos` = '"+propTotalGestos+"'";
            toUpdate.add(propTotalGestosQ);
         }
-        if (percTotalGestos > 1) {
+        if (percTotalGestos > -1) {
            String percTotalGestosQ = "`percTotalGestos` = '"+percTotalGestos+"'";
            toUpdate.add(percTotalGestosQ);
         }
         
-        if (gestosTempranos > 1) {
+        if (gestosTempranos > -1) {
            String gestosTempranosQ = "`gestosTempranos` = '"+gestosTempranos+"'";
            toUpdate.add(gestosTempranosQ);
         }
@@ -453,12 +453,12 @@ public class Cdi12Modelo {
            String propGestosTempranosQ = "`propGestosTempranos` = '"+propGestosTempranos+"'";
            toUpdate.add(propGestosTempranosQ);
         }
-        if (percGestosTempranos > 1) {
+        if (percGestosTempranos > -1) {
            String percGestosTempranosQ = "`percGestosTempranos` = '"+percGestosTempranos+"'";
            toUpdate.add(percGestosTempranosQ);
         }
         
-        if (gestosTardios > 1) {
+        if (gestosTardios > -1) {
            String gestosTardiosQ = "`gestosTardios` = '"+gestosTardios+"'";
            toUpdate.add(gestosTardiosQ);
         }
@@ -466,7 +466,7 @@ public class Cdi12Modelo {
            String propGestosTardiosQ = "`propGestosTardios` = '"+propGestosTardios+"'";
            toUpdate.add(propGestosTardiosQ);
         }
-        if (percGestosTardios > 1) {
+        if (percGestosTardios > -1) {
            String percGestosTardiosQ = "`percGestosTardios` = '"+percGestosTardios+"'";
            toUpdate.add(percGestosTardiosQ);
         }
