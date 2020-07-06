@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.Cdi182430Modelo;
+import babywizardjavafx.modelo.IcplimModelo;
 import com.mysql.cj.util.StringUtils;
 import java.net.URL;
 import java.sql.SQLException;
@@ -74,8 +75,6 @@ public class AgregarCdi182430Controller implements Initializable {
             try{
                 fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 if(!editable){
-                    System.out.println("oa k gas");
-                    
                     Cdi182430Modelo cdim = new Cdi182430Modelo(Integer.parseInt(prod.getText()), Float.parseFloat(propprod.getText()), Integer.parseInt(percprod.getText()), Float.parseFloat(p3lpal.getText()), Integer.parseInt(percp3l.getText()), Integer.parseInt(complej.getText()), Float.parseFloat(propcomplej.getText()), Integer.parseInt(perccomplej.getText()), fechan, idbebe);
                     cdim.createCdi182430Modelo();
                     alertInformation("Éxito","","CDI 182430 creado de forma exitosa.");
@@ -124,9 +123,9 @@ public class AgregarCdi182430Controller implements Initializable {
     public void setIdBebeActualizar(int idBebeActualizar) {
         this.idBebeActualizar = idBebeActualizar;
     }
-
-    public void setCdimactualizar(Cdi182430Modelo cdimactualizar) {
-        this.cdimactualizar = cdimactualizar;
+    
+    void setCdi182430AEditar(Cdi182430Modelo cdim) {
+        this.cdimactualizar = cdim;
     }
     
     private void alertInformation(String titulo, String header, String contenido) {

@@ -51,7 +51,7 @@ public class AgregarIcplimController implements Initializable {
     private int idbebe;
     private boolean editable;
     private int idBebeActualizar;
-    private IcplimModelo imactualizar;
+    private IcplimModelo icplimAEditar;
 
     /**
      * Initializes the controller class.
@@ -73,7 +73,7 @@ public class AgregarIcplimController implements Initializable {
                     im.createIcplimModelo();
                     alertInformation("Éxito","","Icplim agregado de forma exitosa.");
                 } else{
-                    imactualizar.updateIcplim(imactualizar.getIdIcplim(), -1, Integer.parseInt(c.getText()), Float.parseFloat(propc.getText()), Integer.parseInt(cyd.getText()), Float.parseFloat(propcyd.getText()), Integer.parseInt(total.getText()), Float.parseFloat(proptotal.getText()), fechan, -1);
+                    icplimAEditar.updateIcplim(icplimAEditar.getIdIcplim(), -1, Integer.parseInt(c.getText()), Float.parseFloat(propc.getText()), Integer.parseInt(cyd.getText()), Float.parseFloat(propcyd.getText()), Integer.parseInt(total.getText()), Float.parseFloat(proptotal.getText()), fechan, -1);
                     alertInformation("Éxito","","Icplim editado de forma exitosa.");
                 }
             } catch(Exception e){
@@ -85,16 +85,16 @@ public class AgregarIcplimController implements Initializable {
     
     void setCampos() {
         try {
-            fechaAplicacion.setValue(LocalDate.parse(imactualizar.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            fechaAplicacion.setValue(LocalDate.parse(icplimAEditar.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         } catch (Exception e) {
         
         }
-        c.setText(imactualizar.getC()+"");
-        propc.setText(imactualizar.getPropC()+"");
-        cyd.setText(imactualizar.getcYd()+"");
-        propcyd.setText(imactualizar.getPropCyD()+"");
-        total.setText(imactualizar.getTotal()+"");
-        proptotal.setText(imactualizar.getTotal()+"");
+        c.setText(icplimAEditar.getC()+"");
+        propc.setText(icplimAEditar.getPropC()+"");
+        cyd.setText(icplimAEditar.getcYd()+"");
+        propcyd.setText(icplimAEditar.getPropCyD()+"");
+        total.setText(icplimAEditar.getTotal()+"");
+        proptotal.setText(icplimAEditar.getTotal()+"");
     }
     
     public boolean isEmpty(TextField textfield) {
@@ -112,9 +112,9 @@ public class AgregarIcplimController implements Initializable {
     public void setIdBebeActualizar(int idBebeActualizar) {
         this.idBebeActualizar = idBebeActualizar;
     }
-
-    public void setImactualizar(IcplimModelo imactualizar) {
-        this.imactualizar = imactualizar;
+    
+    void setIcplimAEditar(IcplimModelo icplimm) {
+        this.icplimAEditar = icplimm;
     }
     
     private void alertInformation(String titulo, String header, String contenido) {
@@ -130,4 +130,6 @@ public class AgregarIcplimController implements Initializable {
         alert.setContentText(contenido);
         alert.showAndWait();
     }
+
+    
 }

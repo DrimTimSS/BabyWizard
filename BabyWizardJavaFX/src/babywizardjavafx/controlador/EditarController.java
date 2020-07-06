@@ -7,7 +7,9 @@ package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.Cdi12Modelo;
+import babywizardjavafx.modelo.Cdi182430Modelo;
 import babywizardjavafx.modelo.CuidadorModelo;
+import babywizardjavafx.modelo.IcplimModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
@@ -500,7 +502,84 @@ public class EditarController implements Initializable {
                 cdicont.setCdi12AEditar(cdim);
                 cdicont.setCampos();
             }
-        } else if (expcab.isSelected()) {
+        } else
+        //====================================================
+        //Para editar CDI182430
+        //====================================================
+        if (cdi182430.isSelected()) {
+            Cdi182430Modelo cdim = new Cdi182430Modelo();
+            List<String> choices = new LinkedList<>();
+            LinkedList<Cdi182430Modelo> cdis = cdim.readCdi182430(-1, -1, -1, -1, -1, -1, -1, -1, -1, "", id);
+            if(cdis.size()<1) {
+                alertInformation("Alerta","","No hay CDI 18 24 30 registrado.");
+                return;
+            } //echar notificacion
+            for(Cdi182430Modelo c:cdis){
+                //System.out.println(c.getFechaAplicacion());
+                choices.add(c.getIdCdi182430()+" "+c.getFechaAplicacion());
+            }
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                cdim = cdim.readCdi182430(Integer.parseInt(result.get().split(" ")[0]), -1, -1, -1, -1, -1, -1, -1, -1, "", -1).getFirst();
+                direccion = "/babywizardjavafx/vista/AgregarCdi182430.fxml";
+                prueba = "CDI 18 24 30";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                AgregarCdi182430Controller cdicont = loader.getController();
+
+                cdicont.setEditable(true);
+                cdicont.setIdBebeActualizar(id);
+                cdicont.inicializarBebe(id);
+                cdicont.setCdi182430AEditar(cdim);
+                cdicont.setCampos();
+            }
+        } else
+        //====================================================
+        //Para editar ICPLIM
+        //====================================================
+        if (icplim.isSelected()) {
+            IcplimModelo icplimm = new IcplimModelo();
+            List<String> choices = new LinkedList<>();
+            LinkedList<IcplimModelo> icplims = icplimm.readIcplim(-1, -1, -1, -1, -1, -1, -1, "", id);
+            if(icplims.size()<1) {
+                alertInformation("Alerta","","No hay ICPLIM registrado.");
+                return;
+            } //echar notificacion
+            for(IcplimModelo i:icplims){
+                //System.out.println(c.getFechaAplicacion());
+                choices.add(i.getIdIcplim()+" "+i.getFechaAplicacion());
+            }
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                icplimm = icplimm.readIcplim(Integer.parseInt(result.get().split(" ")[0]), -1, -1, -1, -1, -1, -1, "", -1).getFirst();
+                direccion = "/babywizardjavafx/vista/AgregarIcplim.fxml";
+                prueba = "ICPLIM";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                AgregarIcplimController cdicont = loader.getController();
+
+                cdicont.setEditable(true);
+                cdicont.setIdBebeActualizar(id);
+                cdicont.inicializarBebe(id);
+                cdicont.setIcplimAEditar(icplimm);
+                cdicont.setCampos();
+            }
+        } else
+            if (expcab.isSelected()) {
             direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";
             prueba = "Experimento de Cabina";
             FXMLLoader loader = showWindow(direccion, prueba);
