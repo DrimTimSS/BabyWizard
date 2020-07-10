@@ -66,11 +66,11 @@ public class IcplimModelo {
         this.propC = propC;
     }
 
-    public int getcYd() {
+    public int getCYd() {
         return cYd;
     }
 
-    public void setcYd(int cYd) {
+    public void setCYd(int cYd) {
         this.cYd = cYd;
     }
 
@@ -120,7 +120,7 @@ public class IcplimModelo {
         Connection con = jdbc.getConnection();
         String query;
         query = "INSERT INTO `babywizard`.`icplim` (`C`, `propC`, `CyD`, `propCyD`, `total`, `propTotal`, `fechaAplicacion`, `fkBebe`) "
-                + "VALUES ('" + this.getC() + "', '" + this.getPropC() + "', '" + this.getcYd() + "', '" + this.getPropCyD() + "', '" + this.getTotal() + "', '" + this.getPropTotal() + "', '" + this.getFechaAplicacion() + "', '" + this.getFkBebe() + "');";
+                + "VALUES ('" + this.getC() + "', '" + this.getPropC() + "', '" + this.getCYd() + "', '" + this.getPropCyD() + "', '" + this.getTotal() + "', '" + this.getPropTotal() + "', '" + this.getFechaAplicacion() + "', '" + this.getFkBebe() + "');";
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 
@@ -156,7 +156,7 @@ public class IcplimModelo {
             icplim.setC(rs.getInt("C"));
             icplim.setPropC(rs.getFloat("propC"));
 
-            icplim.setcYd(rs.getInt("CyD"));
+            icplim.setCYd(rs.getInt("CyD"));
             icplim.setPropCyD(rs.getFloat("propCyD"));
 
             icplim.setTotal(rs.getInt("total"));
@@ -225,7 +225,7 @@ public class IcplimModelo {
             icplim.setC(rs.getInt("C"));
             icplim.setPropC(rs.getFloat("propC"));
 
-            icplim.setcYd(rs.getInt("CyD"));
+            icplim.setCYd(rs.getInt("CyD"));
             icplim.setPropCyD(rs.getFloat("propCyD"));
 
             icplim.setTotal(rs.getInt("total"));

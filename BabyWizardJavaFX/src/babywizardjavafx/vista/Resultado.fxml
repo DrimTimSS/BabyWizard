@@ -35,6 +35,9 @@
             <Button minWidth="70.0" mnemonicParsing="false" onAction="#showLectCab" text="Lect. Conj." />
             <Button minWidth="64.0" mnemonicParsing="false" onAction="#showWppsi30" text="WPPSI30" />
             <Button minWidth="64.0" mnemonicParsing="false" onAction="#showWppsi48" text="WPPSI48" />
+            <Button minWidth="64.0" mnemonicParsing="false" onAction="#showCdi12" text="CDI12" />
+            <Button minWidth="64.0" mnemonicParsing="false" onAction="#showCdi18" text="CDI18" />
+            <Button minWidth="64.0" mnemonicParsing="false" onAction="#showIcplim" text="ICPLIM" />
          </children>
       </HBox>
       <TableView fx:id="resultadoswppsi30" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -217,6 +220,56 @@
             <TableColumn fx:id="resdias" minWidth="120.0" prefWidth="120.0" text="Días" />
             <TableColumn fx:id="resusuario" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="130.0" text="Registró" />
         </columns>
+      </TableView>
+      <TableView fx:id="resultadoscdi12" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <columns>
+            <TableColumn fx:id="residinfantecdi12" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="90.0" text="ID Infante" />
+            <TableColumn fx:id="respf" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="130.0" text="Primeras Frases" />
+            <TableColumn fx:id="resproppf" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="Prop. P.F." />
+            <TableColumn fx:id="respercpf" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="Perc. P.F." />
+            <TableColumn fx:id="rescmp" maxWidth="1.7976931348623157E308" minWidth="105.0" prefWidth="105.0" text="Compresion" />
+            <TableColumn fx:id="respropcmp" maxWidth="1.7976931348623157E308" minWidth="105.0" prefWidth="105.0" text="Prop. Comp." />
+            <TableColumn fx:id="resperccmp" maxWidth="1.7976931348623157E308" minWidth="105.0" prefWidth="105.0" text="Perc. Comp." />
+            <TableColumn fx:id="resprod" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="170.0" text="Producción" />
+            <TableColumn fx:id="respropprod" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="170.0" text="Prop. Prod." />
+            <TableColumn fx:id="respercprod" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="170.0" text="Perc. Prod." />
+            <TableColumn fx:id="resgtemp" minWidth="150.0" prefWidth="150.0" text="Gestos Tempranos" visible="false" />
+            <TableColumn fx:id="respropgtemp" minWidth="150.0" prefWidth="150.0" text="Prop. G. Temp." visible="false" />
+            <TableColumn fx:id="resprecgtemp" minWidth="150.0" prefWidth="150.0" text="Perc. G. Temp" visible="false" />
+            <TableColumn fx:id="resgtard" minWidth="150.0" prefWidth="150.0" text="Gestos Tardíos" visible="false" />
+            <TableColumn fx:id="respropgtard" minWidth="150.0" prefWidth="150.0" text="Prop. G. Tard." visible="false" />
+            <TableColumn fx:id="respercgtard" minWidth="150.0" prefWidth="150.0" text="Perc. G. Tard." visible="false" />
+            <TableColumn fx:id="restotg" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" text="Total Gestos" />
+            <TableColumn fx:id="resproptotg" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" text="Prop. T. G." />
+            <TableColumn fx:id="resperctotg" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" text="Perc. T. G." />
+            <TableColumn fx:id="resfechaaplicacioncdi12" minWidth="120.0" prefWidth="120.0" text="FechaAplicacion" />
+         </columns>
+      </TableView>
+      <TableView fx:id="resultadoscdi18" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <columns>
+            <TableColumn fx:id="residinfantecdi18" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="90.0" text="ID Infante" />
+            <TableColumn fx:id="resprodcdi18" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="130.0" text="Producción" />
+            <TableColumn fx:id="respropprodcdi18" prefWidth="75.0" text="Prop. Prod." />
+            <TableColumn fx:id="respercprodcdi18" prefWidth="75.0" text="Perc. Prod." />
+            <TableColumn fx:id="resp3lpalabras" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="P3LPalabras" />
+            <TableColumn fx:id="respercp3lpalabras" prefWidth="75.0" text="Perc. P3LPalabras" />
+            <TableColumn fx:id="rescmpfrasescdi18" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="Complejidad Frases" />
+            <TableColumn fx:id="respropcmpfrasescdi18" prefWidth="75.0" text="Prop. Cmp. F." />
+            <TableColumn fx:id="resperccmpfrasescdi18" prefWidth="75.0" text="Perc. Cmp. F." />
+            <TableColumn fx:id="resfechaaplicacioncdi18" maxWidth="1.7976931348623157E308" minWidth="105.0" prefWidth="105.0" text="Fecha Aplicación" />
+         </columns>
+      </TableView>
+      <TableView fx:id="resultadosicplim" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <columns>
+            <TableColumn fx:id="residinfanteicplim" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="90.0" text="ID Infante" />
+            <TableColumn fx:id="resc" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="130.0" text="C." />
+            <TableColumn fx:id="respropc" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="Prop. C." />
+            <TableColumn fx:id="rescyd" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="CyD" />
+            <TableColumn fx:id="respropcyd" maxWidth="1.7976931348623157E308" minWidth="105.0" prefWidth="105.0" text="Prop CyD" />
+            <TableColumn fx:id="restotalicplim" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="170.0" text="Total" />
+            <TableColumn fx:id="resproptotal" minWidth="150.0" prefWidth="150.0" text="Prop. Total" visible="false" />
+            <TableColumn fx:id="resfechaaplicacionicplim" minWidth="150.0" prefWidth="150.0" text="FechaAplicación" visible="false" />
+         </columns>
       </TableView>
       <Button fx:id="atras" mnemonicParsing="false" onAction="#atras" text="Atrás" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
    </children>

@@ -130,37 +130,25 @@ public class BusquedaController implements Initializable {
     @FXML
     private RadioButton psaludsi;
     @FXML
-    private ToggleGroup gestacion2;
-    @FXML
     private RadioButton psaludno;
     @FXML
     private RadioButton paudicionsi;
-    @FXML
-    private ToggleGroup gestacion3;
     @FXML
     private RadioButton paudicionno;
     @FXML
     private RadioButton pvisionsi;
     @FXML
-    private ToggleGroup gestacion4;
-    @FXML
     private RadioButton pvisionno;
     @FXML
     private RadioButton otroidiomasi;
-    @FXML
-    private ToggleGroup gestacion41;
     @FXML
     private RadioButton otroidiomano;
     @FXML
     private RadioButton guarderiasi;
     @FXML
-    private ToggleGroup gestacion411;
-    @FXML
     private RadioButton guarderiano;
     @FXML
     private RadioButton preescolarsi;
-    @FXML
-    private ToggleGroup gestacion4111;
     @FXML
     private RadioButton preescolarno;
     @FXML
@@ -176,6 +164,24 @@ public class BusquedaController implements Initializable {
     @FXML
     private Button btnbuscar6;
     private boolean abrir;
+    @FXML
+    private ToggleGroup gestacion2;
+    @FXML
+    private ToggleGroup gestacion3;
+    @FXML
+    private ToggleGroup gestacion4;
+    @FXML
+    private ToggleGroup gestacion41;
+    @FXML
+    private ToggleGroup gestacion411;
+    @FXML
+    private ToggleGroup gestacion4111;
+    @FXML
+    private CheckBox cdi12;
+    @FXML
+    private CheckBox cdi182430;
+    @FXML
+    private CheckBox icplim;
 
     /**
      * Initializes the controller class.
@@ -531,6 +537,10 @@ public class BusquedaController implements Initializable {
         String lc = "SELECT lecturaconjunta.fkBebe FROM babywizard.lecturaconjunta";
         String w30 = "SELECT wppsi303642.fkBebe FROM babywizard.wppsi303642";
         String w48 = "SELECT wppsi48.fkBebe FROM babywizard.wppsi48";
+        String c12 = "SELECT cdi12.fkBebe FROM babywizard.cdi12";
+        String c182430 = "SELECT cdi182430.fkBebe FROM babywizard.cdi182430";
+        String icp = "SELECT icplim.fkBebe FROM babywizard.icplim";
+        
         
         int intcounter = 0;
        
@@ -539,6 +549,9 @@ public class BusquedaController implements Initializable {
         intcounter = (wppsi303642.isSelected()) ? ++intcounter : intcounter;
         intcounter = (wppsi48.isSelected()) ? ++intcounter : intcounter;
         intcounter = (experimentocabina.isSelected()) ? ++intcounter : intcounter;
+        intcounter = (cdi12.isSelected()) ? ++intcounter : intcounter;
+        intcounter = (cdi182430.isSelected()) ? ++intcounter : intcounter;
+        intcounter = (icplim.isSelected()) ? ++intcounter : intcounter;
         int parentesises = intcounter;
         if(lecturaconjunta.isSelected()){
             if(intcounter>1) {
@@ -616,6 +629,75 @@ public class BusquedaController implements Initializable {
                 } else {
                     query += w48;
                     primero = true;
+                    intcounter--;
+                }
+            }
+        }
+        if(cdi12.isSelected()){
+            if(primero == false){
+                if(intcounter>1) {
+                    query = c12+" where cdi12.fkBebe IN (";
+                    primero = true;
+                    intcounter--;
+                } else {
+                    query = c12;
+                    primero = true;
+                    intcounter--;
+                }
+            } else {
+                if(intcounter>1) {
+                    query += c12+" where cdi12.fkBebe IN (";
+                    primero = true;
+                    intcounter--;
+                } else {
+                    query += c12;
+                    primero = true;
+                    intcounter--;
+                }
+            }
+        }
+        if(cdi182430.isSelected()){
+            if(primero == false){
+                if(intcounter>1) {
+                    query = c182430+" where cdi182430.fkBebe IN (";
+                    primero = true;
+                    intcounter--;
+                } else {
+                    query = c182430;
+                    primero = true;
+                    intcounter--;
+                }
+            } else {
+                if(intcounter>1) {
+                    query += c182430+" where cdi182430.fkBebe IN (";
+                    primero = true;
+                    intcounter--;
+                } else {
+                    query += c182430;
+                    primero = true;
+                    intcounter--;
+                }
+            }
+        }
+        if(icplim.isSelected()){
+            if(primero == false){
+                if(intcounter>1) {
+                    query = icp+" where icplim.fkBebe IN (";
+                    //primero = true;
+                    intcounter--;
+                } else {
+                    query = icp;
+                    //primero = true;
+                    intcounter--;
+                }
+            } else {
+                if(intcounter>1) {
+                    query += icp+" where icplim.fkBebe IN (";
+                    //primero = true;
+                    intcounter--;
+                } else {
+                    query += icp;
+                    //primero = true;
                     intcounter--;
                 }
             }

@@ -91,7 +91,7 @@ public class AgregarIcplimController implements Initializable {
         }
         c.setText(icplimAEditar.getC()+"");
         propc.setText(icplimAEditar.getPropC()+"");
-        cyd.setText(icplimAEditar.getcYd()+"");
+        cyd.setText(icplimAEditar.getCYd()+"");
         propcyd.setText(icplimAEditar.getPropCyD()+"");
         total.setText(icplimAEditar.getTotal()+"");
         proptotal.setText(icplimAEditar.getTotal()+"");

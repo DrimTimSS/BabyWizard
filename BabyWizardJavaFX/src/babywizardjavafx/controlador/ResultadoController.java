@@ -6,8 +6,11 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.Cdi12Modelo;
+import babywizardjavafx.modelo.Cdi182430Modelo;
 import babywizardjavafx.modelo.CuidadorModelo;
 import babywizardjavafx.modelo.ExperimentoCabinaModelo;
+import babywizardjavafx.modelo.IcplimModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
@@ -406,19 +409,108 @@ public class ResultadoController implements Initializable {
     ObservableList<SocioeconomicoModelo> listaSE = FXCollections.observableArrayList();
     
     @FXML
+    private TableView<Cdi12Modelo> resultadoscdi12;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> residinfantecdi12;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> respf;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> respercpf;
+    @FXML
+    private TableColumn<Cdi12Modelo, Float> resproppf;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> rescmp;
+    @FXML
+    private TableColumn<Cdi12Modelo, Float> respropcmp;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> resperccmp;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> resprod;
+    @FXML
+    private TableColumn<Cdi12Modelo, Float> respropprod;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> respercprod;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> resgtemp;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> resprecgtemp;
+    @FXML
+    private TableColumn<Cdi12Modelo, Float> respropgtemp;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> resgtard;
+    @FXML
+    private TableColumn<Cdi12Modelo, Float> respropgtard;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> respercgtard;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> restotg;
+    @FXML
+    private TableColumn<Cdi12Modelo, Float> resproptotg;
+    @FXML
+    private TableColumn<Cdi12Modelo, Integer> resperctotg;
+    @FXML
+    private TableColumn<Cdi12Modelo, String> resfechaaplicacioncdi12;
+    ObservableList<Cdi12Modelo> listaCdi12 = FXCollections.observableArrayList();
+    
+    @FXML
+    private TableView<Cdi182430Modelo> resultadoscdi18;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Integer> residinfantecdi18;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Integer> resprodcdi18;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Float> respropprodcdi18;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Integer> respercprodcdi18;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Integer> resp3lpalabras;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Integer> respercp3lpalabras;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Integer> rescmpfrasescdi18;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Float> respropcmpfrasescdi18;
+    @FXML
+    private TableColumn<Cdi182430Modelo, Integer> resperccmpfrasescdi18;
+    @FXML
+    private TableColumn<Cdi182430Modelo, String> resfechaaplicacioncdi18;
+    ObservableList<Cdi182430Modelo> listaCdi182430 = FXCollections.observableArrayList();
+    
+    @FXML
+    private TableView<IcplimModelo> resultadosicplim; 
+    @FXML
+    private TableColumn<IcplimModelo, Integer> residinfanteicplim;
+    @FXML
+    private TableColumn<IcplimModelo, Integer> resc;
+    @FXML
+    private TableColumn<IcplimModelo, Float> respropc;
+    @FXML
+    private TableColumn<IcplimModelo, Integer> rescyd;
+    @FXML
+    private TableColumn<IcplimModelo, Float> respropcyd;
+    @FXML
+    private TableColumn<IcplimModelo, Integer> restotalicplim;
+    @FXML
+    private TableColumn<IcplimModelo, Float> resproptotal;
+    @FXML
+    private TableColumn<IcplimModelo, String> resfechaaplicacionicplim;
+    ObservableList<IcplimModelo> listaIcplim = FXCollections.observableArrayList();
+    
+    @FXML
     private Button exportar;
     @FXML
     private Button atras;
-    boolean flaginf;
-    boolean flagcuid;
-    boolean flagsd;
-    boolean flaglc;
-    boolean flagexpc;
-    boolean flagw30;
-    boolean flagw48;
-    boolean flagsocioec;
-    
-    
+    private boolean flaginf;
+    private boolean flagcuid;
+    private boolean flagsd;
+    private boolean flaglc;
+    private boolean flagexpc;
+    private boolean flagw30;
+    private boolean flagw48;
+    private boolean flagsocioec;
+    private boolean flagc12;
+    private boolean flagc18;
+    private boolean flagicplim;
     
     
     /**
@@ -433,7 +525,10 @@ public class ResultadoController implements Initializable {
         flaglc = false;
         flagexpc = false;
         flagw30 = false;
-        flagw48 = false;    
+        flagw48 = false;
+        flagc12 = false;
+        flagc18 = false;
+        flagicplim = false;
         
         resultadosbebe.setTableMenuButtonVisible(true);
         resultadoscuidador.setTableMenuButtonVisible(true);
@@ -905,4 +1000,124 @@ public class ResultadoController implements Initializable {
     public void escenaBusqueda(Scene anterior){
         escenaAnterior = anterior;
     }
+
+    @FXML
+    private void showCdi12(ActionEvent event) throws SQLException {
+        resultadoscdi12.toFront();
+        if(!flagc12) {
+            crearTablaC12();
+            flagc12=true;
+        }
+    }
+    
+    private void crearTablaC12() throws SQLException {
+        Cdi12Modelo c12 = new Cdi12Modelo();
+        LinkedList<Cdi12Modelo> resultados = new LinkedList<>();
+        LinkedList<Cdi12Modelo> cdis = c12.readCdi12PorIds(ids);
+        if (cdis.size() > 0) {
+            for (Cdi12Modelo c : cdis) {
+                resultados.add(c);
+            }
+        }
+        for (Cdi12Modelo m : resultados) {
+            listaCdi12.add(m);
+        }
+        residinfantecdi12.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+        respf.setCellValueFactory(new PropertyValueFactory<>("primerasFrases"));
+        resproppf.setCellValueFactory(new PropertyValueFactory<>("propPrimerasFrases"));
+        respercpf.setCellValueFactory(new PropertyValueFactory<>("percPrimerasFrases"));
+        rescmp.setCellValueFactory(new PropertyValueFactory<>("comprension"));
+        respropcmp.setCellValueFactory(new PropertyValueFactory<>("propComprension"));
+        resperccmp.setCellValueFactory(new PropertyValueFactory<>("percComprension"));
+        resprod.setCellValueFactory(new PropertyValueFactory<>("produccion"));
+        respropprod.setCellValueFactory(new PropertyValueFactory<>("propProduccion"));
+        respercprod.setCellValueFactory(new PropertyValueFactory<>("percProduccion"));
+        resgtemp.setCellValueFactory(new PropertyValueFactory<>("gestosTempranos"));
+        resprecgtemp.setCellValueFactory(new PropertyValueFactory<>("propGestosTempranos"));
+        respropgtemp.setCellValueFactory(new PropertyValueFactory<>("percGestosTempranos"));
+        resgtard.setCellValueFactory(new PropertyValueFactory<>("gestosTardios"));
+        respropgtard.setCellValueFactory(new PropertyValueFactory<>("propGestosTardios"));
+        respercgtard.setCellValueFactory(new PropertyValueFactory<>("percGestosTardios"));
+        restotg.setCellValueFactory(new PropertyValueFactory<>("totalGestos"));
+        resproptotg.setCellValueFactory(new PropertyValueFactory<>("propTotalGestos"));
+        resperctotg.setCellValueFactory(new PropertyValueFactory<>("percTotalGestos"));
+        resfechaaplicacioncdi12.setCellValueFactory(new PropertyValueFactory<>("fechaAplicacion"));
+        
+        resultadoscdi12.setItems(listaCdi12);
+    }
+
+    @FXML
+    private void showCdi18(ActionEvent event) throws SQLException {
+        resultadoscdi18.toFront();
+        if(!flagc18) {
+            crearTablaC18();
+            flagc18=true;
+        }
+    }
+    
+    private void crearTablaC18() throws SQLException {
+        Cdi182430Modelo c18 = new Cdi182430Modelo();
+        LinkedList<Cdi182430Modelo> resultados = new LinkedList<>();
+        LinkedList<Cdi182430Modelo> cdis = c18.readCdi182430PorIds(ids);
+        if (cdis.size() > 0) {
+            for (Cdi182430Modelo c : cdis) {
+                resultados.add(c);
+            }
+        }
+        for (Cdi182430Modelo m : resultados) {
+            listaCdi182430.add(m);
+        }
+        residinfantecdi18.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+        resprodcdi18.setCellValueFactory(new PropertyValueFactory<>("produccion"));
+        respropprodcdi18.setCellValueFactory(new PropertyValueFactory<>("propProduccion"));
+        respercprodcdi18.setCellValueFactory(new PropertyValueFactory<>("percProduccion"));
+        resp3lpalabras.setCellValueFactory(new PropertyValueFactory<>("p3lPalabras"));
+        respercp3lpalabras.setCellValueFactory(new PropertyValueFactory<>("percP3lPalabras"));
+        rescmpfrasescdi18.setCellValueFactory(new PropertyValueFactory<>("complejidadFrases"));
+        respropcmpfrasescdi18.setCellValueFactory(new PropertyValueFactory<>("propComplejidadFrases"));
+        resperccmpfrasescdi18.setCellValueFactory(new PropertyValueFactory<>("percComplejidadFrases"));
+        resfechaaplicacioncdi18.setCellValueFactory(new PropertyValueFactory<>("fechaAplicacion"));
+        
+        resultadoscdi18.setItems(listaCdi182430);
+    }
+
+    @FXML
+    private void showIcplim(ActionEvent event) throws SQLException {
+        resultadosicplim.toFront();
+        if(!flagicplim) {
+            crearTablaIcplim();
+            flagicplim=true;
+        }
+    }
+
+    private void crearTablaIcplim() throws SQLException {
+        IcplimModelo icp = new IcplimModelo();
+        LinkedList<IcplimModelo> resultados = new LinkedList<>();
+        LinkedList<IcplimModelo> icplims = icp.readIcplimPorIds(ids);
+        if (icplims.size() > 0) {
+            for (IcplimModelo i : icplims) {
+                resultados.add(i);
+            }
+        }
+        for (IcplimModelo m : resultados) {
+            
+            residinfanteicplim.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
+            resc.setCellValueFactory(new PropertyValueFactory<>("c"));
+            respropc.setCellValueFactory(new PropertyValueFactory<>("propC"));
+            rescyd.setCellValueFactory(new PropertyValueFactory<>("cYd"));
+            respropcyd.setCellValueFactory(new PropertyValueFactory<>("propCyD"));
+            restotalicplim.setCellValueFactory(new PropertyValueFactory<>("total"));
+            resproptotal.setCellValueFactory(new PropertyValueFactory<>("propTotal"));
+            resfechaaplicacionicplim.setCellValueFactory(new PropertyValueFactory<>("fechaAplicacion"));
+
+            listaIcplim.add(m);
+        }
+        
+        
+        resultadosicplim.setItems(listaIcplim);
+    }
+
+    
+
+    
 }
