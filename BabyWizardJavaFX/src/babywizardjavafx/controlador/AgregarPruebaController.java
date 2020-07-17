@@ -6,6 +6,8 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.CuidadorModelo;
+import babywizardjavafx.modelo.SocioeconomicoModelo;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -13,6 +15,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +33,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -161,11 +166,12 @@ public class AgregarPruebaController implements Initializable {
     }    
 
     @FXML
-    private void irAPrueba(ActionEvent event) throws IOException {
+    private void irAPrueba(ActionEvent event) throws IOException, SQLException {
         if(idbebeprueba.getText().equals("0")){
             alertInformation("Alerta","","No se ha seleccionado un infante al cual se le desee agregar datos.");
             return;
         }
+        int idBebe = Integer.valueOf(idbebeprueba.getText());
         
         String direccion = "";
         String prueba = "";
@@ -174,62 +180,86 @@ public class AgregarPruebaController implements Initializable {
             prueba = "WPPSI 30 36 42";
             FXMLLoader loader = showWindow(direccion,prueba);
             Wppsi303642Controller wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else if(w48.isSelected()){
             direccion = "/babywizardjavafx/vista/Wppsi48.fxml";
             prueba = "WPPSI 48";
             FXMLLoader loader = showWindow(direccion,prueba);
             
             Wppsi48Controller wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else if(lectconj.isSelected()){
-            direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
+            
+            CuidadorModelo cm = new CuidadorModelo();
+            List<String> choices = new LinkedList<>();
+            LinkedList<CuidadorModelo> cuidadores = cm.readCuidador(-1, "", -1, prueba, "", "", "", "", "", -1, "", idBebe);
+            if(cuidadores.size()<1) {
+                alertInformation("Alerta","","No hay cuidador registrado.");
+                return;
+            }
+            for(CuidadorModelo c:cuidadores){
+                choices.add(c.getIdCuidador()+" "+c.getRelacion());
+            }
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento con el que se desea agregar.");
+            dialog.setContentText("¿Cuál es el id del elemento a agregar? ");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
             prueba = "Tarea de Lectura Conjunta";
             FXMLLoader loader = showWindow(direccion,prueba);
             LecturaConjuntaController wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
+            wcont.inicializarCuidador(Integer.parseInt(result.get().split(" ")[0]));
+            }
+            
         } else if(expcab.isSelected()){
             direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";
             prueba = "Experimento de Cabina";
             FXMLLoader loader = showWindow(direccion,prueba);
             ExperimentoCabinaController wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else if(cuid.isSelected()){
             direccion = "/babywizardjavafx/vista/AgregarCuidador.fxml";
             prueba = "Cuidador";
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarCuidadorController wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else if(sociod.isSelected()){
             direccion = "/babywizardjavafx/vista/AgregarSociod.fxml";
             prueba = "Sociodemográfico";
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarSociodController wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else if(socioe.isSelected()){
             direccion = "/babywizardjavafx/vista/AgregarSocioe.fxml";
             prueba = "Socioeconómico";
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarSocioeController wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else if(cdi12.isSelected()){
             direccion = "/babywizardjavafx/vista/AgregarCdi12.fxml";
             prueba = "CDI12";
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarCdi12Controller wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else if(cdi182430.isSelected()){
             direccion = "/babywizardjavafx/vista/AgregarCdi182430.fxml";
             prueba = "CDI12";
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarCdi182430Controller wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else if(icplim.isSelected()){
             direccion = "/babywizardjavafx/vista/AgregarIcplim.fxml";
             prueba = "CDI12";
             FXMLLoader loader = showWindow(direccion,prueba);
             AgregarIcplimController wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            wcont.inicializarBebe(idBebe);
         } else {
                 alertInformation("Alerta","","No hay elemento seleccionado para agregar.");
                 return;

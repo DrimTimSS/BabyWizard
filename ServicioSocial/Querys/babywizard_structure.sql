@@ -70,7 +70,7 @@ CREATE TABLE `cdi12` (
   UNIQUE KEY `idCdi12_UNIQUE` (`idCdi12`),
   KEY `fkInfante_idx` (`fkBebe`),
   CONSTRAINT `fkBebe` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `cdi182430` (
   UNIQUE KEY `idCdi182430_UNIQUE` (`idCdi182430`),
   KEY `fkInfante_idx` (`fkBebe`),
   CONSTRAINT `idCdi182430_ibfk_1` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +166,7 @@ CREATE TABLE `icplim` (
   UNIQUE KEY `idIcplim_UNIQUE` (`idIcplim`),
   KEY `fkBebeIcplim_idx` (`fkBebe`),
   CONSTRAINT `fkBebeIcplim` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,25 +177,58 @@ DROP TABLE IF EXISTS `lecturaconjunta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `lecturaconjunta` (
-  `idLecturaConjunta` int NOT NULL AUTO_INCREMENT,
-  `typeOrToken` tinyint NOT NULL,
-  `preposicion` int NOT NULL,
-  `sustantivo` int NOT NULL,
-  `articulo` int NOT NULL,
-  `verbo` int NOT NULL,
-  `ininteligible` int NOT NULL,
-  `adjetivo` int NOT NULL,
-  `pronombre` int NOT NULL,
-  `adverbio` int NOT NULL,
-  `conjuncion` int NOT NULL,
-  `interjeccion` int NOT NULL,
-  `fkBebe` int DEFAULT NULL,
-  `cuidadorBebe` tinyint NOT NULL,
-  `fechaAplicacion` date DEFAULT NULL,
+  `idLecturaConjunta` int NOT NULL,
+  `typeC` int DEFAULT NULL,
+  `sustantivoC` int DEFAULT NULL,
+  `verboC` int DEFAULT NULL,
+  `adjetivoC` int DEFAULT NULL,
+  `adverbioC` int DEFAULT NULL,
+  `articuloC` int DEFAULT NULL,
+  `pronombreC` int DEFAULT NULL,
+  `preposicionC` int DEFAULT NULL,
+  `conjuncionC` int DEFAULT NULL,
+  `interjeccionC` int DEFAULT NULL,
+  `ininteligibleC` int DEFAULT NULL,
+  `typeCT` int DEFAULT NULL,
+  `sustantivoCT` int DEFAULT NULL,
+  `verboCT` int DEFAULT NULL,
+  `adjetivoCT` int DEFAULT NULL,
+  `adverbioCT` int DEFAULT NULL,
+  `articuloCT` int DEFAULT NULL,
+  `pronombreCT` int DEFAULT NULL,
+  `preposicionCT` int DEFAULT NULL,
+  `conjuncionCT` int DEFAULT NULL,
+  `interjeccionCT` int DEFAULT NULL,
+  `ininteligibleCT` int DEFAULT NULL,
+  `typeBB` int DEFAULT NULL,
+  `sustantivoBB` int DEFAULT NULL,
+  `verboBB` int DEFAULT NULL,
+  `adjetivoBB` int DEFAULT NULL,
+  `adverbioBB` int DEFAULT NULL,
+  `articuloBB` int DEFAULT NULL,
+  `pronombreBB` int DEFAULT NULL,
+  `preposicionBB` int DEFAULT NULL,
+  `conjuncionBB` int DEFAULT NULL,
+  `interjeccionBB` int DEFAULT NULL,
+  `ininteligibleBB` int DEFAULT NULL,
+  `typeBBT` int DEFAULT NULL,
+  `sustantivoBBT` int DEFAULT NULL,
+  `verboBBT` int DEFAULT NULL,
+  `adjetivoBBT` int DEFAULT NULL,
+  `adverbioBBT` int DEFAULT NULL,
+  `articuloBBT` int DEFAULT NULL,
+  `pronombreBBT` int DEFAULT NULL,
+  `preposicionBBT` int DEFAULT NULL,
+  `conjuncionBBT` int DEFAULT NULL,
+  `interjeccionBBT` int DEFAULT NULL,
+  `ininteligibleBBT` int DEFAULT NULL,
+  `fkBebe` int NOT NULL,
+  `cuidador` varchar(45) NOT NULL,
+  `fechaAplicacion` date NOT NULL,
   PRIMARY KEY (`idLecturaConjunta`),
-  UNIQUE KEY `idCategoriaGramatical_UNIQUE` (`idLecturaConjunta`),
+  UNIQUE KEY `idLecturaConjunta_UNIQUE` (`idLecturaConjunta`),
   KEY `fkInfante_idx` (`fkBebe`),
-  CONSTRAINT `fkBebeRana` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fkBebeLecturaConjunta` FOREIGN KEY (`fkBebe`) REFERENCES `bebe` (`idBebe`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -356,4 +389,4 @@ CREATE TABLE `wppsi48` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-04 19:54:01
+-- Dump completed on 2020-07-14 17:52:32

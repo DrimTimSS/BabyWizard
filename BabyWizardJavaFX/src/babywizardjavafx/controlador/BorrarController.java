@@ -7,7 +7,9 @@ package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.Cdi12Modelo;
+import babywizardjavafx.modelo.Cdi182430Modelo;
 import babywizardjavafx.modelo.ExperimentoCabinaModelo;
+import babywizardjavafx.modelo.IcplimModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.Wppsi303642Modelo;
 import babywizardjavafx.modelo.Wppsi48Modelo;
@@ -255,13 +257,15 @@ public class BorrarController implements Initializable {
             Wppsi303642Modelo w30 = new Wppsi303642Modelo();
             Wppsi48Modelo w48 = new Wppsi48Modelo();
             Cdi12Modelo cdi12 = new Cdi12Modelo();
+            Cdi182430Modelo cdi182430 = new Cdi182430Modelo();
+            IcplimModelo icplim = new IcplimModelo();
             if (ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size() > 0) {
                 listaPruebas.add("Experimento de Cabina.");
             }
-            LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText()));
+            LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", Integer.parseInt(idbebeaborrar.getText()));
             if (lecturas.size() > 0) {
                 for (LecturaConjuntaModelo l : lecturas) {
-                    listaPruebas.add("ID: " + l.getIdLecturaConjunta() + ", Lectura Conjunta: " + l.getTypeOrTokenString() + " " + l.getCuidadorBebeString());
+                    listaPruebas.add("ID: " + l.getIdLecturaConjunta() + ", Lectura Conjunta: " + l.getFechaAplicacion());
                 }
             }
             LinkedList<Wppsi303642Modelo> w30s = w30.readWppsi303642(-1, -1, -1, -1, -1, -1, "", Integer.parseInt(idbebeaborrar.getText()), -1);
@@ -280,6 +284,18 @@ public class BorrarController implements Initializable {
             if (cdi12s.size() > 0) {
                 for (Cdi12Modelo c : cdi12s) {
                     listaPruebas.add("ID: " + c.getIdCdi12() + ", CDI12 " + c.getFechaAplicacion());
+                }
+            }
+            LinkedList<Cdi182430Modelo> cdi182430s = cdi182430.readCdi182430(-1, -1, -1, -1, -1, -1, -1, -1, -1, "", Integer.parseInt(idbebeaborrar.getText()));
+            if (cdi182430s.size() > 0) {
+                for (Cdi182430Modelo c : cdi182430s) {
+                    listaPruebas.add("ID: " + c.getIdCdi182430() + ", CDI182430 " + c.getFechaAplicacion());
+                }
+            }
+            LinkedList<IcplimModelo> icplims = icplim.readIcplim(-1, -1, -1, -1, -1, -1, -1, "", Integer.parseInt(idbebeaborrar.getText()));
+            if (icplims.size() > 0) {
+                for (IcplimModelo c : icplims) {
+                    listaPruebas.add("ID: " + c.getIdIcplim() + ", Icplim " + c.getFechaAplicacion());
                 }
             }
             
@@ -315,6 +331,14 @@ public class BorrarController implements Initializable {
                 } else if (prueba.equals("CDI12")) {
                     Cdi12Modelo c = new Cdi12Modelo();
                     c.deleteCdi12(idelementoaborrar);
+                    alertInformation("Éxito","","Elemento borrado de forma exitosa.");
+                } else if (prueba.equals("CDI182430")) {
+                    Cdi182430Modelo c = new Cdi182430Modelo();
+                    c.deleteCdi182430(idelementoaborrar);
+                    alertInformation("Éxito","","Elemento borrado de forma exitosa.");
+                } else if (prueba.equals("Icplim")) {
+                    IcplimModelo c = new IcplimModelo();
+                    c.deleteIcplim(idelementoaborrar);
                     alertInformation("Éxito","","Elemento borrado de forma exitosa.");
                 }
                 encontrarPruebas();

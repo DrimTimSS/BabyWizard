@@ -434,13 +434,13 @@ public class EditarController implements Initializable {
         if (lectconj.isSelected()) {
             LecturaConjuntaModelo lcm = new LecturaConjuntaModelo();
             List<String> choices = new LinkedList<>();
-            LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, id);
+            LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", id);
             if(lecturas.size()<1) {
                 alertInformation("Alerta","","No hay Lectura Conjunta registrada.");
                 return;
             } //echar notificacion
             for(LecturaConjuntaModelo l:lecturas){
-                choices.add(l.getIdLecturaConjunta()+" "+l.getTypeOrTokenString()+" "+l.getCuidadorBebeString());
+                choices.add(l.getIdLecturaConjunta()+" "+l.getFechaAplicacion());
             }
 
             ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
@@ -452,7 +452,7 @@ public class EditarController implements Initializable {
 
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                lcm = lcm.readLecturaConjunta(Integer.parseInt(result.get().split(" ")[0]), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1).getFirst();
+                lcm = lcm.readLecturaConjunta(Integer.parseInt(result.get().split(" ")[0]), -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", -1).getFirst();
                 direccion = "/babywizardjavafx/vista/LecturaConjunta.fxml";
                 prueba = "Lectura Conjunta";
                 FXMLLoader loader = showWindow(direccion, prueba);
