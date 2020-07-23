@@ -187,19 +187,9 @@ public class ResultadoController implements Initializable {
     @FXML
     private TableColumn<ExperimentoCabinaModelo, Integer> idinfanteec;
     @FXML
-    private TableColumn<ExperimentoCabinaModelo, Integer> tipoexpec;
+    private TableColumn<ExperimentoCabinaModelo, String> tipoexpec;
     @FXML
-    private TableColumn<ExperimentoCabinaModelo, Integer> entoprec;
-    @FXML
-    private TableColumn<ExperimentoCabinaModelo, Double> protarpreec;
-    @FXML
-    private TableColumn<ExperimentoCabinaModelo, Double> protarposec;
-    @FXML
-    private TableColumn<ExperimentoCabinaModelo, Double> llkdifpreec;
-    @FXML
-    private TableColumn<ExperimentoCabinaModelo, Double> llkdifposec;
-    @FXML
-    private TableColumn<ExperimentoCabinaModelo, Double> trec;
+    private TableColumn<ExperimentoCabinaModelo, String> resdireccion;
     ObservableList<ExperimentoCabinaModelo> listaEC = FXCollections.observableArrayList();
     
     //Tabla Lectura Conjunta
@@ -207,30 +197,96 @@ public class ResultadoController implements Initializable {
     private TableView<LecturaConjuntaModelo> resultadoslc;
     @FXML
     private TableColumn<LecturaConjuntaModelo,Integer> idinfantelc;
+    
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> typetokenlc;
+    private TableColumn<LecturaConjuntaModelo, Integer> typetokenclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> cuidadorbebelc;
+    private TableColumn<LecturaConjuntaModelo, Integer> preposicionclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> preposicionlc;
+    private TableColumn<LecturaConjuntaModelo, Integer> sustantivoclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> sustantivolc;
+    private TableColumn<LecturaConjuntaModelo, Integer> articuloclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> articulolc;
+    private TableColumn<LecturaConjuntaModelo, Integer> verboclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> verbolc;
+    private TableColumn<LecturaConjuntaModelo, Integer> adjetivoclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> adjetivolc;
+    private TableColumn<LecturaConjuntaModelo, Integer> pronombreclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> pronombrelc;
+    private TableColumn<LecturaConjuntaModelo, Integer> adverbioclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> adverbiolc;
+    private TableColumn<LecturaConjuntaModelo, Integer> conjuncionclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> conjuncionlc;
+    private TableColumn<LecturaConjuntaModelo, Integer> interjeccionclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> interjeccionlc;
+    private TableColumn<LecturaConjuntaModelo, Integer> ininteligibleclc;
     @FXML
-    private TableColumn<LecturaConjuntaModelo,Integer> ininteligiblelc;
+    private TableColumn<LecturaConjuntaModelo, Integer> typetokenctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> preposicionctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> sustantivoctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> articuloctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> verboctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> adjetivoctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> pronombrectlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> adverbioctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> conjuncionctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> interjeccionctlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> ininteligiblectlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> typetokenbblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> preposicionbblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> sustantivobblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> articulobblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> verbobblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> adjetivobblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> pronombrebblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> adverbiobblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> conjuncionbblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> interjeccionbblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> ininteligiblebblc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> typetokenbbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> preposicionbbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> sustantivobbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> articulobbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> verbobbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> adjetivobbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> pronombrebbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> adverbiobbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> conjuncionbbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> interjeccionbbtlc;
+    @FXML
+    private TableColumn<LecturaConjuntaModelo, Integer> ininteligiblebbtlc;
+    
     ObservableList<LecturaConjuntaModelo> listaLC = FXCollections.observableArrayList();
     
     @FXML
@@ -513,6 +569,7 @@ public class ResultadoController implements Initializable {
     private boolean flagicplim;
     
     
+    
     /**
      * Initializes the controller class.
      */
@@ -546,16 +603,20 @@ public class ResultadoController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("Archivo Excel xlsx", "*.xlsx"),
-            new FileChooser.ExtensionFilter("Archivo Excel xls", "*.xls"));
+            new FileChooser.ExtensionFilter("Archivo Excel xls", "*.xls"),
+            new FileChooser.ExtensionFilter("Archivo CSV", "*.csv"));
         Stage stage = (Stage) exportar.getScene().getWindow();
         showCuidador(null);
-        //showExpCab(null);
+        showExpCab(null);
         showLectCab(null);
         showSociode(null);
         showWppsi30(null);
         showWppsi48(null);
         showInfante(null);
         showSocioec(null);
+        showCdi12(null);
+        showCdi18(null);
+        showIcplim(null);
         try {
             File selectedFile = fileChooser.showSaveDialog(stage);
             if (selectedFile != null) {
@@ -587,6 +648,10 @@ public class ResultadoController implements Initializable {
         crearHoja(workbook, "WPPSI48", resultadoswppsi48);
         crearHoja(workbook, "Lectura Conjuta", resultadoslc);
         crearHoja(workbook, "Experimento Cab.", resultadosexpcab);
+        crearHoja(workbook, "CDI12", resultadoscdi12);
+        crearHoja(workbook, "CDI182430", resultadoscdi18);
+        crearHoja(workbook, "Icplim", resultadosicplim);
+        
         //File dir = selectedFile.getParentFile();//gets the selected directory
         FileOutputStream fileOut = new FileOutputStream(selectedFile.getAbsolutePath());
         workbook.write(fileOut);
@@ -614,8 +679,8 @@ public class ResultadoController implements Initializable {
             for (int j = 0; j < columns.size(); j++) {
                 if(columns.get(j).getCellData(i) != null && columns.get(j).isVisible()) {
                     if (columns.get(j).getCellData(i) instanceof Double) row.createCell(contadorVisibles).setCellValue(Double.parseDouble(columns.get(j).getCellData(i).toString()));
-                    if (columns.get(j).getCellData(i) instanceof Integer) row.createCell(contadorVisibles).setCellValue(Integer.parseInt(columns.get(j).getCellData(i).toString()));
-                    if (columns.get(j).getCellData(i) instanceof String) row.createCell(contadorVisibles).setCellValue(columns.get(j).getCellData(i).toString());
+                    else if (columns.get(j).getCellData(i) instanceof Integer) row.createCell(contadorVisibles).setCellValue(Integer.parseInt(columns.get(j).getCellData(i).toString()));
+                    else row.createCell(contadorVisibles).setCellValue(columns.get(j).getCellData(i).toString());
                     contadorVisibles++;
                 }
                 
@@ -792,18 +857,16 @@ public class ResultadoController implements Initializable {
         try {
             ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo();
             LinkedList<ExperimentoCabinaModelo> resultados = new LinkedList<>();
-            for(int i:ids){
-            resultados.addAll(ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, i));
+            LinkedList<ExperimentoCabinaModelo> exps = ecm.readExperimentoCabinaPorIds(ids);
+            if (exps.size() > 0) {
+                for (ExperimentoCabinaModelo e : exps) {
+                    resultados.add(e);
+                }
             }
             for(ExperimentoCabinaModelo em:resultados) listaEC.add(em);
             idinfanteec.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
             tipoexpec.setCellValueFactory(new PropertyValueFactory<>("tipoExperimento"));
-            entoprec.setCellValueFactory(new PropertyValueFactory<>("entrenamientoOPrueba"));
-            protarpreec.setCellValueFactory(new PropertyValueFactory<>("protarPre"));
-            protarposec.setCellValueFactory(new PropertyValueFactory<>("protarPos"));
-            llkdifpreec.setCellValueFactory(new PropertyValueFactory<>("llkdifPre"));
-            llkdifposec.setCellValueFactory(new PropertyValueFactory<>("llkdifPos"));
-            trec.setCellValueFactory(new PropertyValueFactory<>("tr"));
+            resdireccion.setCellValueFactory(new PropertyValueFactory<>("enlace"));
             resultadosexpcab.setItems(listaEC);
             //resultadosexpcab.getColumns().addAll(idinfanteec,tipoexpec,entoprec,protarpreec,protarposec,llkdifpreec,llkdifposec,trec);
         } catch (SQLException ex) {
@@ -832,18 +895,53 @@ public class ResultadoController implements Initializable {
             }
             for(LecturaConjuntaModelo m:resultados) listaLC.add(m);
             idinfantelc.setCellValueFactory(new PropertyValueFactory<>("fkBebe"));
-            typetokenlc.setCellValueFactory(new PropertyValueFactory<>("typeOrTokenString"));
-            cuidadorbebelc.setCellValueFactory(new PropertyValueFactory<>("cuidadorBebeString"));
-            preposicionlc.setCellValueFactory(new PropertyValueFactory<>("preposicion"));
-            sustantivolc.setCellValueFactory(new PropertyValueFactory<>("sustantivo"));
-            articulolc.setCellValueFactory(new PropertyValueFactory<>("articulo"));
-            verbolc.setCellValueFactory(new PropertyValueFactory<>("verbo"));
-            adjetivolc.setCellValueFactory(new PropertyValueFactory<>("adjetivo"));
-            pronombrelc.setCellValueFactory(new PropertyValueFactory<>("pronombre"));
-            adverbiolc.setCellValueFactory(new PropertyValueFactory<>("adverbio"));
-            conjuncionlc.setCellValueFactory(new PropertyValueFactory<>("conjuncion"));
-            interjeccionlc.setCellValueFactory(new PropertyValueFactory<>("interjeccion"));
-            ininteligiblelc.setCellValueFactory(new PropertyValueFactory<>("ininteligible"));
+            typetokenclc.setCellValueFactory(new PropertyValueFactory<>("typeC"));
+            preposicionclc.setCellValueFactory(new PropertyValueFactory<>("preposicionC"));
+            sustantivoclc.setCellValueFactory(new PropertyValueFactory<>("sustantivoC"));
+            articuloclc.setCellValueFactory(new PropertyValueFactory<>("articuloC"));
+            verboclc.setCellValueFactory(new PropertyValueFactory<>("verboC"));
+            adjetivoclc.setCellValueFactory(new PropertyValueFactory<>("adjetivoC"));
+            pronombreclc.setCellValueFactory(new PropertyValueFactory<>("pronombreC"));
+            adverbioclc.setCellValueFactory(new PropertyValueFactory<>("adverbioC"));
+            conjuncionclc.setCellValueFactory(new PropertyValueFactory<>("conjuncionC"));
+            interjeccionclc.setCellValueFactory(new PropertyValueFactory<>("interjeccionC"));
+            ininteligibleclc.setCellValueFactory(new PropertyValueFactory<>("ininteligibleC"));
+            
+            typetokenctlc.setCellValueFactory(new PropertyValueFactory<>("typeCT"));
+            preposicionctlc.setCellValueFactory(new PropertyValueFactory<>("preposicionCT"));
+            sustantivoctlc.setCellValueFactory(new PropertyValueFactory<>("sustantivoCT"));
+            articuloctlc.setCellValueFactory(new PropertyValueFactory<>("articuloCT"));
+            verboctlc.setCellValueFactory(new PropertyValueFactory<>("verboCT"));
+            adjetivoctlc.setCellValueFactory(new PropertyValueFactory<>("adjetivoCT"));
+            pronombrectlc.setCellValueFactory(new PropertyValueFactory<>("pronombreCT"));
+            adverbioctlc.setCellValueFactory(new PropertyValueFactory<>("adverbioCT"));
+            conjuncionctlc.setCellValueFactory(new PropertyValueFactory<>("conjuncionCT"));
+            interjeccionctlc.setCellValueFactory(new PropertyValueFactory<>("interjeccionCT"));
+            ininteligiblectlc.setCellValueFactory(new PropertyValueFactory<>("ininteligibleCT"));
+            
+            typetokenbblc.setCellValueFactory(new PropertyValueFactory<>("typeBB"));
+            preposicionbblc.setCellValueFactory(new PropertyValueFactory<>("preposicionBB"));
+            sustantivobblc.setCellValueFactory(new PropertyValueFactory<>("sustantivoBB"));
+            articulobblc.setCellValueFactory(new PropertyValueFactory<>("articuloBB"));
+            verbobblc.setCellValueFactory(new PropertyValueFactory<>("verboBB"));
+            adjetivobblc.setCellValueFactory(new PropertyValueFactory<>("adjetivoBB"));
+            pronombrebblc.setCellValueFactory(new PropertyValueFactory<>("pronombreBB"));
+            adverbiobblc.setCellValueFactory(new PropertyValueFactory<>("adverbioBB"));
+            conjuncionbblc.setCellValueFactory(new PropertyValueFactory<>("conjuncionBB"));
+            interjeccionbblc.setCellValueFactory(new PropertyValueFactory<>("interjeccionBB"));
+            ininteligiblebblc.setCellValueFactory(new PropertyValueFactory<>("ininteligibleBB"));
+            
+            typetokenbbtlc.setCellValueFactory(new PropertyValueFactory<>("typeBBT"));
+            preposicionbbtlc.setCellValueFactory(new PropertyValueFactory<>("preposicionBBT"));
+            sustantivobbtlc.setCellValueFactory(new PropertyValueFactory<>("sustantivoBBT"));
+            articulobbtlc.setCellValueFactory(new PropertyValueFactory<>("articuloBBT"));
+            verbobbtlc.setCellValueFactory(new PropertyValueFactory<>("verboBBT"));
+            adjetivobbtlc.setCellValueFactory(new PropertyValueFactory<>("adjetivoBBT"));
+            pronombrebbtlc.setCellValueFactory(new PropertyValueFactory<>("pronombreBBT"));
+            adverbiobbtlc.setCellValueFactory(new PropertyValueFactory<>("adverbioBBT"));
+            conjuncionbbtlc.setCellValueFactory(new PropertyValueFactory<>("conjuncionBBT"));
+            interjeccionbbtlc.setCellValueFactory(new PropertyValueFactory<>("interjeccionBBT"));
+            ininteligiblebbtlc.setCellValueFactory(new PropertyValueFactory<>("ininteligibleBBT"));
             resultadoslc.setItems(listaLC);
             //resultadoslc.getColumns().addAll(idinfantelc,typetokenlc,cuidadorbebelc,preposicionlc,sustantivolc,articulolc,verbolc,adjetivolc,pronombrelc,adverbiolc,conjuncionlc,interjeccionlc,ininteligiblelc);
         } catch (SQLException ex) {
@@ -1116,7 +1214,6 @@ public class ResultadoController implements Initializable {
         
         resultadosicplim.setItems(listaIcplim);
     }
-
     
 
     

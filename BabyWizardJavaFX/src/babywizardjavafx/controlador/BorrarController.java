@@ -259,8 +259,11 @@ public class BorrarController implements Initializable {
             Cdi12Modelo cdi12 = new Cdi12Modelo();
             Cdi182430Modelo cdi182430 = new Cdi182430Modelo();
             IcplimModelo icplim = new IcplimModelo();
-            if (ecm.readExperimentoCabina(-1, "", -1, -1, -1, -1, -1, -1, Integer.parseInt(idbebeaborrar.getText())).size() > 0) {
-                listaPruebas.add("Experimento de Cabina.");
+            LinkedList<ExperimentoCabinaModelo> ecms = ecm.readExperimentoCabina(-1, "", "", Integer.parseInt(idbebeaborrar.getText()));
+            if (ecms.size() > 0) {
+                for (ExperimentoCabinaModelo e : ecms) {
+                    listaPruebas.add("ID: " + e.getIdExperimentoCabina() + ", Experimento Cabina " + e.getTipoExperimento());
+                }
             }
             LinkedList<LecturaConjuntaModelo> lecturas = lcm.readLecturaConjunta(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, "", Integer.parseInt(idbebeaborrar.getText()));
             if (lecturas.size() > 0) {
@@ -339,6 +342,10 @@ public class BorrarController implements Initializable {
                 } else if (prueba.equals("Icplim")) {
                     IcplimModelo c = new IcplimModelo();
                     c.deleteIcplim(idelementoaborrar);
+                    alertInformation("Éxito","","Elemento borrado de forma exitosa.");
+                } else if (prueba.equals("Experimento")) {
+                    ExperimentoCabinaModelo c = new ExperimentoCabinaModelo();
+                    c.deleteExperimentoCabina(idelementoaborrar);
                     alertInformation("Éxito","","Elemento borrado de forma exitosa.");
                 }
                 encontrarPruebas();
