@@ -1,0 +1,95 @@
+% ----------------------------- Preámbulo ------------------------------------ %
+\documentclass[11pt]{article}  
+\usepackage[spanish]{babel} 
+\usepackage[utf8]{inputenc} 
+\usepackage{graphicx} % Incluir imágenes en LaTeX
+\usepackage{color} % Para colorear texto
+\usepackage{subfigure} % Subfiguras
+\usepackage{float} %Posicionamiento [h] en figuras
+\usepackage{anysize} % Para personalizar el ancho de  los márgenes
+\usepackage{multirow} % Para las tablas
+\usepackage{listings}
+\usepackage{dirtytalk}
+\marginsize{3cm}{3cm}{2cm}{2cm} % Izquierda, derecha, arriba, abajo
+
+\lstset{basicstyle=\ttfamily}
+\newcommand{\lcb}{\tt {\char '173}}
+\newcommand{\rcb}{\tt {\char '175}}
+
+
+% Para que las referencias sean hipervínculos a las figuras o ecuaciones y
+% aparezcan en color
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue]{hyperref}
+
+% Para agregar encabezado y pie de página
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Facultad de Ciencias} % Encabezado izquierda
+\fancyhead[R]{\footnotesize UNAM}   % Encabezado derecha
+\fancyfoot[C]{\thepage}  % Pie centro
+\fancyfoot[L]{\footnotesize Ciencias de la Computación}  % Pie izquierda
+\renewcommand{\footrulewidth}{0.4pt} % Linea horizontal
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\title{Proyecto 1 - Parte 1}
+
+% ----------------------------- Termina Preámbulo ---------------------------- %
+
+\begin{document}
+
+% ---------------------------------- PORTADA --------------------------------- %
+
+    \begin{center}
+        \begin{minipage}{0.48\textwidth} \begin{flushleft}
+        \includegraphics[scale = 0.18]{Imagenes/ciencias}
+        \end{flushleft}\end{minipage}
+        \begin{minipage}{0.48\textwidth} \begin{flushright}
+        \includegraphics[scale = 0.25]{Imagenes/unam}
+        \end{flushright}\end{minipage}
+
+        \vspace*{-1.5cm}
+
+        \textsc{\huge Universidad Nacional \\Autónoma de México}\\[1.5cm]
+
+        \textsc{\LARGE Facultad de Ciencias}\\[3cm]
+
+        \vspace*{1.5cm}
+
+        \HRule \\[0.7cm]
+        {\huge \bfseries Aspiradora Automática}\\[0.4cm]
+        \HRule \\[1.5cm]
+
+        \vfill
+
+        \begin{minipage}{0.46\textwidth}
+            \begin{flushleft} \large
+                \emph{Autores:}\\
+			DrimTimSS
+            \end{flushleft}
+        \end{minipage}
+        %%% % [No quitar] - Espacio para alinear a la izquierda a los asesores %
+        \begin{minipage}{0.52\textwidth}
+            \vspace{-0.6cm}
+            \begin{flushright} \large
+                \emph{Asesores:} \\
+                Gustavo De la Cruz Martínez\\
+                Fernando Abigail Galicia Mendoza\\
+                Rodrígo Eduardo Colín Rivera
+            \end{flushright}
+        \end{minipage}
+        \vspace*{1cm}
+
+        \vspace{2cm}
+        \begin{center}
+            {\large 1 de marzo de 2018}
+        \end{center}                                                                        
+    \end{center}
+
+    \newpage                                                                        
+% ------------------------------- TERMINA PORTADA ---------------------------- %
+
+    \tableofcontents 
+
+    \newpage
