@@ -145,30 +145,61 @@
       <TableView fx:id="resultadoslc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <columns>
             <TableColumn fx:id="idinfantelc" minWidth="-Infinity" prefWidth="135.0" text="ID Infante" />
-            <TableColumn fx:id="typetokenlc" minWidth="-Infinity" prefWidth="150.0" text="Type/Token" />
-            <TableColumn fx:id="cuidadorbebelc" minWidth="-Infinity" prefWidth="130.0" text="Lectura" />
-            <TableColumn fx:id="preposicionlc" minWidth="-Infinity" prefWidth="155.0" text="Preposición" />
-            <TableColumn fx:id="sustantivolc" minWidth="-Infinity" prefWidth="140.0" text="Sustantivo" />
-            <TableColumn fx:id="articulolc" minWidth="-Infinity" prefWidth="140.0" text="Artículo" />
-            <TableColumn fx:id="verbolc" minWidth="-Infinity" prefWidth="125.0" text="Verbo" />
-            <TableColumn fx:id="adjetivolc" minWidth="-Infinity" prefWidth="135.0" text="Adjetivo" />
-            <TableColumn fx:id="pronombrelc" minWidth="-Infinity" prefWidth="160.0" text="Pronombre" />
-            <TableColumn fx:id="adverbiolc" minWidth="-Infinity" prefWidth="145.0" text="Adverbio" />
-            <TableColumn fx:id="conjuncionlc" minWidth="-Infinity" prefWidth="160.0" text="Conjuncion" />
-            <TableColumn fx:id="interjeccionlc" minWidth="-Infinity" prefWidth="160.0" text="Interjección" />
-            <TableColumn fx:id="ininteligiblelc" minWidth="-Infinity" prefWidth="160.0" text="Ininteligible" />
+            
+            <TableColumn fx:id="typetokenclc" minWidth="-Infinity" prefWidth="150.0" text="Type/Token C." />
+            <TableColumn fx:id="preposicionclc" minWidth="-Infinity" prefWidth="155.0" text="Preposición C." />
+            <TableColumn fx:id="sustantivoclc" minWidth="-Infinity" prefWidth="140.0" text="Sustantivo C." />
+            <TableColumn fx:id="articuloclc" minWidth="-Infinity" prefWidth="140.0" text="Artículo C." />
+            <TableColumn fx:id="verboclc" minWidth="-Infinity" prefWidth="125.0" text="Verbo C." />
+            <TableColumn fx:id="adjetivoclc" minWidth="-Infinity" prefWidth="135.0" text="Adjetivo C." />
+            <TableColumn fx:id="pronombreclc" minWidth="-Infinity" prefWidth="160.0" text="Pronombre C." />
+            <TableColumn fx:id="adverbioclc" minWidth="-Infinity" prefWidth="145.0" text="Adverbio C." />
+            <TableColumn fx:id="conjuncionclc" minWidth="-Infinity" prefWidth="160.0" text="Conjuncion C." />
+            <TableColumn fx:id="interjeccionclc" minWidth="-Infinity" prefWidth="160.0" text="Interjección C." />
+            <TableColumn fx:id="ininteligibleclc" minWidth="-Infinity" prefWidth="160.0" text="Ininteligible C." />
+            
+            <TableColumn fx:id="typetokenctlc" minWidth="-Infinity" prefWidth="150.0" text="Type/Token CT" />
+            <TableColumn fx:id="preposicionctlc" minWidth="-Infinity" prefWidth="155.0" text="Preposición CT" />
+            <TableColumn fx:id="sustantivoctlc" minWidth="-Infinity" prefWidth="140.0" text="Sustantivo CT" />
+            <TableColumn fx:id="articuloctlc" minWidth="-Infinity" prefWidth="140.0" text="Artículo CT" />
+            <TableColumn fx:id="verboctlc" minWidth="-Infinity" prefWidth="125.0" text="Verbo CT" />
+            <TableColumn fx:id="adjetivoctlc" minWidth="-Infinity" prefWidth="135.0" text="Adjetivo CT" />
+            <TableColumn fx:id="pronombrectlc" minWidth="-Infinity" prefWidth="160.0" text="Pronombre CT" />
+            <TableColumn fx:id="adverbioctlc" minWidth="-Infinity" prefWidth="145.0" text="Adverbio CT" />
+            <TableColumn fx:id="conjuncionctlc" minWidth="-Infinity" prefWidth="160.0" text="Conjuncion CT" />
+            <TableColumn fx:id="interjeccionctlc" minWidth="-Infinity" prefWidth="160.0" text="Interjección CT" />
+            <TableColumn fx:id="ininteligiblectlc" minWidth="-Infinity" prefWidth="160.0" text="Ininteligible CT" />
+            
+            <TableColumn fx:id="typetokenbblc" minWidth="-Infinity" prefWidth="150.0" text="Type/Token BB" />
+            <TableColumn fx:id="preposicionbblc" minWidth="-Infinity" prefWidth="155.0" text="Preposición BB" />
+            <TableColumn fx:id="sustantivobblc" minWidth="-Infinity" prefWidth="140.0" text="Sustantivo BB" />
+            <TableColumn fx:id="articulobblc" minWidth="-Infinity" prefWidth="140.0" text="Artículo BB" />
+            <TableColumn fx:id="verbobblc" minWidth="-Infinity" prefWidth="125.0" text="Verbo BB" />
+            <TableColumn fx:id="adjetivobblc" minWidth="-Infinity" prefWidth="135.0" text="Adjetivo BB" />
+            <TableColumn fx:id="pronombrebblc" minWidth="-Infinity" prefWidth="160.0" text="Pronombre BB" />
+            <TableColumn fx:id="adverbiobblc" minWidth="-Infinity" prefWidth="145.0" text="Adverbio BB" />
+            <TableColumn fx:id="conjuncionbblc" minWidth="-Infinity" prefWidth="160.0" text="Conjuncion BB" />
+            <TableColumn fx:id="interjeccionbblc" minWidth="-Infinity" prefWidth="160.0" text="Interjección BB" />
+            <TableColumn fx:id="ininteligiblebblc" minWidth="-Infinity" prefWidth="160.0" text="Ininteligible BB" />
+            
+            <TableColumn fx:id="typetokenbbtlc" minWidth="-Infinity" prefWidth="150.0" text="Type/Token BBT" />
+            <TableColumn fx:id="preposicionbbtlc" minWidth="-Infinity" prefWidth="155.0" text="Preposición BBT" />
+            <TableColumn fx:id="sustantivobbtlc" minWidth="-Infinity" prefWidth="140.0" text="Sustantivo BBT" />
+            <TableColumn fx:id="articulobbtlc" minWidth="-Infinity" prefWidth="140.0" text="Artículo BBT" />
+            <TableColumn fx:id="verbobbtlc" minWidth="-Infinity" prefWidth="125.0" text="Verbo BBT" />
+            <TableColumn fx:id="adjetivobbtlc" minWidth="-Infinity" prefWidth="135.0" text="Adjetivo BBT" />
+            <TableColumn fx:id="pronombrebbtlc" minWidth="-Infinity" prefWidth="160.0" text="Pronombre BBT" />
+            <TableColumn fx:id="adverbiobbtlc" minWidth="-Infinity" prefWidth="145.0" text="Adverbio BBT" />
+            <TableColumn fx:id="conjuncionbbtlc" minWidth="-Infinity" prefWidth="160.0" text="Conjuncion BBT" />
+            <TableColumn fx:id="interjeccionbbtlc" minWidth="-Infinity" prefWidth="160.0" text="Interjección BBT" />
+            <TableColumn fx:id="ininteligiblebbtlc" minWidth="-Infinity" prefWidth="160.0" text="Ininteligible BBT" />
          </columns>
       </TableView>
       <TableView fx:id="resultadosexpcab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <columns>
             <TableColumn fx:id="idinfanteec" minWidth="-Infinity" prefWidth="135.0" text="ID Infante" />
             <TableColumn fx:id="tipoexpec" minWidth="-Infinity" prefWidth="135.0" text="Tipo Exp." />
-            <TableColumn fx:id="entoprec" minWidth="-Infinity" prefWidth="140.0" text="Ent. o Pr." />
-            <TableColumn fx:id="protarpreec" minWidth="-Infinity" prefWidth="145.0" text="ProtarPre" />
-            <TableColumn fx:id="protarposec" minWidth="-Infinity" prefWidth="150.0" text="ProtarPos" />
-            <TableColumn fx:id="llkdifpreec" minWidth="-Infinity" prefWidth="155.0" text="LlkdifPre" />
-            <TableColumn fx:id="llkdifposec" minWidth="-Infinity" prefWidth="155.0" text="LlkdifPos" />
-            <TableColumn fx:id="trec" minWidth="-Infinity" prefWidth="95.0" text="TR" />
+            <TableColumn fx:id="resdireccion" minWidth="-Infinity" prefWidth="95.0" text="Direccion" />
          </columns>
       </TableView>
       <TableView fx:id="resultadossd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">

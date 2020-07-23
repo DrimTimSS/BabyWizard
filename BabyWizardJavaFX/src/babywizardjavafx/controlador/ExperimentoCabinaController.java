@@ -7,9 +7,11 @@ package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.ExperimentoCabinaModelo;
 import com.mysql.cj.util.StringUtils;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,12 +22,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
@@ -39,27 +44,13 @@ public class ExperimentoCabinaController implements Initializable {
     
     int idbebe;
     @FXML
-    private RadioButton isEntren;
-    @FXML
-    private ToggleGroup entOpru;
-    @FXML
-    private RadioButton isPrueba;
-    @FXML
     private TextField inputtipoExp;
-    @FXML
-    private TextField inputprotarpre;
-    @FXML
-    private TextField inputprotarpos;
-    @FXML
-    private TextField inputLLkDifPre;
-    @FXML
-    private TextField inputLLkDifPos;
-    @FXML
-    private TextField inputTr;
     @FXML
     private Label label;
     @FXML
     private Button agregaredc;
+    @FXML
+    private TextField enlace;
     
     /**
      * Initializes the controller class.
@@ -71,41 +62,6 @@ public class ExperimentoCabinaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        inputprotarpre.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, 
-            String newValue) {
-                if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
-                    inputprotarpre.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
-                }
-            }
-            
-        });
-        
-        inputprotarpos.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
-                inputprotarpos.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
-            }
-        });
-        
-        inputLLkDifPre.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
-                inputLLkDifPre.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
-            }
-        });
-        
-        inputLLkDifPos.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
-                inputLLkDifPos.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
-            }
-        });
-        
-        inputTr.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            if (!newValue.matches("^\\d+((\\.?)\\d+)?")) {
-                inputTr.setText(newValue.replaceAll("[^\\d+((\\.?)\\d+)?]", ""));
-            }
-        });
-        
         
     }    
     
@@ -116,26 +72,21 @@ public class ExperimentoCabinaController implements Initializable {
     @FXML
     private void agregar(ActionEvent event) throws IOException, SQLException {
         
-        int eOp = -1;
-        if (isEntren.isSelected()) {
-            eOp = 0;
-        } else if (isPrueba.isSelected()) {
-            eOp = 1;
-        }
+        String tExp = (isEmpty(inputtipoExp))?"":inputtipoExp.getText();
+        String enl = (isEmpty(enlace))?"":enlace.getText();
         
-        if(!(eOp==-1 || isEmpty(inputtipoExp) || isEmpty(inputprotarpre) || isEmpty(inputprotarpos) || isEmpty(inputLLkDifPre) || isEmpty(inputLLkDifPos) || isEmpty(inputTr))){       
-        String tipoExp = inputtipoExp.getText();
-        double protarpre = Double.parseDouble(inputprotarpre.getText());
-        double protarpos = Double.parseDouble(inputprotarpos.getText());
-        double llkdifpre = Double.parseDouble(inputLLkDifPre.getText());
-        double llkdifpos = Double.parseDouble(inputLLkDifPos.getText());
-        double tr = Double.parseDouble(inputTr.getText());
-        
-        ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tipoExp, eOp, protarpre,protarpos, llkdifpre, llkdifpos, tr, idbebe);
+        if(!(isEmpty(enlace) || isEmpty(inputtipoExp))){       
+        enl = enl.replaceAll("/", "//");
+        enl = enl.replaceAll("\\\\", "\\\\\\\\");
+        ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tExp, enl, idbebe);
         ecm.createExperimentoCabina();
 
         } else{
-          label.setVisible(true);
+          boolean c = confirmation();
+          if (c) {
+            ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tExp, enl, idbebe);
+            ecm.createExperimentoCabina();
+          }
           return;
       }
         
@@ -155,5 +106,32 @@ public class ExperimentoCabinaController implements Initializable {
         } else {alert.setHeaderText(header);}
         alert.setContentText(contenido);
         alert.showAndWait();
+    }
+    
+    private boolean confirmation() {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+        alert.setTitle("Confirmar");
+        alert.setHeaderText("Campos vacíos");
+        alert.setContentText("Algunos campos están vacíos, ¿desea registrar de esta manera?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @FXML
+    private String buscarEnlace(ActionEvent event) {
+        String direccion = "";
+        FileChooser chooser = new FileChooser();
+        File file = chooser.showOpenDialog(label.getParent().getScene().getWindow());
+        if (file!=null) {
+            direccion = file.toString();
+        }
+        enlace.setText(direccion);
+        return direccion;
     }
 }

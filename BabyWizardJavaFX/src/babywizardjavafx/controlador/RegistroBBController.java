@@ -119,12 +119,13 @@ public class RegistroBBController implements Initializable {
     public boolean editar;
     public int idBebeActualizar;
     
-
+    public Alertas alerta;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         fechadecita.setValue(LocalDate.now());
         semanasnacio.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -260,9 +261,9 @@ public class RegistroBBController implements Initializable {
     @FXML
     private void continuarACuidador(ActionEvent event) throws IOException, SQLException{
             BebeModelo bm = crearbebe();
+            if (bm == null) return;
             SociodemograficoModelo sm = crearSociodemografico();
-
-            if (!(bm == null || sm == null)) {
+            if (!(sm == null)) {
                 if(editar==true){
                     bm.updateBebe(idBebeActualizar, -1, bm.getNombre(), bm.getApellidoMaterno(), bm.getApellidoPaterno(), bm.getSexo().equals("M") ? 0 : 1, bm.getFechaNacimiento(), "");
                     return;
@@ -298,15 +299,13 @@ public class RegistroBBController implements Initializable {
         String apellidopaterno = apellidop.getText();
         String apellidomaterno = apellidom.getText();
         
-        if(!(nombre.equals("")||apellidopaterno.equals("")||apellidomaterno.equals("")||sexo==-1)){
-            
-            try {
-                String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                return new BebeModelo(nombre,apellidomaterno,apellidopaterno,sexo,fechan,usuariois);
-            } catch (Exception e) {
-                nollenado.setText("No se han llenado todos los campos obligatorios.");
-            }
-        } else {nollenado.setText("No se han llenado todos los campos obligatorios.");}
+        if(!(nombre.equals("")||apellidopaterno.equals("")||apellidomaterno.equals("")||sexo==-1||fechanacimiento.getValue()==null)){
+            String fechan = fechanacimiento.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return new BebeModelo(nombre,apellidomaterno,apellidopaterno,sexo,fechan,usuariois);
+        } else {
+            alerta = new Alertas(titulo.getParent().getScene().getWindow());
+            alerta.alertInformation("Información datos", "Datos inválidos", "Los campos obligatorios para registrar infante no han sido llenados.");
+        }
         
         return null;
     }
@@ -319,35 +318,39 @@ public class RegistroBBController implements Initializable {
         int probaud = probaudicion.isSelected()?1:0;
         int probvis = probvision.isSelected()?1:0;
         int otroidi = otroidioma.isSelected()?1:0;
-        int pta2 = isEmpty(pa2) ? 0 : Integer.parseInt(pa2.getText());
+        int pta2 = isEmpty(pa2) ? -1 : Integer.parseInt(pa2.getText());
         
         int g = guarderia.isSelected()?1:0;
-        int tag = isEmpty(tiempoasistiendog) ? 0 : Integer.parseInt(tiempoasistiendog.getText());
-        int tqag = isEmpty(tiempoqueasisteg) ? 0 : Integer.parseInt(tiempoqueasisteg.getText());
+        int tag = isEmpty(tiempoasistiendog) ? -1 : Integer.parseInt(tiempoasistiendog.getText());
+        int tqag = isEmpty(tiempoqueasisteg) ? -1 : Integer.parseInt(tiempoqueasisteg.getText());
         int p = preescolar.isSelected()?1:0;
-        int tap = isEmpty(tiempoasistiendop) ? 0 : Integer.parseInt(tiempoasistiendop.getText());
-        int tqap = isEmpty(tiempoqueasistep) ? 0 : Integer.parseInt(tiempoqueasistep.getText());
+        int tap = isEmpty(tiempoasistiendop) ? -1 : Integer.parseInt(tiempoasistiendop.getText());
+        int tqap = isEmpty(tiempoqueasistep) ? -1 : Integer.parseInt(tiempoqueasistep.getText());
         
         String obs = observaciones.getText();
+        boolean confirmation = true;
+        if(isEmpty(semanasnacio)||isEmpty(pesonacer)||isEmpty(numhermanos)||isEmpty(lugarocupa)||isEmpty(adultosvive)||isEmpty(niniosvive)||isEmpty(pa1)){
+            alerta = new Alertas(titulo.getParent().getScene().getWindow());
+            confirmation = alerta.confirmation();
+        }
         
-        if(!(isEmpty(semanasnacio)||isEmpty(pesonacer)||isEmpty(numhermanos)||isEmpty(lugarocupa)||isEmpty(adultosvive)||isEmpty(niniosvive)||isEmpty(pa1))){
-            int pta1 = Integer.parseInt(pa1.getText());
-            int semnacimiento = Integer.parseInt(semanasnacio.getText());
-            double pesoalnac = Double.parseDouble(pesonacer.getText());
-            int herm = Integer.parseInt(numhermanos.getText());
-            int locu = Integer.parseInt(lugarocupa.getText());
-            int adultos = Integer.parseInt(adultosvive.getText());
-            int ninios = Integer.parseInt(niniosvive.getText());
+        if (confirmation) {
+            int pta1 = (isEmpty(pa1)) ? -1 : Integer.parseInt(pa1.getText());
+            int semnacimiento = (isEmpty(semanasnacio)) ? -1 : Integer.parseInt(semanasnacio.getText());
+            double pesoalnac = (isEmpty(pesonacer)) ? -1 : Double.parseDouble(pesonacer.getText());
+            int herm = (isEmpty(numhermanos)) ? -1 : Integer.parseInt(numhermanos.getText());
+            int locu = (isEmpty(lugarocupa)) ? -1 : Integer.parseInt(lugarocupa.getText());
+            int adultos = (isEmpty(adultosvive)) ? -1 : Integer.parseInt(adultosvive.getText());
+            int ninios = (isEmpty(niniosvive)) ? -1 : Integer.parseInt(niniosvive.getText());
+            String cuidprinc = (cuidadorprinc.getValue()==null) ? "No indicado" : cuidadorprinc.getValue();
             try {
-                String cuidprinc = cuidadorprinc.getValue();
-                String fechacita = fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                String cpr = cuidadorprinc.getValue();
-                return new SociodemograficoModelo(fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,0);
+                String fechacita = (fechadecita.getValue() == null) ? "1111-11-11" : fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                return new SociodemograficoModelo(fechacita, gest, semnacimiento, pta1, pta2, pesoalnac, probnac, probsal, probaud, probvis, otroidi, herm, locu, adultos, ninios, cuidprinc, g, tag, tqag, p, tap, tqap, obs, 0);
             } catch (Exception e) {
-                nollenado.setText("No se han llenado todos los campos obligatorios.");
+                alerta = new Alertas(titulo.getParent().getScene().getWindow());
+                alerta.alertInformation("Datos", "Datos inválidos.", "No se pudo realizar el registro porque se proporcionaron datos inválidos.");
             }
-        } else {nollenado.setText("No se han llenado todos los campos obligatorios.");}
-        
+        }
         return null;
     }
     

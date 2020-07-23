@@ -18,30 +18,21 @@ import java.util.LinkedList;
 public class ExperimentoCabinaModelo {
     int idExperimentoCabina;
     String tipoExperimento;
-    int entrenamientoOPrueba;
-    double protarPre;
-    double protarPos;
-    double llkdifPre;
-    double llkdifPos;
-    double tr;
+    String enlace;
     int fkBebe;
 
     //Constructores
     public ExperimentoCabinaModelo() {
     }
 
-    public ExperimentoCabinaModelo(String tipoExperimento, int entrenamientoOPrueba, double protarPre, double protarPos, double llkdifPre, double llkdifPos, double tr, int fkBebe) {
+    public ExperimentoCabinaModelo(String tipoExperimento, String enlace, int fkBebe) {
         this.tipoExperimento = tipoExperimento;
-        this.entrenamientoOPrueba = entrenamientoOPrueba;
-        this.protarPre = protarPre;
-        this.protarPos = protarPos;
-        this.llkdifPre = llkdifPre;
-        this.llkdifPos = llkdifPos;
-        this.tr = tr;
+        this.enlace = enlace;
         this.fkBebe = fkBebe;
     }
 
     //Getters y setters
+
     public int getIdExperimentoCabina() {
         return idExperimentoCabina;
     }
@@ -58,52 +49,12 @@ public class ExperimentoCabinaModelo {
         this.tipoExperimento = tipoExperimento;
     }
 
-    public int getEntrenamientoOPrueba() {
-        return entrenamientoOPrueba;
+    public String getEnlace() {
+        return enlace;
     }
 
-    public void setEntrenamientoOPrueba(int entrenamientoOPrueba) {
-        this.entrenamientoOPrueba = entrenamientoOPrueba;
-    }
-    
-    public double getProtarPre() {
-        return protarPre;
-    }
-
-    public void setProtarPre(double protarPre) {
-        this.protarPre = protarPre;
-    }
-
-    public double getProtarPos() {
-        return protarPos;
-    }
-
-    public void setProtarPos(double protarPos) {
-        this.protarPos = protarPos;
-    }
-
-    public double getLlkdifPre() {
-        return llkdifPre;
-    }
-
-    public void setLlkdifPre(double llkdifPre) {
-        this.llkdifPre = llkdifPre;
-    }
-
-    public double getLlkdifPos() {
-        return llkdifPos;
-    }
-
-    public void setLlkdifPos(double llkdifPos) {
-        this.llkdifPos = llkdifPos;
-    }
-
-    public double getTr() {
-        return tr;
-    }
-
-    public void setTr(double tr) {
-        this.tr = tr;
+    public void setEnlace(String enlace) {
+        this.enlace = enlace;
     }
 
     public int getFkBebe() {
@@ -113,6 +64,7 @@ public class ExperimentoCabinaModelo {
     public void setFkBebe(int fkBebe) {
         this.fkBebe = fkBebe;
     }
+   
     
     //Metodo para comunicarse con la base y agregar un experimento de cabina
     public void createExperimentoCabina() throws SQLException {
@@ -121,8 +73,7 @@ public class ExperimentoCabinaModelo {
         Connection con = jdbc.getConnection();
         //Se empieza a crear el query de insercion de datos
         String query;
-        query = "INSERT INTO `babywizard`.`experimentocabina` (`tipoExperimento`, `entrenamientoOPrueba`, `protarPre`, `protarPos`, `llkdifpre`, `llkdifpos`, `tr`, `fkBebe`) "
-                + "VALUES ('"+this.getTipoExperimento()+"', '"+this.getEntrenamientoOPrueba()+"', '"+this.getProtarPre()+"', '"+this.getProtarPos()+"', '"+this.getLlkdifPre()+"', '"+this.getLlkdifPos()+"', '"+this.getTr()+"', '"+this.getFkBebe()+"');";
+        query = "INSERT INTO `babywizard`.`experimentocabina` (`tipoExperimento`, `enlace`, `fkBebe`) VALUES ('"+this.getTipoExperimento()+"', '"+this.getEnlace()+"', '"+this.getFkBebe()+"');";
         //Se crea un statement que sera quien ejecute el query
         Statement stmt = con.createStatement();
         int executeUpdate = stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
@@ -137,7 +88,7 @@ public class ExperimentoCabinaModelo {
     }
     
     //Metodo que lee datos de la base para experimentos de cabina
-    public LinkedList<ExperimentoCabinaModelo> readExperimentoCabina(int idExperimentoCabina, String tipoExperimento, int entrenamientoOPrueba, double protarPre, double protarPos, double llkdifPre, double llkdifPos, double tr, int fkBebe) throws SQLException {
+    public LinkedList<ExperimentoCabinaModelo> readExperimentoCabina(int idExperimentoCabina, String tipoExperimento, String enlace, int fkBebe) throws SQLException {
         //Crea conexion a la base de datos
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
@@ -146,12 +97,7 @@ public class ExperimentoCabinaModelo {
         LinkedList<String> toRead = new LinkedList<>();
         if(idExperimentoCabina>-1) toRead.add("idExperimentoCabina = '"+idExperimentoCabina+"'");
         if(!"".equals(tipoExperimento)) toRead.add("tipoExperimento = '"+tipoExperimento+"'");
-        if(entrenamientoOPrueba>-1) toRead.add("entrenamientoOPrueba = '"+entrenamientoOPrueba+"'");
-        if(protarPre>=0) toRead.add("protarPre = '"+protarPre+"'");
-        if(protarPos>=0) toRead.add("protarPos = '"+protarPos+"'");
-        if(llkdifPre>=0) toRead.add("llkdifpre = '"+llkdifPre+"'");
-        if(llkdifPos>=0) toRead.add("llkdifpos = '"+llkdifPos+"'");
-        if(tr>=0) toRead.add("tr = '"+tr+"'");
+        if(!"".equals(enlace)) toRead.add("enlace = '"+enlace+"'");
         if(fkBebe>-1) toRead.add("fkBebe = '"+fkBebe+"'");
         //query inicial
         String query1 = "SELECT * FROM babywizard.experimentocabina WHERE ";
@@ -178,12 +124,7 @@ public class ExperimentoCabinaModelo {
             ExperimentoCabinaModelo ecm= new ExperimentoCabinaModelo();
             ecm.setIdExperimentoCabina(rs.getInt("idExperimentoCabina"));
             ecm.setTipoExperimento(rs.getString("tipoExperimento"));
-            ecm.setEntrenamientoOPrueba(rs.getInt("entrenamientoOPrueba"));
-            ecm.setProtarPre(rs.getDouble("protarPre"));
-            ecm.setProtarPos(rs.getDouble("protarPos"));
-            ecm.setLlkdifPre(rs.getDouble("llkdifpre"));
-            ecm.setLlkdifPos(rs.getDouble("llkdifpos"));
-            ecm.setTr(rs.getDouble("tr"));
+            ecm.setEnlace(rs.getString("enlace"));
             ecm.setFkBebe(rs.getInt("fkBebe"));
             experimentosc.add(ecm);
         }
@@ -192,7 +133,37 @@ public class ExperimentoCabinaModelo {
         return experimentosc;
     }
     
-    public void updateExperimentoCabina(int idExperimentoCabinaActualizar, int idExperimentoCabina, String tipoExperimento, int entrenamientoOPrueba, double protarPre, double protarPos, double llkdifPre, double llkdifPos, double tr, int fkBebe) throws SQLException{
+    public LinkedList<ExperimentoCabinaModelo> readExperimentoCabinaPorIds(LinkedList<Integer> ids) throws SQLException {
+        LinkedList<ExperimentoCabinaModelo> experimentos = new LinkedList<ExperimentoCabinaModelo>();
+        if (!(ids.size() > 0)) {
+            return experimentos;
+        }
+        JdbConnection jdbc = new JdbConnection();
+        Connection con = jdbc.getConnection();
+        String query;
+        String abuscar = "(";
+        int size = ids.size();
+        for (int i = 0; i < size - 1; i++) {
+            abuscar += ids.get(i) + ",";
+        }
+        abuscar += ids.get(size - 1) + ")";
+        query = "select * FROM babywizard.experimentocabina where fkbebe in " + abuscar + ";";
+        //System.out.print(con);
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            ExperimentoCabinaModelo ecm= new ExperimentoCabinaModelo();
+            ecm.setIdExperimentoCabina(rs.getInt("idExperimentoCabina"));
+            ecm.setTipoExperimento(rs.getString("tipoExperimento"));
+            ecm.setEnlace(rs.getString("enlace"));
+            ecm.setFkBebe(rs.getInt("fkBebe"));
+            experimentos.add(ecm);
+        }
+        con.close();
+        return experimentos;
+    }
+    
+    public void updateExperimentoCabina(int idExperimentoCabinaActualizar, int idExperimentoCabina, String tipoExperimento, String enlace, int fkBebe) throws SQLException{
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toUpdate = new LinkedList<>();
@@ -204,29 +175,9 @@ public class ExperimentoCabinaModelo {
             String tipoExperimentoQ = "`tipoExperimento` = '"+tipoExperimento+"'";
             toUpdate.add(tipoExperimentoQ);
         }
-        if(entrenamientoOPrueba>-1) {
-           String entrenamientoOPruebaQ = "`entrenamientoOPrueba` = '"+entrenamientoOPrueba+"'";
-           toUpdate.add(entrenamientoOPruebaQ);
-        }
-        if(protarPre>=0) {
-            String protarPreQ = "`protarPre` = '"+protarPre+"'";
-            toUpdate.add(protarPreQ);
-        }
-        if(protarPos>=0) {
-            String protarPosQ = "`protarPos` = '"+protarPos+"'";
-            toUpdate.add(protarPosQ);
-        }
-        if(llkdifPre>=0) {
-            String llkdifPreQ = "`llkdifpre` = '"+llkdifPre+"'";
-            toUpdate.add(llkdifPreQ);
-        }
-        if(llkdifPos>=0) {
-            String llkdifPosQ = "`llkdifpos` = '"+llkdifPos+"'";
-            toUpdate.add(llkdifPosQ);
-        }
-        if(tr>=0) {
-            String trQ = "`tr` = '"+tr+"'";
-            toUpdate.add(trQ);
+        if (!"".equals(enlace)) {
+            String enlaceQ = "`enlace` = '"+enlace+"'";
+            toUpdate.add(enlaceQ);
         }
         if(fkBebe>-1) {
            String fkBebeQ = "`fkBebe` = '"+fkBebe+"'";
