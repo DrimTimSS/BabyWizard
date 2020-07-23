@@ -343,8 +343,13 @@ public class RegistroBBController implements Initializable {
             int adultos = (isEmpty(adultosvive)) ? -1 : Integer.parseInt(adultosvive.getText());
             int ninios = (isEmpty(niniosvive)) ? -1 : Integer.parseInt(niniosvive.getText());
             String cuidprinc = (cuidadorprinc.getValue()==null) ? "No indicado" : cuidadorprinc.getValue();
-            String fechacita = (fechadecita.getValue() == null) ? "0000-00-00" : fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            return new SociodemograficoModelo(fechacita, gest, semnacimiento, pta1, pta2, pesoalnac, probnac, probsal, probaud, probvis, otroidi, herm, locu, adultos, ninios, cuidprinc, g, tag, tqag, p, tap, tqap, obs, 0);
+            try {
+                String fechacita = (fechadecita.getValue() == null) ? "1111-11-11" : fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                return new SociodemograficoModelo(fechacita, gest, semnacimiento, pta1, pta2, pesoalnac, probnac, probsal, probaud, probvis, otroidi, herm, locu, adultos, ninios, cuidprinc, g, tag, tqag, p, tap, tqap, obs, 0);
+            } catch (Exception e) {
+                alerta = new Alertas(titulo.getParent().getScene().getWindow());
+                alerta.alertInformation("Datos", "Datos inválidos.", "No se pudo realizar el registro porque se proporcionaron datos inválidos.");
+            }
         }
         return null;
     }

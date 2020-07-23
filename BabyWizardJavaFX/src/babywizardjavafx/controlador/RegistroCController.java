@@ -25,7 +25,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -34,7 +33,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -48,6 +46,8 @@ import jfxtras.styles.jmetro.Style;
  */
 public class RegistroCController implements Initializable {
 
+    Alertas alerta;
+    
     @FXML
     private TextField nombres;
     @FXML
@@ -93,7 +93,8 @@ public class RegistroCController implements Initializable {
     @FXML
     private DatePicker fechaaplicacionnse;
     
-    
+    boolean confirmation = true;
+    boolean asked = false;
     /**
      * Initializes the controller class.
      */
@@ -217,7 +218,9 @@ public class RegistroCController implements Initializable {
     @FXML
     private void finalizar(ActionEvent event) throws IOException, SQLException {
         CuidadorModelo cm = crearCuidador();
+        if (cm == null) return;
         SocioeconomicoModelo sem = crearSocioeconomico();
+        alerta = new Alertas(titulo.getParent().getScene().getWindow());
         
         if(!(bm == null||sm==null||cm==null||sem==null)) {
             //try {
@@ -230,7 +233,8 @@ public class RegistroCController implements Initializable {
                 sem.setFkBebe(idBebe);
                 sem.createSocioeconomico();
                 
-                alertInformation("Éxito","","Infante con datos sociodemográficos registrado de forma exitosa.");
+                
+                alerta.alertInformation("Éxito","","Infante con datos sociodemográficos registrado de forma exitosa.");
                 Stage actualWindow = (Stage) nombres.getScene().getWindow();
                 actualWindow.close();
                 
@@ -261,28 +265,37 @@ public class RegistroCController implements Initializable {
     }
     
     public CuidadorModelo crearCuidador(){
-        if(!(isEmpty(edad)||isEmpty(correo)||isEmpty(nombres)||isEmpty(apellidop)||isEmpty(apellidom)||isEmpty(ocupacion)||isEmpty(telefono1)||isEmpty(aniosestudio))){
-            try {
-                return new CuidadorModelo(correo.getText(), Integer.parseInt(edad.getText()), nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()), relacion.getValue(),0);
-            } catch (Exception e) {
-                llenadodatos.setText("No se han llenado todos los campos obligatorios.");
-            }
-        } else{
-            llenadodatos.setText("No se han llenado todos los campos obligatorios.");
+        if((isEmpty(edad)||isEmpty(correo)||isEmpty(nombres)||isEmpty(apellidop)||isEmpty(apellidom)||isEmpty(ocupacion)||isEmpty(telefono1)||isEmpty(aniosestudio))){
+            alerta = new Alertas(titulo.getParent().getScene().getWindow());
+            confirmation = alerta.confirmation();
+            asked = confirmation;
+        } 
+        if (confirmation) {
+            int ed = (isEmpty(edad)) ? -1 : Integer.parseInt(edad.getText());
+            int anios = (isEmpty(aniosestudio)) ? -1 : Integer.parseInt(aniosestudio.getText());
+            String rel = (relacion.getValue()==null) ? "X" : relacion.getValue();
+                return new CuidadorModelo(correo.getText(), ed, nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), anios, rel,0);
         }
         return null;
     }
     
     public SocioeconomicoModelo crearSocioeconomico(){
-        if(!(isEmpty(puntajecrudo))){
-            try{
-                return new SocioeconomicoModelo(Integer.parseInt(puntajecrudo.getText()), nse.getValue(), fechaaplicacionnse.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), 0);
-            } catch(Exception e){
-                llenadodatos.setText("No se han llenado todos los campos obligatorios.");
-            }   
+        if((isEmpty(puntajecrudo) || fechaaplicacionnse.getValue()==null || nse.getValue() == null) && asked==false){
+            alerta = new Alertas(titulo.getParent().getScene().getWindow());
+            confirmation = alerta.confirmation();
+        } 
+        
+        if (confirmation) {
+            String n = (nse.getValue() == null) ? "X" : nse.getValue();
+            int p = (isEmpty(puntajecrudo)) ? -1 : Integer.parseInt(puntajecrudo.getText());
+            try {
+                String f = (fechaaplicacionnse.getValue() == null) ? "1111-11-11" : fechaaplicacionnse.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                return new SocioeconomicoModelo(p, n, f, 0);
+            } catch (Exception e) {
+                alerta = new Alertas(titulo.getParent().getScene().getWindow());
+                alerta.alertInformation("Datos", "Datos inválidos.", "No se pudo realizar el registro porque se proporcionaron datos inválidos.");
+            }
             
-        } else {
-            llenadodatos.setText("No se han llenado todos los campos obligatorios.");
         }
         return null;
     }
@@ -291,15 +304,4 @@ public class RegistroCController implements Initializable {
         escenaAnterior = anterior;
     }
     
-    private void alertInformation(String titulo, String header, String contenido) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(nombres.getParent().getScene().getWindow());
-        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
-        alert.setTitle(titulo);
-        if(header.equals("")) {
-            alert.setHeaderText(null);
-        } else {alert.setHeaderText(header);}
-        alert.setContentText(contenido);
-        alert.showAndWait();
-    }
 }
