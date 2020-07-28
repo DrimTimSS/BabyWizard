@@ -28,6 +28,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -132,6 +134,35 @@ public class EditarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        idbebebusqueda.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    idbebebusqueda.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadbusquedamin.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadbusquedamin.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadbusquedamax.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadbusquedamax.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        
         try {
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = bm.readBebe(-1, "", "", "", -1, "",-1,-1, "");
@@ -245,7 +276,7 @@ public class EditarController implements Initializable {
         if (cuidador.isSelected()) {
             CuidadorModelo cm = new CuidadorModelo();
             List<String> choices = new LinkedList<>();
-            LinkedList<CuidadorModelo> cuidadores = cm.readCuidador(-1, "", -1, "", "", "", "", "", "", -1, "", id);
+            LinkedList<CuidadorModelo> cuidadores = cm.readCuidador(-1, "", -1, "", "", "", "", "", "", -1, "",-1,-1, id);
             if(cuidadores.size()<1) {
                 alertInformation("Alerta","","No hay cuidadores registrado.");
                 return;
@@ -263,7 +294,7 @@ public class EditarController implements Initializable {
 
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()) {
-                cm = cm.readCuidador(Integer.parseInt(result.get().split(" ")[0]), "", -1, "", "", "", "", "", "", -1, "", -1).getFirst();
+                cm = cm.readCuidador(Integer.parseInt(result.get().split(" ")[0]), "", -1, "", "", "", "", "", "", -1, "",-1,-1, -1).getFirst();
                 direccion = "/babywizardjavafx/vista/AgregarCuidador.fxml";
                 prueba = "Cuidador";
                 FXMLLoader loader = showWindow(direccion, prueba);

@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,6 +93,8 @@ public class AgregarSociodController implements Initializable {
     private CheckBox probvision;
     private boolean editable;
     private SociodemograficoModelo sdm;
+    
+    Alertas alerta;
 
     public boolean isEmpty(TextField textfield) {
         return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
@@ -104,6 +108,82 @@ public class AgregarSociodController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        fechadecita.setValue(LocalDate.now());
+        semanasnacio.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    semanasnacio.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        pa1.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d\\d")) {
+                    pa1.setText(newValue.replaceAll("[^\\d]", ""));
+                    if(!(pa1.getText().length()<2)) pa1.setText(pa1.getText().substring(0,2));
+                }
+            }
+        });
+        pa2.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d\\d")) {
+                    pa2.setText(newValue.replaceAll("[^\\d]", ""));
+                    if(!(pa2.getText().length()<2)) pa2.setText(pa2.getText().substring(0,2));
+                }
+            }
+        });
+        pesonacer.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("[0-9]?(\\.[0-9]{0,2})?")) {
+                    pesonacer.setText(oldValue);
+                }
+            }
+        });
+        numhermanos.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    numhermanos.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        lugarocupa.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    lugarocupa.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        niniosvive.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    niniosvive.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        adultosvive.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    adultosvive.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        
         cuidadorprinc.getItems().add("Madre");
         cuidadorprinc.getItems().add("Padre");
         cuidadorprinc.getItems().add("Abuela P.");
@@ -146,7 +226,11 @@ public class AgregarSociodController implements Initializable {
 
     @FXML
     private void agregar(ActionEvent event) throws SQLException, IOException {
-        
+        boolean conf = true;
+        if(isEmpty(semanasnacio)||isEmpty(pesonacer)||isEmpty(numhermanos)||isEmpty(lugarocupa)||isEmpty(adultosvive)||isEmpty(niniosvive)||isEmpty(pa1)||cuidadorprinc.getValue() == null||fechadecita.getValue() == null){
+            alerta = new Alertas(titulo.getParent().getScene().getWindow());
+            conf = alerta.confirmation();
+        }
         int gest = (prematuro.isSelected()) ? 1 : 0;
         int probnac = probnacer.isSelected() ? 1 : 0;
         int probsal = probsalud.isSelected() ? 1 : 0;
@@ -154,47 +238,38 @@ public class AgregarSociodController implements Initializable {
         int probvis = probvision.isSelected() ? 1 : 0;
         int otroidi = otroidioma.isSelected() ? 1 : 0;
         int pta2 = isEmpty(pa2) ? 0 : Integer.parseInt(pa2.getText());
-        
         int g = guarderia.isSelected() ? 1 : 0;
-        int tag = isEmpty(tiempoasistiendog) ? 0 : Integer.parseInt(tiempoasistiendog.getText());
-        int tqag = isEmpty(tiempoqueasisteg) ? 0 : Integer.parseInt(tiempoqueasisteg.getText());
-        int p = preescolar.isSelected()?1:0;
-        int tap = isEmpty(tiempoasistiendop) ? 0 : Integer.parseInt(tiempoasistiendop.getText());
-        int tqap = isEmpty(tiempoqueasistep) ? 0 : Integer.parseInt(tiempoqueasistep.getText());
-        
+        int tag = isEmpty(tiempoasistiendog) ? -1 : Integer.parseInt(tiempoasistiendog.getText());
+        int tqag = isEmpty(tiempoqueasisteg) ? -1 : Integer.parseInt(tiempoqueasisteg.getText());
+        int p = preescolar.isSelected() ? 1 : 0;
+        int tap = isEmpty(tiempoasistiendop) ? -1 : Integer.parseInt(tiempoasistiendop.getText());
+        int tqap = isEmpty(tiempoqueasistep) ? -1 : Integer.parseInt(tiempoqueasistep.getText());
+        int pta1 = (isEmpty(pa1)) ? -1 : Integer.parseInt(pa1.getText());
+        int semnacimiento = (isEmpty(semanasnacio)) ? -1 : Integer.parseInt(semanasnacio.getText());
+        double pesoalnac = (isEmpty(pesonacer)) ? -1 : Double.parseDouble(pesonacer.getText());
+        int herm = (isEmpty(numhermanos)) ? -1 : Integer.parseInt(numhermanos.getText());
+        int locu = (isEmpty(lugarocupa)) ? -1 : Integer.parseInt(lugarocupa.getText());
+        int adultos = (isEmpty(adultosvive)) ? -1 : Integer.parseInt(adultosvive.getText());
+        int ninios = (isEmpty(niniosvive)) ? -1 : Integer.parseInt(niniosvive.getText());
+        String fechacita = (fechadecita.getValue() == null) ? "1111-11-11" : fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String cpr = (cuidadorprinc.getValue() == null) ? "No indicado" : cuidadorprinc.getValue();
         String obs = observaciones.getText();
         
-        if(!(isEmpty(semanasnacio)||isEmpty(pesonacer)||isEmpty(numhermanos)||isEmpty(lugarocupa)||isEmpty(adultosvive)||isEmpty(niniosvive)||isEmpty(pa1))){
-            int pta1 = Integer.parseInt(pa1.getText());
-            int semnacimiento = Integer.parseInt(semanasnacio.getText());
-            double pesoalnac = Double.parseDouble(pesonacer.getText());
-            int herm = Integer.parseInt(numhermanos.getText());
-            int locu = Integer.parseInt(lugarocupa.getText());
-            int adultos = Integer.parseInt(adultosvive.getText());
-            int ninios = Integer.parseInt(niniosvive.getText());
-            String fechacita = "";
-            try{
-                fechacita = fechadecita.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            } catch (Exception e) {
-                label.setVisible(true);
-            return;
-            }
-                
-                String cpr = cuidadorprinc.getValue();
-                
-                if(!editable) {
-                    SociodemograficoModelo sm = new SociodemograficoModelo(fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
-                    sm.createSociodemografico();
-                    alertInformation("Éxito","","Sociodemográfico agregado exitosamente.");
-                } else {
-                    SociodemograficoModelo sm = new SociodemograficoModelo();
-                    sm.updateSociodemografico(sdm.getIdSociodemografico(),-1,fechacita,gest,semnacimiento,pta1,pta2,pesoalnac,probnac,probsal,probaud,probvis,otroidi,herm,locu,adultos,ninios,cpr,g,tag,tqag,p,tap,tqap,obs,idbebe);
-                    alertInformation("Éxito","","Sociodemográfico editado exitosamente.");
-                }
+        if (!conf) return;
+        
+        if (!editable) {
+            SociodemograficoModelo sm = new SociodemograficoModelo(fechacita, gest, semnacimiento, pta1, pta2, pesoalnac, probnac, probsal, probaud, probvis, otroidi, herm, locu, adultos, ninios, cpr, g, tag, tqag, p, tap, tqap, obs, idbebe);
+            sm.createSociodemografico();
+            alertInformation("Éxito", "", "Sociodemográfico agregado exitosamente.");
         } else {
-            label.setVisible(true);
-            return;
+            SociodemograficoModelo sm = new SociodemograficoModelo();
+            sm.updateSociodemografico(sdm.getIdSociodemografico(), -1, fechacita, gest, semnacimiento, pta1, pta2, pesoalnac, probnac, probsal, probaud, probvis, otroidi, herm, locu, adultos, ninios, cpr, g, tag, tqag, p, tap, tqap, obs, idbebe);
+            alertInformation("Éxito", "", "Sociodemográfico editado exitosamente.");
         }
+        //} else {
+        //    label.setVisible(true);
+        //    return;
+        //}
             Stage actualWindow = (Stage) label.getScene().getWindow();
            
             actualWindow.close();

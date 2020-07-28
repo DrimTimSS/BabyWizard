@@ -329,7 +329,7 @@ public class RegistroBBController implements Initializable {
         
         String obs = observaciones.getText();
         boolean confirmation = true;
-        if(isEmpty(semanasnacio)||isEmpty(pesonacer)||isEmpty(numhermanos)||isEmpty(lugarocupa)||isEmpty(adultosvive)||isEmpty(niniosvive)||isEmpty(pa1)){
+        if(isEmpty(semanasnacio)||isEmpty(pesonacer)||isEmpty(numhermanos)||isEmpty(lugarocupa)||isEmpty(adultosvive)||isEmpty(niniosvive)||isEmpty(pa1)||cuidadorprinc.getValue()==null||fechadecita.getValue() == null){
             alerta = new Alertas(titulo.getParent().getScene().getWindow());
             confirmation = alerta.confirmation();
         }

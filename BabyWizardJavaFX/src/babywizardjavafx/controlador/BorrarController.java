@@ -26,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import java.util.regex.*;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
@@ -110,6 +111,42 @@ public class BorrarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        idbebeaborrar.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    idbebeaborrar.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        idbebebusqueda.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    idbebebusqueda.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadbusquedamin.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadbusquedamin.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadbusquedamax.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadbusquedamax.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
         try {
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = bm.readBebe(-1, "", "", "", -1, "",-1,-1, "");

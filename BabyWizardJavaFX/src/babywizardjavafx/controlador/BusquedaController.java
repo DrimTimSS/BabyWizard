@@ -6,6 +6,7 @@
 package babywizardjavafx.controlador;
 
 import babywizardjavafx.modelo.BebeModelo;
+import babywizardjavafx.modelo.CuidadorModelo;
 import babywizardjavafx.modelo.JdbConnection;
 import babywizardjavafx.modelo.SociodemograficoModelo;
 import babywizardjavafx.modelo.SocioeconomicoModelo;
@@ -182,6 +183,22 @@ public class BusquedaController implements Initializable {
     private CheckBox cdi182430;
     @FXML
     private CheckBox icplim;
+    @FXML
+    private TextField nombrecbusqueda;
+    @FXML
+    private TextField apellidopcbusqueda;
+    @FXML
+    private TextField apellidomcbusqueda;
+    @FXML
+    private TextField edadcbusquedamin;
+    @FXML
+    private TextField edadcbusquedamax;
+    @FXML
+    private Button btnbuscarc;
+    @FXML
+    private TextField correocbusqueda;
+    @FXML
+    private TextField aniosestuciocbusqueda;
 
     /**
      * Initializes the controller class.
@@ -211,6 +228,61 @@ public class BusquedaController implements Initializable {
         nse.getItems().add("D");
         nse.getItems().add("E");
         
+        idbebebusqueda.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    idbebebusqueda.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        
+        edadbusquedamin.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadbusquedamin.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadbusquedamax.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadbusquedamax.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadcbusquedamin.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadcbusquedamin.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadcbusquedamax.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadcbusquedamax.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        aniosestuciocbusqueda.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    aniosestuciocbusqueda.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
         pcbusqueda.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -811,7 +883,7 @@ public class BusquedaController implements Initializable {
         //Instant start = Instant.now();
         LinkedList<Integer> ids = new LinkedList<>();
         abrir = false;
-        ids = intersection(intersection(intersection(intersection(buscarBebes(null),buscarPorUsuario(null)),buscarPrueba(null)),buscarSociodemografico(null)),buscarSocioeconomico(null));
+        ids = intersection(intersection(intersection(intersection(intersection(buscarBebes(null),buscarPorUsuario(null)),buscarPrueba(null)),buscarSociodemografico(null)),buscarSocioeconomico(null)),buscarCuidadores(null));
         //Instant busquedatodosids = Instant.now();
         //long busquedaids = Duration.between(start, busquedatodosids).toMillis();
         //System.out.println(busquedaids);
@@ -831,5 +903,29 @@ public class BusquedaController implements Initializable {
             if(!list1.remove(entero)) list2.remove(entero);
         }
         return list2;
+    }
+
+    @FXML
+    private LinkedList<Integer> buscarCuidadores(ActionEvent event) throws SQLException, IOException {
+        LinkedList<Integer> ids = new LinkedList<>();
+        LinkedList<CuidadorModelo> cuidadores;
+        CuidadorModelo bm = new CuidadorModelo();
+        int mesesmin = -1;
+        int mesesmax = -1;
+        if (edadbusquedamin.getText().matches("\\d+"))
+            mesesmin = Integer.parseInt(edadbusquedamin.getText());
+        if (edadbusquedamax.getText().matches("\\d+"))
+            mesesmax = Integer.parseInt(edadbusquedamax.getText());
+        int edad1 = (edadcbusquedamin.getText().equals("")) ? -1 : Integer.parseInt(edadcbusquedamin.getText());
+        int edad2 = (edadcbusquedamax.getText().equals("")) ? -1 : Integer.parseInt(edadcbusquedamax.getText());
+        int aniosEstudio = (aniosestuciocbusqueda.getText().equals("")) ? -1 : Integer.parseInt(aniosestuciocbusqueda.getText());
+        cuidadores = bm.readCuidador(-1, correocbusqueda.getText(), -1, nombrecbusqueda.getText(), apellidopcbusqueda.getText(), apellidomcbusqueda.getText(), "", "", "", aniosEstudio, "", edad1, edad2, -1);
+        
+        cuidadores.forEach((c) -> {
+            ids.add(c.getFkBebe());
+        });
+        if(abrir)abrirResultado(ids);
+        System.out.println(ids);
+        return ids;
     }
 }

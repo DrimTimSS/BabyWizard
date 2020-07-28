@@ -55,7 +55,7 @@
                   <TextField fx:id="pa2" promptText="Apgar 2 (opcional)" />
                </children>
             </HBox>
-            <Label text="Prematuro;" GridPane.rowIndex="1" />
+            <Label text="Prematuro:" GridPane.rowIndex="1" />
             <Label text="Problemas al nacer:" GridPane.rowIndex="4" />
             <Label text="Problemas de salud:" GridPane.rowIndex="5" />
             <Label text="Problemas de visión:" GridPane.rowIndex="7" />
@@ -108,7 +108,7 @@
             <HBox alignment="CENTER" prefHeight="26.0" prefWidth="150.0" spacing="10.0" GridPane.rowIndex="7">
                <children>
                   <Label text="Tiempo asistiendo" />
-                  <TextField fx:id="tiempoasistiendog" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
+                  <TextField fx:id="tiempoasistiendog" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -118,13 +118,13 @@
                         <Insets right="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="tiempoqueasisteg" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
+                  <TextField fx:id="tiempoqueasisteg" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="10.0" GridPane.rowIndex="9">
                <children>
                   <Label text="Tiempo asistiendo" />
-                  <TextField fx:id="tiempoasistiendop" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
+                  <TextField fx:id="tiempoasistiendop" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9">
@@ -134,7 +134,7 @@
                         <Insets right="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="tiempoqueasistep" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" promptText="0" />
+                  <TextField fx:id="tiempoqueasistep" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="45.0" />
                </children>
             </HBox>
             <Label text="Asiste a la guardería" GridPane.rowIndex="6" />
@@ -158,10 +158,10 @@
                   </Label>
                </children>
             </HBox>
-            <TextField fx:id="numhermanos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="59.0" promptText="0" GridPane.columnIndex="1" />
-            <TextField fx:id="lugarocupa" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="60.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="adultosvive" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="54.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="niniosvive" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="54.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="numhermanos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="59.0" GridPane.columnIndex="1" />
+            <TextField fx:id="lugarocupa" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="60.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="adultosvive" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="54.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="niniosvive" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="54.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="cuidadorprinc" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <CheckBox fx:id="guarderia" mnemonicParsing="false" onAction="#guarderiaChecked" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <CheckBox fx:id="preescolar" mnemonicParsing="false" onAction="#preescolarChecked" GridPane.columnIndex="1" GridPane.rowIndex="8" />

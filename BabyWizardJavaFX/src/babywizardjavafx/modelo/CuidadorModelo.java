@@ -203,7 +203,7 @@ public class CuidadorModelo {
         return cuidadores;
     }
     
-    public LinkedList<CuidadorModelo> readCuidador(int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, String relacion, int fkBebe) throws SQLException {
+    public LinkedList<CuidadorModelo> readCuidador(int idCuidador, String correoElectronico, int edad, String nombreC, String primerApellidoC, String segundoApellidoC, String ocupacion, String primerTelefono, String segundoTelefono, int aniosEstudio, String relacion, int edadmin, int edadmax, int fkBebe) throws SQLException {
         JdbConnection jdbc = new JdbConnection();
         Connection con = jdbc.getConnection();
         LinkedList<String> toRead = new LinkedList<>();
@@ -218,6 +218,8 @@ public class CuidadorModelo {
         if(!"".equals(segundoTelefono)) toRead.add("segundoTelefono = '"+segundoTelefono+"'");
         if(!"".equals(relacion)) toRead.add("relacion = '"+relacion+"'");
         if(aniosEstudio > -1) toRead.add("aniosEstudio = '"+aniosEstudio+"'");
+        if(edadmin>-1) toRead.add("edad >= '"+edadmin+"'");
+        if(edadmax>-1 && edadmax>=edadmin) toRead.add("edad <= '"+edadmax+"'");
         if(fkBebe>-1) toRead.add("fkBebe = '"+fkBebe+"'");
         String query1 = "SELECT * FROM babywizard.cuidador WHERE ";
         String query2 = "";

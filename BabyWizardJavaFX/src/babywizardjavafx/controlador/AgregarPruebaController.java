@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -129,6 +131,33 @@ public class AgregarPruebaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        idbebebusqueda.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    idbebebusqueda.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadbusquedamin.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadbusquedamin.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        edadbusquedamax.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+            String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edadbusquedamax.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
         try {
             BebeModelo bm = new BebeModelo();
             LinkedList<BebeModelo> resultados = bm.readBebe(-1, "", "", "", -1, "",-1,-1, "");
@@ -192,7 +221,7 @@ public class AgregarPruebaController implements Initializable {
             
             CuidadorModelo cm = new CuidadorModelo();
             List<String> choices = new LinkedList<>();
-            LinkedList<CuidadorModelo> cuidadores = cm.readCuidador(-1, "", -1, prueba, "", "", "", "", "", -1, "", idBebe);
+            LinkedList<CuidadorModelo> cuidadores = cm.readCuidador(-1, "", -1, prueba, "", "", "", "", "", -1, "",-1,-1, idBebe);
             if(cuidadores.size()<1) {
                 alertInformation("Alerta","","No hay cuidador registrado.");
                 return;
