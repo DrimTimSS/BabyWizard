@@ -4,13 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/AgregarPruebaController.java</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/EditarController.java</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/modelo/CuidadorModelo.java</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/BorrarController.java</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/modelo/BebeModelo.java</file>
+            <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/AgregarSocioeController.java</file>
             <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/RegistroBBController.java</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/BusquedaController.java</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/BabyWizard/BabyWizardJavaFX/src/babywizardjavafx/controlador/RegistroCController.java</file>
         </group>
     </open-files>
 </project-private>

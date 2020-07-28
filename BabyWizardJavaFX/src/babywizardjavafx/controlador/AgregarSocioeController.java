@@ -54,7 +54,7 @@ public class AgregarSocioeController implements Initializable {
     private boolean editable;
     private SocioeconomicoModelo sem;
     
-
+    Alertas alerta;
     /**
      * Initializes the controller class.
      */
@@ -81,25 +81,27 @@ public class AgregarSocioeController implements Initializable {
     
     @FXML
     private void agregar(ActionEvent event) throws SQLException, IOException {
-        String puntaje = puntajecrudo.getText();
-        String n = nse.getValue();
-        String fechan = "";
+        alerta = new Alertas(label.getParent().getScene().getWindow());
+        int puntaje = (puntajecrudo.getText().equals("")) ? -1 :  Integer.parseInt(puntajecrudo.getText());
+        String n = (nse.getValue() == null) ? "X" : nse.getValue();
+        String fechan = (fechaaplicacion.getValue()==null) ? "1111-11-11" : fechaaplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         
-        if(!(puntaje.equals("") || n.equals("") || fechaaplicacion.getValue()!=null)){
-            if(!editable) {
-            fechan = fechaaplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            SocioeconomicoModelo sem = new SocioeconomicoModelo(Integer.parseInt(puntaje), n, fechan, idbebe);
-            sem.createSocioeconomico();
-            alertInformation("Éxito","","Socioeconómico agregado de forma exitosa.");
-            } else {
-            fechan = fechaaplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            sem.updateSocioeconomico(sem.getIdSocioeconomico(), -1, Integer.parseInt(puntaje), n, fechan, -1);
-            alertInformation("Éxito","","Socioeconómico editado de forma exitosa.");
-            }
-        } else{
-            label.setVisible(true);
-            return;            
+        boolean conf = true;
+        if(puntajecrudo.getText().equals("") || nse.getValue() == null || fechaaplicacion.getValue()==null){
+            conf = alerta.confirmation();
+        } 
+        
+        if (!conf) {
+            return;
         }
+        if(!editable) {
+            SocioeconomicoModelo sem = new SocioeconomicoModelo(puntaje, n, fechan, idbebe);
+            sem.createSocioeconomico();
+            alerta.alertInformation("Éxito","","Socioeconómico agregado de forma exitosa.");
+            } else {
+            sem.updateSocioeconomico(sem.getIdSocioeconomico(), -1, puntaje, n, fechan, -1);
+            alerta.alertInformation("Éxito","","Socioeconómico editado de forma exitosa.");
+            }
         
         Stage actualWindow = (Stage) label.getScene().getWindow();
         actualWindow.close();       
@@ -118,18 +120,6 @@ public class AgregarSocioeController implements Initializable {
         nse.setValue(sem.getNse());
         fechaaplicacion.setValue(LocalDate.parse(sem.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         label.setText("No se pudo editar socioeconómico.");
-    }
-    
-    private void alertInformation(String titulo, String header, String contenido) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(label.getParent().getScene().getWindow());
-        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
-        alert.setTitle(titulo);
-        if(header.equals("")) {
-            alert.setHeaderText(null);
-        } else {alert.setHeaderText(header);}
-        alert.setContentText(contenido);
-        alert.showAndWait();
     }
     
     
