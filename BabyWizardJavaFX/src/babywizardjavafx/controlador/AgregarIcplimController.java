@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -53,6 +54,7 @@ public class AgregarIcplimController implements Initializable {
     private int idBebeActualizar;
     private IcplimModelo icplimAEditar;
 
+    Alertas alerta;
     /**
      * Initializes the controller class.
      */
@@ -64,25 +66,42 @@ public class AgregarIcplimController implements Initializable {
     @FXML
     private void agregar(ActionEvent event) {
         String fechan = "";
-        if(!(isEmpty(c) || isEmpty(propc) || isEmpty(cyd) || isEmpty(propcyd) || isEmpty(total) || isEmpty(proptotal) || fechaAplicacion.getValue()==null)){
-            try{
-                fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                if(!editable){
-                    System.out.println("oa k show");
-                    IcplimModelo im = new IcplimModelo(Integer.parseInt(c.getText()), Float.parseFloat(propc.getText()), Integer.parseInt(cyd.getText()), Float.parseFloat(propcyd.getText()), Integer.parseInt(total.getText()), Float.parseFloat(proptotal.getText()), fechan, idbebe);
-                    im.createIcplimModelo();
-                    alertInformation("Éxito","","Icplim agregado de forma exitosa.");
-                } else{
-                    icplimAEditar.updateIcplim(icplimAEditar.getIdIcplim(), -1, Integer.parseInt(c.getText()), Float.parseFloat(propc.getText()), Integer.parseInt(cyd.getText()), Float.parseFloat(propcyd.getText()), Integer.parseInt(total.getText()), Float.parseFloat(proptotal.getText()), fechan, -1);
-                    alertInformation("Éxito","","Icplim editado de forma exitosa.");
-                }
-            } catch(Exception e){
-                return;
-            }
+        boolean conf = true;
+        alerta = new Alertas(label.getParent().getScene().getWindow());
+        if(isEmpty(c) || isEmpty(propc) || isEmpty(cyd) || isEmpty(propcyd) || isEmpty(total) || isEmpty(proptotal) || fechaAplicacion.getValue()==null){
+            conf = alerta.confirmation();
         }
+        if (!conf) return;
+        int c1 = (isEmpty(c)) ? -1 : Integer.parseInt(c.getText());
+        float pc = (isEmpty(propc)) ? -1 : Float.parseFloat(propc.getText());
+        int cyd1 = (isEmpty(cyd)) ? -1 : Integer.parseInt(cyd.getText());
+        float pcyd = (isEmpty(propcyd)) ? -1 : Float.parseFloat(propcyd.getText());
+        int t1 = (isEmpty(total)) ? -1 : Integer.parseInt(total.getText());
+        float pt = (isEmpty(proptotal)) ? -1 : Float.parseFloat(proptotal.getText());
+        
+        try {
+            fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            if (!editable) {
+                IcplimModelo im = new IcplimModelo(c1, pc, cyd1, pcyd, t1, pt, fechan, idbebe);
+                im.createIcplimModelo();
+                alertInformation("Éxito", "", "Icplim agregado de forma exitosa.");
+            } else {
+                icplimAEditar.updateIcplim(icplimAEditar.getIdIcplim(), -1, c1, pc, cyd1, pcyd, t1, pt, fechan, -1);
+                alertInformation("Éxito", "", "Icplim editado de forma exitosa.");
+            }
+        } catch (Exception e) {
+            alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten ingresar en la base."
+                    + "\n Compruebe que la fecha de la cita encaje con la fecha de nacimiento para que el infante tenga una edad válida para aplicar ICPLIM.");
+            return;
+        }
+        Stage actualWindow = (Stage) label.getScene().getWindow();
+        actualWindow.close();
     }
     
-    
+    public boolean isEmpty(TextField textfield) {
+        return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
+    }    
+
     void setCampos() {
         try {
             fechaAplicacion.setValue(LocalDate.parse(icplimAEditar.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
@@ -95,10 +114,6 @@ public class AgregarIcplimController implements Initializable {
         propcyd.setText(icplimAEditar.getPropCyD()+"");
         total.setText(icplimAEditar.getTotal()+"");
         proptotal.setText(icplimAEditar.getTotal()+"");
-    }
-    
-    public boolean isEmpty(TextField textfield) {
-        return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
     }
 
     public void inicializarBebe(int idbebe){

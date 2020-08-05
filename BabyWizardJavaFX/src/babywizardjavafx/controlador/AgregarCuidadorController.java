@@ -65,19 +65,22 @@ public class AgregarCuidadorController implements Initializable {
     private CuidadorModelo cm;
     private int idCuidadorActualizar;
 
-    
+    Alertas alerta;
+
     public boolean isEmpty(TextField textfield) {
         return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
     }
-    public void inicializarBebe(int idbebe){
+
+    public void inicializarBebe(int idbebe) {
         this.idbebe = idbebe;
-    } 
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         
+
         relacion.getItems().add("Madre");
         relacion.getItems().add("Padre");
         relacion.getItems().add("Abuela P.");
@@ -92,33 +95,50 @@ public class AgregarCuidadorController implements Initializable {
         relacion.getItems().add("Hermano");
         relacion.getItems().add("Otro");
 
-    }    
+    }
 
     @FXML
     private void agregar(ActionEvent event) throws SQLException, IOException {
-        
-        if (!(isEmpty(edad) || isEmpty(correo) || isEmpty(nombres) || isEmpty(apellidop) || isEmpty(apellidom) || isEmpty(ocupacion) || isEmpty(telefono1) || isEmpty(aniosestudio))) {
-            if(!editable){
-            CuidadorModelo cm = new CuidadorModelo(correo.getText(), Integer.parseInt(edad.getText()), nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()), relacion.getValue(),idbebe);
-            cm.createCuidador();
-            alertInformation("Éxito","","Cuidador agregado de forma exitosa");
-            Stage actualWindow = (Stage) titulo.getScene().getWindow();
-            actualWindow.close();
+        boolean c = true;
+        alerta = new Alertas(titulo.getParent().getScene().getWindow());
+        if (isEmpty(edad) || isEmpty(correo) || isEmpty(nombres) || isEmpty(apellidop) || isEmpty(apellidom) || isEmpty(ocupacion) || isEmpty(telefono1) || isEmpty(aniosestudio)) {
+            c = alerta.confirmation();
+        }
+        if (!c) {
+            return;
+        }
+        String cor = (isEmpty(correo)) ? "" : correo.getText();
+        int ed = (isEmpty(edad)) ? -1 : Integer.parseInt(edad.getText());
+        String n = (isEmpty(nombres)) ? "" : nombres.getText();
+        String app = (isEmpty(apellidop)) ? "" : apellidop.getText();
+        String apm = (isEmpty(apellidom)) ? "" : apellidom.getText();
+        String oc = (isEmpty(ocupacion)) ? "" : ocupacion.getText();
+        String tel1 = (isEmpty(telefono1)) ? "" : telefono1.getText();
+        String tel2 = (isEmpty(telefono2)) ? "" : telefono2.getText();
+        int anest = (isEmpty(aniosestudio)) ? -1 : Integer.parseInt(aniosestudio.getText());
+        String rel = (relacion.getValue() == null) ? "No indicado" : relacion.getValue();
+       
+        try {
+            if (!editable) {
+                CuidadorModelo cm = new CuidadorModelo(cor, ed, n, app, apm, oc, tel1, tel2, anest, rel, idbebe);
+                cm.createCuidador();
+                alertInformation("Éxito", "", "Cuidador agregado de forma exitosa");
+                Stage actualWindow = (Stage) titulo.getScene().getWindow();
+                actualWindow.close();
             } else {
-                cm.updateCuidador(idCuidadorActualizar,-1,correo.getText(), Integer.parseInt(edad.getText()), nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), Integer.parseInt(aniosestudio.getText()), relacion.getValue(),idbebe);
-                alertInformation("Éxito","","Cuidador editado de forma exitosa.");
+                cm.updateCuidador(idCuidadorActualizar, -1, cor, ed, n, app, apm, oc, tel1, tel2, anest, rel, idbebe);
+                alertInformation("Éxito", "", "Cuidador editado de forma exitosa.");
                 Stage actualWindow = (Stage) titulo.getScene().getWindow();
                 actualWindow.close();
             }
-            Stage actualWindow = (Stage) apellidop.getScene().getWindow();
-           
-            actualWindow.close();
-        } else{
-          label.setVisible(true);
-          return;
-        }  
-          
-    }    
+        } catch (Exception e) {
+            alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten ingresar en la base.");
+            return;
+        }
+
+        Stage actualWindow = (Stage) apellidop.getScene().getWindow();
+        actualWindow.close();
+    }
 
     void setEditable(boolean b) {
         this.editable = b;
@@ -136,19 +156,21 @@ public class AgregarCuidadorController implements Initializable {
         relacion.setValue(cm.getRelacion());
         telefono1.setText(cm.getPrimerTelefono());
         telefono2.setText(cm.getSegundoTelefono());
-        edad.setText(cm.getEdad()+"");
-        aniosestudio.setText(cm.getAniosEstudio()+"");
+        edad.setText(cm.getEdad() + "");
+        aniosestudio.setText(cm.getAniosEstudio() + "");
         ocupacion.setText(cm.getOcupacion());
     }
-    
+
     private void alertInformation(String titulo, String header, String contenido) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(nombres.getParent().getScene().getWindow());
         alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
         alert.setTitle(titulo);
-        if(header.equals("")) {
+        if (header.equals("")) {
             alert.setHeaderText(null);
-        } else {alert.setHeaderText(header);}
+        } else {
+            alert.setHeaderText(header);
+        }
         alert.setContentText(contenido);
         alert.showAndWait();
     }
@@ -157,4 +179,3 @@ public class AgregarCuidadorController implements Initializable {
         this.idCuidadorActualizar = id;
     }
 }
-

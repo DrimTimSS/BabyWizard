@@ -52,6 +52,11 @@ public class ExperimentoCabinaController implements Initializable {
     @FXML
     private TextField enlace;
     
+    boolean editable;
+    
+    Alertas alerta;
+    private ExperimentoCabinaModelo expcab;
+    
     /**
      * Initializes the controller class.
      */
@@ -71,56 +76,34 @@ public class ExperimentoCabinaController implements Initializable {
     
     @FXML
     private void agregar(ActionEvent event) throws IOException, SQLException {
+        alerta = new Alertas(label.getParent().getScene().getWindow());
         
         String tExp = (isEmpty(inputtipoExp))?"":inputtipoExp.getText();
         String enl = (isEmpty(enlace))?"":enlace.getText();
-        
-        if(!(isEmpty(enlace) || isEmpty(inputtipoExp))){       
-        enl = enl.replaceAll("/", "//");
-        enl = enl.replaceAll("\\\\", "\\\\\\\\");
-        ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tExp, enl, idbebe);
-        ecm.createExperimentoCabina();
+        boolean c = true;
+        if(isEmpty(enlace) || isEmpty(inputtipoExp)){
+            c = alerta.confirmation();
 
-        } else{
-          boolean c = confirmation();
-          if (c) {
-            ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tExp, enl, idbebe);
-            ecm.createExperimentoCabina();
-          }
-          return;
-      }
-        
-        
-        alertInformation("Éxito","","Prueba de laboratorio creada de forma exitosa.");
-        Stage actualWindow = (Stage) label.getScene().getWindow();
-        actualWindow.close();
-    }
-
-    private void alertInformation(String titulo, String header, String contenido) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(label.getParent().getScene().getWindow());
-        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
-        alert.setTitle(titulo);
-        if(header.equals("")) {
-            alert.setHeaderText(null);
-        } else {alert.setHeaderText(header);}
-        alert.setContentText(contenido);
-        alert.showAndWait();
-    }
-    
-    private boolean confirmation() {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
-        alert.setTitle("Confirmar");
-        alert.setHeaderText("Campos vacíos");
-        alert.setContentText("Algunos campos están vacíos, ¿desea registrar de esta manera?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            return true;
-        } else {
-            return false;
         }
+        if (c) {
+            enl = enl.replaceAll("/", "//");
+            enl = enl.replaceAll("\\\\", "\\\\\\\\");
+            ExperimentoCabinaModelo ecm = new ExperimentoCabinaModelo(tExp, enl, idbebe);
+            if (editable) {
+                ecm.updateExperimentoCabina(expcab.getIdExperimentoCabina(), -1, tExp, enl, idbebe);
+                alerta.alertInformation("Éxito","","Prueba de laboratorio editada de forma exitosa.");
+                Stage actualWindow = (Stage) label.getScene().getWindow();
+                actualWindow.close();
+                return;
+            }
+            
+            ecm.createExperimentoCabina();
+            alerta.alertInformation("Éxito","","Prueba de laboratorio creada de forma exitosa.");
+            Stage actualWindow = (Stage) label.getScene().getWindow();
+        actualWindow.close();
+        } else {return;}
+  
+          
     }
 
     @FXML
@@ -133,5 +116,18 @@ public class ExperimentoCabinaController implements Initializable {
         }
         enlace.setText(direccion);
         return direccion;
+    }
+
+    void setEditable(boolean b) {
+        this.editable = b;
+    }
+
+    void setCampos() {
+        this.inputtipoExp.setText(expcab.getTipoExperimento());
+        this.enlace.setText(expcab.getEnlace());
+    }
+
+    void setExperimentoCabinaAEditar(ExperimentoCabinaModelo expcab) {
+        this.expcab = expcab;
     }
 }

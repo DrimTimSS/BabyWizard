@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -119,6 +120,8 @@ public class Wppsi303642Controller implements Initializable {
     
     boolean creable;
     
+    Alertas alerta;
+    
     public boolean editable;
     public int idBebeActualizar;
     public Wppsi303642Modelo wppsiAEditar;
@@ -156,6 +159,33 @@ public class Wppsi303642Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         editable = false;
+        
+        vrn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                vrn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        dcn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                dcn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        inn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                inn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        rcn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                rcn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        dnn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                dnn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        
         agregar.setOnKeyPressed(new EventHandler<KeyEvent>()
     {
         @Override
@@ -483,14 +513,27 @@ public class Wppsi303642Controller implements Initializable {
             int rc = (rcn.getText().equals("")) ? -1 : Integer.parseInt(rcn.getText());
             int dn = (dnn.getText().equals("")) ? -1 : Integer.parseInt(dnn.getText());
             try{
+                System.out.println(fechaaplic.getValue());
                 String fechan = fechaaplic.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                
                 wppsiAEditar.updateWppsi303642(wppsiAEditar.getIdWppsi303642(), -1, vr, dc, in, rc, dn, fechan, -1, sust.isSelected() ? 1 : 0);
                 alertInformation("Éxito","","WPPSI editado de forma exitosa.");
                 Stage actualWindow = (Stage) grid.getScene().getWindow();
                 actualWindow.close();
-            } catch (Exception e) {}
+                return;
+            } catch (Exception e) {
+                alerta = new Alertas(grid.getParent().getScene().getWindow());
+                alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten la edición en la base."
+                    + "\n Compruebe que la fecha de la cita encaje con la fecha de nacimiento para que el infante tenga una edad válida para aplicar WPPSI303642.");
+                return; //Poner mensaje si se quiere
+            }
         }
-        if(wm==null || creable ==false) return; //Poner mensaje si se quiere
+        if(wm==null || creable ==false) {
+            alerta = new Alertas(grid.getParent().getScene().getWindow());
+            alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten la inserción en la base."
+                    + "\n Compruebe que la fecha de la cita encaje con la fecha de nacimiento para que el infante tenga una edad válida para aplicar WPPSI303642.");
+            return; //Poner mensaje si se quiere
+        }
         wm.createWppsi303642();
         alertInformation("Éxito","","WPPSI creado de forma exitosa.");
         Stage actualWindow = (Stage) grid.getScene().getWindow();

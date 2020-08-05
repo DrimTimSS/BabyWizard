@@ -9,6 +9,7 @@ import babywizardjavafx.modelo.BebeModelo;
 import babywizardjavafx.modelo.Cdi12Modelo;
 import babywizardjavafx.modelo.Cdi182430Modelo;
 import babywizardjavafx.modelo.CuidadorModelo;
+import babywizardjavafx.modelo.ExperimentoCabinaModelo;
 import babywizardjavafx.modelo.IcplimModelo;
 import babywizardjavafx.modelo.LecturaConjuntaModelo;
 import babywizardjavafx.modelo.SociodemograficoModelo;
@@ -610,12 +611,42 @@ public class EditarController implements Initializable {
                 cdicont.setCampos();
             }
         } else
+        //====================================================
+        //Para editar Experimento Cabina
+        //====================================================
             if (expcab.isSelected()) {
-            direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";
-            prueba = "Experimento de Cabina";
-            FXMLLoader loader = showWindow(direccion, prueba);
-            ExperimentoCabinaController wcont = loader.getController();
-            wcont.inicializarBebe(Integer.valueOf(idbebeprueba.getText()));
+            ExperimentoCabinaModelo expcab = new ExperimentoCabinaModelo();
+            List<String> choices = new LinkedList<>();
+            LinkedList<ExperimentoCabinaModelo> exps = expcab.readExperimentoCabina(-1, "", "", id);
+            if(exps.size()<1) {
+                alertInformation("Alerta","","No hay CDI 18 24 30 registrado.");
+                return;
+            } //echar notificacion
+            for(ExperimentoCabinaModelo e:exps){
+                //System.out.println(c.getFechaAplicacion());
+                choices.add(e.getIdExperimentoCabina()+" "+e.getTipoExperimento());
+            }
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+            dialog.initOwner(idbebebusqueda.getParent().getScene().getWindow());
+            dialog.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
+            dialog.setTitle("Elección para edición.");
+            dialog.setHeaderText("Escoger el elemento que se desea editar.");
+            dialog.setContentText("¿Cuál es el id del elemento a editar? ");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                expcab = expcab.readExperimentoCabina(Integer.parseInt(result.get().split(" ")[0]), "", "", -1).getFirst();
+                direccion = "/babywizardjavafx/vista/ExperimentoCabina.fxml";
+                prueba = "Experimento Cabina";
+                FXMLLoader loader = showWindow(direccion, prueba);
+                ExperimentoCabinaController cdicont = loader.getController();
+
+                cdicont.setEditable(true);
+                cdicont.inicializarBebe(id);
+                cdicont.setExperimentoCabinaAEditar(expcab);
+                cdicont.setCampos();
+            }
         } else {
                 alertInformation("Alerta","","No hay elemento seleccionado para editar.");
                 return;

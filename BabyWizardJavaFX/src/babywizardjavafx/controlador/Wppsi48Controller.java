@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -184,12 +185,86 @@ public class Wppsi48Controller implements Initializable {
     private int idBebeAtualizar;
     private boolean editable;
     private Wppsi48Modelo wppsi48AEditar;
+    
+    Alertas alerta;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         creable = false;
+        
+        dcn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                dcn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        inn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                inn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        mtn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                mtn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        vcn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                vcn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        cpn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                cpn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        bsn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                bsn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        psn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                psn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        cln.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                cln.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        cmn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                cmn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        fin.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                fin.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        sen.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                sen.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        vrn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                vrn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        rcn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                rcn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        dnn.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            if (!newValue.matches("-?\\d*")) {
+                dnn.setText(newValue.replaceAll("[^\\d-]", ""));
+            }
+        });
+        
     }    
       
     public int[] naturalesAEscalares4042(int dc, int in, int mt,int vb, int cd, int bs, int ps, int cl, int cm, int fi, int se, int vr, int rc, int dn){
@@ -765,7 +840,6 @@ public class Wppsi48Controller implements Initializable {
     
     public void inicializarBebe(int idbebe){
         this.idbebe = idbebe;
-        System.out.println(idbebe);
     }
 
     @FXML
@@ -934,10 +1008,19 @@ public class Wppsi48Controller implements Initializable {
                 Stage actualWindow = (Stage) dcn.getScene().getWindow();
                 actualWindow.close();
             } catch (Exception e) {
-            
+                alerta = new Alertas(dcn.getParent().getScene().getWindow());
+                alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten la edición en la base."
+                    + "\n Compruebe que la fecha de la cita encaje con la fecha de nacimiento para que el infante tenga una edad válida para aplicar WPPSI303642.");
+                return; //Poner mensaje si se quiere
             }
         }
-        if(wm==null || creable == false) return; //Poner mensaje si se quiere
+        if(wm==null || creable == false) {
+            alerta = new Alertas(dcn.getParent().getScene().getWindow());
+            alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten la inserción en la base."
+                    + "\n Compruebe que la fecha de la cita encaje con la fecha de nacimiento para que el infante tenga una edad válida para aplicar WPPSI303642.");
+            return; //Poner mensaje si se quiere
+        }
+            
         wm.createWppsi48();
         alertInformation("Éxito","","WPPSI creado de forma exitosa.");
         Stage actualWindow = (Stage) dcn.getScene().getWindow();

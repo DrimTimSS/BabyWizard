@@ -59,7 +59,8 @@ public class AgregarCdi182430Controller implements Initializable {
     private boolean editable;
     private int idBebeActualizar;
     private Cdi182430Modelo cdimactualizar;
-
+    
+    Alertas alerta;
     /**
      * Initializes the controller class.
      */
@@ -71,22 +72,35 @@ public class AgregarCdi182430Controller implements Initializable {
     @FXML
     private void agregar(ActionEvent event) throws SQLException{
         String fechan = "";
-        if(!(isEmpty(prod) || isEmpty(propprod) || isEmpty(percprod) || isEmpty(p3lpal) || isEmpty(percp3l) || isEmpty(complej) || isEmpty(propcomplej) ||  isEmpty(perccomplej) || fechaAplicacion.getValue()==null)){
+        boolean c = true;
+        alerta = new Alertas(label.getParent().getScene().getWindow());
+        if(isEmpty(prod) || isEmpty(propprod) || isEmpty(percprod) || isEmpty(p3lpal) || isEmpty(percp3l) || isEmpty(complej) || isEmpty(propcomplej) ||  isEmpty(perccomplej) || fechaAplicacion.getValue()==null){
+            c = alerta.confirmation();
+        }
+        if (!c) return;
+        int produ = (isEmpty(prod)) ? -1 : Integer.parseInt(prod.getText());
+        float produprop = (isEmpty(propprod)) ? -1 : Float.parseFloat(propprod.getText());
+        int produperc = (isEmpty(percprod)) ? -1 : Integer.parseInt(percprod.getText());
+        int pl = (isEmpty(p3lpal)) ? -1 : Integer.parseInt(p3lpal.getText());
+        int plperc = (isEmpty(percp3l)) ? -1 : Integer.parseInt(percp3l.getText());
+        int comp = (isEmpty(complej)) ? -1 : Integer.parseInt(complej.getText());
+        float compprop = (isEmpty(propcomplej)) ? -1 : Float.parseFloat(propcomplej.getText());
+        int compperc = (isEmpty(perccomplej)) ? -1 : Integer.parseInt(perccomplej.getText());
             try{
                 fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 if(!editable){
-                    Cdi182430Modelo cdim = new Cdi182430Modelo(Integer.parseInt(prod.getText()), Float.parseFloat(propprod.getText()), Integer.parseInt(percprod.getText()), Float.parseFloat(p3lpal.getText()), Integer.parseInt(percp3l.getText()), Integer.parseInt(complej.getText()), Float.parseFloat(propcomplej.getText()), Integer.parseInt(perccomplej.getText()), fechan, idbebe);
+                    Cdi182430Modelo cdim = new Cdi182430Modelo(produ, produprop, produperc, pl, plperc, comp, compprop, compperc, fechan, idbebe);
                     cdim.createCdi182430Modelo();
                     alertInformation("Éxito","","CDI 182430 creado de forma exitosa.");
                 } else{
-                    cdimactualizar.updateCdi182430(cdimactualizar.getIdCdi182430(), -1, Integer.parseInt(prod.getText()), Float.parseFloat(propprod.getText()), Integer.parseInt(percprod.getText()), Float.parseFloat(p3lpal.getText()), Integer.parseInt(percp3l.getText()), Integer.parseInt(complej.getText()), Float.parseFloat(propcomplej.getText()), Integer.parseInt(perccomplej.getText()), fechan, -1);
+                    cdimactualizar.updateCdi182430(cdimactualizar.getIdCdi182430(), -1, produ, produprop, produperc, pl, plperc, comp, compprop, compperc, fechan, -1);
                     alertInformation("Éxito","","CDI 182430 editado de forma exitosa.");
                 }
-            } catch(NumberFormatException | SQLException e){
-                System.out.println("Caiste en una excepción jejeje");
+            } catch(Exception e){
+                alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten ingresar en la base."
+                    + "\n Compruebe que la fecha de la cita encaje con la fecha de nacimiento para que el infante tenga una edad válida para aplicar CDI182430.");
                 return;
             }
-        }
         Stage actualWindow = (Stage) label.getScene().getWindow();
         actualWindow.close();
     }

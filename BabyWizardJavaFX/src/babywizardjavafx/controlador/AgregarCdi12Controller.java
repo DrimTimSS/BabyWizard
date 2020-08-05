@@ -73,11 +73,12 @@ public class AgregarCdi12Controller implements Initializable {
     private Label label;
     @FXML
     private DatePicker fechaAplicacion;
-    
+
     private int idbebe;
     private boolean editable;
     private int idBebeActualizar;
     private Cdi12Modelo cdimactualizar;
+    Alertas alerta;
 
     /**
      * Initializes the controller class.
@@ -85,54 +86,65 @@ public class AgregarCdi12Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         editable = false;
-    }    
+    }
 
     @FXML
     private void agregar(ActionEvent event) throws SQLException {
         String fechan = "";
-        if (!(isEmpty(cmp)||isEmpty(propcmp)||isEmpty(perccmp)||isEmpty(prod)||isEmpty(propprod)||isEmpty(percprod)||isEmpty(gt)||isEmpty(propgt)||isEmpty(percgt)||isEmpty(pf)||isEmpty(proppf)||isEmpty(percpf)||isEmpty(gta)||isEmpty(propgta)||isEmpty(percgta)||isEmpty(gtot)||isEmpty(propgtot)||isEmpty(percgtot)||fechaAplicacion.getValue()==null)) {
-            try {
-            
-                if (!editable) {
-                    System.out.println("oa");
-                    fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                    Cdi12Modelo cdim = new Cdi12Modelo(Integer.parseInt(pf.getText()),Float.parseFloat(proppf.getText()),Integer.parseInt(percpf.getText()),Integer.parseInt(cmp.getText()),Float.parseFloat(propcmp.getText()),Integer.parseInt(perccmp.getText()),Integer.parseInt(prod.getText()),Float.parseFloat(propprod.getText()),Integer.parseInt(percprod.getText()),Integer.parseInt(gtot.getText()),Float.parseFloat(propgtot.getText()),Integer.parseInt(percgtot.getText()),Integer.parseInt(gt.getText()),Float.parseFloat(propgt.getText()),Integer.parseInt(percgt.getText()),Integer.parseInt(gta.getText()),Float.parseFloat(propgta.getText()),Integer.parseInt(percgta.getText()),fechan,idbebe);
-                    cdim.createCdi12();
-                    alertInformation("Éxito","","CDI 12 agregado de forma exitosa.");   
-                } else {
-                    fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                    cdimactualizar.updateCdi12(cdimactualizar.getIdCdi12(), -1, Integer.parseInt(pf.getText()),Float.parseFloat(proppf.getText()),Integer.parseInt(percpf.getText()),Integer.parseInt(cmp.getText()),Float.parseFloat(propcmp.getText()),Integer.parseInt(perccmp.getText()),Integer.parseInt(prod.getText()),Float.parseFloat(propprod.getText()),Integer.parseInt(percprod.getText()),Integer.parseInt(gtot.getText()),Float.parseFloat(propgtot.getText()),Integer.parseInt(percgtot.getText()), Integer.parseInt(gt.getText()),Float.parseFloat(propgt.getText()),Integer.parseInt(percgt.getText()),Integer.parseInt(gta.getText()),Float.parseFloat(propgta.getText()),Integer.parseInt(percgta.getText()), fechan, -1);
-                    alertInformation("Éxito","","CDI 12 editado de forma exitosa.");
-                }
-            } catch (Exception e) {
-                    return;
-            }
-        } else {
-            return;
+        boolean c = true;
+        alerta = new Alertas(titulo.getParent().getScene().getWindow());
+        if (isEmpty(cmp) || isEmpty(propcmp) || isEmpty(perccmp) || isEmpty(prod) || isEmpty(propprod) || isEmpty(percprod) || isEmpty(gt) || isEmpty(propgt) || isEmpty(percgt) || isEmpty(pf) || isEmpty(proppf) || isEmpty(percpf) || isEmpty(gta) || isEmpty(propgta) || isEmpty(percgta) || isEmpty(gtot) || isEmpty(propgtot) || isEmpty(percgtot) || fechaAplicacion.getValue() == null) {
+            c = alerta.confirmation();
         }
         
+        if (!c) return;
+        int prfr = (isEmpty(pf)) ? -1 : Integer.parseInt(pf.getText());
+        float prfrprop = (isEmpty(proppf)) ? -1 : Float.parseFloat(proppf.getText());
+        int prfrperc = (isEmpty(percpf)) ? -1 : Integer.parseInt(percpf.getText());
+        int comp = (isEmpty(cmp)) ? -1 : Integer.parseInt(cmp.getText());
+        float compprop = (isEmpty(propcmp)) ? -1 : Float.parseFloat(propcmp.getText());
+        int compperc = (isEmpty(perccmp)) ? -1 : Integer.parseInt(perccmp.getText());
+        int produ = (isEmpty(prod)) ? -1 : Integer.parseInt(prod.getText());
+        float produprop = (isEmpty(propprod)) ? -1 : Float.parseFloat(propprod.getText());
+        int produperc = (isEmpty(percprod)) ? -1 : Integer.parseInt(percprod.getText());
+        int gesttot = (isEmpty(gtot)) ? -1 : Integer.parseInt(gtot.getText());
+        float gesttotprop = (isEmpty(propgtot)) ? -1 : Float.parseFloat(propgtot.getText());
+        int gesttotperc = (isEmpty(percgtot)) ? -1 : Integer.parseInt(percgtot.getText());
+        int gtemp = (isEmpty(gt)) ? -1 : Integer.parseInt(gt.getText());
+        float gtempprop = (isEmpty(propgt)) ? -1 : Float.parseFloat(propgt.getText());
+        int gtempperc = (isEmpty(percgt)) ? -1 : Integer.parseInt(percgt.getText());
+        int gtard = (isEmpty(gta)) ? -1 : Integer.parseInt(gta.getText());
+        float gtardprop = (isEmpty(propgta)) ? -1 : Float.parseFloat(propgta.getText());
+        int gtardperc = (isEmpty(percgta)) ? -1 : Integer.parseInt(percgta.getText());
+        
+        try {
+
+            if (!editable) {
+                fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                Cdi12Modelo cdim = new Cdi12Modelo(prfr,prfrprop ,prfrperc,comp,compprop,compperc,produ,produprop,produperc,gesttot,gesttotprop,gesttotperc,gtemp,gtempprop,gtempperc,gtard,gtardprop,gtardperc, fechan, idbebe);
+                cdim.createCdi12();
+                alerta.alertInformation("Éxito", "", "CDI 12 agregado de forma exitosa.");
+            } else {
+                fechan = fechaAplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                cdimactualizar.updateCdi12(cdimactualizar.getIdCdi12(), -1, prfr,prfrprop ,prfrperc,comp,compprop,compperc,produ,produprop,produperc,gesttot,gesttotprop,gesttotperc,gtemp,gtempprop,gtempperc,gtard,gtardprop,gtardperc, fechan, -1);
+                alerta.alertInformation("Éxito", "", "CDI 12 editado de forma exitosa.");
+            }
+        } catch (Exception e) {
+            alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten ingresar en la base."
+                    + "\n Compruebe que la fecha de la cita encaje con la fecha de nacimiento para que el infante tenga una edad válida para aplicar CDI12.");
+            return;
+        }
+
         Stage actualWindow = (Stage) label.getScene().getWindow();
-        actualWindow.close();      
+        actualWindow.close();
     }
-    
+
     public boolean isEmpty(TextField textfield) {
         return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
     }
-    
-    public void inicializarBebe(int idbebe){
+
+    public void inicializarBebe(int idbebe) {
         this.idbebe = idbebe;
-    }
-    
-    private void alertInformation(String titulo, String header, String contenido) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initOwner(this.titulo.getParent().getScene().getWindow());
-        alert.getDialogPane().getStylesheets().add("/babywizardjavafx/vista/EstiloGeneral.css");
-        alert.setTitle(titulo);
-        if(header.equals("")) {
-            alert.setHeaderText(null);
-        } else {alert.setHeaderText(header);}
-        alert.setContentText(contenido);
-        alert.showAndWait();
     }
 
     void setEditable(boolean b) {
@@ -151,30 +163,30 @@ public class AgregarCdi12Controller implements Initializable {
         try {
             fechaAplicacion.setValue(LocalDate.parse(cdimactualizar.getFechaAplicacion(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         } catch (Exception e) {
-        
+
         }
-        cmp.setText(cdimactualizar.getComprension()+"");
-        propcmp.setText(cdimactualizar.getPropComprension()+"");
-        perccmp.setText(cdimactualizar.getPercComprension()+"");
-        
-        prod.setText(cdimactualizar.getProduccion()+"");
-        propprod.setText(cdimactualizar.getPropProduccion()+"");
-        percprod.setText(cdimactualizar.getPercProduccion()+"");
-        
-        gt.setText(cdimactualizar.getGestosTempranos()+"");
-        propgt.setText(cdimactualizar.getPropGestosTempranos()+"");
-        percgt.setText(cdimactualizar.getPercGestosTempranos()+"");
-        
-        pf.setText(cdimactualizar.getPrimerasFrases()+"");
-        proppf.setText(cdimactualizar.getPropPrimerasFrases()+"");
-        percpf.setText(cdimactualizar.getPercPrimerasFrases()+"");
-        
-        gta.setText(cdimactualizar.getGestosTardios()+"");
-        propgta.setText(cdimactualizar.getPropGestosTardios()+"");
-        percgta.setText(cdimactualizar.getPercGestosTardios()+"");
-        
-        gtot.setText(cdimactualizar.getTotalGestos()+"");
-        propgtot.setText(cdimactualizar.getPropTotalGestos()+"");
-        percgtot.setText(cdimactualizar.getPercTotalGestos()+"");
+        cmp.setText(cdimactualizar.getComprension() + "");
+        propcmp.setText(cdimactualizar.getPropComprension() + "");
+        perccmp.setText(cdimactualizar.getPercComprension() + "");
+
+        prod.setText(cdimactualizar.getProduccion() + "");
+        propprod.setText(cdimactualizar.getPropProduccion() + "");
+        percprod.setText(cdimactualizar.getPercProduccion() + "");
+
+        gt.setText(cdimactualizar.getGestosTempranos() + "");
+        propgt.setText(cdimactualizar.getPropGestosTempranos() + "");
+        percgt.setText(cdimactualizar.getPercGestosTempranos() + "");
+
+        pf.setText(cdimactualizar.getPrimerasFrases() + "");
+        proppf.setText(cdimactualizar.getPropPrimerasFrases() + "");
+        percpf.setText(cdimactualizar.getPercPrimerasFrases() + "");
+
+        gta.setText(cdimactualizar.getGestosTardios() + "");
+        propgta.setText(cdimactualizar.getPropGestosTardios() + "");
+        percgta.setText(cdimactualizar.getPercGestosTardios() + "");
+
+        gtot.setText(cdimactualizar.getTotalGestos() + "");
+        propgtot.setText(cdimactualizar.getPropTotalGestos() + "");
+        percgtot.setText(cdimactualizar.getPercTotalGestos() + "");
     }
 }

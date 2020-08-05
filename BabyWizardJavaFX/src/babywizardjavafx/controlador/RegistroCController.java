@@ -273,7 +273,7 @@ public class RegistroCController implements Initializable {
         if (confirmation) {
             int ed = (isEmpty(edad)) ? -1 : Integer.parseInt(edad.getText());
             int anios = (isEmpty(aniosestudio)) ? -1 : Integer.parseInt(aniosestudio.getText());
-            String rel = (relacion.getValue()==null) ? "X" : relacion.getValue();
+            String rel = (relacion.getValue()==null) ? "No indicado" : relacion.getValue();
                 return new CuidadorModelo(correo.getText(), ed, nombres.getText(),apellidop.getText(), apellidom.getText(), ocupacion.getText(), telefono1.getText(), telefono2.getText(), anios, rel,0);
         }
         return null;

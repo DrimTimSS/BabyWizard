@@ -141,6 +141,8 @@ public class LecturaConjuntaController implements Initializable {
     private LecturaConjuntaModelo lecturaAEditar;
     @FXML
     private DatePicker fechaaplicacion;
+    
+    Alertas alerta;
     /**
      * Initializes the controller class.
      */
@@ -261,7 +263,18 @@ public class LecturaConjuntaController implements Initializable {
         String conjBBT = inputconjBBT.getText();
         String interBBT = inputinterBBT.getText();
         
+        boolean c = true;
+        if (isEmpty(inputtypeC) || isEmpty(inputprepC) || isEmpty(inputsustC) || isEmpty(inputartC) || isEmpty(inputverbC) || isEmpty(inputinintC) || isEmpty(inputadjC) || isEmpty(inputpronC) || isEmpty(inputadverC) || isEmpty(inputconjC) || isEmpty(inputinterC) ||
+                        isEmpty(inputtypeCT) || isEmpty(inputprepCT) || isEmpty(inputsustCT) || isEmpty(inputartCT) || isEmpty(inputverbCT) || isEmpty(inputinintCT) || isEmpty(inputadjCT) || isEmpty(inputpronCT) || isEmpty(inputadverCT) || isEmpty(inputconjCT) || isEmpty(inputinterCT) ||
+                        isEmpty(inputtypeBB) || isEmpty(inputprepBB) || isEmpty(inputsustBB) || isEmpty(inputartBB) || isEmpty(inputverbBB) || isEmpty(inputinintBB) || isEmpty(inputadjBB) || isEmpty(inputpronBB) || isEmpty(inputadverBB) || isEmpty(inputconjBB) || isEmpty(inputinterBB) ||
+                        isEmpty(inputtypeBBT) || isEmpty(inputprepBBT) || isEmpty(inputsustBBT) || isEmpty(inputartBBT) || isEmpty(inputverbBBT) || isEmpty(inputinintBBT) || isEmpty(inputadjBBT) || isEmpty(inputpronBBT) || isEmpty(inputadverBBT) || isEmpty(inputconjBBT) || isEmpty(inputinterBBT) || fechaaplicacion.getValue() == null) {
+            alerta = new Alertas(label.getParent().getScene().getWindow());
+            c = alerta.confirmation();
+        }
         if (!editable) {
+            if (c == false) {
+                return;
+            }
             try {
                 fechan = fechaaplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 
@@ -274,15 +287,26 @@ public class LecturaConjuntaController implements Initializable {
                 Stage actualWindow = (Stage) label.getScene().getWindow();
                 actualWindow.close();
             } catch (Exception e) {
-                label.setVisible(true);
-                alertInformation("Error", "Datos inválidos.", "No se pudo agregar la lectura conjunta.");
+                alerta = new Alertas(label.getParent().getScene().getWindow());
+                alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten la inserción en la base."
+                    + "\n Compruebe que la fecha de la cita sea válida.");
+            return; //Poner mensaje si se quiere
             }
 
         } else {
-            lecturaAEditar.updateLecturaConjunta(lecturaAEditar.getIdLecturaConjunta(), -1, validInput(typeC), validInput(prepC), validInput(sustC), validInput(artC), validInput(verbC), validInput(inintC), validInput(adjC), validInput(pronC), validInput(adverC), validInput(conjC), validInput(interC),
+            if (c == false) return;
+            try {
+                fechan = fechaaplicacion.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                lecturaAEditar.updateLecturaConjunta(lecturaAEditar.getIdLecturaConjunta(), -1, validInput(typeC), validInput(prepC), validInput(sustC), validInput(artC), validInput(verbC), validInput(inintC), validInput(adjC), validInput(pronC), validInput(adverC), validInput(conjC), validInput(interC),
                     validInput(typeCT), validInput(prepCT), validInput(sustCT), validInput(artCT), validInput(verbCT), validInput(inintCT), validInput(adjCT), validInput(pronCT), validInput(adverCT), validInput(conjCT), validInput(interCT),
                     validInput(typeBB), validInput(prepBB), validInput(sustBB), validInput(artBB), validInput(verbBB), validInput(inintBB), validInput(adjBB), validInput(pronBB), validInput(adverBB), validInput(conjBB), validInput(interBB),
                     validInput(typeBBT), validInput(prepBBT), validInput(sustBBT), validInput(artBBT), validInput(verbBBT), validInput(inintBBT), validInput(adjBBT), validInput(pronBBT), validInput(adverBBT), validInput(conjBBT), validInput(interBBT), fkCuidador, fechan, idBebeActualizar);
+            } catch (Exception e) {
+                alerta = new Alertas(label.getParent().getScene().getWindow());
+                alerta.alertInformation("Error en los datos", "Datos inválidos.", "Los datos proporcionados no permiten la edición en la base."
+                    + "\n Compruebe que la fecha de la cita sea válida.");
+            return; //Poner mensaje si se quiere
+            }
         }
     }
 
@@ -365,12 +389,16 @@ public class LecturaConjuntaController implements Initializable {
         alert.showAndWait();
     }
     
-    public boolean isEmpty(String textfield) {
+    public boolean isEmpty(TextField textfield) {
+        return StringUtils.isEmptyOrWhitespaceOnly(textfield.getText());
+    }
+    
+    public boolean isEmpty0(String textfield) {
         return StringUtils.isEmptyOrWhitespaceOnly(textfield);
     }
     
     public int validInput(String input) {
-        if(isEmpty(input)) {
+        if(isEmpty0(input)) {
             return -1;
         }
         return Integer.parseInt(input);
