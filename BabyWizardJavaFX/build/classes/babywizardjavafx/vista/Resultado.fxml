@@ -199,7 +199,7 @@
          <columns>
             <TableColumn fx:id="idinfanteec" minWidth="-Infinity" prefWidth="135.0" text="ID Infante" />
             <TableColumn fx:id="tipoexpec" minWidth="-Infinity" prefWidth="135.0" text="Tipo Exp." />
-            <TableColumn fx:id="resdireccion" minWidth="-Infinity" prefWidth="95.0" text="Direccion" />
+            <TableColumn fx:id="resdireccion" minWidth="-Infinity" prefWidth="150.0" text="Direccion" />
          </columns>
       </TableView>
       <TableView fx:id="resultadossd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -278,25 +278,25 @@
       </TableView>
       <TableView fx:id="resultadoscdi18" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <columns>
-            <TableColumn fx:id="residinfantecdi18" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="90.0" text="ID Infante" />
-            <TableColumn fx:id="resprodcdi18" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="130.0" text="Producción" />
-            <TableColumn fx:id="respropprodcdi18" prefWidth="75.0" text="Prop. Prod." />
-            <TableColumn fx:id="respercprodcdi18" prefWidth="75.0" text="Perc. Prod." />
+            <TableColumn fx:id="residinfantecdi18" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="135.0" text="ID Infante" />
+            <TableColumn fx:id="resprodcdi18" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="Producción" />
+            <TableColumn fx:id="respropprodcdi18" minWidth="160.0" prefWidth="160.0" text="Prop. Prod." />
+            <TableColumn fx:id="respercprodcdi18" minWidth="160.0" prefWidth="160.0" text="Perc. Prod." />
             <TableColumn fx:id="resp3lpalabras" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="P3LPalabras" />
-            <TableColumn fx:id="respercp3lpalabras" prefWidth="75.0" text="Perc. P3LPalabras" />
+            <TableColumn fx:id="respercp3lpalabras" minWidth="160.0" prefWidth="160.0" text="Perc. P3LPalabras" />
             <TableColumn fx:id="rescmpfrasescdi18" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="Complejidad Frases" />
-            <TableColumn fx:id="respropcmpfrasescdi18" prefWidth="75.0" text="Prop. Cmp. F." />
-            <TableColumn fx:id="resperccmpfrasescdi18" prefWidth="75.0" text="Perc. Cmp. F." />
-            <TableColumn fx:id="resfechaaplicacioncdi18" maxWidth="1.7976931348623157E308" minWidth="105.0" prefWidth="105.0" text="Fecha Aplicación" />
+            <TableColumn fx:id="respropcmpfrasescdi18" minWidth="160.0" prefWidth="160.0" text="Prop. Cmp. F." />
+            <TableColumn fx:id="resperccmpfrasescdi18" minWidth="160.0" prefWidth="160.0" text="Perc. Cmp. F." />
+            <TableColumn fx:id="resfechaaplicacioncdi18" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="150.0" text="Fecha Aplicación" />
          </columns>
       </TableView>
       <TableView fx:id="resultadosicplim" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="208.0" prefWidth="866.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <columns>
-            <TableColumn fx:id="residinfanteicplim" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="90.0" text="ID Infante" />
-            <TableColumn fx:id="resc" maxWidth="1.7976931348623157E308" minWidth="130.0" prefWidth="130.0" text="C." />
+            <TableColumn fx:id="residinfanteicplim" minWidth="-Infinity" prefWidth="135.0" text="ID Infante" />
+            <TableColumn fx:id="resc" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="130.0" text="C." />
             <TableColumn fx:id="respropc" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="Prop. C." />
             <TableColumn fx:id="rescyd" maxWidth="1.7976931348623157E308" minWidth="160.0" prefWidth="160.0" text="CyD" />
-            <TableColumn fx:id="respropcyd" maxWidth="1.7976931348623157E308" minWidth="105.0" prefWidth="105.0" text="Prop CyD" />
+            <TableColumn fx:id="respropcyd" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="130.0" text="Prop CyD" />
             <TableColumn fx:id="restotalicplim" maxWidth="1.7976931348623157E308" minWidth="170.0" prefWidth="170.0" text="Total" />
             <TableColumn fx:id="resproptotal" minWidth="150.0" prefWidth="150.0" text="Prop. Total" visible="false" />
             <TableColumn fx:id="resfechaaplicacionicplim" minWidth="150.0" prefWidth="150.0" text="FechaAplicación" visible="false" />

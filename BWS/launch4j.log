@@ -1,0 +1,24 @@
+
+
+Version:	3.12
+CmdLine:	C:\Users\victo\Desktop\BWS\BabyWizard.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\victo\Desktop\BWS\.
+Java min ver:	1.004.000
+Java max ver:	1.008.000_251
+Bundled JRE:	jre
+Check launcher:	C:\Users\victo\Desktop\BWS\jre\bin\javaw.exe (OK)
+Main class:	babywizardjavafx.BabyWizardJavaFX
+Add classpath:	lib\commons-collections4-4.4.jar
+Add classpath:	lib\commons-compress-1.19.jar
+Add classpath:	lib\commons-math3-3.6.1.jar
+Add classpath:	lib\jmetro-8.6.11.jar
+Add classpath:	lib\mysql-connector-java-8.0.19.jar
+Add classpath:	lib\poi-4.1.2.jar
+Add classpath:	lib\poi-ooxml-4.1.2.jar
+Add classpath:	lib\poi-ooxml-schemas-4.1.2.jar
+Add classpath:	lib\xmlbeans-3.1.0.jar
+Launcher:	C:\Users\victo\Desktop\BWS\jre\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\victo\Desktop\BWS\BabyWizard.exe;lib\commons-collections4-4.4.jar;lib\commons-compress-1.19.jar;lib\commons-math3-3.6.1.jar;lib\jmetro-8.6.11.jar;lib\mysql-connector-java-8.0.19.jar;lib\poi-4.1.2.jar;lib\poi-ooxml-4.1.2.jar;lib\poi-ooxml-schemas-4.1.2.jar;lib\xmlbeans-3.1.0.jar" babywizardjavafx.BabyWizardJavaFX
+Args length:	334/32768 chars
+Exit code:	0
